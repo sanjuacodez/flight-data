@@ -438,16 +438,6 @@
             <div class="hint">Auto-scrolls long lists for TV display. Pause by hovering.</div>
         </div>
 
-        <h3>OpenSky Authentication (Optional)</h3>
-        <div class="field">
-            <label>Username</label>
-            <input type="text" id="setUsername" placeholder="OpenSky username (optional)">
-        </div>
-        <div class="field">
-            <label>Password</label>
-            <input type="password" id="setPassword" placeholder="OpenSky password (optional)">
-            <div class="hint">Free account at <a href="https://opensky-network.org/index.php/-/login" target="_blank" rel="noopener">opensky-network.org</a> for higher rate limits. Leave blank for anonymous.</div>
-        </div>
 
         <div class="settings-actions">
             <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
@@ -566,8 +556,7 @@
         timeFormat: '24',
         refreshInterval: 300,
         scrollSpeed: 40,
-        username: '',
-        password: ''
+
     };
 
     function loadConfig() {
@@ -578,7 +567,6 @@
     }
     function saveConfigToStorage(cfg) {
         const c = { ...cfg };
-        delete c.password;
         localStorage.setItem('flightBoardConfig', JSON.stringify(c));
     }
 
@@ -708,7 +696,7 @@
             console.error('OpenSky error:', err);
             const msg = String(err.message);
             let hint = 'Check ICAO code and try again.';
-            if (msg.includes('429')) hint = 'Rate limited by OpenSky. Wait a few minutes, or add OpenSky credentials in settings.';
+            if (msg.includes('429')) hint = 'Rate limited by OpenSky. Please wait a few minutes and try again.';
             else if (msg.includes('504') || msg.includes('522') || msg.includes('timed out')) hint = 'OpenSky API timed out. The service may be slow or overloaded. Will retry automatically.';
             else if (msg.includes('502')) hint = 'Could not reach OpenSky API. The service may be down temporarily.';
             else if (msg.includes('Failed to fetch')) hint = 'Network error. Check your internet connection.';
@@ -726,11 +714,7 @@
         const ep = dir === 'arrival' ? 'arrival' : 'departure';
         // Use server-side proxy to avoid CORS issues
         const url = `/api/opensky?dir=${ep}&airport=${encodeURIComponent(airport)}&begin=${begin}&end=${end}`;
-        const opts = {};
-        if (config.username && config.password) {
-            opts.headers = { 'Authorization': 'Basic ' + btoa(config.username + ':' + config.password) };
-        }
-        const r = await fetch(url, opts);
+        const r = await fetch(url);
         if (!r.ok) throw new Error(`HTTP ${r.status}: ${r.statusText}`);
         return await r.json();
     }
@@ -809,8 +793,6 @@
         document.getElementById('setTimeFormat').value = config.timeFormat;
         document.getElementById('setRefreshInterval').value = config.refreshInterval;
         document.getElementById('setScrollSpeed').value = config.scrollSpeed;
-        document.getElementById('setUsername').value = config.username;
-        document.getElementById('setPassword').value = config.password;
         document.getElementById('settingsOverlay').classList.add('open');
     }
     function closeSettings() {
@@ -827,9 +809,6 @@
         config.timeFormat = document.getElementById('setTimeFormat').value;
         config.refreshInterval = parseInt(document.getElementById('setRefreshInterval').value, 10);
         config.scrollSpeed = parseInt(document.getElementById('setScrollSpeed').value, 10);
-        config.username = document.getElementById('setUsername').value.trim();
-        config.password = document.getElementById('setPassword').value;
-
         saveConfigToStorage(config);
         updateAirportDisplay();
         closeSettings();
