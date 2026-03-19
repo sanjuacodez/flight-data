@@ -67,7 +67,7 @@ async function handleOpenSkyProxy(url, request, env) {
 
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
+    const timeout = setTimeout(() => controller.abort(), 15000);
     const resp = await fetch(apiUrl, { headers, signal: controller.signal });
     clearTimeout(timeout);
     const data = await resp.text();

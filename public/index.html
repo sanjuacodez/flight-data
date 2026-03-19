@@ -397,7 +397,7 @@
             <div class="hint">Select country, then pick the airport.</div>
         </div>
         <div class="field">
-            <label>Time Span (hours before &amp; after now)</label>
+            <label>Time Span</label>
             <select id="setTimeSpan">
                 <option value="1">± 1 hour</option>
                 <option value="2">± 2 hours</option>
@@ -406,8 +406,9 @@
                 <option value="6">± 6 hours</option>
                 <option value="8">± 8 hours</option>
                 <option value="12">± 12 hours</option>
+                <option value="24">Full day (24h)</option>
             </select>
-            <div class="hint">Shows flights within this window before and after current time.</div>
+            <div class="hint">Shows yesterday's flights within this window (data is updated nightly by OpenSky).</div>
         </div>
         <div class="field">
             <label>Time Format</label>
@@ -668,28 +669,35 @@
 
     // ── Fetch from OpenSky ──
     async function fetchFlights() {
-        document.getElementById('arrBody').innerHTML = `<div class="state-msg"><div class="spinner"></div>Fetching arrivals...</div>`;
-        document.getElementById('depBody').innerHTML = `<div class="state-msg"><div class="spinner"></div>Fetching departures...</div>`;
+        document.getElementById('arrBody').innerHTML = `<div class="state-msg"><div class="spinner"></div>Fetching flights...</div>`;
+        document.getElementById('depBody').innerHTML = `<div class="state-msg"><div class="spinner"></div>Fetching flights...</div>`;
 
+        // OpenSky arrivals/departures are batch-processed nightly.
+        // Only data from the previous day or earlier is available.
+        // We query yesterday's time window matching the configured span.
         const now = Math.floor(Date.now() / 1000);
         const spanSec = config.timeSpan * 3600;
-        const begin = now - spanSec;
-        const end = now + spanSec;
-        // OpenSky only returns past flights, so we query begin → now for historical data
-        // For "upcoming" feel, we query a window from (now - span) to now
-        const queryEnd = Math.min(end, now);
+        const DAY = 86400;
+        // Center on yesterday same time-of-day, with ±span hours
+        const yesterdayCenter = now - DAY;
+        const begin = yesterdayCenter - spanSec;
+        const end = yesterdayCenter + spanSec;
+        // Max interval is 2 days (172800s); clamp if needed
+        const clampedEnd = Math.min(end, begin + 172800);
 
         try {
             const [arrData, depData] = await Promise.all([
-                fetchOpenSky('arrival', config.airport, begin, queryEnd),
-                fetchOpenSky('departure', config.airport, begin, queryEnd)
+                fetchOpenSky('arrival', config.airport, begin, clampedEnd),
+                fetchOpenSky('departure', config.airport, begin, clampedEnd)
             ]);
 
             flightsCache.arrivals = parseFlights(arrData, 'arrival');
             flightsCache.departures = parseFlights(depData, 'departure');
 
+            const fromDate = new Date(begin * 1000);
+            const label = fromDate.toLocaleDateString([], { weekday:'short', day:'numeric', month:'short' });
             document.getElementById('dataSource').innerHTML =
-                `<span class="live-dot"></span>LIVE &mdash; OpenSky Network`;
+                `<span class="live-dot"></span>OpenSky &mdash; ${esc(label)}`;
             updateTimestamp();
             renderBoard();
         } catch (err) {
@@ -715,8 +723,11 @@
         // Use server-side proxy to avoid CORS issues
         const url = `/api/opensky?dir=${ep}&airport=${encodeURIComponent(airport)}&begin=${begin}&end=${end}`;
         const r = await fetch(url);
+        // 404 = no flights found for this period (valid response per API docs)
+        if (r.status === 404) return [];
         if (!r.ok) throw new Error(`HTTP ${r.status}: ${r.statusText}`);
-        return await r.json();
+        const data = await r.json();
+        return Array.isArray(data) ? data : [];
     }
 
     function parseFlights(data, dir) {
