@@ -721,7 +721,8 @@
 
     async function fetchOpenSky(dir, airport, begin, end) {
         const ep = dir === 'arrival' ? 'arrival' : 'departure';
-        const url = `https://opensky-network.org/api/flights/${ep}?airport=${encodeURIComponent(airport)}&begin=${begin}&end=${end}`;
+        // Use server-side proxy to avoid CORS issues
+        const url = `/api/opensky?dir=${ep}&airport=${encodeURIComponent(airport)}&begin=${begin}&end=${end}`;
         const opts = {};
         if (config.username && config.password) {
             opts.headers = { 'Authorization': 'Basic ' + btoa(config.username + ':' + config.password) };
