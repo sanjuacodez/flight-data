@@ -37,7 +37,10 @@ async function handleOpenSkyProxy(url, request) {
   }
 
   try {
-    const resp = await fetch(apiUrl, { headers });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    const resp = await fetch(apiUrl, { headers, signal: controller.signal });
+    clearTimeout(timeout);
     const data = await resp.text();
 
     return new Response(data, {
@@ -45,12 +48,13 @@ async function handleOpenSkyProxy(url, request) {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Cache-Control': 'public, max-age=60',
+        'Cache-Control': resp.status === 200 ? 'public, max-age=60' : 'no-cache',
       },
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Upstream request failed' }), {
-      status: 502,
+    const msg = err.name === 'AbortError' ? 'OpenSky API timed out' : 'Upstream request failed';
+    return new Response(JSON.stringify({ error: msg }), {
+      status: 504,
       headers: { 'Content-Type': 'application/json' },
     });
   }

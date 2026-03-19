@@ -706,9 +706,12 @@
             renderBoard();
         } catch (err) {
             console.error('OpenSky error:', err);
+            const msg = String(err.message);
             let hint = 'Check ICAO code and try again.';
-            if (String(err.message).includes('429')) hint = 'Rate limited. Wait and retry, or add credentials.';
-            if (String(err.message).includes('Failed to fetch')) hint = 'Network error or CORS blocked.';
+            if (msg.includes('429')) hint = 'Rate limited by OpenSky. Wait a few minutes, or add OpenSky credentials in settings.';
+            else if (msg.includes('504') || msg.includes('522') || msg.includes('timed out')) hint = 'OpenSky API timed out. The service may be slow or overloaded. Will retry automatically.';
+            else if (msg.includes('502')) hint = 'Could not reach OpenSky API. The service may be down temporarily.';
+            else if (msg.includes('Failed to fetch')) hint = 'Network error. Check your internet connection.';
 
             document.getElementById('arrBody').innerHTML =
                 `<div class="state-msg">${esc(err.message)}<br><small>${esc(hint)}</small></div>`;
