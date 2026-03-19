@@ -9,3 +9,7 @@ data/south-america.csv
 data/oceania.csv
 data/antarctica.csv
 .DS_Store
+
+# Wrangler
+.wrangler/
+node_modules/

@@ -1,5 +1,4 @@
-// Cloudflare Pages Advanced Mode: _worker.js
-// Handles /api/opensky proxy requests, serves static assets for everything else
+// Cloudflare Worker: serves static assets and proxies OpenSky API requests
 
 export default {
   async fetch(request, env) {
