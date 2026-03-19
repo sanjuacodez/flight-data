@@ -1,0 +1,11 @@
+# Raw OurAirports CSV data (large files, can be re-downloaded)
+data/airports.csv
+data/countries.csv
+data/africa.csv
+data/asia.csv
+data/europe.csv
+data/north-america.csv
+data/south-america.csv
+data/oceania.csv
+data/antarctica.csv
+.DS_Store

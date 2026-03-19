@@ -1,0 +1,19044 @@
+const AIRPORT_DATA = {
+  "Afghanistan": [
+    {
+      "icao": "OAHR",
+      "name": "Guzara - Herat - Khwaja Abdullah Ansari"
+    },
+    {
+      "icao": "OAKB",
+      "name": "Kabul"
+    },
+    {
+      "icao": "OAKN",
+      "name": "Kandahar - Ahmad Shah Baba"
+    },
+    {
+      "icao": "OAMS",
+      "name": "Mazar-i-Sharif"
+    },
+    {
+      "icao": "OAIX",
+      "name": "Bagram Airfield"
+    },
+    {
+      "icao": "OAJL",
+      "name": "Jalalabad"
+    },
+    {
+      "icao": "OAKS",
+      "name": "Khost"
+    },
+    {
+      "icao": "OAUZ",
+      "name": "Kunduz"
+    },
+    {
+      "icao": "OAMN",
+      "name": "Maymana Zahiraddin Faryabi"
+    }
+  ],
+  "Albania": [
+    {
+      "icao": "LATI",
+      "name": "Rinas - Tirana International Airport Mother Teresa"
+    },
+    {
+      "icao": "LAVL",
+      "name": "Vlorë - (Duplicate)Vlora"
+    },
+    {
+      "icao": "LAKU",
+      "name": "Kukës"
+    },
+    {
+      "icao": "LAKV",
+      "name": "Kuçovë Air Base"
+    }
+  ],
+  "Algeria": [
+    {
+      "icao": "DAAG",
+      "name": "Algiers - Houari Boumediene"
+    },
+    {
+      "icao": "DABB",
+      "name": "Annaba Rabah Bitat"
+    },
+    {
+      "icao": "DABT",
+      "name": "Batna Mostefa Ben Boulaid"
+    },
+    {
+      "icao": "DAUB",
+      "name": "Biskra - Mohamed Khider"
+    },
+    {
+      "icao": "DAAE",
+      "name": "Béjaïa - Soummam–Abane Ramdane"
+    },
+    {
+      "icao": "DAOI",
+      "name": "Chlef Aboubakr Belkaid"
+    },
+    {
+      "icao": "DABC",
+      "name": "Constantine - Mohamed Boudiaf"
+    },
+    {
+      "icao": "DAOO",
+      "name": "Oran Es-Sénia (Ahmed Ben Bella)"
+    },
+    {
+      "icao": "DAAV",
+      "name": "Tahir - Jijel Ferhat Abbas"
+    },
+    {
+      "icao": "DAAT",
+      "name": "Tamanrasset - Aguenar – Hadj Bey Akhamok"
+    },
+    {
+      "icao": "DAAJ",
+      "name": "Tiska Djanet"
+    },
+    {
+      "icao": "DAON",
+      "name": "Zenata – Messali El Hadj"
+    },
+    {
+      "icao": "DAUA",
+      "name": "Adrar - Touat-Cheikh Sidi Mohamed Belkebir"
+    },
+    {
+      "icao": "DAAB",
+      "name": "Blida"
+    },
+    {
+      "icao": "DAAK",
+      "name": "Boufarik Air Base"
+    },
+    {
+      "icao": "DAOR",
+      "name": "Béchar Boudghene Ben Ali Lotfi"
+    },
+    {
+      "icao": "DABS",
+      "name": "Cheikh Larbi Tébessi"
+    },
+    {
+      "icao": "DAUG",
+      "name": "El Atteuf - Noumérat - Moufdi Zakaria"
+    },
+    {
+      "icao": "DAUE",
+      "name": "El Menia - El Golea"
+    },
+    {
+      "icao": "DAOV",
+      "name": "Ghriss"
+    },
+    {
+      "icao": "DAUO",
+      "name": "Guemar Airport - مطار قمار بالوادي"
+    },
+    {
+      "icao": "DAUH",
+      "name": "Hassi Messaoud-Oued Irara Krim Belkacem"
+    },
+    {
+      "icao": "DAFH",
+      "name": "Hassi R'Mel"
+    },
+    {
+      "icao": "DAAP",
+      "name": "Illizi Takhamalt"
+    },
+    {
+      "icao": "DAUI",
+      "name": "In Salah"
+    },
+    {
+      "icao": "DAUL",
+      "name": "Laghouat - Molay Ahmed Medeghri"
+    },
+    {
+      "icao": "DAAY",
+      "name": "Mecheria"
+    },
+    {
+      "icao": "DAOL",
+      "name": "Oran Tafraoui"
+    },
+    {
+      "icao": "DAUU",
+      "name": "Ouargla - Ain Beida"
+    },
+    {
+      "icao": "DAAD",
+      "name": "Ouled Sidi Brahim - Bou Saada"
+    },
+    {
+      "icao": "DAAZ",
+      "name": "Relizane"
+    },
+    {
+      "icao": "DAAS",
+      "name": "Sétif - Ain Arnat"
+    },
+    {
+      "icao": "DAOB",
+      "name": "Tiaret - Abdelhafid Boussouf Bou Chekif"
+    },
+    {
+      "icao": "DAUT",
+      "name": "Timimoun"
+    },
+    {
+      "icao": "DAOF",
+      "name": "Tindouf"
+    },
+    {
+      "icao": "DAUK",
+      "name": "Touggourt Sidi Madhi"
+    },
+    {
+      "icao": "DAUZ",
+      "name": "Zarzaitine - In Aménas"
+    }
+  ],
+  "American Samoa": [
+    {
+      "icao": "NSTU",
+      "name": "Pago Pago"
+    }
+  ],
+  "Angola": [
+    {
+      "icao": "FNBJ",
+      "name": "Luanda (Ícolo e Bengo) - Dr. Antonio Agostinho Neto"
+    },
+    {
+      "icao": "FNLU",
+      "name": "Luanda - Quatro de Fevereiro"
+    },
+    {
+      "icao": "FNBG",
+      "name": "Benguela"
+    },
+    {
+      "icao": "FNCA",
+      "name": "Cabinda"
+    },
+    {
+      "icao": "FNCT",
+      "name": "Catumbela"
+    },
+    {
+      "icao": "FNDU",
+      "name": "Chitato - Dundo"
+    },
+    {
+      "icao": "FNHU",
+      "name": "Huambo - Albano Machado"
+    },
+    {
+      "icao": "FNKU",
+      "name": "Kuito"
+    },
+    {
+      "icao": "FNUB",
+      "name": "Lubango Mukanka"
+    },
+    {
+      "icao": "FNUE",
+      "name": "Luena"
+    },
+    {
+      "icao": "FNMA",
+      "name": "Malanje"
+    },
+    {
+      "icao": "FNBC",
+      "name": "Mbanza Congo"
+    },
+    {
+      "icao": "FNME",
+      "name": "Menongue"
+    },
+    {
+      "icao": "FNMO",
+      "name": "Moçâmedes - Welwitschia Mirabilis"
+    },
+    {
+      "icao": "FNNG",
+      "name": "Negage"
+    },
+    {
+      "icao": "FNGI",
+      "name": "Ngiva - Ngjiva Pereira"
+    },
+    {
+      "icao": "FNPA",
+      "name": "Port Amboim - Porto Amboim"
+    },
+    {
+      "icao": "FNSA",
+      "name": "Saurimo"
+    },
+    {
+      "icao": "FNSO",
+      "name": "Soyo"
+    },
+    {
+      "icao": "FNSU",
+      "name": "Sumbe"
+    },
+    {
+      "icao": "FNUG",
+      "name": "Uige"
+    },
+    {
+      "icao": "FNXA",
+      "name": "Xangongo"
+    }
+  ],
+  "Anguilla": [
+    {
+      "icao": "TQPF",
+      "name": "The Valley - Clayton J. Lloyd"
+    }
+  ],
+  "Antarctica": [
+    {
+      "icao": "NZSP",
+      "name": "Amundsen-Scott South Pole Station - Amundsen–Scott South Pole Station"
+    }
+  ],
+  "Antigua and Barbuda": [
+    {
+      "icao": "TAPA",
+      "name": "Osbourn - V. C. Bird"
+    },
+    {
+      "icao": "TAPB",
+      "name": "Codrington - Burton-Nibbs"
+    }
+  ],
+  "Argentina": [
+    {
+      "icao": "SAEZ",
+      "name": "Buenos Aires (Ezeiza) - Ezeiza International Airport - Ministro Pistarini"
+    },
+    {
+      "icao": "SABE",
+      "name": "Buenos Aires - Aeroparque Jorge Newbery"
+    },
+    {
+      "icao": "SAVC",
+      "name": "Comodoro Rivadavia - General Enrique Mosconi"
+    },
+    {
+      "icao": "SACO",
+      "name": "Cordoba - Ingeniero Aeronáutico Ambrosio L.V. Taravella"
+    },
+    {
+      "icao": "SAME",
+      "name": "Mendoza - Governor Francisco Gabrielli"
+    },
+    {
+      "icao": "SAZN",
+      "name": "Neuquén - Presidente Perón"
+    },
+    {
+      "icao": "SARE",
+      "name": "Resistencia"
+    },
+    {
+      "icao": "SAWG",
+      "name": "Rio Gallegos - Piloto Civil Norberto Fernández"
+    },
+    {
+      "icao": "SAAR",
+      "name": "Rosario Islas Malvinas"
+    },
+    {
+      "icao": "SASA",
+      "name": "Salta - Martín Miguel de Güemes"
+    },
+    {
+      "icao": "SAZS",
+      "name": "San Carlos de Bariloche - Teniente Luis Candelaria"
+    },
+    {
+      "icao": "SANT",
+      "name": "San Miguel de Tucumán - Teniente Benjamín Matienzo"
+    },
+    {
+      "icao": "SASJ",
+      "name": "San Salvador de Jujuy - Gobernador Horacio Guzman"
+    },
+    {
+      "icao": "SAZB",
+      "name": "Bahía Blanca - Comandante Espora"
+    },
+    {
+      "icao": "SANC",
+      "name": "Catamarca - Coronel Felipe Varela"
+    },
+    {
+      "icao": "SAZY",
+      "name": "Chapelco/San Martin de los Andes - Aviador C. Campos"
+    },
+    {
+      "icao": "SAAC",
+      "name": "Concordia - Comodoro Pierrestegui"
+    },
+    {
+      "icao": "SARC",
+      "name": "Corrientes"
+    },
+    {
+      "icao": "SATU",
+      "name": "Curuzu Cuatia"
+    },
+    {
+      "icao": "SAZW",
+      "name": "Cutral-Co"
+    },
+    {
+      "icao": "SAVB",
+      "name": "El Bolsón Airfield"
+    },
+    {
+      "icao": "SADP",
+      "name": "El Palomar"
+    },
+    {
+      "icao": "SAVE",
+      "name": "Esquel Brigadier Antonio Parodi"
+    },
+    {
+      "icao": "SARF",
+      "name": "Formosa National"
+    },
+    {
+      "icao": "SAZG",
+      "name": "General Pico"
+    },
+    {
+      "icao": "SATG",
+      "name": "Goya"
+    },
+    {
+      "icao": "SAAG",
+      "name": "Gualeguaychu"
+    },
+    {
+      "icao": "SADL",
+      "name": "La Plata"
+    },
+    {
+      "icao": "SANL",
+      "name": "La Rioja - Capitan V A Almonacid"
+    },
+    {
+      "icao": "SAVH",
+      "name": "Las Heras"
+    },
+    {
+      "icao": "SAMM",
+      "name": "Malargue - Comodoro D.R. Salomón"
+    },
+    {
+      "icao": "SAZM",
+      "name": "Mar del Plata - Ástor Piazzola"
+    },
+    {
+      "icao": "SARM",
+      "name": "Monte Caseros"
+    },
+    {
+      "icao": "SAZO",
+      "name": "Necochea"
+    },
+    {
+      "icao": "SASO",
+      "name": "Orán"
+    },
+    {
+      "icao": "SAAP",
+      "name": "Parana - General Urquiza"
+    },
+    {
+      "icao": "SARL",
+      "name": "Paso De Los Libres"
+    },
+    {
+      "icao": "SAZP",
+      "name": "Pehuajó - Comodoro Pedro Zanni"
+    },
+    {
+      "icao": "SAWP",
+      "name": "Perito Moreno Jalil Hamer"
+    },
+    {
+      "icao": "SARP",
+      "name": "Posadas - Libertador Gral D Jose De San Martin"
+    },
+    {
+      "icao": "SAWD",
+      "name": "Puerto Deseado"
+    },
+    {
+      "icao": "SARI",
+      "name": "Puerto Iguazu - Cataratas Del Iguazú"
+    },
+    {
+      "icao": "SAVY",
+      "name": "Puerto Madryn - El Tehuelche"
+    },
+    {
+      "icao": "SAWU",
+      "name": "Puerto Santa Cruz - Santa Cruz"
+    },
+    {
+      "icao": "SAVT",
+      "name": "Rawson - Almirante Marco Andres Zar"
+    },
+    {
+      "icao": "SATR",
+      "name": "Reconquista"
+    },
+    {
+      "icao": "SAHS",
+      "name": "Rincon De Los Sauces"
+    },
+    {
+      "icao": "SAOC",
+      "name": "Rio Cuarto - Area De Material"
+    },
+    {
+      "icao": "SAWE",
+      "name": "Rio Grande - Hermes Quijada"
+    },
+    {
+      "icao": "SANU",
+      "name": "San Juan - Domingo Faustino Sarmiento"
+    },
+    {
+      "icao": "SAWJ",
+      "name": "San Julian - Capitan D Daniel Vazquez"
+    },
+    {
+      "icao": "SAOU",
+      "name": "San Luis - Brigadier Mayor D Cesar Raul Ojeda"
+    },
+    {
+      "icao": "SAMR",
+      "name": "San Rafael - Suboficial Ay Santiago Germano"
+    },
+    {
+      "icao": "SAAV",
+      "name": "Santa Fe - Sauce Viejo"
+    },
+    {
+      "icao": "SAZR",
+      "name": "Santa Rosa"
+    },
+    {
+      "icao": "SAZL",
+      "name": "Santa Teresita"
+    },
+    {
+      "icao": "SANE",
+      "name": "Santiago del Estero - Vicecomodoro Angel D. La Paz Aragonés"
+    },
+    {
+      "icao": "SAZT",
+      "name": "Tandil - Héroes de Malvinas"
+    },
+    {
+      "icao": "SAST",
+      "name": "Tartagal - General Enrique Mosconi"
+    },
+    {
+      "icao": "SANR",
+      "name": "Termas de Río Hondo international"
+    },
+    {
+      "icao": "SAZH",
+      "name": "Tres Arroyos"
+    },
+    {
+      "icao": "SAWH",
+      "name": "Ushuaia - Malvinas Argentinas"
+    },
+    {
+      "icao": "SAVV",
+      "name": "Viedma / Carmen de Patagones - Gobernador Castello"
+    },
+    {
+      "icao": "SAOD",
+      "name": "Villa Dolores"
+    },
+    {
+      "icao": "SAZV",
+      "name": "Villa Gesell"
+    },
+    {
+      "icao": "SAOR",
+      "name": "Villa Mercedes - Villa Reynolds"
+    },
+    {
+      "icao": "SAHZ",
+      "name": "Zapala"
+    }
+  ],
+  "Armenia": [
+    {
+      "icao": "UDSG",
+      "name": "Gyumri - Shirak"
+    },
+    {
+      "icao": "UDYZ",
+      "name": "Yerevan - Zvartnots"
+    }
+  ],
+  "Aruba": [
+    {
+      "icao": "TNCA",
+      "name": "Oranjestad - Queen Beatrix"
+    }
+  ],
+  "Australia": [
+    {
+      "icao": "YPAD",
+      "name": "Adelaide"
+    },
+    {
+      "icao": "YBBN",
+      "name": "Brisbane"
+    },
+    {
+      "icao": "YBRM",
+      "name": "Broome"
+    },
+    {
+      "icao": "YBCS",
+      "name": "Cairns"
+    },
+    {
+      "icao": "YPDN",
+      "name": "Darwin International Airport / RAAF Darwin"
+    },
+    {
+      "icao": "YMAV",
+      "name": "Geelong/Melbourne - Melbourne Avalon"
+    },
+    {
+      "icao": "YBCG",
+      "name": "Gold Coast"
+    },
+    {
+      "icao": "YMHB",
+      "name": "Hobart (Cambridge) - Hobart"
+    },
+    {
+      "icao": "YBSU",
+      "name": "Maroochydore - Sunshine Coast"
+    },
+    {
+      "icao": "YMML",
+      "name": "Melbourne"
+    },
+    {
+      "icao": "YPPH",
+      "name": "Perth"
+    },
+    {
+      "icao": "YPPD",
+      "name": "Port Hedland"
+    },
+    {
+      "icao": "YSSY",
+      "name": "Sydney (Mascot) - Sydney Kingsford Smith"
+    },
+    {
+      "icao": "YBWW",
+      "name": "Toowoomba Wellcamp"
+    },
+    {
+      "icao": "YWLM",
+      "name": "Williamtown - Newcastle"
+    },
+    {
+      "icao": "YABA",
+      "name": "Albany"
+    },
+    {
+      "icao": "YBAS",
+      "name": "Alice Springs"
+    },
+    {
+      "icao": "YARA",
+      "name": "Ararat"
+    },
+    {
+      "icao": "YARM",
+      "name": "Armidale"
+    },
+    {
+      "icao": "YBNS",
+      "name": "Bairnsdale"
+    },
+    {
+      "icao": "YBNA",
+      "name": "Ballina Byron Gateway"
+    },
+    {
+      "icao": "YBRN",
+      "name": "Balranald"
+    },
+    {
+      "icao": "YBAR",
+      "name": "Barcaldine"
+    },
+    {
+      "icao": "YBTH",
+      "name": "Bathurst"
+    },
+    {
+      "icao": "YBIE",
+      "name": "Bedourie"
+    },
+    {
+      "icao": "YBLA",
+      "name": "Benalla"
+    },
+    {
+      "icao": "YTNG",
+      "name": "Biloela - Thangool"
+    },
+    {
+      "icao": "YBDV",
+      "name": "Birdsville"
+    },
+    {
+      "icao": "YBCK",
+      "name": "Blackall"
+    },
+    {
+      "icao": "YBTR",
+      "name": "Blackwater"
+    },
+    {
+      "icao": "YBOU",
+      "name": "Boulia"
+    },
+    {
+      "icao": "YBKE",
+      "name": "Bourke"
+    },
+    {
+      "icao": "YBRW",
+      "name": "Brewarrina"
+    },
+    {
+      "icao": "YPKG",
+      "name": "Broadwood - Kalgoorlie Boulder"
+    },
+    {
+      "icao": "YBHI",
+      "name": "Broken Hill"
+    },
+    {
+      "icao": "YBUD",
+      "name": "Bundaberg"
+    },
+    {
+      "icao": "YWYY",
+      "name": "Burnie - Wynyard"
+    },
+    {
+      "icao": "YSCB",
+      "name": "Canberra"
+    },
+    {
+      "icao": "YCAR",
+      "name": "Carnarvon"
+    },
+    {
+      "icao": "YCDU",
+      "name": "Ceduna"
+    },
+    {
+      "icao": "YBCV",
+      "name": "Charleville"
+    },
+    {
+      "icao": "YCCA",
+      "name": "Chinchilla"
+    },
+    {
+      "icao": "YCMT",
+      "name": "Clermont"
+    },
+    {
+      "icao": "YCEE",
+      "name": "Cleve"
+    },
+    {
+      "icao": "YCCY",
+      "name": "Cloncurry"
+    },
+    {
+      "icao": "YCBA",
+      "name": "Cobar"
+    },
+    {
+      "icao": "YSCN",
+      "name": "Cobbitty - Camden"
+    },
+    {
+      "icao": "YCOE",
+      "name": "Coen"
+    },
+    {
+      "icao": "YCFS",
+      "name": "Coffs Harbour"
+    },
+    {
+      "icao": "YCBP",
+      "name": "Coober Pedy"
+    },
+    {
+      "icao": "YCKN",
+      "name": "Cooktown"
+    },
+    {
+      "icao": "YCOM",
+      "name": "Cooma Snowy Mountains"
+    },
+    {
+      "icao": "YCBB",
+      "name": "Coonabarabran"
+    },
+    {
+      "icao": "YCNM",
+      "name": "Coonamble"
+    },
+    {
+      "icao": "YCTM",
+      "name": "Cootamundra"
+    },
+    {
+      "icao": "YCOR",
+      "name": "Corowa"
+    },
+    {
+      "icao": "YCRG",
+      "name": "Corryong"
+    },
+    {
+      "icao": "YCWR",
+      "name": "Cowra"
+    },
+    {
+      "icao": "YCMU",
+      "name": "Cunnamulla"
+    },
+    {
+      "icao": "YSHK",
+      "name": "Denham - Shark Bay"
+    },
+    {
+      "icao": "YDLQ",
+      "name": "Deniliquin"
+    },
+    {
+      "icao": "YDBY",
+      "name": "Derby"
+    },
+    {
+      "icao": "YCIN",
+      "name": "Derby - RAAF Base Curtin"
+    },
+    {
+      "icao": "YDPO",
+      "name": "Devonport"
+    },
+    {
+      "icao": "YDBI",
+      "name": "Dirranbandi"
+    },
+    {
+      "icao": "YSDU",
+      "name": "Dubbo City Regional"
+    },
+    {
+      "icao": "YDYS",
+      "name": "Dysart"
+    },
+    {
+      "icao": "YMAY",
+      "name": "East Albury - Albury"
+    },
+    {
+      "icao": "YPKU",
+      "name": "East Kimberley Regional (Kununurra)"
+    },
+    {
+      "icao": "YECH",
+      "name": "Echuca"
+    },
+    {
+      "icao": "YELD",
+      "name": "Elcho Island"
+    },
+    {
+      "icao": "YEML",
+      "name": "Emerald"
+    },
+    {
+      "icao": "YESP",
+      "name": "Esperance"
+    },
+    {
+      "icao": "YMEN",
+      "name": "Essendon Fields - Melbourne Essendon"
+    },
+    {
+      "icao": "YPLM",
+      "name": "Exmouth - Learmonth"
+    },
+    {
+      "icao": "YFTZ",
+      "name": "Fitzroy Crossing"
+    },
+    {
+      "icao": "YFBS",
+      "name": "Forbes"
+    },
+    {
+      "icao": "YSWG",
+      "name": "Forest Hill - Wagga Wagga"
+    },
+    {
+      "icao": "YFRT",
+      "name": "Forrest"
+    },
+    {
+      "icao": "YGLA",
+      "name": "Gladstone"
+    },
+    {
+      "icao": "YGLI",
+      "name": "Glen Innes"
+    },
+    {
+      "icao": "YGLB",
+      "name": "Goulburn"
+    },
+    {
+      "icao": "YGFN",
+      "name": "Grafton - Clarence Valley Regional"
+    },
+    {
+      "icao": "YGTH",
+      "name": "Griffith"
+    },
+    {
+      "icao": "YGTE",
+      "name": "Groote Eylandt"
+    },
+    {
+      "icao": "YGDH",
+      "name": "Gunnedah"
+    },
+    {
+      "icao": "YHLC",
+      "name": "Halls Creek"
+    },
+    {
+      "icao": "YHML",
+      "name": "Hamilton"
+    },
+    {
+      "icao": "YBHM",
+      "name": "Hamilton Island"
+    },
+    {
+      "icao": "YHAY",
+      "name": "Hay Airport"
+    },
+    {
+      "icao": "YHBA",
+      "name": "Hervey Bay"
+    },
+    {
+      "icao": "YHPN",
+      "name": "Hopetoun"
+    },
+    {
+      "icao": "YHID",
+      "name": "Horn Island"
+    },
+    {
+      "icao": "YHSM",
+      "name": "Horsham"
+    },
+    {
+      "icao": "YIVL",
+      "name": "Inverell"
+    },
+    {
+      "icao": "YPKA",
+      "name": "Karratha"
+    },
+    {
+      "icao": "YKMP",
+      "name": "Kempsey"
+    },
+    {
+      "icao": "YKER",
+      "name": "Kerang"
+    },
+    {
+      "icao": "YKII",
+      "name": "King Island"
+    },
+    {
+      "icao": "YKRY",
+      "name": "Kingaroy"
+    },
+    {
+      "icao": "YKSC",
+      "name": "Kingscote"
+    },
+    {
+      "icao": "YKOW",
+      "name": "Kowanyama"
+    },
+    {
+      "icao": "YWGT",
+      "name": "Laceby - Wangaratta"
+    },
+    {
+      "icao": "YMLT",
+      "name": "Launceston (Western Junction) - Launceston"
+    },
+    {
+      "icao": "YLEC",
+      "name": "Leigh Creek"
+    },
+    {
+      "icao": "YLST",
+      "name": "Leinster"
+    },
+    {
+      "icao": "YLEO",
+      "name": "Leonora"
+    },
+    {
+      "icao": "YLRD",
+      "name": "Lightning Ridge"
+    },
+    {
+      "icao": "YLIS",
+      "name": "Lismore"
+    },
+    {
+      "icao": "YLHR",
+      "name": "Lockhart River"
+    },
+    {
+      "icao": "YLRE",
+      "name": "Longreach"
+    },
+    {
+      "icao": "YBMK",
+      "name": "Mackay"
+    },
+    {
+      "icao": "YMGD",
+      "name": "Maningrida"
+    },
+    {
+      "icao": "YMBA",
+      "name": "Mareeba"
+    },
+    {
+      "icao": "YMRE",
+      "name": "Marree"
+    },
+    {
+      "icao": "YMEK",
+      "name": "Meekatharra"
+    },
+    {
+      "icao": "YMMB",
+      "name": "Melbourne Moorabbin"
+    },
+    {
+      "icao": "YMER",
+      "name": "Merimbula"
+    },
+    {
+      "icao": "YMIA",
+      "name": "Mildura"
+    },
+    {
+      "icao": "YGEL",
+      "name": "Moonyoonooka - Geraldton"
+    },
+    {
+      "icao": "YMRB",
+      "name": "Moranbah"
+    },
+    {
+      "icao": "YMOR",
+      "name": "Moree"
+    },
+    {
+      "icao": "YMRY",
+      "name": "Moruya"
+    },
+    {
+      "icao": "YLTV",
+      "name": "Morwell - Latrobe Valley"
+    },
+    {
+      "icao": "YMTG",
+      "name": "Mount Gambier"
+    },
+    {
+      "icao": "YHOT",
+      "name": "Mount Hotham"
+    },
+    {
+      "icao": "YBMA",
+      "name": "Mount Isa"
+    },
+    {
+      "icao": "YMNE",
+      "name": "Mount Keith"
+    },
+    {
+      "icao": "YMOG",
+      "name": "Mount Magnet"
+    },
+    {
+      "icao": "YMDG",
+      "name": "Mudgee"
+    },
+    {
+      "icao": "YNKR",
+      "name": "Nackeroo Airfield"
+    },
+    {
+      "icao": "YNBR",
+      "name": "Narrabri"
+    },
+    {
+      "icao": "YNAR",
+      "name": "Narrandera"
+    },
+    {
+      "icao": "YNWN",
+      "name": "Newman"
+    },
+    {
+      "icao": "YNGU",
+      "name": "Ngukurr"
+    },
+    {
+      "icao": "YPGV",
+      "name": "Nhulunbuy - Gove"
+    },
+    {
+      "icao": "YNTN",
+      "name": "Normanton"
+    },
+    {
+      "icao": "YSNW",
+      "name": "Nowra Hill - Naval Air Station Nowra - HMAS Albatross"
+    },
+    {
+      "icao": "YBOK",
+      "name": "Oakey Army Aviation Centre"
+    },
+    {
+      "icao": "YORG",
+      "name": "Orange"
+    },
+    {
+      "icao": "YPBO",
+      "name": "Paraburdoo"
+    },
+    {
+      "icao": "YPKS",
+      "name": "Parkes"
+    },
+    {
+      "icao": "YPJT",
+      "name": "Perth Jandakot"
+    },
+    {
+      "icao": "YGPT",
+      "name": "Pirlangimpi - Garden Point"
+    },
+    {
+      "icao": "YPAG",
+      "name": "Port Augusta"
+    },
+    {
+      "icao": "YPLC",
+      "name": "Port Lincoln"
+    },
+    {
+      "icao": "YPMQ",
+      "name": "Port Macquarie"
+    },
+    {
+      "icao": "YPIR",
+      "name": "Port Pirie"
+    },
+    {
+      "icao": "YPOD",
+      "name": "Portland"
+    },
+    {
+      "icao": "YBPN",
+      "name": "Proserpine Whitsunday Coast"
+    },
+    {
+      "icao": "YQLP",
+      "name": "Quilpie"
+    },
+    {
+      "icao": "YAMB",
+      "name": "RAAF Base Amberley"
+    },
+    {
+      "icao": "YSRI",
+      "name": "RAAF Base Richmond"
+    },
+    {
+      "icao": "YREN",
+      "name": "Renmark"
+    },
+    {
+      "icao": "YBRK",
+      "name": "Rockhampton"
+    },
+    {
+      "icao": "YROM",
+      "name": "Roma"
+    },
+    {
+      "icao": "YSHT",
+      "name": "Shepparton"
+    },
+    {
+      "icao": "YSMI",
+      "name": "Smithton"
+    },
+    {
+      "icao": "YSWL",
+      "name": "Stawell"
+    },
+    {
+      "icao": "YSWH",
+      "name": "Swan Hill"
+    },
+    {
+      "icao": "YSBK",
+      "name": "Sydney Bankstown"
+    },
+    {
+      "icao": "YSTW",
+      "name": "Tamworth"
+    },
+    {
+      "icao": "YTRE",
+      "name": "Taree"
+    },
+    {
+      "icao": "YTEF",
+      "name": "Telfer"
+    },
+    {
+      "icao": "YTEM",
+      "name": "Temora"
+    },
+    {
+      "icao": "YTNK",
+      "name": "Tennant Creek"
+    },
+    {
+      "icao": "YTGM",
+      "name": "Thargomindah"
+    },
+    {
+      "icao": "YTIB",
+      "name": "Tibooburra"
+    },
+    {
+      "icao": "YPTN",
+      "name": "Tindal"
+    },
+    {
+      "icao": "YBTL",
+      "name": "Townsville Airport / RAAF Base Townsville"
+    },
+    {
+      "icao": "YTMU",
+      "name": "Tumut Aerodrome"
+    },
+    {
+      "icao": "YWLG",
+      "name": "Walgett"
+    },
+    {
+      "icao": "YWKB",
+      "name": "Warracknabeal"
+    },
+    {
+      "icao": "YBWP",
+      "name": "Weipa"
+    },
+    {
+      "icao": "YWSL",
+      "name": "West Sale"
+    },
+    {
+      "icao": "YWWL",
+      "name": "West Wyalong"
+    },
+    {
+      "icao": "YWHA",
+      "name": "Whyalla"
+    },
+    {
+      "icao": "YWLU",
+      "name": "Wiluna"
+    },
+    {
+      "icao": "YWDH",
+      "name": "Windorah"
+    },
+    {
+      "icao": "YWTN",
+      "name": "Winton"
+    },
+    {
+      "icao": "YBTI",
+      "name": "Wurrumiyanga - Bathurst Island"
+    },
+    {
+      "icao": "YYNG",
+      "name": "Young"
+    },
+    {
+      "icao": "YAYE",
+      "name": "Yulara - Ayers Rock Connellan"
+    }
+  ],
+  "Austria": [
+    {
+      "icao": "LOWG",
+      "name": "Feldkirchen bei Graz - Graz"
+    },
+    {
+      "icao": "LOWI",
+      "name": "Innsbruck"
+    },
+    {
+      "icao": "LOWK",
+      "name": "Klagenfurt am Wörthersee - Klagenfurt"
+    },
+    {
+      "icao": "LOWL",
+      "name": "Linz-Hörsching"
+    },
+    {
+      "icao": "LOWS",
+      "name": "Salzburg"
+    },
+    {
+      "icao": "LOWW",
+      "name": "Vienna"
+    },
+    {
+      "icao": "LOAN",
+      "name": "Wiener Neustadt East"
+    },
+    {
+      "icao": "LOXN",
+      "name": "Wiener Neustadt West"
+    },
+    {
+      "icao": "LOXZ",
+      "name": "Zeltweg - Hinterstoisser Air Base"
+    }
+  ],
+  "Azerbaijan": [
+    {
+      "icao": "UBBB",
+      "name": "Baku - Heydar Aliyev"
+    },
+    {
+      "icao": "UBBG",
+      "name": "Ganja"
+    },
+    {
+      "icao": "UBBN",
+      "name": "Nakhchivan"
+    },
+    {
+      "icao": "UBBQ",
+      "name": "Gabala"
+    },
+    {
+      "icao": "UBBS",
+      "name": "Khojaly"
+    },
+    {
+      "icao": "UBBI",
+      "name": "Sumqayit - Nasosnaya Air Base"
+    },
+    {
+      "icao": "UBTT",
+      "name": "Zabrat"
+    },
+    {
+      "icao": "UBBY",
+      "name": "Zaqatala"
+    }
+  ],
+  "Bahamas": [
+    {
+      "icao": "MYGF",
+      "name": "Freeport - Grand Bahama"
+    },
+    {
+      "icao": "MYNN",
+      "name": "Nassau - Lynden Pindling"
+    },
+    {
+      "icao": "MYSM",
+      "name": "San Salvador"
+    },
+    {
+      "icao": "MYMM",
+      "name": "Abraham Bay Settlement - Mayaguana"
+    },
+    {
+      "icao": "MYAK",
+      "name": "Andros - Congo Town"
+    },
+    {
+      "icao": "MYAN",
+      "name": "Andros Island - San Andros"
+    },
+    {
+      "icao": "MYAF",
+      "name": "Andros Town"
+    },
+    {
+      "icao": "MYCA",
+      "name": "Arthur's Town"
+    },
+    {
+      "icao": "MYBG",
+      "name": "Bullocks Harbour - Great Harbour Cay"
+    },
+    {
+      "icao": "MYCB",
+      "name": "Cat Island - New Bight"
+    },
+    {
+      "icao": "MYBC",
+      "name": "Chub Cay"
+    },
+    {
+      "icao": "MYCI",
+      "name": "Colonel Hill"
+    },
+    {
+      "icao": "MYLD",
+      "name": "Deadman's Cay"
+    },
+    {
+      "icao": "MYRD",
+      "name": "Duncan Town"
+    },
+    {
+      "icao": "MYEM",
+      "name": "Governor's Harbour"
+    },
+    {
+      "icao": "MYAB",
+      "name": "Mangrove Cay - Clarence A. Bain"
+    },
+    {
+      "icao": "MYAM",
+      "name": "Marsh Harbour - Leonard M. Thompson"
+    },
+    {
+      "icao": "MYIG",
+      "name": "Matthew Town - Inagua"
+    },
+    {
+      "icao": "MYEF",
+      "name": "Moss Town - Exuma"
+    },
+    {
+      "icao": "MYEN",
+      "name": "Normans Cay"
+    },
+    {
+      "icao": "MYEH",
+      "name": "North Eleuthera"
+    },
+    {
+      "icao": "MYER",
+      "name": "Rock Sound"
+    },
+    {
+      "icao": "MYBS",
+      "name": "South Bimini"
+    },
+    {
+      "icao": "MYAP",
+      "name": "Spring Point"
+    },
+    {
+      "icao": "MYES",
+      "name": "Staniel Cay"
+    },
+    {
+      "icao": "MYLS",
+      "name": "Stella Maris"
+    },
+    {
+      "icao": "MYAT",
+      "name": "Treasure Cay"
+    }
+  ],
+  "Bahrain": [
+    {
+      "icao": "OBBI",
+      "name": "Manama - Bahrain"
+    },
+    {
+      "icao": "OBBS",
+      "name": "Sitrah - Sheik Isa Air Base"
+    }
+  ],
+  "Bangladesh": [
+    {
+      "icao": "VGEG",
+      "name": "Chattogram (Chittagong) - Shah Amanat"
+    },
+    {
+      "icao": "VGHS",
+      "name": "Dhaka - Hazrat Shahjalal"
+    },
+    {
+      "icao": "VGSY",
+      "name": "Sylhet - Osmany"
+    },
+    {
+      "icao": "VGBR",
+      "name": "Barisal"
+    },
+    {
+      "icao": "VGCB",
+      "name": "Cox's Bazar"
+    },
+    {
+      "icao": "VGIS",
+      "name": "Ishurdi"
+    },
+    {
+      "icao": "VGJR",
+      "name": "Jashore (Jessore) - Jessore"
+    },
+    {
+      "icao": "VGRJ",
+      "name": "Rajshahi - Shah Makhdum"
+    },
+    {
+      "icao": "VGSD",
+      "name": "Saidpur"
+    }
+  ],
+  "Barbados": [
+    {
+      "icao": "TBPB",
+      "name": "Bridgetown - Grantley Adams"
+    }
+  ],
+  "Belarus": [
+    {
+      "icao": "UMBB",
+      "name": "Brest"
+    },
+    {
+      "icao": "UMMS",
+      "name": "Minsk National"
+    },
+    {
+      "icao": "UMGG",
+      "name": "Gomel"
+    },
+    {
+      "icao": "UMMG",
+      "name": "Hrodna"
+    },
+    {
+      "icao": "UMOO",
+      "name": "Mogilev"
+    },
+    {
+      "icao": "UMII",
+      "name": "Vitebsk Vostochny"
+    }
+  ],
+  "Belgium": [
+    {
+      "icao": "EBCI",
+      "name": "Brussels South Charleroi"
+    },
+    {
+      "icao": "EBOS",
+      "name": "Oostende - Ostend-Bruges"
+    },
+    {
+      "icao": "EBBR",
+      "name": "Zaventem - Brussels"
+    },
+    {
+      "icao": "EBAW",
+      "name": "Antwerp International Airport (Deurne)"
+    },
+    {
+      "icao": "EBKT",
+      "name": "Flanders International Airport Kortrijk-Wevelgem"
+    },
+    {
+      "icao": "EBLG",
+      "name": "Grâce-Hollogne - Liège"
+    }
+  ],
+  "Belize": [
+    {
+      "icao": "MZBZ",
+      "name": "Belize City - Philip S. W. Goldson"
+    },
+    {
+      "icao": "MZPL",
+      "name": "Placencia"
+    }
+  ],
+  "Benin": [
+    {
+      "icao": "DBBB",
+      "name": "Cotonou Cadjehoun"
+    }
+  ],
+  "Bermuda": [
+    {
+      "icao": "TXKF",
+      "name": "Hamilton - L.F. Wade"
+    }
+  ],
+  "Bhutan": [
+    {
+      "icao": "VQPR",
+      "name": "Paro"
+    },
+    {
+      "icao": "VQGP",
+      "name": "Gelephu"
+    }
+  ],
+  "Bolivia": [
+    {
+      "icao": "SLCB",
+      "name": "Cochabamba - Jorge Wilsterman"
+    },
+    {
+      "icao": "SLLP",
+      "name": "La Paz / El Alto - El Alto"
+    },
+    {
+      "icao": "SLOR",
+      "name": "Oruro - Juan Mendoza"
+    },
+    {
+      "icao": "SLVR",
+      "name": "Santa Cruz - Viru Viru"
+    },
+    {
+      "icao": "SLAL",
+      "name": "Sucre - Alcantarí"
+    },
+    {
+      "icao": "SLBJ",
+      "name": "Bermejo"
+    },
+    {
+      "icao": "SLCO",
+      "name": "Cobija - Capitán Aníbal Arab"
+    },
+    {
+      "icao": "SLPO",
+      "name": "Potosí - Capitan Nicolas Rojas"
+    },
+    {
+      "icao": "SLPS",
+      "name": "Puerto Suárez - Capitán Av. Salvador Ogaya G. airport"
+    },
+    {
+      "icao": "SLRI",
+      "name": "Riberalta - Capitán Av. Selin Zeitun Lopez"
+    },
+    {
+      "icao": "SLSA",
+      "name": "Santa Ana Del Yacuma"
+    },
+    {
+      "icao": "SLET",
+      "name": "Santa Cruz - El Trompillo"
+    },
+    {
+      "icao": "SLSU",
+      "name": "Sucre - Juana Azurduy de Padilla Air Force Base"
+    },
+    {
+      "icao": "SLTJ",
+      "name": "Tarija - Capitan Oriel Lea Plaza"
+    },
+    {
+      "icao": "SLTR",
+      "name": "Trinidad - Teniente Av. Jorge Henrich Arauz"
+    },
+    {
+      "icao": "SLVM",
+      "name": "Villamontes - Teniente Coronel Rafael Pabón"
+    },
+    {
+      "icao": "SLYA",
+      "name": "Yacuíba - Yacuiba"
+    }
+  ],
+  "Bosnia and Herzegovina": [
+    {
+      "icao": "LQTZ",
+      "name": "Dubrave Gornje - Tuzla"
+    },
+    {
+      "icao": "LQBK",
+      "name": "Mahovljani - Banja Luka"
+    },
+    {
+      "icao": "LQMO",
+      "name": "Mostar"
+    },
+    {
+      "icao": "LQSA",
+      "name": "Sarajevo"
+    }
+  ],
+  "Botswana": [
+    {
+      "icao": "FBPM",
+      "name": "Francistown - Phillip Gaonwe Matante"
+    },
+    {
+      "icao": "FBSK",
+      "name": "Gaborone - Sir Seretse Khama"
+    },
+    {
+      "icao": "FBKE",
+      "name": "Kasane"
+    },
+    {
+      "icao": "FBMN",
+      "name": "Maun"
+    },
+    {
+      "icao": "FBJW",
+      "name": "Jwaneng"
+    },
+    {
+      "icao": "FBSP",
+      "name": "Selebi Phikwe"
+    },
+    {
+      "icao": "FBSN",
+      "name": "Sowa - Sua Pan"
+    }
+  ],
+  "Brazil": [
+    {
+      "icao": "SBCF",
+      "name": "Belo Horizonte - Tancredo Neves"
+    },
+    {
+      "icao": "SBBE",
+      "name": "Belém - Val de Cans/Júlio Cezar Ribeiro"
+    },
+    {
+      "icao": "SBBV",
+      "name": "Boa Vista - Atlas Brasil Cantanhede"
+    },
+    {
+      "icao": "SBBR",
+      "name": "Brasília - Presidente Juscelino Kubitschek"
+    },
+    {
+      "icao": "SBKP",
+      "name": "Campinas - Viracopos"
+    },
+    {
+      "icao": "SBCY",
+      "name": "Cuiabá - Várzea Grande–Marechal Rondon"
+    },
+    {
+      "icao": "SBCT",
+      "name": "Curitiba-Afonso Pena"
+    },
+    {
+      "icao": "SBFL",
+      "name": "Florianópolis - Hercílio Luz"
+    },
+    {
+      "icao": "SBFZ",
+      "name": "Fortaleza - Pinto Martins"
+    },
+    {
+      "icao": "SBFI",
+      "name": "Foz do Iguaçu - Cataratas"
+    },
+    {
+      "icao": "SBGO",
+      "name": "Goiânia - Santa Genoveva"
+    },
+    {
+      "icao": "SBJP",
+      "name": "João Pessoa - Presidente Castro Pinto"
+    },
+    {
+      "icao": "SBMO",
+      "name": "Maceió - Zumbi dos Palmares"
+    },
+    {
+      "icao": "SBEG",
+      "name": "Manaus - Eduardo Gomes"
+    },
+    {
+      "icao": "SBNF",
+      "name": "Navegantes - Ministro Victor Konder"
+    },
+    {
+      "icao": "SBPA",
+      "name": "Porto Alegre-Salgado Filho"
+    },
+    {
+      "icao": "SBPS",
+      "name": "Porto Seguro"
+    },
+    {
+      "icao": "SBPV",
+      "name": "Porto Velho - Governador Jorge Teixeira de Oliveira"
+    },
+    {
+      "icao": "SBRF",
+      "name": "Recife/Guararapes - Gilberto Freyre"
+    },
+    {
+      "icao": "SBRB",
+      "name": "Rio Branco-Plácido de Castro"
+    },
+    {
+      "icao": "SBGL",
+      "name": "Rio De Janeiro - Rio Galeão – Tom Jobim"
+    },
+    {
+      "icao": "SBRJ",
+      "name": "Rio de Janeiro - Santos Dumont"
+    },
+    {
+      "icao": "SBSV",
+      "name": "Salvador - Deputado Luiz Eduardo Magalhães"
+    },
+    {
+      "icao": "SBSL",
+      "name": "São Luís - Marechal Cunha Machado"
+    },
+    {
+      "icao": "SBSP",
+      "name": "São Paulo - Congonhas–Deputado Freitas Nobre"
+    },
+    {
+      "icao": "SBGR",
+      "name": "São Paulo/Guarulhos–Governor André Franco Montoro"
+    },
+    {
+      "icao": "SBVT",
+      "name": "Vitória - Eurico de Aguiar Salles"
+    },
+    {
+      "icao": "SBMD",
+      "name": "Almeirim - Monte Dourado - Serra do Areão"
+    },
+    {
+      "icao": "SBAT",
+      "name": "Alta Floresta - Piloto Osvaldo Marques Dias"
+    },
+    {
+      "icao": "SBHT",
+      "name": "Altamira Interstate"
+    },
+    {
+      "icao": "SBAN",
+      "name": "Anápolis Airbase"
+    },
+    {
+      "icao": "SBAR",
+      "name": "Aracaju - Santa Maria"
+    },
+    {
+      "icao": "SBAC",
+      "name": "Aracati Dragão do Mar Regional"
+    },
+    {
+      "icao": "SWGN",
+      "name": "Araguaína"
+    },
+    {
+      "icao": "SBAQ",
+      "name": "Araraquara"
+    },
+    {
+      "icao": "SBAX",
+      "name": "Araxá - Romeu Zema"
+    },
+    {
+      "icao": "SBAU",
+      "name": "Araçatuba"
+    },
+    {
+      "icao": "SBBG",
+      "name": "Bagé - Comandante Gustavo Kraemer"
+    },
+    {
+      "icao": "SBBW",
+      "name": "Barra do Garças"
+    },
+    {
+      "icao": "SBAE",
+      "name": "Bauru/Arealva–Moussa Nakhal Tobias State"
+    },
+    {
+      "icao": "SBBH",
+      "name": "Belo Horizonte - Pampulha - Carlos Drummond de Andrade"
+    },
+    {
+      "icao": "SBLP",
+      "name": "Bom Jesus da Lapa"
+    },
+    {
+      "icao": "SBKG",
+      "name": "Campina Grande - Presidente João Suassuna"
+    },
+    {
+      "icao": "SBCG",
+      "name": "Campo Grande"
+    },
+    {
+      "icao": "SBCP",
+      "name": "Campos dos Goytacazes - Bartolomeu Lisandro"
+    },
+    {
+      "icao": "SBCI",
+      "name": "Carolina - Brig. Lysias Augusto Rodrigues"
+    },
+    {
+      "icao": "SBCA",
+      "name": "Cascavel - Coronel Adalberto Mendes da Silva"
+    },
+    {
+      "icao": "SBCX",
+      "name": "Caxias Do Sul - Hugo Cantergiani Regional"
+    },
+    {
+      "icao": "SBCH",
+      "name": "Chapecó - Serafin Enoss Bertaso"
+    },
+    {
+      "icao": "SBAA",
+      "name": "Conceição do Araguaia"
+    },
+    {
+      "icao": "SNCP",
+      "name": "Correia Pinto - Planalto Serrano Regional"
+    },
+    {
+      "icao": "SBCR",
+      "name": "Corumbá"
+    },
+    {
+      "icao": "SBJE",
+      "name": "Cruz - Comandante Ariston Pessoa"
+    },
+    {
+      "icao": "SBCZ",
+      "name": "Cruzeiro do Sul"
+    },
+    {
+      "icao": "SBBI",
+      "name": "Curitiba - Bacacheri"
+    },
+    {
+      "icao": "SBFN",
+      "name": "Fernando de Noronha"
+    },
+    {
+      "icao": "SBML",
+      "name": "Frank Miloye Milenkowichi–Marília State"
+    },
+    {
+      "icao": "SBGV",
+      "name": "Governador Valadares - Coronel Altino Machado"
+    },
+    {
+      "icao": "SBGM",
+      "name": "Guajará-Mirim"
+    },
+    {
+      "icao": "SBGW",
+      "name": "Guaratinguetá - Edu Chaves Field"
+    },
+    {
+      "icao": "SBIL",
+      "name": "Ilhéus - Bahia - Jorge Amado"
+    },
+    {
+      "icao": "SBIZ",
+      "name": "Imperatriz - Prefeito Renato Moreira"
+    },
+    {
+      "icao": "SBIP",
+      "name": "Ipatinga - Usiminas"
+    },
+    {
+      "icao": "SBIC",
+      "name": "Itacoatiara"
+    },
+    {
+      "icao": "SBIH",
+      "name": "Itaituba"
+    },
+    {
+      "icao": "SBEK",
+      "name": "Jacareacanga"
+    },
+    {
+      "icao": "SBJV",
+      "name": "Joinville - Lauro Carneiro de Loyola"
+    },
+    {
+      "icao": "SBJF",
+      "name": "Juiz de Fora - Francisco de Assis"
+    },
+    {
+      "icao": "SBZM",
+      "name": "Juiz de Fora - Presidente Itamar Franco"
+    },
+    {
+      "icao": "SBLJ",
+      "name": "Lages"
+    },
+    {
+      "icao": "SBLO",
+      "name": "Londrina - Governor José Richa"
+    },
+    {
+      "icao": "SBMQ",
+      "name": "Macapá - Alberto Alcolumbre"
+    },
+    {
+      "icao": "SBME",
+      "name": "Macaé Benedito Lacerda"
+    },
+    {
+      "icao": "SBMY",
+      "name": "Manicoré"
+    },
+    {
+      "icao": "SBMA",
+      "name": "Marabá - João Correa da Rocha"
+    },
+    {
+      "icao": "SBMK",
+      "name": "Montes Claros - Mário Ribeiro"
+    },
+    {
+      "icao": "SBMS",
+      "name": "Mossoró - Dix-Sept Rosado"
+    },
+    {
+      "icao": "SBNT",
+      "name": "Natal Air Force Base"
+    },
+    {
+      "icao": "SBOI",
+      "name": "Oiapoque"
+    },
+    {
+      "icao": "SBTB",
+      "name": "Oriximiná - Trombetas"
+    },
+    {
+      "icao": "SBPJ",
+      "name": "Palmas - Brigadeiro Lysias Rodrigues"
+    },
+    {
+      "icao": "SBCJ",
+      "name": "Parauapebas - Carajás"
+    },
+    {
+      "icao": "SBPB",
+      "name": "Parnaíba - Prefeito Doutor João Silva Filho"
+    },
+    {
+      "icao": "SBPF",
+      "name": "Passo Fundo - Lauro Kurtz"
+    },
+    {
+      "icao": "SBUF",
+      "name": "Paulo Afonso"
+    },
+    {
+      "icao": "SBPK",
+      "name": "Pelotas - João Simões Lopes Neto"
+    },
+    {
+      "icao": "SBPL",
+      "name": "Petrolina - Senador Nilo Coelho"
+    },
+    {
+      "icao": "SBPG",
+      "name": "Ponta Grossa Airport - Comandante Antonio Amilton Beraldo"
+    },
+    {
+      "icao": "SBMN",
+      "name": "Ponta Pelada Airport / Manaus Air Base"
+    },
+    {
+      "icao": "SBPP",
+      "name": "Ponta Porã"
+    },
+    {
+      "icao": "SBPC",
+      "name": "Poços de Caldas - Embaixador Walther Moreira Salles"
+    },
+    {
+      "icao": "SBDN",
+      "name": "Presidente Prudente"
+    },
+    {
+      "icao": "SBMG",
+      "name": "Regional de Maringá - Sílvio Name Júnior"
+    },
+    {
+      "icao": "SBRP",
+      "name": "Ribeirão Preto - Leite Lopes"
+    },
+    {
+      "icao": "SBAF",
+      "name": "Rio de Janeiro - Campo Délio Jardim de Mattos"
+    },
+    {
+      "icao": "SBJR",
+      "name": "Rio de Janeiro - Jacarepaguá - Roberto Marinho"
+    },
+    {
+      "icao": "SBRD",
+      "name": "Rondonópolis - Maestro Marinho Franco"
+    },
+    {
+      "icao": "SBSM",
+      "name": "Santa Maria"
+    },
+    {
+      "icao": "SBSN",
+      "name": "Santarém - Maestro Wilson Fonseca"
+    },
+    {
+      "icao": "SBNM",
+      "name": "Santo Ângelo"
+    },
+    {
+      "icao": "SBST",
+      "name": "Santos Nero Moura Air Base / Guarujá"
+    },
+    {
+      "icao": "SBUA",
+      "name": "São Gabriel da Cachoeira"
+    },
+    {
+      "icao": "SBSJ",
+      "name": "São José Dos Campos - Professor Urbano Ernesto Stumpf"
+    },
+    {
+      "icao": "SBSR",
+      "name": "São José do Rio Preto - Prof. Eribelto Manoel Reino State"
+    },
+    {
+      "icao": "SBJH",
+      "name": "São Roque - São Paulo Catarina Executive"
+    },
+    {
+      "icao": "SBTT",
+      "name": "Tabatinga"
+    },
+    {
+      "icao": "SBTK",
+      "name": "Tarauacá"
+    },
+    {
+      "icao": "SBTF",
+      "name": "Tefé"
+    },
+    {
+      "icao": "SBTE",
+      "name": "Teresina - Senador Petrônio Portela"
+    },
+    {
+      "icao": "SBTU",
+      "name": "Tucuruí"
+    },
+    {
+      "icao": "SBUR",
+      "name": "Uberaba - Mário de Almeida Franco"
+    },
+    {
+      "icao": "SBUL",
+      "name": "Uberlândia - Ten. Cel. Aviador César Bombonato"
+    },
+    {
+      "icao": "SBUG",
+      "name": "Uruguaiana - Rubem Berta"
+    },
+    {
+      "icao": "SBVG",
+      "name": "Varginha - Major Brigadeiro Trompowsky"
+    },
+    {
+      "icao": "SBVH",
+      "name": "Vilhena - Brigadeiro Camarão"
+    },
+    {
+      "icao": "SBVC",
+      "name": "Vitória da Conquista - Glauber de Andrade Rocha"
+    }
+  ],
+  "British Virgin Islands": [
+    {
+      "icao": "TUPJ",
+      "name": "Beef Island - Terrance B. Lettsome"
+    },
+    {
+      "icao": "TUPW",
+      "name": "Spanish Town - Virgin Gorda"
+    }
+  ],
+  "Brunei": [
+    {
+      "icao": "WBSB",
+      "name": "Bandar Seri Begawan - Brunei"
+    }
+  ],
+  "Bulgaria": [
+    {
+      "icao": "LBBG",
+      "name": "Burgas"
+    },
+    {
+      "icao": "LBPD",
+      "name": "Plovdiv"
+    },
+    {
+      "icao": "LBSF",
+      "name": "Sofia"
+    },
+    {
+      "icao": "LBWN",
+      "name": "Varna"
+    },
+    {
+      "icao": "LBWB",
+      "name": "Balchik Airfield"
+    },
+    {
+      "icao": "LBGO",
+      "name": "Gorna Oryahovitsa"
+    },
+    {
+      "icao": "LBPG",
+      "name": "Graf Ignatievo Air Base"
+    }
+  ],
+  "Burkina Faso": [
+    {
+      "icao": "DFOO",
+      "name": "Bobo Dioulasso"
+    },
+    {
+      "icao": "DFFD",
+      "name": "Ouagadougou Thomas Sankara"
+    }
+  ],
+  "Burundi": [
+    {
+      "icao": "HBBA",
+      "name": "Bujumbura Melchior Ndadaye"
+    },
+    {
+      "icao": "HBBE",
+      "name": "Gitega"
+    }
+  ],
+  "Cambodia": [
+    {
+      "icao": "VDTI",
+      "name": "Phnom Penh (Boeng Khyang) - Techo"
+    },
+    {
+      "icao": "VDPP",
+      "name": "Phnom Penh (Pou Senchey) - Phnom Penh"
+    },
+    {
+      "icao": "VDSV",
+      "name": "Preah Sihanouk - Sihanouk"
+    },
+    {
+      "icao": "VDSA",
+      "name": "Siem Reap-Angkor"
+    },
+    {
+      "icao": "VDBG",
+      "name": "Battambang"
+    },
+    {
+      "icao": "VDRK",
+      "name": "Ratanakiri"
+    }
+  ],
+  "Cameroon": [
+    {
+      "icao": "FKKD",
+      "name": "Douala"
+    },
+    {
+      "icao": "FKKR",
+      "name": "Garoua"
+    },
+    {
+      "icao": "FKYS",
+      "name": "Yaoundé Nsimalen"
+    },
+    {
+      "icao": "FKKU",
+      "name": "Bafoussam"
+    },
+    {
+      "icao": "FKKV",
+      "name": "Bamenda"
+    },
+    {
+      "icao": "FKKM",
+      "name": "Foumban Nkounja"
+    },
+    {
+      "icao": "FKKL",
+      "name": "Maroua - Salak"
+    },
+    {
+      "icao": "FKKN",
+      "name": "N'Gaoundéré"
+    },
+    {
+      "icao": "FKKC",
+      "name": "Tiko"
+    },
+    {
+      "icao": "FKKY",
+      "name": "Yaoundé Ville"
+    }
+  ],
+  "Canada": [
+    {
+      "icao": "CYYC",
+      "name": "Calgary"
+    },
+    {
+      "icao": "CYEG",
+      "name": "Edmonton"
+    },
+    {
+      "icao": "CYHZ",
+      "name": "Halifax / Stanfield"
+    },
+    {
+      "icao": "CYLW",
+      "name": "Kelowna"
+    },
+    {
+      "icao": "CYUL",
+      "name": "Montréal - Montreal / Pierre Elliott Trudeau"
+    },
+    {
+      "icao": "CYOW",
+      "name": "Ottawa Macdonald-Cartier"
+    },
+    {
+      "icao": "CYQB",
+      "name": "Quebec Jean Lesage"
+    },
+    {
+      "icao": "CYXE",
+      "name": "Saskatoon John G. Diefenbaker"
+    },
+    {
+      "icao": "CYYT",
+      "name": "St. John's"
+    },
+    {
+      "icao": "CYYZ",
+      "name": "Toronto Pearson"
+    },
+    {
+      "icao": "CYVR",
+      "name": "Vancouver"
+    },
+    {
+      "icao": "CYYJ",
+      "name": "Victoria"
+    },
+    {
+      "icao": "CYWG",
+      "name": "Winnipeg / James Armstrong Richardson"
+    },
+    {
+      "icao": "CYXX",
+      "name": "Abbotsford"
+    },
+    {
+      "icao": "CYLT",
+      "name": "Alert"
+    },
+    {
+      "icao": "CYTF",
+      "name": "Alma"
+    },
+    {
+      "icao": "CYEY",
+      "name": "Amos/Magny"
+    },
+    {
+      "icao": "CYYW",
+      "name": "Armstrong"
+    },
+    {
+      "icao": "CYIB",
+      "name": "Atikokan Municipal"
+    },
+    {
+      "icao": "CYBC",
+      "name": "Baie-Comeau"
+    },
+    {
+      "icao": "CYBK",
+      "name": "Baker Lake"
+    },
+    {
+      "icao": "CYLS",
+      "name": "Barrie-Lake Simcoe Regional"
+    },
+    {
+      "icao": "CYXQ",
+      "name": "Beaver Creek"
+    },
+    {
+      "icao": "CBBC",
+      "name": "Bella Bella (Campbell Island)"
+    },
+    {
+      "icao": "CYBD",
+      "name": "Bella Coola"
+    },
+    {
+      "icao": "CYTZ",
+      "name": "Billy Bishop Toronto City"
+    },
+    {
+      "icao": "CYVB",
+      "name": "Bonaventure"
+    },
+    {
+      "icao": "CYBF",
+      "name": "Bonnyville"
+    },
+    {
+      "icao": "CYBR",
+      "name": "Brandon Municipal"
+    },
+    {
+      "icao": "CYKF",
+      "name": "Breslau - Region of Waterloo"
+    },
+    {
+      "icao": "CZBM",
+      "name": "Bromont (Roland Désourdy)"
+    },
+    {
+      "icao": "CYPZ",
+      "name": "Burns Lake"
+    },
+    {
+      "icao": "CYDB",
+      "name": "Burwash Landing - Burwash"
+    },
+    {
+      "icao": "CYOD",
+      "name": "CFB Cold Lake"
+    },
+    {
+      "icao": "CYZX",
+      "name": "CFB Greenwood"
+    },
+    {
+      "icao": "CYTR",
+      "name": "CFB Trenton"
+    },
+    {
+      "icao": "CYCB",
+      "name": "Cambridge Bay"
+    },
+    {
+      "icao": "CYBL",
+      "name": "Campbell River"
+    },
+    {
+      "icao": "CYCG",
+      "name": "Castlegar/West Kootenay Regional"
+    },
+    {
+      "icao": "CYLD",
+      "name": "Chapleau"
+    },
+    {
+      "icao": "CYML",
+      "name": "Charlevoix"
+    },
+    {
+      "icao": "CYCL",
+      "name": "Charlo"
+    },
+    {
+      "icao": "CYYG",
+      "name": "Charlottetown"
+    },
+    {
+      "icao": "CYCQ",
+      "name": "Chetwynd"
+    },
+    {
+      "icao": "CYMT",
+      "name": "Chibougamau - Chapais"
+    },
+    {
+      "icao": "CYYQ",
+      "name": "Churchill"
+    },
+    {
+      "icao": "CYCN",
+      "name": "Cochrane"
+    },
+    {
+      "icao": "CYQQ",
+      "name": "Comox Valley International Airport / CFB Comox"
+    },
+    {
+      "icao": "CYZS",
+      "name": "Coral Harbour"
+    },
+    {
+      "icao": "CYCC",
+      "name": "Cornwall Regional"
+    },
+    {
+      "icao": "CYXC",
+      "name": "Cranbrook/Canadian Rockies"
+    },
+    {
+      "icao": "CYDN",
+      "name": "Dauphin Barker"
+    },
+    {
+      "icao": "CYDA",
+      "name": "Dawson City"
+    },
+    {
+      "icao": "CYDQ",
+      "name": "Dawson Creek"
+    },
+    {
+      "icao": "CYDF",
+      "name": "Deer Lake"
+    },
+    {
+      "icao": "CZBB",
+      "name": "Delta - Boundary Bay"
+    },
+    {
+      "icao": "CYID",
+      "name": "Digby / Annapolis Regional"
+    },
+    {
+      "icao": "CYDO",
+      "name": "Dolbeau-Saint-Felicien"
+    },
+    {
+      "icao": "CYHD",
+      "name": "Dryden Regional"
+    },
+    {
+      "icao": "CYXR",
+      "name": "Earlton (Timiskaming Regional)"
+    },
+    {
+      "icao": "CYET",
+      "name": "Edson"
+    },
+    {
+      "icao": "CYOA",
+      "name": "Ekati"
+    },
+    {
+      "icao": "CYEL",
+      "name": "Elliot Lake Municipal"
+    },
+    {
+      "icao": "CYEN",
+      "name": "Estevan"
+    },
+    {
+      "icao": "CZFA",
+      "name": "Faro"
+    },
+    {
+      "icao": "CYFE",
+      "name": "Forestville"
+    },
+    {
+      "icao": "CYPY",
+      "name": "Fort Chipewyan"
+    },
+    {
+      "icao": "CYAG",
+      "name": "Fort Frances Municipal"
+    },
+    {
+      "icao": "CYJF",
+      "name": "Fort Liard"
+    },
+    {
+      "icao": "CYMM",
+      "name": "Fort McMurray"
+    },
+    {
+      "icao": "CYYE",
+      "name": "Fort Nelson"
+    },
+    {
+      "icao": "CYFR",
+      "name": "Fort Resolution"
+    },
+    {
+      "icao": "CYXJ",
+      "name": "Fort Saint John - Fort St John / North Peace Regional"
+    },
+    {
+      "icao": "CYFS",
+      "name": "Fort Simpson"
+    },
+    {
+      "icao": "CYSM",
+      "name": "Fort Smith"
+    },
+    {
+      "icao": "CYFC",
+      "name": "Fredericton"
+    },
+    {
+      "icao": "CYQX",
+      "name": "Gander"
+    },
+    {
+      "icao": "CYGQ",
+      "name": "Geraldton Greenstone Regional"
+    },
+    {
+      "icao": "CYGM",
+      "name": "Gimli Industrial Park"
+    },
+    {
+      "icao": "CYYR",
+      "name": "Goose Bay"
+    },
+    {
+      "icao": "CYZE",
+      "name": "Gore Bay Manitoulin"
+    },
+    {
+      "icao": "CZGF",
+      "name": "Grand Forks"
+    },
+    {
+      "icao": "CYQU",
+      "name": "Grande Prairie"
+    },
+    {
+      "icao": "CYQA",
+      "name": "Gravenhurst - Muskoka"
+    },
+    {
+      "icao": "CYQM",
+      "name": "Greater Moncton Roméo LeBlanc"
+    },
+    {
+      "icao": "CYHT",
+      "name": "Haines Junction"
+    },
+    {
+      "icao": "CYGV",
+      "name": "Havre-Saint-Pierre"
+    },
+    {
+      "icao": "CYHY",
+      "name": "Hay River / Merlyn Carter"
+    },
+    {
+      "icao": "CYHF",
+      "name": "Hearst René Fontaine Municipal"
+    },
+    {
+      "icao": "CYOJ",
+      "name": "High Level"
+    },
+    {
+      "icao": "CYHN",
+      "name": "Hornepayne Municipal"
+    },
+    {
+      "icao": "CYCE",
+      "name": "Huron Park - Centralia / James T. Field Memorial Aerodrome"
+    },
+    {
+      "icao": "CZUC",
+      "name": "Ignace Municipal"
+    },
+    {
+      "icao": "CYEV",
+      "name": "Inuvik Mike Zubko"
+    },
+    {
+      "icao": "CYFB",
+      "name": "Iqaluit"
+    },
+    {
+      "icao": "CYIV",
+      "name": "Island Lake"
+    },
+    {
+      "icao": "CZJG",
+      "name": "Jenpeg"
+    },
+    {
+      "icao": "CYHM",
+      "name": "John C. Munro Hamilton"
+    },
+    {
+      "icao": "CYKA",
+      "name": "Kamloops John Moose Fulton Field Regional"
+    },
+    {
+      "icao": "CYYU",
+      "name": "Kapuskasing"
+    },
+    {
+      "icao": "CYAQ",
+      "name": "Kasabonika"
+    },
+    {
+      "icao": "CZEE",
+      "name": "Kelsey"
+    },
+    {
+      "icao": "CYQK",
+      "name": "Kenora"
+    },
+    {
+      "icao": "CYKJ",
+      "name": "Key Lake"
+    },
+    {
+      "icao": "CYKM",
+      "name": "Kincardine Municipal"
+    },
+    {
+      "icao": "CYKY",
+      "name": "Kindersley"
+    },
+    {
+      "icao": "CYGK",
+      "name": "Kingston Norman Rogers"
+    },
+    {
+      "icao": "CYKX",
+      "name": "Kirkland Lake"
+    },
+    {
+      "icao": "CYVP",
+      "name": "Kuujjuaq"
+    },
+    {
+      "icao": "CYGW",
+      "name": "Kuujjuarapik"
+    },
+    {
+      "icao": "CYGL",
+      "name": "La Grande Rivière"
+    },
+    {
+      "icao": "CYAH",
+      "name": "La Grande-4"
+    },
+    {
+      "icao": "CYFJ",
+      "name": "La Macaza - Mont-Tremblant"
+    },
+    {
+      "icao": "CYVC",
+      "name": "La Ronge"
+    },
+    {
+      "icao": "CYAX",
+      "name": "Lac du Bonnet"
+    },
+    {
+      "icao": "CYNJ",
+      "name": "Langley"
+    },
+    {
+      "icao": "CYLR",
+      "name": "Leaf Rapids"
+    },
+    {
+      "icao": "CYGR",
+      "name": "Les Îles-de-la-Madeleine - Îles-de-la-Madeleine"
+    },
+    {
+      "icao": "CYQL",
+      "name": "Lethbridge County"
+    },
+    {
+      "icao": "CYLL",
+      "name": "Lloydminster"
+    },
+    {
+      "icao": "CYXU",
+      "name": "London"
+    },
+    {
+      "icao": "CYBX",
+      "name": "Lourdes-de-Blanc-Sablon"
+    },
+    {
+      "icao": "CYYL",
+      "name": "Lynn Lake"
+    },
+    {
+      "icao": "CYMG",
+      "name": "Manitouwadge"
+    },
+    {
+      "icao": "CYSP",
+      "name": "Marathon"
+    },
+    {
+      "icao": "CZMT",
+      "name": "Masset"
+    },
+    {
+      "icao": "CYNM",
+      "name": "Matagami"
+    },
+    {
+      "icao": "CYME",
+      "name": "Matane"
+    },
+    {
+      "icao": "CYMA",
+      "name": "Mayo"
+    },
+    {
+      "icao": "CYLJ",
+      "name": "Meadow Lake"
+    },
+    {
+      "icao": "CYXH",
+      "name": "Medicine Hat Regional"
+    },
+    {
+      "icao": "CYGP",
+      "name": "Michel-Pouliot Gaspé"
+    },
+    {
+      "icao": "CYCH",
+      "name": "Miramichi"
+    },
+    {
+      "icao": "CYYY",
+      "name": "Mont-Joli - Mont Joli"
+    },
+    {
+      "icao": "CYMX",
+      "name": "Montréal - Montreal Mirabel"
+    },
+    {
+      "icao": "CYHU",
+      "name": "Montréal / Saint-Hubert Metropolitan"
+    },
+    {
+      "icao": "CYMJ",
+      "name": "Moose Jaw Air Vice Marshal C. M. McEwen"
+    },
+    {
+      "icao": "CYMO",
+      "name": "Moosonee"
+    },
+    {
+      "icao": "CYQN",
+      "name": "Nakina"
+    },
+    {
+      "icao": "CYCD",
+      "name": "Nanaimo"
+    },
+    {
+      "icao": "CYNA",
+      "name": "Natashquan"
+    },
+    {
+      "icao": "CYSN",
+      "name": "Niagara-on-the-Lake - Niagara District"
+    },
+    {
+      "icao": "CYVQ",
+      "name": "Norman Wells"
+    },
+    {
+      "icao": "CYQW",
+      "name": "North Battleford"
+    },
+    {
+      "icao": "CYYB",
+      "name": "North Bay Jack Garland"
+    },
+    {
+      "icao": "CYXT",
+      "name": "Northwest Regional Airport Terrace-Kitimat"
+    },
+    {
+      "icao": "CYOO",
+      "name": "Oshawa Executive"
+    },
+    {
+      "icao": "CYND",
+      "name": "Ottawa / Gatineau"
+    },
+    {
+      "icao": "CYRO",
+      "name": "Ottawa / Rockcliffe"
+    },
+    {
+      "icao": "CYOS",
+      "name": "Owen Sound / Billy Bishop Regional"
+    },
+    {
+      "icao": "CYPE",
+      "name": "Peace River"
+    },
+    {
+      "icao": "CYTA",
+      "name": "Pembroke"
+    },
+    {
+      "icao": "CYYF",
+      "name": "Penticton"
+    },
+    {
+      "icao": "CYPQ",
+      "name": "Peterborough Regional"
+    },
+    {
+      "icao": "CYPL",
+      "name": "Pickle Lake"
+    },
+    {
+      "icao": "CZMN",
+      "name": "Pikwitonei"
+    },
+    {
+      "icao": "CZPC",
+      "name": "Pincher Creek"
+    },
+    {
+      "icao": "CYPK",
+      "name": "Pitt Meadows Regional"
+    },
+    {
+      "icao": "CYNL",
+      "name": "Points North Landing"
+    },
+    {
+      "icao": "CYZT",
+      "name": "Port Hardy"
+    },
+    {
+      "icao": "CYPD",
+      "name": "Port Hawkesbury"
+    },
+    {
+      "icao": "CYPN",
+      "name": "Port-Menier"
+    },
+    {
+      "icao": "CYPG",
+      "name": "Portage la Prairie - Portage-la-Prairie / Southport"
+    },
+    {
+      "icao": "CYPW",
+      "name": "Powell River"
+    },
+    {
+      "icao": "CYPA",
+      "name": "Prince Albert Glass Field"
+    },
+    {
+      "icao": "CYXS",
+      "name": "Prince George (International)"
+    },
+    {
+      "icao": "CYPR",
+      "name": "Prince Rupert"
+    },
+    {
+      "icao": "CYPX",
+      "name": "Puvirnituq"
+    },
+    {
+      "icao": "CYQZ",
+      "name": "Quesnel"
+    },
+    {
+      "icao": "CYOP",
+      "name": "Rainbow Lake"
+    },
+    {
+      "icao": "CYRT",
+      "name": "Rankin Inlet"
+    },
+    {
+      "icao": "CYRL",
+      "name": "Red Lake"
+    },
+    {
+      "icao": "CYQR",
+      "name": "Regina"
+    },
+    {
+      "icao": "CYRB",
+      "name": "Resolute Bay"
+    },
+    {
+      "icao": "CYRV",
+      "name": "Revelstoke"
+    },
+    {
+      "icao": "CYXK",
+      "name": "Rimouski"
+    },
+    {
+      "icao": "CYRI",
+      "name": "Rivière-du-Loup"
+    },
+    {
+      "icao": "CYRJ",
+      "name": "Roberval"
+    },
+    {
+      "icao": "CYDM",
+      "name": "Ross River"
+    },
+    {
+      "icao": "CYUY",
+      "name": "Rouyn-Noranda - Rouyn Noranda"
+    },
+    {
+      "icao": "CYBG",
+      "name": "Saguenay-Bagotville"
+    },
+    {
+      "icao": "CYSJ",
+      "name": "Saint John"
+    },
+    {
+      "icao": "CYSL",
+      "name": "Saint-Léonard"
+    },
+    {
+      "icao": "CZAM",
+      "name": "Salmon Arm - Shuswap Regional"
+    },
+    {
+      "icao": "CYZP",
+      "name": "Sandspit"
+    },
+    {
+      "icao": "CZSJ",
+      "name": "Sandy Lake"
+    },
+    {
+      "icao": "CYUX",
+      "name": "Sanirajak - Hall Beach"
+    },
+    {
+      "icao": "CYZR",
+      "name": "Sarnia - Chris Hadfield"
+    },
+    {
+      "icao": "CYAM",
+      "name": "Sault Ste Marie"
+    },
+    {
+      "icao": "CYKL",
+      "name": "Schefferville"
+    },
+    {
+      "icao": "CYZV",
+      "name": "Sept-Îles"
+    },
+    {
+      "icao": "CYEM",
+      "name": "Sheguiandah - Manitoulin East Municipal"
+    },
+    {
+      "icao": "CYSC",
+      "name": "Sherbrooke"
+    },
+    {
+      "icao": "CYXL",
+      "name": "Sioux Lookout"
+    },
+    {
+      "icao": "CYZH",
+      "name": "Slave Lake"
+    },
+    {
+      "icao": "CYSU",
+      "name": "Slemon Park - Summerside"
+    },
+    {
+      "icao": "CYYD",
+      "name": "Smithers"
+    },
+    {
+      "icao": "CYSH",
+      "name": "Smiths Falls-Montague (Russ Beach)"
+    },
+    {
+      "icao": "CZBF",
+      "name": "South Tetagouche - Bathurst"
+    },
+    {
+      "icao": "CYQF",
+      "name": "Springbrook - Red Deer Regional"
+    },
+    {
+      "icao": "CYJN",
+      "name": "St Jean"
+    },
+    {
+      "icao": "CYQS",
+      "name": "St Thomas Municipal"
+    },
+    {
+      "icao": "CYIF",
+      "name": "St-Augustin - St Augustin"
+    },
+    {
+      "icao": "CYAY",
+      "name": "St. Anthony"
+    },
+    {
+      "icao": "CYJT",
+      "name": "Stephenville Dymond"
+    },
+    {
+      "icao": "CZST",
+      "name": "Stewart"
+    },
+    {
+      "icao": "CYSF",
+      "name": "Stony Rapids"
+    },
+    {
+      "icao": "CYSB",
+      "name": "Sudbury"
+    },
+    {
+      "icao": "CZJN",
+      "name": "Swan River"
+    },
+    {
+      "icao": "CYYN",
+      "name": "Swift Current"
+    },
+    {
+      "icao": "CYQY",
+      "name": "Sydney / J.A. Douglas McCurdy"
+    },
+    {
+      "icao": "CYZW",
+      "name": "Teslin"
+    },
+    {
+      "icao": "CYQD",
+      "name": "The Pas"
+    },
+    {
+      "icao": "CZLQ",
+      "name": "Thicket Portage"
+    },
+    {
+      "icao": "CYTH",
+      "name": "Thompson"
+    },
+    {
+      "icao": "CYQT",
+      "name": "Thunder Bay"
+    },
+    {
+      "icao": "CYTS",
+      "name": "Timmins/Victor M. Power"
+    },
+    {
+      "icao": "CYAZ",
+      "name": "Tofino / Long Beach"
+    },
+    {
+      "icao": "CYRQ",
+      "name": "Trois-Rivières"
+    },
+    {
+      "icao": "CYVO",
+      "name": "Val-d'Or"
+    },
+    {
+      "icao": "CYVK",
+      "name": "Vernon Regional"
+    },
+    {
+      "icao": "CYWK",
+      "name": "Wabush"
+    },
+    {
+      "icao": "CYQH",
+      "name": "Watson Lake"
+    },
+    {
+      "icao": "CYXZ",
+      "name": "Wawa"
+    },
+    {
+      "icao": "CYZU",
+      "name": "Whitecourt"
+    },
+    {
+      "icao": "CYXY",
+      "name": "Whitehorse / Erik Nielsen"
+    },
+    {
+      "icao": "CYVV",
+      "name": "Wiarton"
+    },
+    {
+      "icao": "CYWL",
+      "name": "Williams Lake"
+    },
+    {
+      "icao": "CYQG",
+      "name": "Windsor"
+    },
+    {
+      "icao": "CYAV",
+      "name": "Winnipeg/Saint Andrews - Winnipeg / St. Andrews"
+    },
+    {
+      "icao": "CYWY",
+      "name": "Wrigley"
+    },
+    {
+      "icao": "CYQI",
+      "name": "Yarmouth"
+    },
+    {
+      "icao": "CYZF",
+      "name": "Yellowknife"
+    },
+    {
+      "icao": "CYQV",
+      "name": "Yorkton Municipal"
+    }
+  ],
+  "Cape Verde": [
+    {
+      "icao": "GVAC",
+      "name": "Espargos - Amílcar Cabral"
+    },
+    {
+      "icao": "GVNP",
+      "name": "Praia - Nelson Mandela"
+    },
+    {
+      "icao": "GVBA",
+      "name": "Rabil - Aristides Pereira"
+    },
+    {
+      "icao": "GVSV",
+      "name": "São Pedro - Cesaria Evora"
+    },
+    {
+      "icao": "GVSN",
+      "name": "Preguiça"
+    },
+    {
+      "icao": "GVMA",
+      "name": "Vila do Maio - Maio"
+    }
+  ],
+  "Caribbean Netherlands": [
+    {
+      "icao": "TNCB",
+      "name": "Kralendijk - Flamingo"
+    },
+    {
+      "icao": "TNCE",
+      "name": "Oranjestad - F. D. Roosevelt"
+    },
+    {
+      "icao": "TNCS",
+      "name": "Zion's Hill - Juancho E. Yrausquin"
+    }
+  ],
+  "Cayman Islands": [
+    {
+      "icao": "MWCR",
+      "name": "George Town - Owen Roberts"
+    },
+    {
+      "icao": "MWCL",
+      "name": "Blossom Village - Edward Bodden Little Cayman Airfield"
+    },
+    {
+      "icao": "MWCB",
+      "name": "West End - Charles Kirkconnell"
+    }
+  ],
+  "Central African Republic": [
+    {
+      "icao": "FEFF",
+      "name": "Bangui M'Poko"
+    },
+    {
+      "icao": "FEFT",
+      "name": "Berbérati"
+    }
+  ],
+  "Chad": [
+    {
+      "icao": "FTTJ",
+      "name": "N'Djamena"
+    },
+    {
+      "icao": "FTTC",
+      "name": "Abeche"
+    },
+    {
+      "icao": "FTTY",
+      "name": "Faya-Largeau"
+    },
+    {
+      "icao": "FTTD",
+      "name": "Moundou"
+    }
+  ],
+  "Chile": [
+    {
+      "icao": "SCFA",
+      "name": "Antofagasta - Andrés Sabella Gálvez"
+    },
+    {
+      "icao": "SCIE",
+      "name": "Concepcion - Carriel Sur"
+    },
+    {
+      "icao": "SCDA",
+      "name": "Iquique - Diego Aracena"
+    },
+    {
+      "icao": "SCIP",
+      "name": "Isla De Pascua - Mataveri"
+    },
+    {
+      "icao": "SCTE",
+      "name": "Puerto Montt - El Tepual"
+    },
+    {
+      "icao": "SCCI",
+      "name": "Punta Arenas - President Carlos Ibáñez"
+    },
+    {
+      "icao": "SCEL",
+      "name": "Santiago - Comodoro Arturo Merino Benítez"
+    },
+    {
+      "icao": "SCQP",
+      "name": "Temuco - La Araucanía"
+    },
+    {
+      "icao": "SCAR",
+      "name": "Arica - Chacalluta"
+    },
+    {
+      "icao": "SCBA",
+      "name": "Balmaceda"
+    },
+    {
+      "icao": "SCCF",
+      "name": "Calama - El Loa"
+    },
+    {
+      "icao": "SCRA",
+      "name": "Chañaral"
+    },
+    {
+      "icao": "SCCC",
+      "name": "Chile Chico"
+    },
+    {
+      "icao": "SCCH",
+      "name": "Chillan - Gral. Bernardo O´Higgins"
+    },
+    {
+      "icao": "SCHR",
+      "name": "Cochrane"
+    },
+    {
+      "icao": "SCAT",
+      "name": "Copiapo - Desierto de Atacama"
+    },
+    {
+      "icao": "SCCY",
+      "name": "Coyhaique - Teniente Vidal"
+    },
+    {
+      "icao": "SCES",
+      "name": "El Salvador - Ricardo García Posada"
+    },
+    {
+      "icao": "SCSE",
+      "name": "La Serena-Coquimbo - La Florida"
+    },
+    {
+      "icao": "SCTN",
+      "name": "Nuevo Chaitén"
+    },
+    {
+      "icao": "SCJO",
+      "name": "Osorno - Cañal Bajo Carlos Hott Siebert"
+    },
+    {
+      "icao": "SCFM",
+      "name": "Porvenir - Captain Fuentes Martinez"
+    },
+    {
+      "icao": "SCNT",
+      "name": "Puerto Natales - Lieutenant Julio Gallardo"
+    },
+    {
+      "icao": "SCGZ",
+      "name": "Puerto Williams - Guardia Marina Zañartu"
+    },
+    {
+      "icao": "SCRG",
+      "name": "Rancagua - La Independencia"
+    },
+    {
+      "icao": "SCTL",
+      "name": "Talca - Panguilemo"
+    },
+    {
+      "icao": "SCTT",
+      "name": "Taltal - Las Breas"
+    },
+    {
+      "icao": "SCTC",
+      "name": "Temuco - Maquehue"
+    },
+    {
+      "icao": "SCBE",
+      "name": "Tocopilla - Barriles"
+    },
+    {
+      "icao": "SCVD",
+      "name": "Valdivia - Pichoy"
+    },
+    {
+      "icao": "SCLL",
+      "name": "Vallenar"
+    },
+    {
+      "icao": "SCTO",
+      "name": "Victoria"
+    },
+    {
+      "icao": "SCVM",
+      "name": "Viña del Mar"
+    }
+  ],
+  "China": [
+    {
+      "icao": "ZBOW",
+      "name": "Baotou Donghe"
+    },
+    {
+      "icao": "ZBAA",
+      "name": "Beijing Capital"
+    },
+    {
+      "icao": "ZBAD",
+      "name": "Beijing Daxing"
+    },
+    {
+      "icao": "ZYCC",
+      "name": "Changchun Longjia"
+    },
+    {
+      "icao": "ZGHA",
+      "name": "Changsha (Changsha) - Changsha Huanghua"
+    },
+    {
+      "icao": "ZUTF",
+      "name": "Chengdu (Jianyang) - Chengdu Tianfu"
+    },
+    {
+      "icao": "ZUUU",
+      "name": "Chengdu (Shuangliu) - Chengdu Shuangliu"
+    },
+    {
+      "icao": "ZUCK",
+      "name": "Chongqing Jiangbei"
+    },
+    {
+      "icao": "ZYTL",
+      "name": "Dalian (Ganjingzi) - Dalian Zhoushuizi"
+    },
+    {
+      "icao": "ZBDT",
+      "name": "Datong Yungang"
+    },
+    {
+      "icao": "ZLDH",
+      "name": "Dunhuang Mogao"
+    },
+    {
+      "icao": "ZHEC",
+      "name": "Ezhou Huahu"
+    },
+    {
+      "icao": "ZSFZ",
+      "name": "Fuzhou (Changle) - Fuzhou Changle"
+    },
+    {
+      "icao": "ZGGG",
+      "name": "Guangzhou (Huadu) - Guangzhou Baiyun"
+    },
+    {
+      "icao": "ZGKL",
+      "name": "Guilin (Lingui) - Guilin Liangjiang"
+    },
+    {
+      "icao": "ZUGY",
+      "name": "Guiyang (Nanming) - Guiyang Longdongbao"
+    },
+    {
+      "icao": "ZLXN",
+      "name": "Haidong (Huzhu Tu Autonomous County) - Xining Caojiabao"
+    },
+    {
+      "icao": "ZJHK",
+      "name": "Haikou (Meilan) - Haikou Meilan"
+    },
+    {
+      "icao": "ZSHC",
+      "name": "Hangzhou Xiaoshan"
+    },
+    {
+      "icao": "ZYHB",
+      "name": "Harbin Taiping"
+    },
+    {
+      "icao": "ZSOF",
+      "name": "Hefei Xinqiao"
+    },
+    {
+      "icao": "ZBHH",
+      "name": "Hohhot Baita"
+    },
+    {
+      "icao": "ZSSH",
+      "name": "Huai'an Lianshui"
+    },
+    {
+      "icao": "ZSTX",
+      "name": "Huangshan Tunxi"
+    },
+    {
+      "icao": "ZBLA",
+      "name": "Hulunbuir Hailar"
+    },
+    {
+      "icao": "ZLJQ",
+      "name": "Jiayuguan"
+    },
+    {
+      "icao": "ZGOW",
+      "name": "Jieyang (Rongcheng) - Jieyang Chaoshan"
+    },
+    {
+      "icao": "ZSJN",
+      "name": "Jinan (Licheng) - Jinan Yaoqiang"
+    },
+    {
+      "icao": "ZPJH",
+      "name": "Jinghong (Gasa) - Xishuangbanna Gasa"
+    },
+    {
+      "icao": "ZWSH",
+      "name": "Kashgar Laining"
+    },
+    {
+      "icao": "ZPPP",
+      "name": "Kunming Changshui"
+    },
+    {
+      "icao": "ZLLL",
+      "name": "Lanzhou (Yongdeng) - Lanzhou Zhongchuan"
+    },
+    {
+      "icao": "ZSLG",
+      "name": "Lianyungang Huaguoshan"
+    },
+    {
+      "icao": "ZPLJ",
+      "name": "Lijiang Sanyi"
+    },
+    {
+      "icao": "ZHLY",
+      "name": "Luoyang (Laocheng) - Luoyang Beijiao"
+    },
+    {
+      "icao": "ZSCN",
+      "name": "Nanchang Changbei"
+    },
+    {
+      "icao": "ZSNJ",
+      "name": "Nanjing Lukou"
+    },
+    {
+      "icao": "ZGNN",
+      "name": "Nanning (Jiangnan) - Nanning Wuxu"
+    },
+    {
+      "icao": "ZSNB",
+      "name": "Ningbo Lishe"
+    },
+    {
+      "icao": "ZBDS",
+      "name": "Ordos Ejin Horo"
+    },
+    {
+      "icao": "ZSQD",
+      "name": "Qingdao (Jiaozhou) - Qingdao Jiaodong"
+    },
+    {
+      "icao": "ZYQQ",
+      "name": "Qiqihar Sanjiazi"
+    },
+    {
+      "icao": "ZSQZ",
+      "name": "Quanzhou Jinjiang"
+    },
+    {
+      "icao": "ZJSY",
+      "name": "Sanya (Tianya) - Sanya Phoenix"
+    },
+    {
+      "icao": "ZSSS",
+      "name": "Shanghai (Minhang) - Shanghai Hongqiao"
+    },
+    {
+      "icao": "ZSPD",
+      "name": "Shanghai (Pudong) - Shanghai Pudong"
+    },
+    {
+      "icao": "ZULS",
+      "name": "Shannan (Gonggar) - Lhasa Gonggar"
+    },
+    {
+      "icao": "ZYTX",
+      "name": "Shenyang Taoxian"
+    },
+    {
+      "icao": "ZGSZ",
+      "name": "Shenzhen Bao'an"
+    },
+    {
+      "icao": "ZBSJ",
+      "name": "Shijiazhuang Zhengding"
+    },
+    {
+      "icao": "ZBYN",
+      "name": "Taiyuan Wusu"
+    },
+    {
+      "icao": "ZBTJ",
+      "name": "Tianjin Binhai"
+    },
+    {
+      "icao": "ZSWZ",
+      "name": "Wenzhou (Longwan) - Wenzhou Longwan"
+    },
+    {
+      "icao": "ZHHH",
+      "name": "Wuhan (Huangpi) - Wuhan Tianhe"
+    },
+    {
+      "icao": "ZSWX",
+      "name": "Wuxi - Sunan Shuofang"
+    },
+    {
+      "icao": "ZSAM",
+      "name": "Xiamen Gaoqi"
+    },
+    {
+      "icao": "ZLXY",
+      "name": "Xianyang (Weicheng) - Xi'an Xianyang"
+    },
+    {
+      "icao": "ZURK",
+      "name": "Xigazê (Samzhubzê) - Xigaze Peace Airport / Shigatse Air Base"
+    },
+    {
+      "icao": "ZSYN",
+      "name": "Yancheng (Tinghu) - Yancheng Nanyang"
+    },
+    {
+      "icao": "ZSYT",
+      "name": "Yantai Penglai"
+    },
+    {
+      "icao": "ZLIC",
+      "name": "Yinchuan Hedong"
+    },
+    {
+      "icao": "ZSYW",
+      "name": "Yiwu/Jinhua - Yiwu"
+    },
+    {
+      "icao": "ZBYC",
+      "name": "Yuncheng (Yanhu) - Yuncheng Yanhu"
+    },
+    {
+      "icao": "ZGDY",
+      "name": "Zhangjiajie (Yongding) - Zhangjiajie Hehua"
+    },
+    {
+      "icao": "ZGZJ",
+      "name": "Zhanjiang Wuchuan"
+    },
+    {
+      "icao": "ZHCC",
+      "name": "Zhengzhou Xinzheng"
+    },
+    {
+      "icao": "ZSZS",
+      "name": "Zhoushan Putuoshan"
+    },
+    {
+      "icao": "ZGSD",
+      "name": "Zhuhai (Jinwan) - Zhuhai Jinwan"
+    },
+    {
+      "icao": "ZWWW",
+      "name": "Ürümqi Tianshan"
+    },
+    {
+      "icao": "ZWAK",
+      "name": "Aksu (Onsu) - Aksu Hongqipo"
+    },
+    {
+      "icao": "ZWAT",
+      "name": "Altay Xuedu"
+    },
+    {
+      "icao": "ZBAL",
+      "name": "Alxa Left Banner Bayanhot"
+    },
+    {
+      "icao": "ZSAQ",
+      "name": "Anqing Tianzhushan Airport / Anqing North Air Base"
+    },
+    {
+      "icao": "ZYAS",
+      "name": "Anshan Teng'ao Airport / Anshan Air Base"
+    },
+    {
+      "icao": "ZUAS",
+      "name": "Anshun (Xixiu) - Anshun Huangguoshu"
+    },
+    {
+      "icao": "ZBES",
+      "name": "Arxan Yi'ershi"
+    },
+    {
+      "icao": "ZYBA",
+      "name": "Baicheng Chang'an"
+    },
+    {
+      "icao": "ZGBS",
+      "name": "Baise (Tianyang) - Baise (Bose) Bama"
+    },
+    {
+      "icao": "ZPBS",
+      "name": "Baoshan (Longyang) - Baoshan Yunrui"
+    },
+    {
+      "icao": "ZPTC",
+      "name": "Baoshan (Tengchong) - Tengchong Tuofeng"
+    },
+    {
+      "icao": "ZWLK",
+      "name": "Barkol Dahe"
+    },
+    {
+      "icao": "ZBYZ",
+      "name": "Bayannur Tianjitai"
+    },
+    {
+      "icao": "ZUBZ",
+      "name": "Bazhong Enyang"
+    },
+    {
+      "icao": "ZGBH",
+      "name": "Beihai Fucheng"
+    },
+    {
+      "icao": "ZBNJ",
+      "name": "Beijing Nanjiao"
+    },
+    {
+      "icao": "ZBXJ",
+      "name": "Beijing Xijiao"
+    },
+    {
+      "icao": "ZBBB",
+      "name": "Beijing Xijiao"
+    },
+    {
+      "icao": "ZSBB",
+      "name": "Bengbu Renheji"
+    },
+    {
+      "icao": "ZSBA",
+      "name": "Bengbu Tenghu"
+    },
+    {
+      "icao": "ZUBJ",
+      "name": "Bijie Feixiong"
+    },
+    {
+      "icao": "ZWBL",
+      "name": "Bole Alashankou"
+    },
+    {
+      "icao": "ZUPL",
+      "name": "Burang Town - Ali Pulan"
+    },
+    {
+      "icao": "ZWKN",
+      "name": "Burqin Kanas"
+    },
+    {
+      "icao": "ZYBS",
+      "name": "Changbaishan"
+    },
+    {
+      "icao": "ZGCD",
+      "name": "Changde (Dingcheng) - Changde Taohuayuan"
+    },
+    {
+      "icao": "ZSCG",
+      "name": "Changzhou Benniu"
+    },
+    {
+      "icao": "ZBCD",
+      "name": "Chengde Puning"
+    },
+    {
+      "icao": "ZGCZ",
+      "name": "Chenzhou Beihu"
+    },
+    {
+      "icao": "ZBCF",
+      "name": "Chifeng Yulong"
+    },
+    {
+      "icao": "ZPYM",
+      "name": "Chuxiong (Yuanmou) - Yuanmou Air Base"
+    },
+    {
+      "icao": "ZYYY",
+      "name": "Dadong, Shenyang - Shenyang Dongta"
+    },
+    {
+      "icao": "ZPDL",
+      "name": "Dali (Xiaguan) - Dali Fengyi"
+    },
+    {
+      "icao": "ZYDD",
+      "name": "Dandong (Zhenxing) - Dandong Langtou"
+    },
+    {
+      "icao": "ZUDA",
+      "name": "Dazhou (Dachuan) - Dazhou Jinya"
+    },
+    {
+      "icao": "ZPMS",
+      "name": "Dehong (Mangshi) - Dehong Mangshi"
+    },
+    {
+      "icao": "ZUGH",
+      "name": "Deyang (Guanghan) - Guanghan"
+    },
+    {
+      "icao": "ZPDQ",
+      "name": "Diqing (Shangri-La) - Diqing Shangri-La"
+    },
+    {
+      "icao": "ZSDY",
+      "name": "Dongying (Kenli) - Dongying Shengli"
+    },
+    {
+      "icao": "ZHES",
+      "name": "Enshi (Enshi) - Enshi Xujiaping"
+    },
+    {
+      "icao": "ZBER",
+      "name": "Erenhot Saiwusu"
+    },
+    {
+      "icao": "ZGFS",
+      "name": "Foshan (Nanhai) - Foshan Shadi"
+    },
+    {
+      "icao": "ZYFY",
+      "name": "Fuyuan Dongji"
+    },
+    {
+      "icao": "ZWFY",
+      "name": "Fuyun Koktokay"
+    },
+    {
+      "icao": "ZLXH",
+      "name": "Gannan (Xiahe) - Gannan Xiahe"
+    },
+    {
+      "icao": "ZUDC",
+      "name": "Garzê (Daocheng) - Daocheng Yading"
+    },
+    {
+      "icao": "ZUKD",
+      "name": "Garzê (Kangding) - Kangding"
+    },
+    {
+      "icao": "ZLGM",
+      "name": "Golmud"
+    },
+    {
+      "icao": "ZLGL",
+      "name": "Golog (Maqên) - Golog Maqên"
+    },
+    {
+      "icao": "ZUGU",
+      "name": "Guangyuan (Lizhou) - Guangyuan Panlong"
+    },
+    {
+      "icao": "ZLGY",
+      "name": "Guyuan (Yuanzhou) - Guyuan Liupanshan"
+    },
+    {
+      "icao": "ZLHN",
+      "name": "Hainan (Gonghe) - Hainanzhou Gonghe"
+    },
+    {
+      "icao": "ZWHM",
+      "name": "Hami"
+    },
+    {
+      "icao": "ZBHD",
+      "name": "Handan"
+    },
+    {
+      "icao": "ZLHZ",
+      "name": "Hanzhong (Chenggu) - Hanzhong Chenggu"
+    },
+    {
+      "icao": "ZGHC",
+      "name": "Hechi (Jinchengjiang) - Hechi Jinchengjiang"
+    },
+    {
+      "icao": "ZYDU",
+      "name": "Heihe - Wudalianchi Dedu"
+    },
+    {
+      "icao": "ZYHE",
+      "name": "Heihe Aihui"
+    },
+    {
+      "icao": "ZSHZ",
+      "name": "Heze (Dingtao) - Heze Mudan"
+    },
+    {
+      "icao": "ZBHZ",
+      "name": "Holingol Huolinhe"
+    },
+    {
+      "icao": "ZWTN",
+      "name": "Hotan"
+    },
+    {
+      "icao": "ZGCJ",
+      "name": "Huaihua Zhijiang"
+    },
+    {
+      "icao": "ZGHZ",
+      "name": "Huizhou (Pingtan) - Huizhou Pingtan"
+    },
+    {
+      "icao": "ZYXC",
+      "name": "Huludao (Xingcheng) - Xingcheng Air Base"
+    },
+    {
+      "icao": "ZSGS",
+      "name": "Ji'an - Jinggangshan"
+    },
+    {
+      "icao": "ZYJD",
+      "name": "Jiagedaqi - Daxing'anling Elunchun"
+    },
+    {
+      "icao": "ZYJM",
+      "name": "Jiamusi Songjiang"
+    },
+    {
+      "icao": "ZYJS",
+      "name": "Jiansanjiang Shidi"
+    },
+    {
+      "icao": "ZSJD",
+      "name": "Jingdezhen Luojia"
+    },
+    {
+      "icao": "ZHJZ",
+      "name": "Jingzhou (Shashi) - Jingzhou Shashi"
+    },
+    {
+      "icao": "ZSJG",
+      "name": "Jining Da'an"
+    },
+    {
+      "icao": "ZYJZ",
+      "name": "Jinzhou (Linghai) - Jinzhou Bay"
+    },
+    {
+      "icao": "ZYJX",
+      "name": "Jixi Xingkaihu"
+    },
+    {
+      "icao": "ZUKJ",
+      "name": "Kaili  (Huangping) - Kaili Huangping"
+    },
+    {
+      "icao": "ZWKL",
+      "name": "Korla Licheng"
+    },
+    {
+      "icao": "ZUXC",
+      "name": "Liangshan (Xichang) - Xichang Qingshan"
+    },
+    {
+      "icao": "ZPCW",
+      "name": "Lincang (Cangyuan) - Cangyuan Washan"
+    },
+    {
+      "icao": "ZPLC",
+      "name": "Lincang Boshang"
+    },
+    {
+      "icao": "ZBLF",
+      "name": "Linfen (Yaodu) - Linfen Yaodu"
+    },
+    {
+      "icao": "ZSLY",
+      "name": "Linyi (Hedong) - Linyi Qiyang"
+    },
+    {
+      "icao": "ZUNP",
+      "name": "Liping"
+    },
+    {
+      "icao": "ZUPS",
+      "name": "Liupanshui (Zhongshan) - Liupanshui Yuezhao"
+    },
+    {
+      "icao": "ZGZH",
+      "name": "Liuzhou (Liujiang) - Liuzhou Bailian Airport / Bailian Air Base"
+    },
+    {
+      "icao": "ZLLN",
+      "name": "Longnan (Cheng) - Longnan Chengzhou"
+    },
+    {
+      "icao": "ZSLO",
+      "name": "Longyan (Liancheng) - Liancheng Guanzhishan"
+    },
+    {
+      "icao": "ZULZ",
+      "name": "Luzhou (Yunlong) - Luzhou Yunlong"
+    },
+    {
+      "icao": "ZBLL",
+      "name": "Lüliang Dawu"
+    },
+    {
+      "icao": "ZBMZ",
+      "name": "Manzhouli Xijiao"
+    },
+    {
+      "icao": "ZLHX",
+      "name": "Mengnai - Huatugou"
+    },
+    {
+      "icao": "ZUMY",
+      "name": "Mianyang (Fucheng) - Mianyang Nanjiao"
+    },
+    {
+      "icao": "ZYMH",
+      "name": "Mohe Gulian"
+    },
+    {
+      "icao": "ZYMD",
+      "name": "Mudanjiang Hailang"
+    },
+    {
+      "icao": "ZULA",
+      "name": "Nanchong (Langzhong) - Langzhong Gucheng"
+    },
+    {
+      "icao": "ZSWY",
+      "name": "Nanping Wuyishan"
+    },
+    {
+      "icao": "ZSNT",
+      "name": "Nantong (Tongzhou) - Nantong Xingdong"
+    },
+    {
+      "icao": "ZUHY",
+      "name": "Ngawa (Hongyuan) - Hongyuan"
+    },
+    {
+      "icao": "ZUJZ",
+      "name": "Ngawa (Songpan) - Jiuzhai Huanglong"
+    },
+    {
+      "icao": "ZPNL",
+      "name": "Ninglang Luguhu"
+    },
+    {
+      "icao": "ZUNZ",
+      "name": "Nyingchi (Mainling) - Nyingchi Mainling"
+    },
+    {
+      "icao": "ZUZH",
+      "name": "Panzhihua (Renhe) - Panzhihua Bao'anying"
+    },
+    {
+      "icao": "ZPJM",
+      "name": "Pu'er (Lancang) - Lancang Jingmai"
+    },
+    {
+      "icao": "ZUBD",
+      "name": "Qamdo Bangda"
+    },
+    {
+      "icao": "ZYSQ",
+      "name": "Qian Gorlos Mongol Autonomous County - Songyuan Chaganhu"
+    },
+    {
+      "icao": "ZUQJ",
+      "name": "Qianjiang Wulingshan"
+    },
+    {
+      "icao": "ZWCM",
+      "name": "Qiemo Yudu"
+    },
+    {
+      "icao": "ZLQY",
+      "name": "Qingyang (Xifeng) - Qingyang Xifeng"
+    },
+    {
+      "icao": "ZBDH",
+      "name": "Qinhuangdao (Changli) - Qinhuangdao Beidaihe"
+    },
+    {
+      "icao": "ZJQH",
+      "name": "Qionghai (Basuo) - Qionghai Bo'ao"
+    },
+    {
+      "icao": "ZSJU",
+      "name": "Quzhou (Kezheng) - Quzhou"
+    },
+    {
+      "icao": "ZSRZ",
+      "name": "Rizhao (Donggang) - Rizhao Shanzihe"
+    },
+    {
+      "icao": "ZSRG",
+      "name": "Rugao (Nantong) - Rugao Air Base"
+    },
+    {
+      "icao": "ZWRQ",
+      "name": "Ruoqiang Town - Ruoqiang Loulan"
+    },
+    {
+      "icao": "ZSSM",
+      "name": "Sanming (Sha) - Sanming Shaxian"
+    },
+    {
+      "icao": "ZWSC",
+      "name": "Shache"
+    },
+    {
+      "icao": "ZSSR",
+      "name": "Shangrao (Hengfeng) - Shangrao Sanqingshan"
+    },
+    {
+      "icao": "ZWSS",
+      "name": "Shanshan"
+    },
+    {
+      "icao": "ZGSG",
+      "name": "Shaoguan Danxia"
+    },
+    {
+      "icao": "ZGSY",
+      "name": "Shaoyang (Wugang) - Shaoyang Wugang"
+    },
+    {
+      "icao": "ZHSN",
+      "name": "Shennongjia (Hongping) - Shennongjia Hongping"
+    },
+    {
+      "icao": "ZUAL",
+      "name": "Shiquanhe - Ngari Gunsa"
+    },
+    {
+      "icao": "ZHSY",
+      "name": "Shiyan (Maojian) - Shiyan Wudangshan"
+    },
+    {
+      "icao": "ZYCY",
+      "name": "Shuangta, Chaoyang - Chaoyang"
+    },
+    {
+      "icao": "ZBSG",
+      "name": "Shuozhou Zirun"
+    },
+    {
+      "icao": "ZSSZ",
+      "name": "Suzhou Guangfu"
+    },
+    {
+      "icao": "ZSLQ",
+      "name": "Taizhou (Luqiao) - Taizhou Luqiao"
+    },
+    {
+      "icao": "ZGWZ",
+      "name": "Tangbu - Wuzhou Xijiang"
+    },
+    {
+      "icao": "ZWTK",
+      "name": "Tashikuergan Hongqilafu"
+    },
+    {
+      "icao": "ZLTS",
+      "name": "Tianshui (Maiji) - Tianshui Maijishan"
+    },
+    {
+      "icao": "ZYTN",
+      "name": "Tonghua Sanyuanpu"
+    },
+    {
+      "icao": "ZBTL",
+      "name": "Tongliao"
+    },
+    {
+      "icao": "ZUTR",
+      "name": "Tongren (Daxing) - Tongren Fenghuang"
+    },
+    {
+      "icao": "ZUDJ",
+      "name": "Tongren Dejiang Airport (Under Construction)"
+    },
+    {
+      "icao": "ZWTL",
+      "name": "Turpan Jiaohe"
+    },
+    {
+      "icao": "ZSWF",
+      "name": "Weifang (Kuiwen) - Weifang Nanyuan"
+    },
+    {
+      "icao": "ZSWH",
+      "name": "Weihai Dashuibo"
+    },
+    {
+      "icao": "ZBUH",
+      "name": "Wuhai"
+    },
+    {
+      "icao": "ZSWA",
+      "name": "Wuhu Xuanzhou"
+    },
+    {
+      "icao": "ZUWL",
+      "name": "Wulong - Chongqing Xiannüshan"
+    },
+    {
+      "icao": "ZLSN",
+      "name": "Xi'an (Baqiao) - Xi'an Xiguan"
+    },
+    {
+      "icao": "ZHGH",
+      "name": "Xiangyang (Laohekou) - Guangzhou MR Air Base / Guanghua"
+    },
+    {
+      "icao": "ZHXF",
+      "name": "Xiangyang (Xiangzhou) - Xiangyang Liuji"
+    },
+    {
+      "icao": "ZUDR",
+      "name": "Xigazê (Dingri) - Rikaze Dingri"
+    },
+    {
+      "icao": "ZBXH",
+      "name": "Xilinhot"
+    },
+    {
+      "icao": "ZUYI",
+      "name": "Xingyi Wanfenglin"
+    },
+    {
+      "icao": "ZHXY",
+      "name": "Xinyang Minggang"
+    },
+    {
+      "icao": "ZWNL",
+      "name": "Xinyuan Nalati"
+    },
+    {
+      "icao": "ZSJX",
+      "name": "Xiuzhou, Hangzhou - Jiaxing Nanhu"
+    },
+    {
+      "icao": "ZSXZ",
+      "name": "Xuzhou Guanyin"
+    },
+    {
+      "icao": "ZLYA",
+      "name": "Yan'an (Baota) - Yan'an Nanniwan"
+    },
+    {
+      "icao": "ZSYA",
+      "name": "Yangzhou Taizhou"
+    },
+    {
+      "icao": "ZYYJ",
+      "name": "Yanji Chaoyangchuan"
+    },
+    {
+      "icao": "ZUYB",
+      "name": "Yibin (Cuiping) - Yibin Wuliangye"
+    },
+    {
+      "icao": "ZHYC",
+      "name": "Yichang (Xiaoting) - Yichang Sanxia"
+    },
+    {
+      "icao": "ZYLD",
+      "name": "Yichun Lindu"
+    },
+    {
+      "icao": "ZSYC",
+      "name": "Yichun Mingyueshan"
+    },
+    {
+      "icao": "ZYYK",
+      "name": "Yingkou (Laobian) - Yingkou Lanqi"
+    },
+    {
+      "icao": "ZSFY",
+      "name": "Yingzhou, Fuyang - Fuyang Xiguan"
+    },
+    {
+      "icao": "ZGLG",
+      "name": "Yongzhou Lingling"
+    },
+    {
+      "icao": "ZGYY",
+      "name": "Yueyang (Yueyanglou) - Yueyang Sanhe"
+    },
+    {
+      "icao": "ZGYL",
+      "name": "Yulin Fumian"
+    },
+    {
+      "icao": "ZLYL",
+      "name": "Yulin Yuyang"
+    },
+    {
+      "icao": "ZLYS",
+      "name": "Yushu (Batang) - Yushu Batang"
+    },
+    {
+      "icao": "ZBZL",
+      "name": "Zhalantun Genghis Khan"
+    },
+    {
+      "icao": "ZBZJ",
+      "name": "Zhangjiakou Ningyuan"
+    },
+    {
+      "icao": "ZLZY",
+      "name": "Zhangye (Ganzhou) - Zhangye Ganzhou"
+    },
+    {
+      "icao": "ZPZT",
+      "name": "Zhaotong Zhaoyang Airport （Not fully opened)"
+    },
+    {
+      "icao": "ZLZW",
+      "name": "Zhongwei (Shapotou) - Zhongwei Shapotou"
+    },
+    {
+      "icao": "ZUMT",
+      "name": "Zunyi Maotai"
+    },
+    {
+      "icao": "ZUZY",
+      "name": "Zunyi Xinzhou"
+    }
+  ],
+  "Christmas Island": [
+    {
+      "icao": "YPXM",
+      "name": "Flying Fish Cove - Christmas Island"
+    }
+  ],
+  "Cocos (Keeling) Islands": [
+    {
+      "icao": "YPCC",
+      "name": "West Island - Cocos (Keeling) Islands"
+    }
+  ],
+  "Colombia": [
+    {
+      "icao": "SKBQ",
+      "name": "Barranquilla - Ernesto Cortissoz"
+    },
+    {
+      "icao": "SKBO",
+      "name": "Bogota - El Dorado"
+    },
+    {
+      "icao": "SKCL",
+      "name": "Cali - Alfonso Bonilla Aragon"
+    },
+    {
+      "icao": "SKCG",
+      "name": "Cartagena - Rafael Nuñez"
+    },
+    {
+      "icao": "SKRG",
+      "name": "Medellín - Jose Maria Córdova"
+    },
+    {
+      "icao": "SKSP",
+      "name": "San Andrés - Gustavo Rojas Pinilla"
+    },
+    {
+      "icao": "SKUC",
+      "name": "Arauca - Santiago Perez"
+    },
+    {
+      "icao": "SKAR",
+      "name": "Armenia - El Eden"
+    },
+    {
+      "icao": "SKBS",
+      "name": "Bahía Solano - José Celestino Mutis"
+    },
+    {
+      "icao": "SKEJ",
+      "name": "Barrancabermeja - Yariguíes"
+    },
+    {
+      "icao": "SKBG",
+      "name": "Bucaramanga - Palonegro"
+    },
+    {
+      "icao": "SKBU",
+      "name": "Buenaventura - Gerardo Tobar López"
+    },
+    {
+      "icao": "SKLC",
+      "name": "Carepa - Antonio Roldán Betancur"
+    },
+    {
+      "icao": "SKGO",
+      "name": "Cartago - Santa Ana"
+    },
+    {
+      "icao": "SKCU",
+      "name": "Caucasia - Juan H White"
+    },
+    {
+      "icao": "SKPS",
+      "name": "Chachagüí - Antonio Nariño"
+    },
+    {
+      "icao": "SKCZ",
+      "name": "Corozal - Las Brujas"
+    },
+    {
+      "icao": "SKCV",
+      "name": "Coveñas"
+    },
+    {
+      "icao": "SKCC",
+      "name": "Cúcuta - Camilo Daza"
+    },
+    {
+      "icao": "SKYP",
+      "name": "El Alcaravan - Yopal"
+    },
+    {
+      "icao": "SKEB",
+      "name": "El Bagre"
+    },
+    {
+      "icao": "SKBC",
+      "name": "El Banco - Las Flores"
+    },
+    {
+      "icao": "SKFL",
+      "name": "Florencia - Gustavo Artunduaga Paredes"
+    },
+    {
+      "icao": "SKGI",
+      "name": "Girardot - Santiago Vila"
+    },
+    {
+      "icao": "SKAP",
+      "name": "Gomez Nino Apiay Air Base"
+    },
+    {
+      "icao": "SKGP",
+      "name": "Guapi"
+    },
+    {
+      "icao": "SKIB",
+      "name": "Ibagué - Perales"
+    },
+    {
+      "icao": "SKIP",
+      "name": "Ipiales - San Luis"
+    },
+    {
+      "icao": "SKPQ",
+      "name": "La Dorada - German Olano Air Base"
+    },
+    {
+      "icao": "SKLM",
+      "name": "La Mina-Maicao - Jorge Isaac"
+    },
+    {
+      "icao": "SKLT",
+      "name": "Leticia - Alfredo Vásquez Cobo"
+    },
+    {
+      "icao": "SKMG",
+      "name": "Magangué - Baracoa"
+    },
+    {
+      "icao": "SKMZ",
+      "name": "Manizales - La Nubia"
+    },
+    {
+      "icao": "SKQU",
+      "name": "Mariquita"
+    },
+    {
+      "icao": "SKMD",
+      "name": "Medellín - Enrique Olaya Herrera"
+    },
+    {
+      "icao": "SKMU",
+      "name": "Mitú - Fabio Alberto Leon Bentley"
+    },
+    {
+      "icao": "SKMR",
+      "name": "Montería - Los Garzones"
+    },
+    {
+      "icao": "SKNV",
+      "name": "Neiva - Benito Salas"
+    },
+    {
+      "icao": "SKOC",
+      "name": "Ocaña - Aguas Claras"
+    },
+    {
+      "icao": "SKPZ",
+      "name": "Paz de Ariporo"
+    },
+    {
+      "icao": "SKPE",
+      "name": "Pereira - Matecaña"
+    },
+    {
+      "icao": "SKPI",
+      "name": "Pitalito"
+    },
+    {
+      "icao": "SKPP",
+      "name": "Popayán - Guillermo León Valencia"
+    },
+    {
+      "icao": "SKPV",
+      "name": "Providencia - El Embrujo"
+    },
+    {
+      "icao": "SKAS",
+      "name": "Puerto Asís - Tres De Mayo"
+    },
+    {
+      "icao": "SKPC",
+      "name": "Puerto Carreño - German Olano"
+    },
+    {
+      "icao": "SKPD",
+      "name": "Puerto Inírida - Obando Cesar Gaviria Trujillo"
+    },
+    {
+      "icao": "SKUI",
+      "name": "Quibdó - El Caraño"
+    },
+    {
+      "icao": "SKRH",
+      "name": "Riohacha - Almirante Padilla"
+    },
+    {
+      "icao": "SKSJ",
+      "name": "San José Del Guaviare - Jorge E. Gonzalez Torres"
+    },
+    {
+      "icao": "SKSV",
+      "name": "San Vicente Del Caguán - Eduardo Falla Solano"
+    },
+    {
+      "icao": "SKSM",
+      "name": "Santa Marta - Simón Bolívar"
+    },
+    {
+      "icao": "SKTM",
+      "name": "Tame - Gustavo Vargas"
+    },
+    {
+      "icao": "SKTQ",
+      "name": "Tres Esquinas - Captain Ernesto Esguerra Cubides Air Base"
+    },
+    {
+      "icao": "SKUL",
+      "name": "Tuluá - Heriberto Gíl Martínez"
+    },
+    {
+      "icao": "SKCO",
+      "name": "Tumaco - La Florida"
+    },
+    {
+      "icao": "SKVP",
+      "name": "Valledupar - Alfonso López Pumarejo"
+    },
+    {
+      "icao": "SKVV",
+      "name": "Villavicencio - Vanguardia"
+    }
+  ],
+  "Comoros": [
+    {
+      "icao": "FMCH",
+      "name": "Moroni - Prince Said Ibrahim"
+    },
+    {
+      "icao": "FMCI",
+      "name": "Fomboni - Mohéli Bandar Es Eslam"
+    },
+    {
+      "icao": "FMCV",
+      "name": "Ouani"
+    }
+  ],
+  "Cook Islands": [
+    {
+      "icao": "NCRG",
+      "name": "Avarua - Rarotonga"
+    }
+  ],
+  "Costa Rica": [
+    {
+      "icao": "MRLB",
+      "name": "Liberia - Daniel Oduber Quirós"
+    },
+    {
+      "icao": "MROC",
+      "name": "San José (Alajuela) - Juan Santamaría"
+    },
+    {
+      "icao": "MRCC",
+      "name": "Corredores - Coto 47"
+    },
+    {
+      "icao": "MRGF",
+      "name": "Golfito"
+    },
+    {
+      "icao": "MRAN",
+      "name": "La Fortuna Arenal"
+    },
+    {
+      "icao": "MRLM",
+      "name": "Limón"
+    },
+    {
+      "icao": "MRLC",
+      "name": "Los Chiles"
+    },
+    {
+      "icao": "MRNS",
+      "name": "Nicoya - Nosara"
+    },
+    {
+      "icao": "MRPM",
+      "name": "Palmar Sur"
+    },
+    {
+      "icao": "MRBC",
+      "name": "Pococi - Barra del Colorado"
+    },
+    {
+      "icao": "MRGP",
+      "name": "Pococi - Guapiles"
+    },
+    {
+      "icao": "MRPJ",
+      "name": "Puerto Jimenez"
+    },
+    {
+      "icao": "MRBA",
+      "name": "Punta Arenas - Buenos Aires"
+    },
+    {
+      "icao": "MRQP",
+      "name": "Quepos Managua"
+    },
+    {
+      "icao": "MRPV",
+      "name": "San Jose - Tobías Bolaños"
+    },
+    {
+      "icao": "MRUP",
+      "name": "Upala"
+    }
+  ],
+  "Croatia": [
+    {
+      "icao": "LDDU",
+      "name": "Dubrovnik Ruđer Bošković"
+    },
+    {
+      "icao": "LDPL",
+      "name": "Pula"
+    },
+    {
+      "icao": "LDRI",
+      "name": "Rijeka(Omišalj) - Rijeka"
+    },
+    {
+      "icao": "LDSP",
+      "name": "Split Saint Jerome"
+    },
+    {
+      "icao": "LDZA",
+      "name": "Velika Gorica - Zagreb Franjo Tuđman"
+    },
+    {
+      "icao": "LDZD",
+      "name": "Zadar"
+    },
+    {
+      "icao": "LDSB",
+      "name": "Gornji Humac - Brač"
+    },
+    {
+      "icao": "LDOS",
+      "name": "Osijek(Klisa) - Osijek"
+    }
+  ],
+  "Cuba": [
+    {
+      "icao": "MUCM",
+      "name": "Camaguey - Ignacio Agramonte"
+    },
+    {
+      "icao": "MUHA",
+      "name": "Havana - José Martí"
+    },
+    {
+      "icao": "MUHG",
+      "name": "Holguin - Frank Pais"
+    },
+    {
+      "icao": "MUVR",
+      "name": "Matanzas - Juan Gualberto Gomez"
+    },
+    {
+      "icao": "MUSC",
+      "name": "Santa Clara - Abel Santamaria"
+    },
+    {
+      "icao": "MUCU",
+      "name": "Santiago - Antonio Maceo"
+    },
+    {
+      "icao": "MUBA",
+      "name": "Baracoa - Gustavo Rizo"
+    },
+    {
+      "icao": "MUBY",
+      "name": "Bayamo - Carlos Manuel de Cespedes"
+    },
+    {
+      "icao": "MUCC",
+      "name": "Cayo Coco - Jardines Del Rey"
+    },
+    {
+      "icao": "MUCL",
+      "name": "Cayo Largo del Sur - Vilo Acuña"
+    },
+    {
+      "icao": "MUCF",
+      "name": "Cienfuegos - Jaime Gonzalez"
+    },
+    {
+      "icao": "MUCA",
+      "name": "Ciro Redondo - Máximo Gómez"
+    },
+    {
+      "icao": "MUGM",
+      "name": "Guantanamo Bay Naval Station - Leeward Point Field"
+    },
+    {
+      "icao": "MUGT",
+      "name": "Guantánamo - Mariana Grajales"
+    },
+    {
+      "icao": "MUPB",
+      "name": "Havana - Playa Baracoa"
+    },
+    {
+      "icao": "MUSN",
+      "name": "Isla de la Juventud - Siguanea"
+    },
+    {
+      "icao": "MUVT",
+      "name": "Las Tunas - Hermanos Ameijeiras"
+    },
+    {
+      "icao": "MUMZ",
+      "name": "Manzanillo - Sierra Maestra"
+    },
+    {
+      "icao": "MUMO",
+      "name": "Moa - Orestes Acosta"
+    },
+    {
+      "icao": "MUNG",
+      "name": "Nueva Gerona - Rafael Cabrera"
+    },
+    {
+      "icao": "MUSJ",
+      "name": "Sandino - San Julián Air Base"
+    },
+    {
+      "icao": "MUKW",
+      "name": "Santa Marta - Kawama"
+    },
+    {
+      "icao": "MUTD",
+      "name": "Trinidad - Alberto Delgado"
+    }
+  ],
+  "Curaçao": [
+    {
+      "icao": "TNCC",
+      "name": "Willemstad - Hato"
+    }
+  ],
+  "Cyprus": [
+    {
+      "icao": "LCLK",
+      "name": "Larnaca"
+    },
+    {
+      "icao": "LCPH",
+      "name": "Paphos"
+    },
+    {
+      "icao": "LCEN",
+      "name": "Tymbou (Kirklar) - Ercan"
+    },
+    {
+      "icao": "LCGK",
+      "name": "Lefkoniko (Geçitkale) - Lefkoniko Airport / Geçitkale Air Base"
+    },
+    {
+      "icao": "LCRA",
+      "name": "RAF Akrotiri"
+    }
+  ],
+  "Czech Republic": [
+    {
+      "icao": "LKKV",
+      "name": "Karlovy Vary"
+    },
+    {
+      "icao": "LKMT",
+      "name": "Mošnov - Leoš Janáček Airport Ostrava"
+    },
+    {
+      "icao": "LKPD",
+      "name": "Pardubice"
+    },
+    {
+      "icao": "LKPR",
+      "name": "Václav Havel Airport Prague"
+    },
+    {
+      "icao": "LKCS",
+      "name": "České Budějovice South Bohemian"
+    },
+    {
+      "icao": "LKTB",
+      "name": "Brno-Tuřany"
+    },
+    {
+      "icao": "LKCV",
+      "name": "Chotusice - Čáslav Air Base"
+    },
+    {
+      "icao": "LKLN",
+      "name": "Plzen - Plzeň-Líně"
+    },
+    {
+      "icao": "LKKB",
+      "name": "Prague–Kbely Air Base"
+    },
+    {
+      "icao": "LKPO",
+      "name": "Přerov Air Base"
+    },
+    {
+      "icao": "LKNA",
+      "name": "Sedlec - Náměšť Air Base"
+    },
+    {
+      "icao": "LKKU",
+      "name": "Uherské Hradiště - Kunovice"
+    },
+    {
+      "icao": "LKVO",
+      "name": "Vodochody"
+    }
+  ],
+  "Côte d'Ivoire": [
+    {
+      "icao": "DIAP",
+      "name": "Abidjan - Félix-Houphouët-Boigny"
+    },
+    {
+      "icao": "DIYO",
+      "name": "Yamoussoukro"
+    },
+    {
+      "icao": "DIBK",
+      "name": "Bouaké"
+    },
+    {
+      "icao": "DIDL",
+      "name": "Daloa"
+    },
+    {
+      "icao": "DIKO",
+      "name": "Korhogo"
+    },
+    {
+      "icao": "DIMN",
+      "name": "Man Airport"
+    },
+    {
+      "icao": "DISP",
+      "name": "San Pedro"
+    }
+  ],
+  "Democratic Republic of the Congo": [
+    {
+      "icao": "FZNA",
+      "name": "Goma"
+    },
+    {
+      "icao": "FZAA",
+      "name": "Kinshasa - Ndjili"
+    },
+    {
+      "icao": "FZIC",
+      "name": "Kisangani - Bangoka"
+    },
+    {
+      "icao": "FZQA",
+      "name": "Lubumbashi"
+    },
+    {
+      "icao": "FZBO",
+      "name": "Bandundu"
+    },
+    {
+      "icao": "FZKA",
+      "name": "Bunia"
+    },
+    {
+      "icao": "FZKJ",
+      "name": "Buta Zega"
+    },
+    {
+      "icao": "FZFD",
+      "name": "Gbadolite"
+    },
+    {
+      "icao": "FZFK",
+      "name": "Gemena"
+    },
+    {
+      "icao": "FZJH",
+      "name": "Isiro - Matari"
+    },
+    {
+      "icao": "FZRF",
+      "name": "Kalemie"
+    },
+    {
+      "icao": "FZMA",
+      "name": "Kamakombe - Bukavu Kavumu"
+    },
+    {
+      "icao": "FZUA",
+      "name": "Kananga"
+    },
+    {
+      "icao": "FZCA",
+      "name": "Kikwit"
+    },
+    {
+      "icao": "FZOA",
+      "name": "Kindu"
+    },
+    {
+      "icao": "FZQM",
+      "name": "Kolwezi"
+    },
+    {
+      "icao": "FZGA",
+      "name": "Lisala"
+    },
+    {
+      "icao": "FZSA",
+      "name": "Lumwe - Kamina Air Base"
+    },
+    {
+      "icao": "FZEA",
+      "name": "Mbandaka"
+    },
+    {
+      "icao": "FZWA",
+      "name": "Mbuji Mayi"
+    },
+    {
+      "icao": "FZAB",
+      "name": "N'dolo - Ndolo"
+    }
+  ],
+  "Denmark": [
+    {
+      "icao": "EKYT",
+      "name": "Aalborg"
+    },
+    {
+      "icao": "EKAH",
+      "name": "Aarhus"
+    },
+    {
+      "icao": "EKBI",
+      "name": "Billund"
+    },
+    {
+      "icao": "EKCH",
+      "name": "Copenhagen Kastrup"
+    },
+    {
+      "icao": "EKOD",
+      "name": "Odense Hans Christian Andersen"
+    },
+    {
+      "icao": "EKRK",
+      "name": "Copenhagen Roskilde"
+    },
+    {
+      "icao": "EKEB",
+      "name": "Esbjerg"
+    },
+    {
+      "icao": "EKKA",
+      "name": "Midtjyllands Airport / Air Base Karup"
+    },
+    {
+      "icao": "EKMB",
+      "name": "Rødby - Lolland Falster Maribo"
+    },
+    {
+      "icao": "EKRN",
+      "name": "Rønne - Bornholm"
+    },
+    {
+      "icao": "EKSN",
+      "name": "Sindal"
+    },
+    {
+      "icao": "EKSV",
+      "name": "Skive"
+    },
+    {
+      "icao": "EKVJ",
+      "name": "Skjern - Stauning Vestjylland "
+    },
+    {
+      "icao": "EKSB",
+      "name": "Sønderborg"
+    },
+    {
+      "icao": "EKTS",
+      "name": "Thisted"
+    },
+    {
+      "icao": "EKSP",
+      "name": "Vojens - Skrydstrup Air Base"
+    }
+  ],
+  "Djibouti": [
+    {
+      "icao": "HDAM",
+      "name": "Djibouti City - Djibouti-Ambouli"
+    }
+  ],
+  "Dominica": [
+    {
+      "icao": "TDCF",
+      "name": "Canefield"
+    },
+    {
+      "icao": "TDPD",
+      "name": "Marigot - Douglas-Charles"
+    }
+  ],
+  "Dominican Republic": [
+    {
+      "icao": "MDLR",
+      "name": "La Romana - Casa De Campo"
+    },
+    {
+      "icao": "MDPC",
+      "name": "Punta Cana"
+    },
+    {
+      "icao": "MDST",
+      "name": "Santiago - Cibao"
+    },
+    {
+      "icao": "MDSD",
+      "name": "Santo Domingo - Las Américas"
+    },
+    {
+      "icao": "MDBH",
+      "name": "Barahona - Maria Montez"
+    },
+    {
+      "icao": "MDCR",
+      "name": "Cabo Rojo"
+    },
+    {
+      "icao": "MDJB",
+      "name": "La Isabela"
+    },
+    {
+      "icao": "MDPP",
+      "name": "Puerto Plata - Gregorio Luperon"
+    },
+    {
+      "icao": "MDCY",
+      "name": "Samana - Samaná El Catey"
+    }
+  ],
+  "Ecuador": [
+    {
+      "icao": "SEGU",
+      "name": "Guayaquil - José Joaquín de Olmedo"
+    },
+    {
+      "icao": "SEQM",
+      "name": "Quito - Mariscal Sucre"
+    },
+    {
+      "icao": "SESA",
+      "name": "Salinas/La Libertad - General Ulpiano Paez"
+    },
+    {
+      "icao": "SETN",
+      "name": "Tachina - Carlos Concha Torres"
+    },
+    {
+      "icao": "SEJD",
+      "name": "Ahuano - Jumandy"
+    },
+    {
+      "icao": "SEAM",
+      "name": "Ambato - Chachoán Regional"
+    },
+    {
+      "icao": "SECO",
+      "name": "Coca - Francisco De Orellana"
+    },
+    {
+      "icao": "SECU",
+      "name": "Cuenca - Mariscal Lamar"
+    },
+    {
+      "icao": "SEGS",
+      "name": "Isla Baltra - Seymour Galapagos Ecological"
+    },
+    {
+      "icao": "SEMA",
+      "name": "Macará - Jose Maria Velasco Ibarra"
+    },
+    {
+      "icao": "SEMC",
+      "name": "Macas - Coronel E Carvajal"
+    },
+    {
+      "icao": "SEMT",
+      "name": "Manta - Eloy Alfaro"
+    },
+    {
+      "icao": "SEPV",
+      "name": "Portoviejo - Reales Tamarindos"
+    },
+    {
+      "icao": "SERO",
+      "name": "Santa Rosa - Artillery Colonel Victor Larrea"
+    },
+    {
+      "icao": "SETR",
+      "name": "Tarapoa"
+    },
+    {
+      "icao": "SETU",
+      "name": "Tulcán - Lieutenant Colonel Luis A. Mantilla"
+    }
+  ],
+  "Egypt": [
+    {
+      "icao": "HESX",
+      "name": "Al Jiza - Sphinx"
+    },
+    {
+      "icao": "HEAX",
+      "name": "Alexandria"
+    },
+    {
+      "icao": "HESN",
+      "name": "Aswan"
+    },
+    {
+      "icao": "HEAT",
+      "name": "Asyut"
+    },
+    {
+      "icao": "HEBR",
+      "name": "Berenice Troglodytica - Berenice International Airport / Banas Cape Air Base"
+    },
+    {
+      "icao": "HECA",
+      "name": "Cairo"
+    },
+    {
+      "icao": "HEAL",
+      "name": "El Alamein"
+    },
+    {
+      "icao": "HEAR",
+      "name": "El Arish"
+    },
+    {
+      "icao": "HEGN",
+      "name": "Hurghada"
+    },
+    {
+      "icao": "HELX",
+      "name": "Luxor"
+    },
+    {
+      "icao": "HEMA",
+      "name": "Marsa Alam"
+    },
+    {
+      "icao": "HEMM",
+      "name": "Marsa Matruh - Mersa Matruh"
+    },
+    {
+      "icao": "HECP",
+      "name": "New Cairo - Capital"
+    },
+    {
+      "icao": "HEPS",
+      "name": "Port Said"
+    },
+    {
+      "icao": "HESC",
+      "name": "Saint Catherine"
+    },
+    {
+      "icao": "HESH",
+      "name": "Sharm El Sheikh"
+    },
+    {
+      "icao": "HESG",
+      "name": "Suhaj - Sohag"
+    },
+    {
+      "icao": "HETB",
+      "name": "Taba"
+    },
+    {
+      "icao": "HEBL",
+      "name": "Abu Simbel"
+    },
+    {
+      "icao": "HECW",
+      "name": "Cairo West Air Base"
+    },
+    {
+      "icao": "HEGR",
+      "name": "El Jora"
+    }
+  ],
+  "El Salvador": [
+    {
+      "icao": "MSLP",
+      "name": "San Salvador (San Luis Talpa) - El Salvador International Airport Saint Óscar Arnulfo Romero y Galdámez"
+    },
+    {
+      "icao": "MSSS",
+      "name": "San Salvador - Ilopango"
+    }
+  ],
+  "Equatorial Guinea": [
+    {
+      "icao": "FGBT",
+      "name": "Bata"
+    },
+    {
+      "icao": "FGSL",
+      "name": "Malabo"
+    },
+    {
+      "icao": "FGMY",
+      "name": "Mengomeyén - President Obiang Nguema"
+    }
+  ],
+  "Eritrea": [
+    {
+      "icao": "HHAS",
+      "name": "Asmara"
+    },
+    {
+      "icao": "HHSB",
+      "name": "Assab"
+    },
+    {
+      "icao": "HHMS",
+      "name": "Massawa"
+    }
+  ],
+  "Estonia": [
+    {
+      "icao": "EETN",
+      "name": "Lennart Meri Tallinn"
+    },
+    {
+      "icao": "EEEI",
+      "name": "Keila - Ämari Air Base"
+    },
+    {
+      "icao": "EEKE",
+      "name": "Kuressaare"
+    },
+    {
+      "icao": "EEKA",
+      "name": "Kärdla"
+    },
+    {
+      "icao": "EEPU",
+      "name": "Pärnu"
+    },
+    {
+      "icao": "EETU",
+      "name": "Tartu"
+    }
+  ],
+  "Eswatini": [
+    {
+      "icao": "FDMS",
+      "name": "Manzini - Matsapha"
+    },
+    {
+      "icao": "FDSK",
+      "name": "Mpaka - King Mswati III"
+    }
+  ],
+  "Ethiopia": [
+    {
+      "icao": "HAAB",
+      "name": "Addis Ababa Bole"
+    },
+    {
+      "icao": "HADR",
+      "name": "Dire Dawa - Aba Tenna Dejazmach Yilma"
+    },
+    {
+      "icao": "HALA",
+      "name": "Hawassa"
+    },
+    {
+      "icao": "HAJJ",
+      "name": "Jijiga - Gerad Wilwal"
+    },
+    {
+      "icao": "HAAM",
+      "name": "Arba Minch"
+    },
+    {
+      "icao": "HASO",
+      "name": "Asosa"
+    },
+    {
+      "icao": "HAAX",
+      "name": "Axum"
+    },
+    {
+      "icao": "HAGN",
+      "name": "Azezo - Gondar"
+    },
+    {
+      "icao": "HABD",
+      "name": "Bahir Dar"
+    },
+    {
+      "icao": "HAHM",
+      "name": "Debre Zeyit - Harar Meda"
+    },
+    {
+      "icao": "HAGM",
+      "name": "Gambela"
+    },
+    {
+      "icao": "HAGO",
+      "name": "Gode"
+    },
+    {
+      "icao": "HAJM",
+      "name": "Jimma"
+    },
+    {
+      "icao": "HABC",
+      "name": "Jinka - Baco"
+    },
+    {
+      "icao": "HAKD",
+      "name": "Kebri Dahar"
+    },
+    {
+      "icao": "HAMK",
+      "name": "Mekele Alula Aba Nega"
+    }
+  ],
+  "Falkland Islands": [
+    {
+      "icao": "EGYP",
+      "name": "Mount Pleasant Airport / RAF Mount Pleasant"
+    }
+  ],
+  "Faroe Islands": [
+    {
+      "icao": "EKVG",
+      "name": "Vágar"
+    }
+  ],
+  "Fiji": [
+    {
+      "icao": "NFFN",
+      "name": "Nadi"
+    },
+    {
+      "icao": "NFNA",
+      "name": "Nausori"
+    },
+    {
+      "icao": "NFNL",
+      "name": "Labasa"
+    }
+  ],
+  "Finland": [
+    {
+      "icao": "EFHK",
+      "name": "Helsinki (Vantaa) - Helsinki Vantaa"
+    },
+    {
+      "icao": "EFIV",
+      "name": "Ivalo"
+    },
+    {
+      "icao": "EFKT",
+      "name": "Kittilä"
+    },
+    {
+      "icao": "EFKU",
+      "name": "Kuopio / Siilinjärvi - Kuopio"
+    },
+    {
+      "icao": "EFLP",
+      "name": "Lappeenranta"
+    },
+    {
+      "icao": "EFMA",
+      "name": "Mariehamn"
+    },
+    {
+      "icao": "EFOU",
+      "name": "Oulu / Oulunsalo - Oulu"
+    },
+    {
+      "icao": "EFRO",
+      "name": "Rovaniemi"
+    },
+    {
+      "icao": "EFTP",
+      "name": "Tampere / Pirkkala - Tampere-Pirkkala"
+    },
+    {
+      "icao": "EFTU",
+      "name": "Turku"
+    },
+    {
+      "icao": "EFVA",
+      "name": "Vaasa"
+    },
+    {
+      "icao": "EFET",
+      "name": "Enontekio"
+    },
+    {
+      "icao": "EFJO",
+      "name": "Joensuu"
+    },
+    {
+      "icao": "EFJY",
+      "name": "Jyväskylän Maalaiskunta - Jyväskylä"
+    },
+    {
+      "icao": "EFHA",
+      "name": "Jämsä - Halli"
+    },
+    {
+      "icao": "EFKI",
+      "name": "Kajaani"
+    },
+    {
+      "icao": "EFKJ",
+      "name": "Kauhajoki Airfield"
+    },
+    {
+      "icao": "EFKA",
+      "name": "Kauhava Airfield"
+    },
+    {
+      "icao": "EFKE",
+      "name": "Kemi / Tornio - Kemi-Tornio"
+    },
+    {
+      "icao": "EFIT",
+      "name": "Kitee"
+    },
+    {
+      "icao": "EFKK",
+      "name": "Kokkola / Kruunupyy - Kokkola-Pietarsaari"
+    },
+    {
+      "icao": "EFKS",
+      "name": "Kuusamo"
+    },
+    {
+      "icao": "EFMI",
+      "name": "Mikkeli"
+    },
+    {
+      "icao": "EFPO",
+      "name": "Pori"
+    },
+    {
+      "icao": "EFSA",
+      "name": "Savonlinna"
+    },
+    {
+      "icao": "EFSI",
+      "name": "Seinäjoki / Ilmajoki - Seinäjoki"
+    },
+    {
+      "icao": "EFSO",
+      "name": "Sodankyla"
+    },
+    {
+      "icao": "EFUT",
+      "name": "Utti / Valkeala - Utti Air Base"
+    },
+    {
+      "icao": "EFVR",
+      "name": "Varkaus / Joroinen - Varkaus"
+    },
+    {
+      "icao": "EFYL",
+      "name": "Ylivieska Airfield"
+    }
+  ],
+  "France": [
+    {
+      "icao": "LFKB",
+      "name": "Bastia-Poretta International airport"
+    },
+    {
+      "icao": "LFOB",
+      "name": "Beauvais-Tillé airport"
+    },
+    {
+      "icao": "LFBD",
+      "name": "Bordeaux–Mérignac"
+    },
+    {
+      "icao": "LFRB",
+      "name": "Brest Bretagne airport"
+    },
+    {
+      "icao": "LFSB",
+      "name": "Bâle / Mulhouse - EuroAirport Basel–Mulhouse–Freiburg"
+    },
+    {
+      "icao": "LFLC",
+      "name": "Clermont-Ferrand Auvergne airport"
+    },
+    {
+      "icao": "LFLL",
+      "name": "Colombier-Saugnieu, Rhône - Lyon Saint-Exupéry"
+    },
+    {
+      "icao": "LFKF",
+      "name": "Figari Sud-Corse"
+    },
+    {
+      "icao": "LFQQ",
+      "name": "Lesquin - Lille"
+    },
+    {
+      "icao": "LFML",
+      "name": "Marignane, Bouches-du-Rhône - Marseille Provence"
+    },
+    {
+      "icao": "LFMT",
+      "name": "Montpellier/Méditerranée - Montpellier-Méditerranée"
+    },
+    {
+      "icao": "LFMN",
+      "name": "Nice, Alpes-Maritimes - Nice-Côte d'Azur"
+    },
+    {
+      "icao": "LFPO",
+      "name": "Paris (Orly, Val-de-Marne) - Paris-Orly"
+    },
+    {
+      "icao": "LFPG",
+      "name": "Paris (Roissy-en-France, Val-d'Oise) - Charles de Gaulle"
+    },
+    {
+      "icao": "LFPB",
+      "name": "Paris-Le Bourget"
+    },
+    {
+      "icao": "LFST",
+      "name": "Strasbourg"
+    },
+    {
+      "icao": "LFBO",
+      "name": "Toulouse/Blagnac - Toulouse-Blagnac"
+    },
+    {
+      "icao": "LFBA",
+      "name": "Agen La Garenne airport"
+    },
+    {
+      "icao": "LFKJ",
+      "name": "Ajaccio Napoléon Bonaparte airport"
+    },
+    {
+      "icao": "LFCI",
+      "name": "Albi Le Sequestre airport"
+    },
+    {
+      "icao": "LFAY",
+      "name": "Amiens Glisy Airfield"
+    },
+    {
+      "icao": "LFMH",
+      "name": "Andrézieux-Bouthéon, Loire - Saint-Étienne-Bouthéon"
+    },
+    {
+      "icao": "LFJR",
+      "name": "Angers Marcé airport"
+    },
+    {
+      "icao": "LFBU",
+      "name": "Angoulême Brie-Champniers airport"
+    },
+    {
+      "icao": "LFLP",
+      "name": "Annecy Meythet airport"
+    },
+    {
+      "icao": "LFDH",
+      "name": "Auch Gers Airfield"
+    },
+    {
+      "icao": "LFLW",
+      "name": "Aurillac airport"
+    },
+    {
+      "icao": "LFLA",
+      "name": "Auxerre Branches airport"
+    },
+    {
+      "icao": "LFMV",
+      "name": "Avignon Caumont airport"
+    },
+    {
+      "icao": "LFBE",
+      "name": "Bergerac Dordogne-Périgord airport"
+    },
+    {
+      "icao": "LFBZ",
+      "name": "Biarritz Pays Basque airport"
+    },
+    {
+      "icao": "LFOP",
+      "name": "Boos - Rouen Vallée de Seine"
+    },
+    {
+      "icao": "LFLD",
+      "name": "Bourges airport"
+    },
+    {
+      "icao": "LFSL",
+      "name": "Brive Souillac airport"
+    },
+    {
+      "icao": "LFRF",
+      "name": "Bréville-sur-Mer, Manche - Granville"
+    },
+    {
+      "icao": "LFOI",
+      "name": "Buigny-Saint-Maclou - Abbeville-Buigny Baie de Somme Airfield"
+    },
+    {
+      "icao": "LFMU",
+      "name": "Béziers Vias airport"
+    },
+    {
+      "icao": "LFRK",
+      "name": "Caen Carpiquet airport"
+    },
+    {
+      "icao": "LFCC",
+      "name": "Cahors Lalbenque airport"
+    },
+    {
+      "icao": "LFAC",
+      "name": "Calais Marck"
+    },
+    {
+      "icao": "LFKC",
+      "name": "Calvi Sainte Catherine"
+    },
+    {
+      "icao": "LFMD",
+      "name": "Cannes Mandelieu"
+    },
+    {
+      "icao": "LFMK",
+      "name": "Carcassonne Salvaza"
+    },
+    {
+      "icao": "LFCK",
+      "name": "Castres Mazamet"
+    },
+    {
+      "icao": "LFLU",
+      "name": "Chabeuil, Drôme - Valence-Chabeuil"
+    },
+    {
+      "icao": "LFOK",
+      "name": "Chalons en Champagne - Chalons Vatry airport"
+    },
+    {
+      "icao": "LFLB",
+      "name": "Chambéry Aix les Bains airport"
+    },
+    {
+      "icao": "LFQV",
+      "name": "Charleville-Mézières Ardennes-Etienne Riché Airfield"
+    },
+    {
+      "icao": "LFLV",
+      "name": "Charmeil, Allier - Vichy-Charmeil"
+    },
+    {
+      "icao": "LFLY",
+      "name": "Chassieu, Lyon - Lyon Bron"
+    },
+    {
+      "icao": "LFRC",
+      "name": "Cherbourg Manche airport"
+    },
+    {
+      "icao": "LFLX",
+      "name": "Châteauroux Déols airport"
+    },
+    {
+      "icao": "LFBG",
+      "name": "Cognac/Châteaubernard - Cognac-Châteaubernard (BA 709) Air Base"
+    },
+    {
+      "icao": "LFGA",
+      "name": "Colmar Houssen airport"
+    },
+    {
+      "icao": "LFPT",
+      "name": "Cormeilles-en-Vexin, Val-d'Oise - Pontoise-Cormeilles Aerodrome"
+    },
+    {
+      "icao": "LFPC",
+      "name": "Creil Air Base"
+    },
+    {
+      "icao": "LFRG",
+      "name": "Deauville Normandie airport"
+    },
+    {
+      "icao": "LFSD",
+      "name": "Dijon Longvic airport"
+    },
+    {
+      "icao": "LFRD",
+      "name": "Dinard Pleurtuit Saint-Malo airport"
+    },
+    {
+      "icao": "LFGJ",
+      "name": "Dole Tavaux"
+    },
+    {
+      "icao": "LFOE",
+      "name": "Fauville, Eure - Évreux-Fauville (BA 105) Air Base"
+    },
+    {
+      "icao": "LFJL",
+      "name": "Goin - Metz-Nancy-Lorraine"
+    },
+    {
+      "icao": "LFLS",
+      "name": "Grenoble Alpes Isère"
+    },
+    {
+      "icao": "LFTH",
+      "name": "Hyères, Var - Toulon-Hyères"
+    },
+    {
+      "icao": "LFMI",
+      "name": "Istres, Bouches-du-Rhône - Istres-Le Tubé Air Base"
+    },
+    {
+      "icao": "LFLN",
+      "name": "L'Hôpital-le-Mercier, Saône-et-Loire - Saint-Yan"
+    },
+    {
+      "icao": "LFRE",
+      "name": "La Baule-Escoublac"
+    },
+    {
+      "icao": "LFRI",
+      "name": "La Roche-sur-Yon Les Ajoncs"
+    },
+    {
+      "icao": "LFBH",
+      "name": "La Rochelle Île de Ré"
+    },
+    {
+      "icao": "LFHO",
+      "name": "Lanas, Ardèche - Aubenas-South Ardèche"
+    },
+    {
+      "icao": "LFRJ",
+      "name": "Landivisiau Air Base"
+    },
+    {
+      "icao": "LFRO",
+      "name": "Lannion"
+    },
+    {
+      "icao": "LFOV",
+      "name": "Laval, Mayenne - Laval-Entrammes"
+    },
+    {
+      "icao": "LFMQ",
+      "name": "Le Castellet, Var - Le Castellet"
+    },
+    {
+      "icao": "LFOH",
+      "name": "Le Havre-Octeville"
+    },
+    {
+      "icao": "LFRM",
+      "name": "Le Mans, Sarthe - Le Mans-Arnage"
+    },
+    {
+      "icao": "LFAT",
+      "name": "Le Touquet-Paris-Plage - Le Touquet-Côte d'Opale"
+    },
+    {
+      "icao": "LFBL",
+      "name": "Limoges/Bellegarde - Limoges"
+    },
+    {
+      "icao": "LFRH",
+      "name": "Lorient/Lann/Bihoué - Lorient South Brittany (Bretagne Sud)"
+    },
+    {
+      "icao": "LFBK",
+      "name": "Lépaud, Creuse - Montluçon-Guéret"
+    },
+    {
+      "icao": "LFQG",
+      "name": "Marzy, Nièvre - Nevers-Fourchambault"
+    },
+    {
+      "icao": "LFNB",
+      "name": "Mende/Brénoux - Mende-Brenoux Airfield"
+    },
+    {
+      "icao": "LFQT",
+      "name": "Merville, Nord - Merville-Calonne"
+    },
+    {
+      "icao": "LFAG",
+      "name": "Monchy-Lagache, Somme - Péronne Saint-Quentin Airfield"
+    },
+    {
+      "icao": "LFRU",
+      "name": "Morlaix/Ploujean - Morlaix-Ploujean"
+    },
+    {
+      "icao": "LFRS",
+      "name": "Nantes Atlantique"
+    },
+    {
+      "icao": "LFBN",
+      "name": "Niort/Souché - Niort - Marais Poitevin"
+    },
+    {
+      "icao": "LFTW",
+      "name": "Nîmes/Garons - Nîmes-Arles-Camargue"
+    },
+    {
+      "icao": "LFBP",
+      "name": "Pau/Pyrénées (Uzein) - Pau Pyrénées"
+    },
+    {
+      "icao": "LFMP",
+      "name": "Perpignan/Rivesaltes - Perpignan-Rivesaltes (Llabanère)"
+    },
+    {
+      "icao": "LFBI",
+      "name": "Poitiers/Biard - Poitiers-Biard"
+    },
+    {
+      "icao": "LFAV",
+      "name": "Prouvy - Valenciennes-Denain Airfield"
+    },
+    {
+      "icao": "LFBX",
+      "name": "Périgueux/Bassillac - Périgueux-Bassillac"
+    },
+    {
+      "icao": "LFRQ",
+      "name": "Quimper/Pluguffan - Quimper-Cornouaille"
+    },
+    {
+      "icao": "LFDN",
+      "name": "Rochefort/Saint-Agnant - Rochefort-Saint-Agnant (BA 721)"
+    },
+    {
+      "icao": "LFCR",
+      "name": "Rodez/Marcillac - Rodez–Aveyron"
+    },
+    {
+      "icao": "LFCY",
+      "name": "Royan/Médis - Royan-Médis"
+    },
+    {
+      "icao": "LFRN",
+      "name": "Saint-Jacques-de-la-Lande, Ille-et-Vilaine - Rennes-Saint-Jacques"
+    },
+    {
+      "icao": "LFLO",
+      "name": "Saint-Léger-sur-Roanne - Roanne-Renaison"
+    },
+    {
+      "icao": "LFRZ",
+      "name": "Saint-Nazaire/Montoir - Saint-Nazaire-Montoir"
+    },
+    {
+      "icao": "LFKS",
+      "name": "Solenzara (BA 126) Air Base"
+    },
+    {
+      "icao": "LFBT",
+      "name": "Tarbes/Lourdes/Pyrénées - Tarbes-Lourdes-Pyrénées"
+    },
+    {
+      "icao": "LFSN",
+      "name": "Tomblaine, Meurthe-et-Moselle - Nancy-Essey"
+    },
+    {
+      "icao": "LFOT",
+      "name": "Tours, Indre-et-Loire - Tours Val de Loire"
+    },
+    {
+      "icao": "LFPN",
+      "name": "Toussus-le-Noble, Yvelines - Toussus-le-Noble"
+    },
+    {
+      "icao": "LFRT",
+      "name": "Trémuson, Côtes-d'Armor - Saint-Brieuc-Armor"
+    },
+    {
+      "icao": "LFRV",
+      "name": "Vannes/Meucon - Vannes-Meucon"
+    },
+    {
+      "icao": "LFSG",
+      "name": "Épinal Mirecourt"
+    }
+  ],
+  "French Guiana": [
+    {
+      "icao": "SOCA",
+      "name": "Matoury - Cayenne – Félix Eboué"
+    },
+    {
+      "icao": "SOOA",
+      "name": "Maripasoula"
+    },
+    {
+      "icao": "SOOG",
+      "name": "Saint-Georges-de-l'Oyapock"
+    },
+    {
+      "icao": "SOOM",
+      "name": "Saint-Laurent-du-Maroni"
+    }
+  ],
+  "French Polynesia": [
+    {
+      "icao": "NTAA",
+      "name": "Papeete - Fa'a'ā"
+    },
+    {
+      "icao": "NTHE",
+      "name": "Ahe Atoll - Ahe"
+    },
+    {
+      "icao": "NTGA",
+      "name": "Anaa"
+    },
+    {
+      "icao": "NTGU",
+      "name": "Arutua"
+    },
+    {
+      "icao": "NTGF",
+      "name": "Fakarava"
+    },
+    {
+      "icao": "NTGB",
+      "name": "Fangatau"
+    },
+    {
+      "icao": "NTMN",
+      "name": "Hiva Oa Island - Hiva Oa-Atuona"
+    },
+    {
+      "icao": "NTTH",
+      "name": "Huahine-Fare"
+    },
+    {
+      "icao": "NTGM",
+      "name": "Makemo"
+    },
+    {
+      "icao": "NTGI",
+      "name": "Manihi"
+    },
+    {
+      "icao": "NTGV",
+      "name": "Mataiva"
+    },
+    {
+      "icao": "NTTP",
+      "name": "Maupiti"
+    },
+    {
+      "icao": "NTTM",
+      "name": "Moorea-Maiao - Moorea Temae"
+    },
+    {
+      "icao": "NTTB",
+      "name": "Motu Mute - Bora Bora"
+    },
+    {
+      "icao": "NTMD",
+      "name": "Nuku Hiva"
+    },
+    {
+      "icao": "NTTO",
+      "name": "Otepa - Hao"
+    },
+    {
+      "icao": "NTGK",
+      "name": "Raitahiti - Kaukura"
+    },
+    {
+      "icao": "NTTG",
+      "name": "Rangiroa"
+    },
+    {
+      "icao": "NTGE",
+      "name": "Reao"
+    },
+    {
+      "icao": "NTAR",
+      "name": "Rurutu"
+    },
+    {
+      "icao": "NTGT",
+      "name": "Takapoto"
+    },
+    {
+      "icao": "NTKR",
+      "name": "Takaroa"
+    },
+    {
+      "icao": "NTGJ",
+      "name": "Totegegie"
+    },
+    {
+      "icao": "NTAT",
+      "name": "Tubuai"
+    },
+    {
+      "icao": "NTGC",
+      "name": "Tuherahera - Tikehau"
+    },
+    {
+      "icao": "NTTR",
+      "name": "Uturoa - Raiatea"
+    }
+  ],
+  "Gabon": [
+    {
+      "icao": "FOON",
+      "name": "Franceville - M'Vengue El Hadj Omar Bongo Ondimba"
+    },
+    {
+      "icao": "FOOL",
+      "name": "Libreville Leon M'ba"
+    },
+    {
+      "icao": "FOOG",
+      "name": "Port Gentil"
+    },
+    {
+      "icao": "FOOB",
+      "name": "Bitam"
+    },
+    {
+      "icao": "FOGK",
+      "name": "Koulamoutou Mabimbi"
+    },
+    {
+      "icao": "FOGR",
+      "name": "Lambarene"
+    },
+    {
+      "icao": "FOOK",
+      "name": "Makokou"
+    },
+    {
+      "icao": "FOGM",
+      "name": "Mouila - Mouilla Ville"
+    },
+    {
+      "icao": "FOGQ",
+      "name": "Okondja"
+    },
+    {
+      "icao": "FOOH",
+      "name": "Omboue Hospital"
+    },
+    {
+      "icao": "FOGO",
+      "name": "Oyem"
+    }
+  ],
+  "Gambia": [
+    {
+      "icao": "GBYD",
+      "name": "Yundum - Banjul"
+    }
+  ],
+  "Georgia": [
+    {
+      "icao": "UGSB",
+      "name": "Alexander Kartveli Batumi"
+    },
+    {
+      "icao": "UGKO",
+      "name": "Kopitnari - David the Builder Kutaisi"
+    },
+    {
+      "icao": "UGTB",
+      "name": "Tbilisi"
+    },
+    {
+      "icao": "UGAM",
+      "name": "Ambrolauri"
+    },
+    {
+      "icao": "UGSS",
+      "name": "Sukhumi - Vladislav Ardzinba Sukhum"
+    }
+  ],
+  "Germany": [
+    {
+      "icao": "EDDB",
+      "name": "Berlin Brandenburg"
+    },
+    {
+      "icao": "EDNY",
+      "name": "Bodensee Airport Friedrichshafen"
+    },
+    {
+      "icao": "EDDW",
+      "name": "Bremen"
+    },
+    {
+      "icao": "EDLP",
+      "name": "Büren - Paderborn Lippstadt"
+    },
+    {
+      "icao": "EDVK",
+      "name": "Calden - Kassel"
+    },
+    {
+      "icao": "EDLW",
+      "name": "Dortmund"
+    },
+    {
+      "icao": "EDDC",
+      "name": "Dresden"
+    },
+    {
+      "icao": "EDDL",
+      "name": "Düsseldorf"
+    },
+    {
+      "icao": "EDDE",
+      "name": "Erfurt-Weimar"
+    },
+    {
+      "icao": "EDFH",
+      "name": "Frankfurt am Main (Lautzenhausen) - Frankfurt-Hahn"
+    },
+    {
+      "icao": "EDDF",
+      "name": "Frankfurt am Main - Frankfurt Main"
+    },
+    {
+      "icao": "EDDG",
+      "name": "Greven - Münster Osnabrück"
+    },
+    {
+      "icao": "EDDH",
+      "name": "Hamburg Helmut Schmidt"
+    },
+    {
+      "icao": "EDDV",
+      "name": "Hannover"
+    },
+    {
+      "icao": "EDDK",
+      "name": "Köln (Cologne) - Cologne Bonn"
+    },
+    {
+      "icao": "EDJA",
+      "name": "Memmingen Allgau"
+    },
+    {
+      "icao": "EDDM",
+      "name": "Munich"
+    },
+    {
+      "icao": "EDDN",
+      "name": "Nuremberg"
+    },
+    {
+      "icao": "EDSB",
+      "name": "Rheinmünster - Karlsruhe Baden-Baden"
+    },
+    {
+      "icao": "EDDP",
+      "name": "Schkeuditz - Leipzig/Halle"
+    },
+    {
+      "icao": "EDDS",
+      "name": "Stuttgart"
+    },
+    {
+      "icao": "EDLV",
+      "name": "Weeze (Niederrhein)"
+    },
+    {
+      "icao": "ETSB",
+      "name": "Alflen - Büchel Air Base"
+    },
+    {
+      "icao": "EDMA",
+      "name": "Augsburg"
+    },
+    {
+      "icao": "EDQA",
+      "name": "Bamberg-Breitenau Airfield"
+    },
+    {
+      "icao": "EDLI",
+      "name": "Bielefeld"
+    },
+    {
+      "icao": "EDQD",
+      "name": "Bindlach - Bayreuth"
+    },
+    {
+      "icao": "EDVE",
+      "name": "Braunschweig-Wolfsburg"
+    },
+    {
+      "icao": "EDGS",
+      "name": "Burbach - Siegerland"
+    },
+    {
+      "icao": "ETHB",
+      "name": "Bückeburg Air Base"
+    },
+    {
+      "icao": "ETHC",
+      "name": "Celle Army Airfield"
+    },
+    {
+      "icao": "ETND",
+      "name": "Diepholz Air Base"
+    },
+    {
+      "icao": "ETHS",
+      "name": "Faßberg Air Base"
+    },
+    {
+      "icao": "EDFE",
+      "name": "Frankfurt-Egelsbach"
+    },
+    {
+      "icao": "ETHF",
+      "name": "Fritzlar Army Airfield"
+    },
+    {
+      "icao": "ETNG",
+      "name": "Geilenkirchen Air Base"
+    },
+    {
+      "icao": "ETSL",
+      "name": "Graben - Lechfeld Air Base"
+    },
+    {
+      "icao": "ETIC",
+      "name": "Grafenwöhr Army Air Field"
+    },
+    {
+      "icao": "EDHI",
+      "name": "Hamburg-Finkenwerder"
+    },
+    {
+      "icao": "EDQM",
+      "name": "Hof-Plauen"
+    },
+    {
+      "icao": "ETIH",
+      "name": "Hohenfels Army Airfield"
+    },
+    {
+      "icao": "ETNH",
+      "name": "Hohn Air Base"
+    },
+    {
+      "icao": "ETSH",
+      "name": "Holzdorf Air Base"
+    },
+    {
+      "icao": "EDGE",
+      "name": "Hörselberg-Hainich - Eisenach-Kindel"
+    },
+    {
+      "icao": "ETSI",
+      "name": "Ingolstadt Manching"
+    },
+    {
+      "icao": "ETNS",
+      "name": "Jagel - Schleswig Air Base"
+    },
+    {
+      "icao": "EDHK",
+      "name": "Kiel-Holtenau"
+    },
+    {
+      "icao": "EDTL",
+      "name": "Lahr/Schwarzwald - Lahr"
+    },
+    {
+      "icao": "EDML",
+      "name": "Landshut Airfield"
+    },
+    {
+      "icao": "ETHL",
+      "name": "Laupheim Air Base"
+    },
+    {
+      "icao": "EDHL",
+      "name": "Lübeck Blankensee"
+    },
+    {
+      "icao": "EDFZ",
+      "name": "Mainz-Finthen Airfield"
+    },
+    {
+      "icao": "EDFM",
+      "name": "Mannheim-City"
+    },
+    {
+      "icao": "EDLN",
+      "name": "Mönchengladbach"
+    },
+    {
+      "icao": "EDBN",
+      "name": "Neubrandenburg Trollenhagen"
+    },
+    {
+      "icao": "ETSN",
+      "name": "Neuburg an der Donau - Neuburg Air Base"
+    },
+    {
+      "icao": "ETHN",
+      "name": "Niederstetten Army Air Base"
+    },
+    {
+      "icao": "EDAC",
+      "name": "Nobitz - Leipzig–Altenburg"
+    },
+    {
+      "icao": "ETNN",
+      "name": "Nörvenich Air Base"
+    },
+    {
+      "icao": "ETAR",
+      "name": "Ramstein-Miesenbach - Ramstein Air Base"
+    },
+    {
+      "icao": "ETNL",
+      "name": "Rostock-Laage"
+    },
+    {
+      "icao": "EDBR",
+      "name": "Rothenburg/Oberlausitz - Rothenburg/Görlitz Airfield"
+    },
+    {
+      "icao": "EDDR",
+      "name": "Saarbrücken"
+    },
+    {
+      "icao": "EDUZ",
+      "name": "Straguth - Zerbst Airfield"
+    },
+    {
+      "icao": "ETAD",
+      "name": "Trier - Spangdahlem Air Base"
+    },
+    {
+      "icao": "EDXW",
+      "name": "Westerland Sylt"
+    },
+    {
+      "icao": "EDMO",
+      "name": "Weßling - Oberpfaffenhofen"
+    },
+    {
+      "icao": "ETOU",
+      "name": "Wiesbaden Army Airfield"
+    },
+    {
+      "icao": "ETNT",
+      "name": "Wittmundhafen Air Base"
+    },
+    {
+      "icao": "ETNW",
+      "name": "Wunstorf Air Base"
+    },
+    {
+      "icao": "ETMN",
+      "name": "Wurster Nordseeküste - Sea-Airport Cuxhaven/Nordholz / Nordholz Naval Airbase"
+    },
+    {
+      "icao": "EDAH",
+      "name": "Zirchow - Heringsdorf"
+    }
+  ],
+  "Ghana": [
+    {
+      "icao": "DGAA",
+      "name": "Accra - Kotoka"
+    },
+    {
+      "icao": "DGSI",
+      "name": "Kumasi - Prempeh I"
+    },
+    {
+      "icao": "DGLE",
+      "name": "Tamale - Yakubu Tali"
+    },
+    {
+      "icao": "DGAH",
+      "name": "Ho Airport"
+    },
+    {
+      "icao": "DGTK",
+      "name": "Sekondi-Takoradi - Takoradi"
+    },
+    {
+      "icao": "DGSN",
+      "name": "Sunyani"
+    }
+  ],
+  "Gibraltar": [
+    {
+      "icao": "LXGB",
+      "name": "Gibraltar"
+    }
+  ],
+  "Greece": [
+    {
+      "icao": "LGIR",
+      "name": "Heraklion International Nikos Kazantzakis"
+    },
+    {
+      "icao": "LGKV",
+      "name": "Kavala Alexander the Great"
+    },
+    {
+      "icao": "LGKR",
+      "name": "Kerkyra (Corfu) - Corfu Ioannis Kapodistrias"
+    },
+    {
+      "icao": "LGKO",
+      "name": "Kos Island - Kos International Airport \"Ippokratis\""
+    },
+    {
+      "icao": "LGRP",
+      "name": "Rhodes International Airport \"Diagoras\""
+    },
+    {
+      "icao": "LGSR",
+      "name": "Santorini Island - Santorini"
+    },
+    {
+      "icao": "LGSA",
+      "name": "Souda - Chania"
+    },
+    {
+      "icao": "LGAV",
+      "name": "Spata-Artemida - Athens Eleftherios Venizelos"
+    },
+    {
+      "icao": "LGTS",
+      "name": "Thessaloniki Macedonia"
+    },
+    {
+      "icao": "LGAL",
+      "name": "Alexandroupolis - Alexandroupoli Democritus"
+    },
+    {
+      "icao": "LGAD",
+      "name": "Andravida Air Base"
+    },
+    {
+      "icao": "LGHI",
+      "name": "Chios Island National"
+    },
+    {
+      "icao": "LGST",
+      "name": "Crete Island - Sitia"
+    },
+    {
+      "icao": "LGEL",
+      "name": "Elefsina - Elefsis Air Base"
+    },
+    {
+      "icao": "LGIO",
+      "name": "Ioannina King Pyrrhus National"
+    },
+    {
+      "icao": "LGKL",
+      "name": "Kalamata"
+    },
+    {
+      "icao": "LGKP",
+      "name": "Karpathos Island - Karpathos"
+    },
+    {
+      "icao": "LGKF",
+      "name": "Kefallinia Island - Kefallinia"
+    },
+    {
+      "icao": "LGKZ",
+      "name": "Kozani National Airport Filippos"
+    },
+    {
+      "icao": "LGMK",
+      "name": "Mykonos Island National"
+    },
+    {
+      "icao": "LGMT",
+      "name": "Mytilene"
+    },
+    {
+      "icao": "LGBL",
+      "name": "Nea Anchialos National"
+    },
+    {
+      "icao": "LGRX",
+      "name": "Patras Araxos Agamemnon"
+    },
+    {
+      "icao": "LGPZ",
+      "name": "Preveza - Aktion National"
+    },
+    {
+      "icao": "LGSM",
+      "name": "Samos Island - Samos"
+    },
+    {
+      "icao": "LGSK",
+      "name": "Skiathos Island National"
+    },
+    {
+      "icao": "LGTG",
+      "name": "Tanagra Air Base"
+    },
+    {
+      "icao": "LGZA",
+      "name": "Zakynthos International Airport Dionysios Solomos"
+    }
+  ],
+  "Greenland": [
+    {
+      "icao": "BGSF",
+      "name": "Kangerlussuaq"
+    },
+    {
+      "icao": "BGGH",
+      "name": "Nuuk"
+    },
+    {
+      "icao": "BGTL",
+      "name": "Pituffik Space Base"
+    },
+    {
+      "icao": "BGAA",
+      "name": "Aasiaat"
+    },
+    {
+      "icao": "BGJN",
+      "name": "Ilulissat"
+    },
+    {
+      "icao": "BGKK",
+      "name": "Kulusuk"
+    },
+    {
+      "icao": "BGBW",
+      "name": "Narsarsuaq"
+    },
+    {
+      "icao": "BGCO",
+      "name": "Neerlerit Inaat"
+    },
+    {
+      "icao": "BGQQ",
+      "name": "Qaanaaq"
+    },
+    {
+      "icao": "BGSS",
+      "name": "Sisimiut"
+    }
+  ],
+  "Grenada": [
+    {
+      "icao": "TGPY",
+      "name": "Saint George's - Maurice Bishop"
+    }
+  ],
+  "Guadeloupe": [
+    {
+      "icao": "TFFR",
+      "name": "Pointe-à-Pitre - Maryse Condé"
+    },
+    {
+      "icao": "TFFM",
+      "name": "Grand-Bourg - Marie-Galante"
+    }
+  ],
+  "Guam": [
+    {
+      "icao": "PGUM",
+      "name": "Hagåtña - Antonio B. Won Pat"
+    },
+    {
+      "icao": "PGUA",
+      "name": "Yigo - Andersen Air Force Base"
+    }
+  ],
+  "Guatemala": [
+    {
+      "icao": "MGGT",
+      "name": "Guatemala City - La Aurora"
+    },
+    {
+      "icao": "MGCB",
+      "name": "Coban"
+    },
+    {
+      "icao": "MGPB",
+      "name": "Puerto Barrios"
+    },
+    {
+      "icao": "MGSJ",
+      "name": "Puerto San José - San José"
+    },
+    {
+      "icao": "MGRT",
+      "name": "Retalhuleu"
+    },
+    {
+      "icao": "MGRB",
+      "name": "Rubelsanto"
+    }
+  ],
+  "Guernsey": [
+    {
+      "icao": "EGJA",
+      "name": "Saint Anne - Alderney"
+    },
+    {
+      "icao": "EGJB",
+      "name": "Saint Peter Port - Guernsey"
+    }
+  ],
+  "Guinea": [
+    {
+      "icao": "GUCY",
+      "name": "Conakry - Ahmed Sékou Touré"
+    }
+  ],
+  "Guinea-Bissau": [
+    {
+      "icao": "GGOV",
+      "name": "Bissau - Osvaldo Vieira"
+    }
+  ],
+  "Guyana": [
+    {
+      "icao": "SYCJ",
+      "name": "Georgetown - Cheddi Jagan"
+    },
+    {
+      "icao": "SYKA",
+      "name": "Kaieteur Falls - Kaieteur"
+    },
+    {
+      "icao": "SYLT",
+      "name": "Lethem"
+    },
+    {
+      "icao": "SYEC",
+      "name": "Ogle - Eugene F. Correia"
+    }
+  ],
+  "Haiti": [
+    {
+      "icao": "MTCH",
+      "name": "Cap Haitien"
+    },
+    {
+      "icao": "MTPP",
+      "name": "Port-au-Prince - Toussaint Louverture"
+    },
+    {
+      "icao": "MTJE",
+      "name": "Carrefour Sanon - Jérémie"
+    },
+    {
+      "icao": "MTJA",
+      "name": "Jacmel"
+    },
+    {
+      "icao": "MTCA",
+      "name": "Les Cayes - Antoine-Simon"
+    },
+    {
+      "icao": "MTPX",
+      "name": "Port-de-Paix"
+    }
+  ],
+  "Honduras": [
+    {
+      "icao": "MHRO",
+      "name": "Coxen Hole - Juan Manuel Gálvez"
+    },
+    {
+      "icao": "MHPR",
+      "name": "Palmerola"
+    },
+    {
+      "icao": "MHLM",
+      "name": "San Pedro Sula - Ramón Villeda Morales"
+    },
+    {
+      "icao": "MHNJ",
+      "name": "Guanaja - La Laguna"
+    },
+    {
+      "icao": "MHLC",
+      "name": "La Ceiba - Golosón"
+    },
+    {
+      "icao": "MHTG",
+      "name": "Tegucigalpa - Toncontín"
+    },
+    {
+      "icao": "MHTE",
+      "name": "Tela"
+    },
+    {
+      "icao": "MHTJ",
+      "name": "Trujillo"
+    }
+  ],
+  "Hong Kong": [
+    {
+      "icao": "VHHH",
+      "name": "Hong Kong"
+    },
+    {
+      "icao": "VHSK",
+      "name": "Islands - Shek Kong Air Base"
+    }
+  ],
+  "Hungary": [
+    {
+      "icao": "LHBP",
+      "name": "Budapest Liszt Ferenc"
+    },
+    {
+      "icao": "LHDC",
+      "name": "Debrecen"
+    },
+    {
+      "icao": "LHPP",
+      "name": "Pécs-Pogány"
+    },
+    {
+      "icao": "LHPR",
+      "name": "Győr-Pér"
+    },
+    {
+      "icao": "LHKA",
+      "name": "Kalocsa-Foktő Airfield"
+    },
+    {
+      "icao": "LHKE",
+      "name": "Kecskemét Air Base"
+    },
+    {
+      "icao": "LHSN",
+      "name": "Szolnok Air Base"
+    },
+    {
+      "icao": "LHSM",
+      "name": "Sármellék - Hévíz–Balaton"
+    },
+    {
+      "icao": "LHTL",
+      "name": "Tököl"
+    }
+  ],
+  "Iceland": [
+    {
+      "icao": "BIAR",
+      "name": "Akureyri"
+    },
+    {
+      "icao": "BIKF",
+      "name": "Reykjavík - Keflavik"
+    },
+    {
+      "icao": "BIBD",
+      "name": "Bildudalur"
+    },
+    {
+      "icao": "BIEG",
+      "name": "Egilsstaðir"
+    },
+    {
+      "icao": "BIGR",
+      "name": "Grímsey/Sandvík - Grímsey"
+    },
+    {
+      "icao": "BIHN",
+      "name": "Höfn - Hornafjörður"
+    },
+    {
+      "icao": "BIHU",
+      "name": "Húsavík"
+    },
+    {
+      "icao": "BIRL",
+      "name": "Myvatn - Mývatn"
+    },
+    {
+      "icao": "BIRK",
+      "name": "Reykjavík Domestic"
+    },
+    {
+      "icao": "BISI",
+      "name": "Siglufjörður"
+    },
+    {
+      "icao": "BIVM",
+      "name": "Vestmannaeyjar"
+    },
+    {
+      "icao": "BIVO",
+      "name": "Vopnafjörður"
+    },
+    {
+      "icao": "BIIS",
+      "name": "Ísafjörður"
+    }
+  ],
+  "India": [
+    {
+      "icao": "VAAH",
+      "name": "Ahmedabad - Sardar Vallabh Patel"
+    },
+    {
+      "icao": "VIAR",
+      "name": "Amritsar - Sri Guru Ram Das Ji"
+    },
+    {
+      "icao": "VABP",
+      "name": "Bhopal - Raja Bhoj"
+    },
+    {
+      "icao": "VEBS",
+      "name": "Bhubaneswar - Biju Patnaik"
+    },
+    {
+      "icao": "VOCL",
+      "name": "Calicut"
+    },
+    {
+      "icao": "VICG",
+      "name": "Chandigarh - Shaheed Bhagat Singh"
+    },
+    {
+      "icao": "VOMM",
+      "name": "Chennai"
+    },
+    {
+      "icao": "VOCB",
+      "name": "Coimbatore"
+    },
+    {
+      "icao": "VIND",
+      "name": "Gautam Buddha Nagar - Noida"
+    },
+    {
+      "icao": "VEGT",
+      "name": "Guwahati - Lokpriya Gopinath Bordoloi"
+    },
+    {
+      "icao": "VIHX",
+      "name": "Halwara"
+    },
+    {
+      "icao": "VIHR",
+      "name": "Hisar - Maharaja Agrasen"
+    },
+    {
+      "icao": "VOHS",
+      "name": "Hyderabad - Rajiv Gandhi"
+    },
+    {
+      "icao": "VEIM",
+      "name": "Imphal - Bir Tikendrajit"
+    },
+    {
+      "icao": "VAID",
+      "name": "Indore - Devi Ahilya Bai Holkar"
+    },
+    {
+      "icao": "VIJP",
+      "name": "Jaipur"
+    },
+    {
+      "icao": "VASD",
+      "name": "Kakadi - Shirdi"
+    },
+    {
+      "icao": "VOKN",
+      "name": "Kannur"
+    },
+    {
+      "icao": "VOBL",
+      "name": "Kempegowda International Airport Bengaluru"
+    },
+    {
+      "icao": "VOCI",
+      "name": "Kochi - Cochin"
+    },
+    {
+      "icao": "VECC",
+      "name": "Kolkata - Netaji Subhash Chandra Bose"
+    },
+    {
+      "icao": "VILK",
+      "name": "Lucknow - Chaudhary Charan Singh"
+    },
+    {
+      "icao": "VOML",
+      "name": "Mangaluru"
+    },
+    {
+      "icao": "VOGA",
+      "name": "Mopa - Manohar"
+    },
+    {
+      "icao": "VABB",
+      "name": "Mumbai - Chhatrapati Shivaji Maharaj"
+    },
+    {
+      "icao": "VANP",
+      "name": "Nagpur - Dr. Babasaheb Ambedkar"
+    },
+    {
+      "icao": "VAOZ",
+      "name": "Nashik"
+    },
+    {
+      "icao": "VANM",
+      "name": "Navi Mumbai"
+    },
+    {
+      "icao": "VIDP",
+      "name": "New Delhi - Indira Gandhi"
+    },
+    {
+      "icao": "VOPB",
+      "name": "Port Blair - Veer Savarkar International Airport / INS Utkrosh"
+    },
+    {
+      "icao": "VAPO",
+      "name": "Pune"
+    },
+    {
+      "icao": "VAHS",
+      "name": "Rajkot"
+    },
+    {
+      "icao": "VEBD",
+      "name": "Siliguri - Bagdogra"
+    },
+    {
+      "icao": "VISR",
+      "name": "Srinagar - Sheikh ul Alam"
+    },
+    {
+      "icao": "VASU",
+      "name": "Surat"
+    },
+    {
+      "icao": "VOTV",
+      "name": "Thiruvananthapuram"
+    },
+    {
+      "icao": "VOTR",
+      "name": "Tiruchirappalli"
+    },
+    {
+      "icao": "VOTP",
+      "name": "Tirupati"
+    },
+    {
+      "icao": "VABO",
+      "name": "Vadodara"
+    },
+    {
+      "icao": "VEBN",
+      "name": "Varanasi - Lal Bahadur Shastri"
+    },
+    {
+      "icao": "VOGO",
+      "name": "Vasco da Gama - Goa Dabolim"
+    },
+    {
+      "icao": "VOBZ",
+      "name": "Vijayawada"
+    },
+    {
+      "icao": "VOVZ",
+      "name": "Visakhapatnam"
+    },
+    {
+      "icao": "VEAT",
+      "name": "Agartala - Maharaja Bir Bikram"
+    },
+    {
+      "icao": "VOAT",
+      "name": "Agatti"
+    },
+    {
+      "icao": "VIAG",
+      "name": "Agra Airport / Agra Air Force Station"
+    },
+    {
+      "icao": "VELP",
+      "name": "Aizawl (Lengpui) - Lengpui"
+    },
+    {
+      "icao": "VIKG",
+      "name": "Ajmer (Kishangarh) - Kishangarh Airport Ajmer"
+    },
+    {
+      "icao": "VAAK",
+      "name": "Akola"
+    },
+    {
+      "icao": "VEAB",
+      "name": "Allahabad - Prayagraj"
+    },
+    {
+      "icao": "VEAN",
+      "name": "Along"
+    },
+    {
+      "icao": "VEAP",
+      "name": "Ambikapur - Maa Mahamaya"
+    },
+    {
+      "icao": "VAAU",
+      "name": "Aurangabad"
+    },
+    {
+      "icao": "VIBY",
+      "name": "Bareilly Air Force Station"
+    },
+    {
+      "icao": "VOBM",
+      "name": "Belgaum - Belagavi"
+    },
+    {
+      "icao": "VOBI",
+      "name": "Bellary"
+    },
+    {
+      "icao": "VIBT",
+      "name": "Bhatinda Air Force Station"
+    },
+    {
+      "icao": "VABV",
+      "name": "Bhavnagar"
+    },
+    {
+      "icao": "VABJ",
+      "name": "Bhuj"
+    },
+    {
+      "icao": "VIBR",
+      "name": "Bhuntar - Kullu Manali"
+    },
+    {
+      "icao": "VOBR",
+      "name": "Bidar Airport / Bidar Air Force Station"
+    },
+    {
+      "icao": "VIBK",
+      "name": "Bikaner - Nal"
+    },
+    {
+      "icao": "VEBU",
+      "name": "Bilaspur"
+    },
+    {
+      "icao": "VOSR",
+      "name": "Chipi - Sindhudurg"
+    },
+    {
+      "icao": "VADN",
+      "name": "Daman"
+    },
+    {
+      "icao": "VEDH",
+      "name": "Darbhanga"
+    },
+    {
+      "icao": "VIDN",
+      "name": "Dehradun (Jauligrant) - Dehradun Jolly Grant"
+    },
+    {
+      "icao": "VEDB",
+      "name": "Dhanbad"
+    },
+    {
+      "icao": "VEMN",
+      "name": "Dibrugarh"
+    },
+    {
+      "icao": "VEMR",
+      "name": "Dimapur"
+    },
+    {
+      "icao": "VEDG",
+      "name": "Durgapur - Kazi Nazrul Islam"
+    },
+    {
+      "icao": "VEAY",
+      "name": "Faizabad - Maharshi Valmiki"
+    },
+    {
+      "icao": "VEGY",
+      "name": "Gaya"
+    },
+    {
+      "icao": "VAGD",
+      "name": "Gondia"
+    },
+    {
+      "icao": "VEGK",
+      "name": "Gorakhpur"
+    },
+    {
+      "icao": "VIGR",
+      "name": "Gwalior"
+    },
+    {
+      "icao": "VOHB",
+      "name": "Hubballi"
+    },
+    {
+      "icao": "VOHY",
+      "name": "Hyderabad - Begumpet"
+    },
+    {
+      "icao": "VOCX",
+      "name": "IAF Camp - Car Nicobar Air Force Base"
+    },
+    {
+      "icao": "VAJB",
+      "name": "Jabalpur"
+    },
+    {
+      "icao": "VIJR",
+      "name": "Jaisalmer"
+    },
+    {
+      "icao": "VEHX",
+      "name": "Jalpaiguri - Hashimara Air Force Station"
+    },
+    {
+      "icao": "VIJU",
+      "name": "Jammu"
+    },
+    {
+      "icao": "VAJM",
+      "name": "Jamnagar"
+    },
+    {
+      "icao": "VEJS",
+      "name": "Jamshedpur - Sonari"
+    },
+    {
+      "icao": "VIJO",
+      "name": "Jodhpur"
+    },
+    {
+      "icao": "VEJT",
+      "name": "Jorhat"
+    },
+    {
+      "icao": "VOCP",
+      "name": "Kadapa"
+    },
+    {
+      "icao": "VEKR",
+      "name": "Kailashahar"
+    },
+    {
+      "icao": "VAKE",
+      "name": "Kandla"
+    },
+    {
+      "icao": "VIGG",
+      "name": "Kangra"
+    },
+    {
+      "icao": "VAKS",
+      "name": "Keshod"
+    },
+    {
+      "icao": "VAKP",
+      "name": "Kolhapur"
+    },
+    {
+      "icao": "VIKO",
+      "name": "Kota"
+    },
+    {
+      "icao": "VEKI",
+      "name": "Kushinagar"
+    },
+    {
+      "icao": "VALT",
+      "name": "Latur - Murod Kond"
+    },
+    {
+      "icao": "VILH",
+      "name": "Leh Kushok Bakula Rimpochee"
+    },
+    {
+      "icao": "VELR",
+      "name": "Lilabari North Lakhimpur"
+    },
+    {
+      "icao": "VILD",
+      "name": "Ludhiana"
+    },
+    {
+      "icao": "VORY",
+      "name": "Madhurapudi - Rajahmundry"
+    },
+    {
+      "icao": "VOMD",
+      "name": "Madurai"
+    },
+    {
+      "icao": "VEMZ",
+      "name": "Muzaffarpur"
+    },
+    {
+      "icao": "VOMY",
+      "name": "Mysore"
+    },
+    {
+      "icao": "VIDD",
+      "name": "New Delhi - Safdarjung"
+    },
+    {
+      "icao": "VOKU",
+      "name": "Orvakal - Kurnool"
+    },
+    {
+      "icao": "VIPT",
+      "name": "Pantnagar"
+    },
+    {
+      "icao": "VIPK",
+      "name": "Pathankot"
+    },
+    {
+      "icao": "VEPT",
+      "name": "Patna - Jay Prakash Narayan"
+    },
+    {
+      "icao": "VAPR",
+      "name": "Porbandar"
+    },
+    {
+      "icao": "VOPC",
+      "name": "Puducherry (Pondicherry) - Pondicherry"
+    },
+    {
+      "icao": "VOPN",
+      "name": "Puttaparthi - Sri Sathya Sai"
+    },
+    {
+      "icao": "VARK",
+      "name": "Rajkot"
+    },
+    {
+      "icao": "VERC",
+      "name": "Ranchi - Birsa Munda"
+    },
+    {
+      "icao": "VARG",
+      "name": "Ratnagiri"
+    },
+    {
+      "icao": "VERK",
+      "name": "Rourkela"
+    },
+    {
+      "icao": "VOSM",
+      "name": "Salem"
+    },
+    {
+      "icao": "VEBI",
+      "name": "Shillong"
+    },
+    {
+      "icao": "VOSH",
+      "name": "Shimoga - Rashtrakavi Kuvempu"
+    },
+    {
+      "icao": "VEKU",
+      "name": "Silchar"
+    },
+    {
+      "icao": "VASL",
+      "name": "Solapur"
+    },
+    {
+      "icao": "VETZ",
+      "name": "Tezpur"
+    },
+    {
+      "icao": "VAUD",
+      "name": "Udaipur - Maharana Pratap"
+    },
+    {
+      "icao": "VEZO",
+      "name": "Ziro"
+    }
+  ],
+  "Indonesia": [
+    {
+      "icao": "WAPP",
+      "name": "Ambon - Pattimura"
+    },
+    {
+      "icao": "WALL",
+      "name": "Balikpapan - Sultan Aji Muhammad Sulaiman Sepinggan"
+    },
+    {
+      "icao": "WITT",
+      "name": "Banda Aceh - Sultan Iskandar Muda"
+    },
+    {
+      "icao": "WAOO",
+      "name": "Banjarbaru - Syamsudin Noor"
+    },
+    {
+      "icao": "WIDD",
+      "name": "Batam - Hang Nadim"
+    },
+    {
+      "icao": "WIMM",
+      "name": "Beringin - Kualanamu"
+    },
+    {
+      "icao": "WIHH",
+      "name": "Jakarta - Halim Perdanakusuma"
+    },
+    {
+      "icao": "WIII",
+      "name": "Jakarta - Soekarno-Hatta"
+    },
+    {
+      "icao": "WARD",
+      "name": "Kediri - Dhoho"
+    },
+    {
+      "icao": "WADD",
+      "name": "Kuta, Badung - Denpasar I Gusti Ngurah Rai"
+    },
+    {
+      "icao": "WAAA",
+      "name": "Makassar - Sultan Hasanuddin"
+    },
+    {
+      "icao": "WAMM",
+      "name": "Manado - Sam Ratulangi"
+    },
+    {
+      "icao": "WADL",
+      "name": "Mataram (Pujut, Lombok Tengah) - Lombok"
+    },
+    {
+      "icao": "WIOO",
+      "name": "Pontianak - Supadio"
+    },
+    {
+      "icao": "WAHS",
+      "name": "Semarang - Jenderal Ahmad Yani"
+    },
+    {
+      "icao": "WAJJ",
+      "name": "Sentani - Dortheys Hiyo Eluay"
+    },
+    {
+      "icao": "WARR",
+      "name": "Surabaya - Juanda"
+    },
+    {
+      "icao": "WAHH",
+      "name": "Yogyakarta - Adisutjipto"
+    },
+    {
+      "icao": "WASO",
+      "name": "Babo"
+    },
+    {
+      "icao": "WILL",
+      "name": "Bandar Lampung - Radin Inten II"
+    },
+    {
+      "icao": "WICC",
+      "name": "Bandung - Husein Sastranegara"
+    },
+    {
+      "icao": "WIGG",
+      "name": "Bengkulu - Fatmawati Soekarno"
+    },
+    {
+      "icao": "WABB",
+      "name": "Biak - Frans Kaisiepo"
+    },
+    {
+      "icao": "WADB",
+      "name": "Bima - Sultan Muhammad Salahuddin"
+    },
+    {
+      "icao": "WAHL",
+      "name": "Cilacap - Tunggul Wulung"
+    },
+    {
+      "icao": "WIBD",
+      "name": "Dumai - Pinang Kampai"
+    },
+    {
+      "icao": "WASF",
+      "name": "Fakfak"
+    },
+    {
+      "icao": "WIMB",
+      "name": "Gunungsitoli - Binaka"
+    },
+    {
+      "icao": "WASK",
+      "name": "Kaimana - Utarom"
+    },
+    {
+      "icao": "WICA",
+      "name": "Kertajati"
+    },
+    {
+      "icao": "WIOK",
+      "name": "Ketapang - Rahadi Osman"
+    },
+    {
+      "icao": "WAWP",
+      "name": "Kolaka - Sangia Nibandera"
+    },
+    {
+      "icao": "WITC",
+      "name": "Kuala Pesisir - Cut Nyak Dhien"
+    },
+    {
+      "icao": "WATT",
+      "name": "Kupang - El Tari"
+    },
+    {
+      "icao": "WAPF",
+      "name": "Langgur - Karel Sadsuitubun"
+    },
+    {
+      "icao": "WITL",
+      "name": "Lhok Sukon-Sumatra Island - Lhok Sukon"
+    },
+    {
+      "icao": "WAFW",
+      "name": "Luwok - Syukuran Aminuddin Amir"
+    },
+    {
+      "icao": "WARA",
+      "name": "Malang - Abdul Rachman Saleh"
+    },
+    {
+      "icao": "WAUU",
+      "name": "Manokwari - Rendani"
+    },
+    {
+      "icao": "WIMK",
+      "name": "Medan - Soewondo Air Force Base"
+    },
+    {
+      "icao": "WAKK",
+      "name": "Merauke - Mopah"
+    },
+    {
+      "icao": "WABI",
+      "name": "Nabire - Douw Aturure"
+    },
+    {
+      "icao": "WAPN",
+      "name": "Namniwel"
+    },
+    {
+      "icao": "WIOG",
+      "name": "Nanga Pinoh-Borneo Island - Nanga Pinoh"
+    },
+    {
+      "icao": "WAJO",
+      "name": "Oksibil"
+    },
+    {
+      "icao": "WIEE",
+      "name": "Padang (Katapiang) - Minangkabau"
+    },
+    {
+      "icao": "WIME",
+      "name": "Padang Sidempuan - Aek Godang"
+    },
+    {
+      "icao": "WAGG",
+      "name": "Palangkaraya - Tjilik Riwut"
+    },
+    {
+      "icao": "WIPP",
+      "name": "Palembang - Sultan Mahmud Badaruddin II"
+    },
+    {
+      "icao": "WAFF",
+      "name": "Palu - Mutiara - SIS Al-Jufrie"
+    },
+    {
+      "icao": "WIKK",
+      "name": "Pangkal Pinang - Depati Amir"
+    },
+    {
+      "icao": "WIBB",
+      "name": "Pekanbaru - Sultan Syarif Kasim II International Airport / Roesmin Nurjadin AFB"
+    },
+    {
+      "icao": "WIOP",
+      "name": "Putussibau-Borneo Island - Pangsuma"
+    },
+    {
+      "icao": "WIBJ",
+      "name": "Rengat-Sumatra Island - Japura"
+    },
+    {
+      "icao": "WALS",
+      "name": "Samarinda - Aji Pangeran Tumenggung Pranoto"
+    },
+    {
+      "icao": "WABO",
+      "name": "Serui - Stevanus Rumbewas"
+    },
+    {
+      "icao": "WIMS",
+      "name": "Sibolga (Pinangsori) - Dr. Ferdinand Lumban Tobing"
+    },
+    {
+      "icao": "WIOS",
+      "name": "Sintang - Tebelian"
+    },
+    {
+      "icao": "WASS",
+      "name": "Sorong - Domine Eduard Osok"
+    },
+    {
+      "icao": "WAHQ",
+      "name": "Surakarta - Adisumarmo"
+    },
+    {
+      "icao": "WAMH",
+      "name": "Tabukan Utara, Sangihe Islands - Naha"
+    },
+    {
+      "icao": "WITK",
+      "name": "Takengon - Rembele"
+    },
+    {
+      "icao": "WIPQ",
+      "name": "Talang Gudang-Sumatra Island - Pendopo"
+    },
+    {
+      "icao": "WAKT",
+      "name": "Tanah Merah"
+    },
+    {
+      "icao": "WIDN",
+      "name": "Tanjung Pinang-Bintan Island - Raja Haji Fisabilillah"
+    },
+    {
+      "icao": "WAQT",
+      "name": "Tanjung Redeb - Borneo Island - Kalimarau"
+    },
+    {
+      "icao": "WAON",
+      "name": "Tanta-Tabalong - Warukin"
+    },
+    {
+      "icao": "WAQQ",
+      "name": "Tarakan - Juwata International Airport / Suharnoko Harbani AFB"
+    },
+    {
+      "icao": "WAEE",
+      "name": "Ternate - Sultan Babullah"
+    },
+    {
+      "icao": "WAFB",
+      "name": "Toraja"
+    },
+    {
+      "icao": "WAVV",
+      "name": "Wamena"
+    },
+    {
+      "icao": "WAWD",
+      "name": "Wangi-wangi Island - Matahora"
+    },
+    {
+      "icao": "WAHI",
+      "name": "Yogyakarta"
+    }
+  ],
+  "Iran": [
+    {
+      "icao": "OIAA",
+      "name": "Abadan Ayatollah Jami"
+    },
+    {
+      "icao": "OIAW",
+      "name": "Ahvaz - Qasem Soleimani"
+    },
+    {
+      "icao": "OIKB",
+      "name": "Bandar Abbas"
+    },
+    {
+      "icao": "OIMB",
+      "name": "Birjand"
+    },
+    {
+      "icao": "OIFM",
+      "name": "Isfahan Shahid Beheshti"
+    },
+    {
+      "icao": "OIIP",
+      "name": "Karaj - Payam"
+    },
+    {
+      "icao": "OIKK",
+      "name": "Kerman - Ayatollah Hashemi Rafsanjani"
+    },
+    {
+      "icao": "OIBK",
+      "name": "Kish Island - Kish"
+    },
+    {
+      "icao": "OIMM",
+      "name": "Mashhad"
+    },
+    {
+      "icao": "OIKQ",
+      "name": "Qeshm(Dayrestan) - Qeshm"
+    },
+    {
+      "icao": "OISS",
+      "name": "Shiraz Shahid Dastghaib"
+    },
+    {
+      "icao": "OIIE",
+      "name": "Tehran - Imam Khomeini"
+    },
+    {
+      "icao": "OIII",
+      "name": "Tehran - Mehrabad"
+    },
+    {
+      "icao": "OIZH",
+      "name": "Zahedan"
+    },
+    {
+      "icao": "OIBA",
+      "name": "Abu Musa Island"
+    },
+    {
+      "icao": "OIHS",
+      "name": "Amirabad - Nojeh Air Base"
+    },
+    {
+      "icao": "OITL",
+      "name": "Ardabil"
+    },
+    {
+      "icao": "OIKM",
+      "name": "Bam Airport"
+    },
+    {
+      "icao": "OIBL",
+      "name": "Bandar Lengeh"
+    },
+    {
+      "icao": "OIMN",
+      "name": "Bojnord"
+    },
+    {
+      "icao": "OIBB",
+      "name": "Bushehr"
+    },
+    {
+      "icao": "OIZC",
+      "name": "Chabahar Konarak"
+    },
+    {
+      "icao": "OIAD",
+      "name": "Dezful"
+    },
+    {
+      "icao": "OISF",
+      "name": "Fasa"
+    },
+    {
+      "icao": "OIAH",
+      "name": "Gachsaran"
+    },
+    {
+      "icao": "OING",
+      "name": "Gorgan"
+    },
+    {
+      "icao": "OIHH",
+      "name": "Hamadan"
+    },
+    {
+      "icao": "OICI",
+      "name": "Ilam"
+    },
+    {
+      "icao": "OIZI",
+      "name": "Iranshahr"
+    },
+    {
+      "icao": "OIBJ",
+      "name": "Jam Airport"
+    },
+    {
+      "icao": "OIKJ",
+      "name": "Jiroft"
+    },
+    {
+      "icao": "OIFK",
+      "name": "Kashan"
+    },
+    {
+      "icao": "OICC",
+      "name": "Kermanshah - Shahid Ashrafi Esfahani"
+    },
+    {
+      "icao": "OIBQ",
+      "name": "Khark"
+    },
+    {
+      "icao": "OIBP",
+      "name": "Khiyaroo - Persian Gulf"
+    },
+    {
+      "icao": "OICK",
+      "name": "Khoram Abad"
+    },
+    {
+      "icao": "OISR",
+      "name": "Lamerd"
+    },
+    {
+      "icao": "OISL",
+      "name": "Lar Airport"
+    },
+    {
+      "icao": "OIBV",
+      "name": "Lavan"
+    },
+    {
+      "icao": "OIAM",
+      "name": "Mahshahr"
+    },
+    {
+      "icao": "OINN",
+      "name": "Nowshahr"
+    },
+    {
+      "icao": "OIAG",
+      "name": "Omidiyeh - Aghajari"
+    },
+    {
+      "icao": "OIIK",
+      "name": "Qazvin"
+    },
+    {
+      "icao": "OIKR",
+      "name": "Rafsanjan"
+    },
+    {
+      "icao": "OINR",
+      "name": "Ramsar"
+    },
+    {
+      "icao": "OIGG",
+      "name": "Rasht - Sardar-e-Jangal"
+    },
+    {
+      "icao": "OIMS",
+      "name": "Sabzevar National"
+    },
+    {
+      "icao": "OICS",
+      "name": "Sanandaj"
+    },
+    {
+      "icao": "OIMC",
+      "name": "Sarakhs"
+    },
+    {
+      "icao": "OINZ",
+      "name": "Sari Dasht-e Naz"
+    },
+    {
+      "icao": "OIFS",
+      "name": "Shahrekord"
+    },
+    {
+      "icao": "OITU",
+      "name": "Showt - Maku National"
+    },
+    {
+      "icao": "OIBS",
+      "name": "Siri"
+    },
+    {
+      "icao": "OIKY",
+      "name": "Sirjan"
+    },
+    {
+      "icao": "OIMT",
+      "name": "Tabas"
+    },
+    {
+      "icao": "OITT",
+      "name": "Tabriz"
+    },
+    {
+      "icao": "OITR",
+      "name": "Urmia"
+    },
+    {
+      "icao": "OISY",
+      "name": "Yasuj"
+    },
+    {
+      "icao": "OIYY",
+      "name": "Yazd - Shahid Sadooghi"
+    },
+    {
+      "icao": "OIZB",
+      "name": "Zabol"
+    },
+    {
+      "icao": "OITZ",
+      "name": "Zanjan"
+    }
+  ],
+  "Iraq": [
+    {
+      "icao": "ORNI",
+      "name": "Al Najaf"
+    },
+    {
+      "icao": "ORER",
+      "name": "Arbil - Erbil"
+    },
+    {
+      "icao": "ORBI",
+      "name": "Baghdad International Airport / New Al Muthana Air Base"
+    },
+    {
+      "icao": "ORMM",
+      "name": "Basra"
+    },
+    {
+      "icao": "ORKK",
+      "name": "Kirkuk"
+    },
+    {
+      "icao": "ORBM",
+      "name": "Mosul"
+    },
+    {
+      "icao": "ORAT",
+      "name": "Al Habbaniyah - Al Taqaddum Air Base"
+    },
+    {
+      "icao": "ORUB",
+      "name": "Al Kut - Ubaydah Bin Al Jarrah"
+    },
+    {
+      "icao": "ORTI",
+      "name": "Al Taji Army Air Field"
+    },
+    {
+      "icao": "ORAA",
+      "name": "Hīt - Al Asad Air Base"
+    },
+    {
+      "icao": "ORSU",
+      "name": "Sulaymaniyah"
+    },
+    {
+      "icao": "ORTF",
+      "name": "Tall Afar Army Air Field"
+    }
+  ],
+  "Ireland": [
+    {
+      "icao": "EIKN",
+      "name": "Charlestown - Ireland West Airport Knock"
+    },
+    {
+      "icao": "EICK",
+      "name": "Cork"
+    },
+    {
+      "icao": "EIDW",
+      "name": "Dublin"
+    },
+    {
+      "icao": "EINN",
+      "name": "Shannon"
+    },
+    {
+      "icao": "EIDL",
+      "name": "Donegal"
+    },
+    {
+      "icao": "EIKY",
+      "name": "Farranfore - Kerry"
+    },
+    {
+      "icao": "EIWT",
+      "name": "Leixlip - Weston"
+    },
+    {
+      "icao": "EISG",
+      "name": "Sligo"
+    },
+    {
+      "icao": "EIWF",
+      "name": "Waterford"
+    }
+  ],
+  "Isle of Man": [
+    {
+      "icao": "EGNS",
+      "name": "Castletown - Isle of Man"
+    }
+  ],
+  "Israel": [
+    {
+      "icao": "LLER",
+      "name": "Eilat - Ramon"
+    },
+    {
+      "icao": "LLBG",
+      "name": "Tel Aviv - Ben Gurion"
+    },
+    {
+      "icao": "LLNV",
+      "name": "Beersheba - Nevatim Air Base"
+    },
+    {
+      "icao": "LLRM",
+      "name": "Beersheba - Ramon Air Base"
+    },
+    {
+      "icao": "LLRD",
+      "name": "Haifa - Ramat David Air Base"
+    },
+    {
+      "icao": "LLMZ",
+      "name": "Masada - Bar Yehuda Airfield"
+    },
+    {
+      "icao": "LLEK",
+      "name": "Rehovot - Tel Nof Air Base"
+    },
+    {
+      "icao": "LLIB",
+      "name": "Rosh Pina"
+    },
+    {
+      "icao": "LLHA",
+      "name": "Uri Michaeli Haifa"
+    }
+  ],
+  "Italy": [
+    {
+      "icao": "LIBD",
+      "name": "Bari Karol Wojtyła"
+    },
+    {
+      "icao": "LIPE",
+      "name": "Bologna Guglielmo Marconi"
+    },
+    {
+      "icao": "LIBR",
+      "name": "Brindisi"
+    },
+    {
+      "icao": "LIEE",
+      "name": "Cagliari Elmas"
+    },
+    {
+      "icao": "LIPX",
+      "name": "Caselle (VR) - Verona Villafranca Valerio Catullo"
+    },
+    {
+      "icao": "LIMF",
+      "name": "Caselle Torinese (TO) - Turin"
+    },
+    {
+      "icao": "LICC",
+      "name": "Catania-Fontanarossa"
+    },
+    {
+      "icao": "LIMC",
+      "name": "Ferno (VA) - Milan Malpensa"
+    },
+    {
+      "icao": "LIRQ",
+      "name": "Firenze (FI) - Florence Airport, Peretola"
+    },
+    {
+      "icao": "LIMJ",
+      "name": "Genova (GE) - Genoa Cristoforo Colombo"
+    },
+    {
+      "icao": "LICA",
+      "name": "Lamezia Terme (CZ) - Lamezia Terme Sant'Eufemia"
+    },
+    {
+      "icao": "LIRN",
+      "name": "Napoli - Naples"
+    },
+    {
+      "icao": "LIEO",
+      "name": "Olbia (SS) - Olbia Costa Smeralda"
+    },
+    {
+      "icao": "LIME",
+      "name": "Orio al Serio (BG) - Il Caravaggio"
+    },
+    {
+      "icao": "LICJ",
+      "name": "Palermo - Falcone–Borsellino"
+    },
+    {
+      "icao": "LIRZ",
+      "name": "Perugia (PG) - Perugia San Francesco d'Assisi – Umbria"
+    },
+    {
+      "icao": "LIBP",
+      "name": "Pescara - Abruzzo"
+    },
+    {
+      "icao": "LIRP",
+      "name": "Pisa (PI) - Pisa"
+    },
+    {
+      "icao": "LIPR",
+      "name": "Rimini (RN) - Federico Fellini"
+    },
+    {
+      "icao": "LIRA",
+      "name": "Rome - Ciampino–G. B. Pastine"
+    },
+    {
+      "icao": "LIRF",
+      "name": "Rome–Fiumicino Leonardo da Vinci"
+    },
+    {
+      "icao": "LIPQ",
+      "name": "Ronchi dei Legionari/Trieste - Trieste"
+    },
+    {
+      "icao": "LIML",
+      "name": "Segrate (MI) - Milano Linate"
+    },
+    {
+      "icao": "LIPH",
+      "name": "Treviso (TV) - Treviso"
+    },
+    {
+      "icao": "LIPZ",
+      "name": "Venezia (VE) - Venice Marco Polo"
+    },
+    {
+      "icao": "LIEA",
+      "name": "Alghero-Fertilia"
+    },
+    {
+      "icao": "LIQS",
+      "name": "Ampugnano (SI) - Siena-Ampugnano"
+    },
+    {
+      "icao": "LIET",
+      "name": "Arbatax - Tortolì"
+    },
+    {
+      "icao": "LIPA",
+      "name": "Aviano (PN) - Aviano Air Base"
+    },
+    {
+      "icao": "LIPB",
+      "name": "Bolzano (BZ) - Bolzano"
+    },
+    {
+      "icao": "LIMN",
+      "name": "Cameri (NO) - Cameri Air Base"
+    },
+    {
+      "icao": "LIRJ",
+      "name": "Campo nell'Elba (LI) - Marina di Campo"
+    },
+    {
+      "icao": "LIPC",
+      "name": "Cervia (RA) - Cervia Air Base"
+    },
+    {
+      "icao": "LIPI",
+      "name": "Codroipo (UD) - Udine-Rivolto Air Base"
+    },
+    {
+      "icao": "LICB",
+      "name": "Comiso"
+    },
+    {
+      "icao": "LIED",
+      "name": "Decimomannu Air Base"
+    },
+    {
+      "icao": "LIPY",
+      "name": "Falconara Marittima (AN) - Marche"
+    },
+    {
+      "icao": "LIBF",
+      "name": "Foggia (FG) - Foggia Gino Lisa"
+    },
+    {
+      "icao": "LIPK",
+      "name": "Forlì (FC) - Forlì-Luigi Ridolfi"
+    },
+    {
+      "icao": "LIBN",
+      "name": "Galatina (LE) - Lecce Galatina Air Base / Galatina Fortunato Cesari"
+    },
+    {
+      "icao": "LIBV",
+      "name": "Gioia del Colle (BA) - Gioia del Colle Antonio Ramirez Air Base"
+    },
+    {
+      "icao": "LIRS",
+      "name": "Grosseto (GR) - Grosseto Corrado Baccarini Air Base / Grosseto"
+    },
+    {
+      "icao": "LIBC",
+      "name": "Isola di Capo Rizzuto (KR) - Crotone Sant'Anna Pythagoras"
+    },
+    {
+      "icao": "LICD",
+      "name": "Lampedusa"
+    },
+    {
+      "icao": "LIMZ",
+      "name": "Levaldigi (CN) - Cuneo"
+    },
+    {
+      "icao": "LIPO",
+      "name": "Montichiari (BS) - Brescia Gabriele d'Annunzio"
+    },
+    {
+      "icao": "LICP",
+      "name": "Palermo-Boccadifalco"
+    },
+    {
+      "icao": "LICG",
+      "name": "Pantelleria (TP) - Pantelleria"
+    },
+    {
+      "icao": "LIMP",
+      "name": "Parma (PR) - Parma"
+    },
+    {
+      "icao": "LICR",
+      "name": "Reggio Calabria"
+    },
+    {
+      "icao": "LIMW",
+      "name": "Saint-Christophe (AO) - Aosta Corrado Gex"
+    },
+    {
+      "icao": "LIRI",
+      "name": "Salerno Costa d'Amalfi"
+    },
+    {
+      "icao": "LIMS",
+      "name": "San Damiano (PC) - Piacenza San Damiano Air Base"
+    },
+    {
+      "icao": "LIBA",
+      "name": "San Giovanni Rotondo (FG) - Amendola Air Base"
+    },
+    {
+      "icao": "LICZ",
+      "name": "Sigonella (CT) - Sigonella Navy Air Base"
+    },
+    {
+      "icao": "LIBG",
+      "name": "Taranto-Grottaglie Marcello Arlotta"
+    },
+    {
+      "icao": "LIMA",
+      "name": "Torino (TO) - Torino-Aeritalia"
+    },
+    {
+      "icao": "LICT",
+      "name": "Trapani (TP) - Vincenzo Florio Airport Trapani-Birgi"
+    },
+    {
+      "icao": "LIDT",
+      "name": "Trento (TN) - Trento-Mattarello"
+    },
+    {
+      "icao": "LILN",
+      "name": "Venegono Superiore (VA) - Varese-Venegono"
+    },
+    {
+      "icao": "LIMG",
+      "name": "Villanova d'Albenga (SV) - Riviera Villanova d'Albenga"
+    }
+  ],
+  "Jamaica": [
+    {
+      "icao": "MKJP",
+      "name": "Kingston - Norman Manley"
+    },
+    {
+      "icao": "MKJS",
+      "name": "Montego Bay - Sangster"
+    },
+    {
+      "icao": "MKBS",
+      "name": "Boscobel - Ian Fleming"
+    },
+    {
+      "icao": "MKKJ",
+      "name": "Ken Jones"
+    },
+    {
+      "icao": "MKTP",
+      "name": "Tinson Pen"
+    }
+  ],
+  "Japan": [
+    {
+      "icao": "RJSA",
+      "name": "Aomori"
+    },
+    {
+      "icao": "RJFF",
+      "name": "Fukuoka"
+    },
+    {
+      "icao": "RJCH",
+      "name": "Hakodate"
+    },
+    {
+      "icao": "RJOA",
+      "name": "Hiroshima"
+    },
+    {
+      "icao": "RJFK",
+      "name": "Kagoshima"
+    },
+    {
+      "icao": "RJNK",
+      "name": "Kanazawa - Komatsu Airport / JASDF Komatsu Air Base"
+    },
+    {
+      "icao": "RJFR",
+      "name": "Kitakyushu"
+    },
+    {
+      "icao": "RJBE",
+      "name": "Kobe"
+    },
+    {
+      "icao": "RJFT",
+      "name": "Kumamoto"
+    },
+    {
+      "icao": "RJFS",
+      "name": "Kyushu Saga"
+    },
+    {
+      "icao": "RJNS",
+      "name": "Makinohara / Shimada - Mount Fuji Shizuoka"
+    },
+    {
+      "icao": "RJOM",
+      "name": "Matsuyama"
+    },
+    {
+      "icao": "RJFM",
+      "name": "Miyazaki"
+    },
+    {
+      "icao": "RJFU",
+      "name": "Nagasaki"
+    },
+    {
+      "icao": "ROAH",
+      "name": "Naha"
+    },
+    {
+      "icao": "RJOK",
+      "name": "Nankoku - Kochi Ryoma"
+    },
+    {
+      "icao": "RJAA",
+      "name": "Narita"
+    },
+    {
+      "icao": "RJSS",
+      "name": "Natori - Sendai"
+    },
+    {
+      "icao": "RJSN",
+      "name": "Niigata"
+    },
+    {
+      "icao": "RJOB",
+      "name": "Okayama Momotaro"
+    },
+    {
+      "icao": "RODN",
+      "name": "Okinawa - Kadena Air Base"
+    },
+    {
+      "icao": "RJBB",
+      "name": "Osaka - Kansai"
+    },
+    {
+      "icao": "RJOO",
+      "name": "Osaka Itami"
+    },
+    {
+      "icao": "RJCC",
+      "name": "Sapporo - New Chitose"
+    },
+    {
+      "icao": "RJOT",
+      "name": "Takamatsu"
+    },
+    {
+      "icao": "RJGG",
+      "name": "Tokoname - Chubu Centrair"
+    },
+    {
+      "icao": "RJOS",
+      "name": "Tokushima Awaodori Airport / JMSDF Tokushima Air Base"
+    },
+    {
+      "icao": "RJTT",
+      "name": "Tokyo Haneda"
+    },
+    {
+      "icao": "RJSK",
+      "name": "Akita"
+    },
+    {
+      "icao": "RJKN",
+      "name": "Amagi - Tokunoshima"
+    },
+    {
+      "icao": "RJKA",
+      "name": "Amami"
+    },
+    {
+      "icao": "RJTA",
+      "name": "Ayase / Yamato - JMSDF Atsugi Air Base / Naval Air Facility Atsugi"
+    },
+    {
+      "icao": "RJNF",
+      "name": "Fukui"
+    },
+    {
+      "icao": "RJTY",
+      "name": "Fussa - Yokota Air Base"
+    },
+    {
+      "icao": "RJFE",
+      "name": "Goto - Fukue"
+    },
+    {
+      "icao": "RJTH",
+      "name": "Hachijojima"
+    },
+    {
+      "icao": "RJEC",
+      "name": "Higashikagura - Asahikawa"
+    },
+    {
+      "icao": "RJSC",
+      "name": "Higashine - Yamagata"
+    },
+    {
+      "icao": "RORE",
+      "name": "Iejima"
+    },
+    {
+      "icao": "RJDB",
+      "name": "Iki Airport"
+    },
+    {
+      "icao": "RJOI",
+      "name": "Iwakuni Kintaikyo"
+    },
+    {
+      "icao": "RJSI",
+      "name": "Iwate Hanamaki"
+    },
+    {
+      "icao": "RJTO",
+      "name": "Izu Oshima - Oshima"
+    },
+    {
+      "icao": "RJOC",
+      "name": "Izumo Enmusubi"
+    },
+    {
+      "icao": "RJSH",
+      "name": "JMSDF Hachinohe Air Base / Hachinohe"
+    },
+    {
+      "icao": "RJKI",
+      "name": "Kikai"
+    },
+    {
+      "icao": "RJSR",
+      "name": "Kitaakita - Odate Noshiro"
+    },
+    {
+      "icao": "RORK",
+      "name": "Kitadaitōjima - Kitadaito"
+    },
+    {
+      "icao": "ROKJ",
+      "name": "Kumejima"
+    },
+    {
+      "icao": "RJCK",
+      "name": "Kushiro"
+    },
+    {
+      "icao": "RJOW",
+      "name": "Masuda - Iwami"
+    },
+    {
+      "icao": "ROMD",
+      "name": "Minamidaito"
+    },
+    {
+      "icao": "RJSM",
+      "name": "Misawa Airport / Misawa Air Base"
+    },
+    {
+      "icao": "RJTQ",
+      "name": "Miyakejima"
+    },
+    {
+      "icao": "ROMY",
+      "name": "Miyakojima - Miyako"
+    },
+    {
+      "icao": "RORS",
+      "name": "Miyakojima - Shimojishima"
+    },
+    {
+      "icao": "RJEB",
+      "name": "Monbetsu"
+    },
+    {
+      "icao": "RJNA",
+      "name": "Nagoya Airport / JASDF Komaki Air Base"
+    },
+    {
+      "icao": "RJCN",
+      "name": "Nakashibetsu"
+    },
+    {
+      "icao": "RJBD",
+      "name": "Nanki Shirahama"
+    },
+    {
+      "icao": "ROIG",
+      "name": "New Ishigaki"
+    },
+    {
+      "icao": "RJFG",
+      "name": "New Tanegashima"
+    },
+    {
+      "icao": "RJAW",
+      "name": "Ogasawara - Ioto (Iwo Jima) Airbase"
+    },
+    {
+      "icao": "RJFO",
+      "name": "Oita"
+    },
+    {
+      "icao": "RJNO",
+      "name": "Okinoshima - Oki Global Geopark"
+    },
+    {
+      "icao": "RJEO",
+      "name": "Okushiri Island - Okushiri"
+    },
+    {
+      "icao": "RJAH",
+      "name": "Omitama - Ibaraki"
+    },
+    {
+      "icao": "RJER",
+      "name": "Rishiri"
+    },
+    {
+      "icao": "RJSD",
+      "name": "Sado"
+    },
+    {
+      "icao": "RJCO",
+      "name": "Sapporo Okadama"
+    },
+    {
+      "icao": "RJAF",
+      "name": "Shinshu-Matsumoto"
+    },
+    {
+      "icao": "RJSY",
+      "name": "Shonai"
+    },
+    {
+      "icao": "RJSF",
+      "name": "Sukagawa - Fukushima"
+    },
+    {
+      "icao": "RORT",
+      "name": "Tarama"
+    },
+    {
+      "icao": "RJCB",
+      "name": "Tokachi-Obihiro"
+    },
+    {
+      "icao": "RJOR",
+      "name": "Tottori Sand Dunes Conan"
+    },
+    {
+      "icao": "RJNT",
+      "name": "Toyama Kitokito"
+    },
+    {
+      "icao": "RJBT",
+      "name": "Toyooka - Konotori Tajima"
+    },
+    {
+      "icao": "RJDT",
+      "name": "Tsushima"
+    },
+    {
+      "icao": "RJKB",
+      "name": "Wadomari - Okinoerabu"
+    },
+    {
+      "icao": "RJNW",
+      "name": "Wajima - Noto Satoyama"
+    },
+    {
+      "icao": "RJCW",
+      "name": "Wakkanai"
+    },
+    {
+      "icao": "RJFC",
+      "name": "Yakushima"
+    },
+    {
+      "icao": "RJDC",
+      "name": "Yamaguchi Ube"
+    },
+    {
+      "icao": "RJOH",
+      "name": "Yonago Kitaro Airport / JASDF Miho Air Base"
+    },
+    {
+      "icao": "ROYN",
+      "name": "Yonaguni"
+    },
+    {
+      "icao": "RORY",
+      "name": "Yoron"
+    },
+    {
+      "icao": "RJCM",
+      "name": "Ōzora - Memanbetsu"
+    }
+  ],
+  "Jersey": [
+    {
+      "icao": "EGJJ",
+      "name": "St. Peter - Jersey"
+    }
+  ],
+  "Jordan": [
+    {
+      "icao": "OJAI",
+      "name": "Amman - Queen Alia"
+    },
+    {
+      "icao": "OJAQ",
+      "name": "Aqaba - King Hussein"
+    },
+    {
+      "icao": "OJAM",
+      "name": "Marka International (Amman Civil)"
+    },
+    {
+      "icao": "OJMS",
+      "name": "Al Azraq - Muwaffaq Salti Air Base"
+    },
+    {
+      "icao": "OJKF",
+      "name": "Al-Jafr - King Feisal Air Base"
+    }
+  ],
+  "Kazakhstan": [
+    {
+      "icao": "UATE",
+      "name": "Aktau"
+    },
+    {
+      "icao": "UATT",
+      "name": "Aktobe"
+    },
+    {
+      "icao": "UAAA",
+      "name": "Almaty"
+    },
+    {
+      "icao": "UACC",
+      "name": "Astana - Nursultan Nazarbayev"
+    },
+    {
+      "icao": "UATG",
+      "name": "Atyrau"
+    },
+    {
+      "icao": "UAOL",
+      "name": "Baikonur Krayniy"
+    },
+    {
+      "icao": "UAKK",
+      "name": "Karaganda - Sary-Arka"
+    },
+    {
+      "icao": "UACK",
+      "name": "Kokshetau"
+    },
+    {
+      "icao": "UAUU",
+      "name": "Kostanay"
+    },
+    {
+      "icao": "UAOO",
+      "name": "Kyzylorda - Korkyt Ata"
+    },
+    {
+      "icao": "UASP",
+      "name": "Pavlodar"
+    },
+    {
+      "icao": "UACP",
+      "name": "Petropavl"
+    },
+    {
+      "icao": "UASS",
+      "name": "Semey - Semei"
+    },
+    {
+      "icao": "UAII",
+      "name": "Shymkent"
+    },
+    {
+      "icao": "UADD",
+      "name": "Taraz"
+    },
+    {
+      "icao": "UAIT",
+      "name": "Turkıstan - Hazrat Sultan"
+    },
+    {
+      "icao": "UARR",
+      "name": "Uralsk - Manshuk Mametova"
+    },
+    {
+      "icao": "UASK",
+      "name": "Ust-Kamenogorsk (Oskemen) - Oskemen"
+    },
+    {
+      "icao": "UAKD",
+      "name": "Zhezkazgan National"
+    },
+    {
+      "icao": "UAAH",
+      "name": "Balkhash"
+    },
+    {
+      "icao": "UASB",
+      "name": "Ekibastuz"
+    },
+    {
+      "icao": "UAON",
+      "name": "Töretam - Yubileyniy Airfield"
+    }
+  ],
+  "Kenya": [
+    {
+      "icao": "HKEL",
+      "name": "Eldoret"
+    },
+    {
+      "icao": "HKKI",
+      "name": "Kisumu"
+    },
+    {
+      "icao": "HKMO",
+      "name": "Mombasa - Moi"
+    },
+    {
+      "icao": "HKJK",
+      "name": "Nairobi - Jomo Kenyatta"
+    },
+    {
+      "icao": "HKAM",
+      "name": "Amboseli National Park - Amboseli"
+    },
+    {
+      "icao": "HKKT",
+      "name": "Kitale"
+    },
+    {
+      "icao": "HKLU",
+      "name": "Lamu - Manda"
+    },
+    {
+      "icao": "HKLO",
+      "name": "Lodwar"
+    },
+    {
+      "icao": "HKLK",
+      "name": "Lokichogio"
+    },
+    {
+      "icao": "HKML",
+      "name": "Malindi"
+    },
+    {
+      "icao": "HKMS",
+      "name": "Masai Mara - Mara Serena Lodge Airstrip"
+    },
+    {
+      "icao": "HKRE",
+      "name": "Nairobi - Moi Air Base"
+    },
+    {
+      "icao": "HKNW",
+      "name": "Nairobi Wilson"
+    },
+    {
+      "icao": "HKNK",
+      "name": "Nakuru - Lanet Military Airstrip"
+    },
+    {
+      "icao": "HKNL",
+      "name": "Nanyuki"
+    },
+    {
+      "icao": "HKNY",
+      "name": "Nanyuki - Laikipia Air Base"
+    },
+    {
+      "icao": "HKWJ",
+      "name": "Wajir"
+    }
+  ],
+  "Kiribati": [
+    {
+      "icao": "PLCH",
+      "name": "Kiritimati - Cassidy"
+    },
+    {
+      "icao": "NGTA",
+      "name": "South Tarawa - Bonriki"
+    },
+    {
+      "icao": "PCIS",
+      "name": "Abariringa - Canton Island"
+    },
+    {
+      "icao": "NGTE",
+      "name": "Tabiteuea North"
+    }
+  ],
+  "Kosovo": [
+    {
+      "icao": "BKPR",
+      "name": "Prishtina - Priština Adem Jashari"
+    }
+  ],
+  "Kuwait": [
+    {
+      "icao": "OKKK",
+      "name": "Kuwait City - Kuwait"
+    },
+    {
+      "icao": "OKAJ",
+      "name": "Ahmed Al Jaber AB - Ahmed Al Jaber Air Base"
+    },
+    {
+      "icao": "OKAS",
+      "name": "Al Damaikhi - Ali Al Salem Air Base"
+    }
+  ],
+  "Kyrgyzstan": [
+    {
+      "icao": "UCFM",
+      "name": "Bishkek - Manas"
+    },
+    {
+      "icao": "UCFO",
+      "name": "Osh International"
+    },
+    {
+      "icao": "UCFL",
+      "name": "Tamchy - Issyk-Kul"
+    },
+    {
+      "icao": "UCFB",
+      "name": "Batken"
+    },
+    {
+      "icao": "UCFD",
+      "name": "Jalal-Abad"
+    }
+  ],
+  "Laos": [
+    {
+      "icao": "VLLB",
+      "name": "Luang Phabang"
+    },
+    {
+      "icao": "VLPS",
+      "name": "Pakse"
+    },
+    {
+      "icao": "VLVT",
+      "name": "Vientiane - Wattay"
+    },
+    {
+      "icao": "VLSN",
+      "name": "Sam Neua"
+    },
+    {
+      "icao": "VLSK",
+      "name": "Savannakhet"
+    }
+  ],
+  "Latvia": [
+    {
+      "icao": "EVLA",
+      "name": "Liepāja"
+    },
+    {
+      "icao": "EVRA",
+      "name": "Riga"
+    },
+    {
+      "icao": "EVDA",
+      "name": "Daugavpils"
+    }
+  ],
+  "Lebanon": [
+    {
+      "icao": "OLBA",
+      "name": "Beirut Rafic Hariri"
+    },
+    {
+      "icao": "OLKA",
+      "name": "Tripoli - Rene Mouawad Air Base"
+    }
+  ],
+  "Lesotho": [
+    {
+      "icao": "FXMM",
+      "name": "Maseru(Mazenod) - Moshoeshoe I"
+    }
+  ],
+  "Liberia": [
+    {
+      "icao": "GLRB",
+      "name": "Monrovia - Roberts"
+    },
+    {
+      "icao": "GLGE",
+      "name": "Greenville/Sinoe"
+    },
+    {
+      "icao": "GLMR",
+      "name": "Monrovia - Spriggs Payne"
+    }
+  ],
+  "Libya": [
+    {
+      "icao": "HLLQ",
+      "name": "Al Albraq - Al Abraq"
+    },
+    {
+      "icao": "HLLB",
+      "name": "Benina"
+    },
+    {
+      "icao": "HLGD",
+      "name": "Sirt International Airport / Ghardabiya Airbase"
+    },
+    {
+      "icao": "HLLM",
+      "name": "Tripoli - Mitiga"
+    },
+    {
+      "icao": "HLTD",
+      "name": "Ghadames"
+    },
+    {
+      "icao": "HLGT",
+      "name": "Ghat"
+    },
+    {
+      "icao": "HLKF",
+      "name": "Kufra"
+    },
+    {
+      "icao": "HLMB",
+      "name": "Marsa al Brega"
+    },
+    {
+      "icao": "HLLS",
+      "name": "Sabha"
+    }
+  ],
+  "Lithuania": [
+    {
+      "icao": "EYKA",
+      "name": "Kaunas"
+    },
+    {
+      "icao": "EYPA",
+      "name": "Palanga"
+    },
+    {
+      "icao": "EYVI",
+      "name": "Vilnius"
+    },
+    {
+      "icao": "EYPP",
+      "name": "Panevėžys Air Base"
+    },
+    {
+      "icao": "EYSA",
+      "name": "Šiauliai"
+    }
+  ],
+  "Luxembourg": [
+    {
+      "icao": "ELLX",
+      "name": "Luxembourg-Findel"
+    }
+  ],
+  "Macau": [
+    {
+      "icao": "VMMC",
+      "name": "Nossa Senhora do Carmo - Macau"
+    }
+  ],
+  "Madagascar": [
+    {
+      "icao": "FMMI",
+      "name": "Antananarivo - Ivato"
+    },
+    {
+      "icao": "FMNM",
+      "name": "Mahajanga - Amborovy"
+    },
+    {
+      "icao": "FMMT",
+      "name": "Toamasina Ambalamanasy"
+    },
+    {
+      "icao": "FMNL",
+      "name": "Analalava"
+    },
+    {
+      "icao": "FMND",
+      "name": "Andapa"
+    },
+    {
+      "icao": "FMNA",
+      "name": "Antisiranana - Arrachart"
+    },
+    {
+      "icao": "FMNH",
+      "name": "Antsirabe"
+    },
+    {
+      "icao": "FMNW",
+      "name": "Antsohihy - Ambalabe"
+    },
+    {
+      "icao": "FMNQ",
+      "name": "Besalampy"
+    },
+    {
+      "icao": "FMSF",
+      "name": "Fianarantsoa"
+    },
+    {
+      "icao": "FMSK",
+      "name": "Manakara"
+    },
+    {
+      "icao": "FMNC",
+      "name": "Mananara Nord"
+    },
+    {
+      "icao": "FMSM",
+      "name": "Mananjary"
+    },
+    {
+      "icao": "FMNR",
+      "name": "Maroantsetra"
+    },
+    {
+      "icao": "FMMN",
+      "name": "Miandrivazo"
+    },
+    {
+      "icao": "FMSR",
+      "name": "Morombe"
+    },
+    {
+      "icao": "FMMV",
+      "name": "Morondava"
+    },
+    {
+      "icao": "FMNN",
+      "name": "Nosy Be-Fascene"
+    },
+    {
+      "icao": "FMNS",
+      "name": "Sambava"
+    },
+    {
+      "icao": "FMST",
+      "name": "Toliara"
+    },
+    {
+      "icao": "FMSD",
+      "name": "Tôlanaro"
+    },
+    {
+      "icao": "FMNV",
+      "name": "Vohemar"
+    },
+    {
+      "icao": "FMMS",
+      "name": "Vohilava - Sainte Marie"
+    }
+  ],
+  "Malawi": [
+    {
+      "icao": "FWCL",
+      "name": "Blantyre - Chileka"
+    },
+    {
+      "icao": "FWKI",
+      "name": "Lumbadzi - Kamuzu"
+    },
+    {
+      "icao": "FWDW",
+      "name": "Dwangwa"
+    },
+    {
+      "icao": "FWKA",
+      "name": "Karonga"
+    },
+    {
+      "icao": "FWUU",
+      "name": "Mzuzu"
+    }
+  ],
+  "Malaysia": [
+    {
+      "icao": "WMKI",
+      "name": "Ipoh - Sultan Azlan Shah"
+    },
+    {
+      "icao": "WMKJ",
+      "name": "Johor Bahru - Senai"
+    },
+    {
+      "icao": "WBKK",
+      "name": "Kota Kinabalu"
+    },
+    {
+      "icao": "WBGG",
+      "name": "Kuching"
+    },
+    {
+      "icao": "WMKP",
+      "name": "Penang"
+    },
+    {
+      "icao": "WMKK",
+      "name": "Sepang - Kuala Lumpur"
+    },
+    {
+      "icao": "WMSA",
+      "name": "Subang - Sultan Abdul Aziz Shah"
+    },
+    {
+      "icao": "WMKA",
+      "name": "Alor Satar - Sultan Abdul Halim"
+    },
+    {
+      "icao": "WBGZ",
+      "name": "Bario"
+    },
+    {
+      "icao": "WBGB",
+      "name": "Bintulu"
+    },
+    {
+      "icao": "WMKE",
+      "name": "Kerteh"
+    },
+    {
+      "icao": "WMKC",
+      "name": "Kota Baharu - Sultan Ismail Petra"
+    },
+    {
+      "icao": "WMKN",
+      "name": "Kuala Terengganu - Sultan Mahmud"
+    },
+    {
+      "icao": "WMKD",
+      "name": "Kuantan"
+    },
+    {
+      "icao": "WBKL",
+      "name": "Labuan"
+    },
+    {
+      "icao": "WBKD",
+      "name": "Lahad Datu"
+    },
+    {
+      "icao": "WMKL",
+      "name": "Langkawi"
+    },
+    {
+      "icao": "WBGJ",
+      "name": "Limbang"
+    },
+    {
+      "icao": "WMKM",
+      "name": "Malacca"
+    },
+    {
+      "icao": "WBGM",
+      "name": "Marudi"
+    },
+    {
+      "icao": "WBGR",
+      "name": "Miri"
+    },
+    {
+      "icao": "WBGK",
+      "name": "Mukah"
+    },
+    {
+      "icao": "WBMU",
+      "name": "Mulu"
+    },
+    {
+      "icao": "WMKB",
+      "name": "RMAF Butterworth Air Base"
+    },
+    {
+      "icao": "WBKS",
+      "name": "Sandakan"
+    },
+    {
+      "icao": "WBGS",
+      "name": "Sibu"
+    },
+    {
+      "icao": "WBKW",
+      "name": "Tawau"
+    },
+    {
+      "icao": "WMBT",
+      "name": "Tioman Island - Tioman"
+    }
+  ],
+  "Maldives": [
+    {
+      "icao": "VRMG",
+      "name": "Gan International"
+    },
+    {
+      "icao": "VRMH",
+      "name": "Haa Dhaalu Atoll - Hanimaadhoo"
+    },
+    {
+      "icao": "VRMM",
+      "name": "Malé - Velana"
+    },
+    {
+      "icao": "VRMT",
+      "name": "Huvadhu Atoll - Kaadedhdhoo"
+    },
+    {
+      "icao": "VRMK",
+      "name": "Kadhdhoo"
+    },
+    {
+      "icao": "VRMV",
+      "name": "Villa International Airport Maamigili"
+    }
+  ],
+  "Mali": [
+    {
+      "icao": "GABS",
+      "name": "Bamako - Modibo Keita"
+    },
+    {
+      "icao": "GATB",
+      "name": "Timbuktu - Tombouktou"
+    },
+    {
+      "icao": "GAGO",
+      "name": "Gao International"
+    },
+    {
+      "icao": "GAKD",
+      "name": "Kayes Dag Dag"
+    },
+    {
+      "icao": "GAMB",
+      "name": "Sévaré - Mopti"
+    }
+  ],
+  "Malta": [
+    {
+      "icao": "LMML",
+      "name": "Valletta - Malta"
+    }
+  ],
+  "Marshall Islands": [
+    {
+      "icao": "PKMJ",
+      "name": "Majuro Atoll - Marshall Islands"
+    },
+    {
+      "icao": "PKWA",
+      "name": "Kwajalein - Bucholz Army Air Field"
+    }
+  ],
+  "Martinique": [
+    {
+      "icao": "TFFF",
+      "name": "Fort-de-France - Martinique Aimé Césaire"
+    }
+  ],
+  "Mauritania": [
+    {
+      "icao": "GQPA",
+      "name": "Atar"
+    },
+    {
+      "icao": "GQPP",
+      "name": "Nouadhibou"
+    },
+    {
+      "icao": "GQNO",
+      "name": "Nouakchott–Oumtounsy"
+    }
+  ],
+  "Mauritius": [
+    {
+      "icao": "FIMP",
+      "name": "Plaine Magnien - Sir Seewoosagur Ramgoolam"
+    },
+    {
+      "icao": "FIMR",
+      "name": "Port Mathurin - Sir Charles Gaetan Duval"
+    }
+  ],
+  "Mayotte": [
+    {
+      "icao": "FMCZ",
+      "name": "Dzaoudzi Pamandzi"
+    }
+  ],
+  "Mexico": [
+    {
+      "icao": "MMAA",
+      "name": "Acapulco - General Juan N. Álvarez"
+    },
+    {
+      "icao": "MMAS",
+      "name": "Aguascalientes"
+    },
+    {
+      "icao": "MMBT",
+      "name": "Bahías de Huatulco"
+    },
+    {
+      "icao": "MMUN",
+      "name": "Cancún"
+    },
+    {
+      "icao": "MMCU",
+      "name": "Chihuahua - General Roberto Fierro Villalobos"
+    },
+    {
+      "icao": "MMCS",
+      "name": "Ciudad Juárez - Abraham González"
+    },
+    {
+      "icao": "MMCZ",
+      "name": "Cozumel"
+    },
+    {
+      "icao": "MMCL",
+      "name": "Culiacán - Bachigualato Federal"
+    },
+    {
+      "icao": "MMTL",
+      "name": "Felipe Carrillo Puerto International Airport Tulum"
+    },
+    {
+      "icao": "MMGL",
+      "name": "Guadalajara"
+    },
+    {
+      "icao": "MMHO",
+      "name": "Hermosillo - General Ignacio L. Pesqueira"
+    },
+    {
+      "icao": "MMZH",
+      "name": "Ixtapa-Zihuatanejo"
+    },
+    {
+      "icao": "MMLT",
+      "name": "Loreto"
+    },
+    {
+      "icao": "MMMZ",
+      "name": "Mazatlàn - General Rafael Buelna"
+    },
+    {
+      "icao": "MMSM",
+      "name": "Mexico City - Felipe Ángeles"
+    },
+    {
+      "icao": "MMMX",
+      "name": "Mexico City Benito Juárez"
+    },
+    {
+      "icao": "MMMY",
+      "name": "Monterrey"
+    },
+    {
+      "icao": "MMMM",
+      "name": "Morelia - General Francisco J. Mujica"
+    },
+    {
+      "icao": "MMMD",
+      "name": "Mérida - Manuel Crescencio Rejón"
+    },
+    {
+      "icao": "MMOX",
+      "name": "Oaxaca - Xoxocotlán"
+    },
+    {
+      "icao": "MMPB",
+      "name": "Puebla - Hermanos Serdán"
+    },
+    {
+      "icao": "MMPR",
+      "name": "Puerto Vallarta"
+    },
+    {
+      "icao": "MMQT",
+      "name": "Querétaro Intercontinental"
+    },
+    {
+      "icao": "MMSD",
+      "name": "San José del Cabo - Los Cabos"
+    },
+    {
+      "icao": "MMLO",
+      "name": "Silao - Guanajuato"
+    },
+    {
+      "icao": "MMTJ",
+      "name": "Tijuana - General Abelardo L. Rodriguez"
+    },
+    {
+      "icao": "MMTO",
+      "name": "Toluca - Adolfo López Mateos"
+    },
+    {
+      "icao": "MMVR",
+      "name": "Veracruz - General Heriberto Jara"
+    },
+    {
+      "icao": "MMVA",
+      "name": "Villahermosa - Carlos Rovirosa Pérez"
+    },
+    {
+      "icao": "MMSL",
+      "name": "Cabo San Lucas"
+    },
+    {
+      "icao": "MMCP",
+      "name": "Campeche - Ingeniero Alberto Acuña Ongay"
+    },
+    {
+      "icao": "MMCY",
+      "name": "Celaya - Captain Rogelio Castillo National"
+    },
+    {
+      "icao": "MMCM",
+      "name": "Chetumal"
+    },
+    {
+      "icao": "MMCC",
+      "name": "Ciudad Acuña"
+    },
+    {
+      "icao": "MMTM",
+      "name": "Ciudad Madero - General Francisco Javier Mina"
+    },
+    {
+      "icao": "MMCN",
+      "name": "Ciudad Obregón"
+    },
+    {
+      "icao": "MMCV",
+      "name": "Ciudad Victoria - General Pedro Jose Mendez"
+    },
+    {
+      "icao": "MMCE",
+      "name": "Ciudad del Carmen"
+    },
+    {
+      "icao": "MMIA",
+      "name": "Colima - Licenciado Miguel de la Madrid"
+    },
+    {
+      "icao": "MMMT",
+      "name": "Cosoleacaque - Minatitlán/Coatzacoalcos"
+    },
+    {
+      "icao": "MMDO",
+      "name": "Durango - General Guadalupe Victoria"
+    },
+    {
+      "icao": "MMJA",
+      "name": "Emiliano Zapata - El Lencero"
+    },
+    {
+      "icao": "MMES",
+      "name": "Ensenada International Airport / El Ciprés Air Base"
+    },
+    {
+      "icao": "MMIT",
+      "name": "General Antonio Cárdenas Rodríguez National Airport / Ixtepec Air Base"
+    },
+    {
+      "icao": "MMGM",
+      "name": "Guaymas - General José María Yáñez"
+    },
+    {
+      "icao": "MMLP",
+      "name": "La Paz - Manuel Márquez de León"
+    },
+    {
+      "icao": "MMLM",
+      "name": "Los Mochis - Valle del Fuerte"
+    },
+    {
+      "icao": "MMLC",
+      "name": "Lázaro Cárdenas"
+    },
+    {
+      "icao": "MMZO",
+      "name": "Manzanillo - Playa de Oro"
+    },
+    {
+      "icao": "MMMA",
+      "name": "Matamoros - General Servando Canales"
+    },
+    {
+      "icao": "MMML",
+      "name": "Mexicali - General Rodolfo Sánchez Taboada"
+    },
+    {
+      "icao": "MMMV",
+      "name": "Monclova"
+    },
+    {
+      "icao": "MMAN",
+      "name": "Monterrey - Del Norte"
+    },
+    {
+      "icao": "MMNG",
+      "name": "Nogales"
+    },
+    {
+      "icao": "MMNL",
+      "name": "Nuevo Laredo - Quetzalcóatl"
+    },
+    {
+      "icao": "MMPG",
+      "name": "Piedras Negras"
+    },
+    {
+      "icao": "MMPA",
+      "name": "Poza Rica - El Tajín National"
+    },
+    {
+      "icao": "MMPS",
+      "name": "Puerto Escondido"
+    },
+    {
+      "icao": "MMRX",
+      "name": "Reynosa - General Lucio Blanco"
+    },
+    {
+      "icao": "MMIO",
+      "name": "Saltillo - Plan De Guadalupe"
+    },
+    {
+      "icao": "MMSP",
+      "name": "San Luis Potosí - Ponciano Arriaga"
+    },
+    {
+      "icao": "MMTP",
+      "name": "Tapachula"
+    },
+    {
+      "icao": "MMCB",
+      "name": "Temixco - General Mariano Matamoros"
+    },
+    {
+      "icao": "MMEP",
+      "name": "Tepic - Amado Nervo National"
+    },
+    {
+      "icao": "MMTC",
+      "name": "Torreón - Francisco Sarabia Tinoco"
+    },
+    {
+      "icao": "MMTG",
+      "name": "Tuxtla Gutiérrez - Angel Albino Corzo"
+    },
+    {
+      "icao": "MMTB",
+      "name": "Tuxtla Gutiérrez - Terán Air Base"
+    },
+    {
+      "icao": "MMPN",
+      "name": "Uruapan - Licenciado y General Ignacio Lopez Rayon"
+    },
+    {
+      "icao": "MMZC",
+      "name": "Zacatecas - General Leobardo C. Ruiz"
+    }
+  ],
+  "Micronesia": [
+    {
+      "icao": "PTSA",
+      "name": "Okat - Kosrae"
+    },
+    {
+      "icao": "PTKK",
+      "name": "Weno Island - Chuuk"
+    },
+    {
+      "icao": "PTYA",
+      "name": "Yap Island - Yap"
+    },
+    {
+      "icao": "PTPN",
+      "name": "Pohnpei Island - Pohnpei"
+    }
+  ],
+  "Moldova": [
+    {
+      "icao": "LUKK",
+      "name": "Chişinău"
+    },
+    {
+      "icao": "LUBL",
+      "name": "Bălți-Leadoveni"
+    },
+    {
+      "icao": "LUCH",
+      "name": "Cahul"
+    },
+    {
+      "icao": "LUBM",
+      "name": "Mărculeşti - Mărculești Air Base"
+    },
+    {
+      "icao": "LUTR",
+      "name": "Tiraspol Airfield"
+    }
+  ],
+  "Mongolia": [
+    {
+      "icao": "ZMCK",
+      "name": "Ulaanbaatar (Sergelen) - Ulaanbaatar Chinggis Khaan"
+    },
+    {
+      "icao": "ZMUB",
+      "name": "Ulaanbaatar - Buyant-Ukhaa"
+    },
+    {
+      "icao": "ZMAT",
+      "name": "Altai"
+    },
+    {
+      "icao": "ZMAH",
+      "name": "Arvaikheer"
+    },
+    {
+      "icao": "ZMBU",
+      "name": "Baruun Urt"
+    },
+    {
+      "icao": "ZMBH",
+      "name": "Bayankhongor"
+    },
+    {
+      "icao": "ZMBN",
+      "name": "Bulgan"
+    },
+    {
+      "icao": "ZMCD",
+      "name": "Choibalsan"
+    },
+    {
+      "icao": "ZMDZ",
+      "name": "Dalanzadgad"
+    },
+    {
+      "icao": "ZMKD",
+      "name": "Khovd"
+    },
+    {
+      "icao": "ZMMN",
+      "name": "Mörön"
+    },
+    {
+      "icao": "ZMUG",
+      "name": "Ulaangom"
+    },
+    {
+      "icao": "ZMUL",
+      "name": "Ölgii Mongolei"
+    }
+  ],
+  "Montenegro": [
+    {
+      "icao": "LYPG",
+      "name": "Podgorica Airport / Podgorica Golubovci Airbase"
+    },
+    {
+      "icao": "LYTV",
+      "name": "Tivat"
+    }
+  ],
+  "Montserrat": [
+    {
+      "icao": "TRPG",
+      "name": "Gerald's Park - John A. Osborne"
+    }
+  ],
+  "Morocco": [
+    {
+      "icao": "GMAD",
+      "name": "Agadir (Temsia) - Al Massira"
+    },
+    {
+      "icao": "GMFO",
+      "name": "Ahl Angad - Oujda Angads"
+    },
+    {
+      "icao": "GMMN",
+      "name": "Casablanca - Mohammed V"
+    },
+    {
+      "icao": "GMFF",
+      "name": "Fes Saïss"
+    },
+    {
+      "icao": "GMMX",
+      "name": "Marrakesh Menara"
+    },
+    {
+      "icao": "GMMW",
+      "name": "Nador Al Aaroui"
+    },
+    {
+      "icao": "GMMZ",
+      "name": "Ouarzazate"
+    },
+    {
+      "icao": "GMMD",
+      "name": "Oulad Yaich - Beni Mellal"
+    },
+    {
+      "icao": "GMME",
+      "name": "Rabat-Salé"
+    },
+    {
+      "icao": "GMTT",
+      "name": "Tangier Ibn Battuta"
+    },
+    {
+      "icao": "GMTN",
+      "name": "Tétouan - Sania Ramel"
+    },
+    {
+      "icao": "GMAZ",
+      "name": "Zagora"
+    },
+    {
+      "icao": "GMTA",
+      "name": "Al Hoceima - Cherif Al Idrissi"
+    },
+    {
+      "icao": "GMFB",
+      "name": "Bouarfa"
+    },
+    {
+      "icao": "GMFK",
+      "name": "Errachidia - Moulay Ali Cherif"
+    },
+    {
+      "icao": "GMMI",
+      "name": "Essaouira-Mogador"
+    },
+    {
+      "icao": "GMFM",
+      "name": "Meknes - Bassatine"
+    },
+    {
+      "icao": "GMAT",
+      "name": "Tan Tan"
+    }
+  ],
+  "Mozambique": [
+    {
+      "icao": "FQBR",
+      "name": "Beira"
+    },
+    {
+      "icao": "FQMA",
+      "name": "Maputo"
+    },
+    {
+      "icao": "FQNP",
+      "name": "Nampula"
+    },
+    {
+      "icao": "FQTT",
+      "name": "Tete"
+    },
+    {
+      "icao": "FQCH",
+      "name": "Chimoio"
+    },
+    {
+      "icao": "FQIN",
+      "name": "Inhambane"
+    },
+    {
+      "icao": "FQLC",
+      "name": "Lichinga"
+    },
+    {
+      "icao": "FQMP",
+      "name": "Mocímboa da Praia"
+    },
+    {
+      "icao": "FQMD",
+      "name": "Mueda"
+    },
+    {
+      "icao": "FQNC",
+      "name": "Nacala"
+    },
+    {
+      "icao": "FQPB",
+      "name": "Pemba"
+    },
+    {
+      "icao": "FQQL",
+      "name": "Quelimane"
+    },
+    {
+      "icao": "FQVL",
+      "name": "Vilanculo - Vilankulo"
+    }
+  ],
+  "Myanmar": [
+    {
+      "icao": "VYMD",
+      "name": "Mandalay"
+    },
+    {
+      "icao": "VYNT",
+      "name": "Naypyitaw - Nay Pyi Taw"
+    },
+    {
+      "icao": "VYYY",
+      "name": "Yangon"
+    },
+    {
+      "icao": "VYDW",
+      "name": "Dawei"
+    },
+    {
+      "icao": "VYHH",
+      "name": "Heho"
+    },
+    {
+      "icao": "VYKT",
+      "name": "Kawthoung"
+    },
+    {
+      "icao": "VYKG",
+      "name": "Kengtung"
+    },
+    {
+      "icao": "VYKP",
+      "name": "Kyaukpyu"
+    },
+    {
+      "icao": "VYLS",
+      "name": "Lashio"
+    },
+    {
+      "icao": "VYLK",
+      "name": "Loikaw"
+    },
+    {
+      "icao": "VYME",
+      "name": "Mkeik - Myeik"
+    },
+    {
+      "icao": "VYMO",
+      "name": "Momeik"
+    },
+    {
+      "icao": "VYMS",
+      "name": "Mong Hsat"
+    },
+    {
+      "icao": "VYMK",
+      "name": "Myitkyina"
+    },
+    {
+      "icao": "VYNS",
+      "name": "Namsang"
+    },
+    {
+      "icao": "VYPT",
+      "name": "Putao"
+    },
+    {
+      "icao": "VYSW",
+      "name": "Sittwe"
+    },
+    {
+      "icao": "VYTL",
+      "name": "Tachileik"
+    },
+    {
+      "icao": "VYTD",
+      "name": "Thandwe"
+    }
+  ],
+  "Namibia": [
+    {
+      "icao": "FYWB",
+      "name": "Walvis Bay(Rooikop) - Walvis Bay"
+    },
+    {
+      "icao": "FYWH",
+      "name": "Windhoek - Hosea Kutako"
+    },
+    {
+      "icao": "FYAR",
+      "name": "Arandis"
+    },
+    {
+      "icao": "FYGF",
+      "name": "Grootfontein"
+    },
+    {
+      "icao": "FYKT",
+      "name": "Keetmanshoop"
+    },
+    {
+      "icao": "FYLZ",
+      "name": "Luderitz"
+    },
+    {
+      "icao": "FYML",
+      "name": "Mariental"
+    },
+    {
+      "icao": "FYKM",
+      "name": "Mpacha - Katima Mulilo"
+    },
+    {
+      "icao": "FYOA",
+      "name": "Ondangwa"
+    },
+    {
+      "icao": "FYOG",
+      "name": "Oranjemund"
+    },
+    {
+      "icao": "FYRU",
+      "name": "Rundu"
+    },
+    {
+      "icao": "FYTM",
+      "name": "Tsumeb"
+    },
+    {
+      "icao": "FYWE",
+      "name": "Windhoek - Eros"
+    }
+  ],
+  "Nauru": [
+    {
+      "icao": "ANYN",
+      "name": "Yaren - Nauru"
+    }
+  ],
+  "Nepal": [
+    {
+      "icao": "VNKT",
+      "name": "Kathmandu - Tribhuvan"
+    },
+    {
+      "icao": "VNBW",
+      "name": "Siddharthanagar (Bhairahawa) - Gautam Buddha"
+    },
+    {
+      "icao": "VNVT",
+      "name": "Biratnagar"
+    },
+    {
+      "icao": "VNJP",
+      "name": "Janakpur"
+    },
+    {
+      "icao": "VNNG",
+      "name": "Nepalgunj"
+    },
+    {
+      "icao": "VNPK",
+      "name": "Pokhara Domestic"
+    },
+    {
+      "icao": "VNTJ",
+      "name": "Taplejung"
+    }
+  ],
+  "Netherlands": [
+    {
+      "icao": "EHAM",
+      "name": "Amsterdam Airport Schiphol"
+    },
+    {
+      "icao": "EHEH",
+      "name": "Eindhoven"
+    },
+    {
+      "icao": "EHGG",
+      "name": "Groningen Airport Eelde"
+    },
+    {
+      "icao": "EHBK",
+      "name": "Maastricht Aachen"
+    },
+    {
+      "icao": "EHRD",
+      "name": "Rotterdam The Hague"
+    },
+    {
+      "icao": "EHDL",
+      "name": "Arnhem - Deelen Air Base"
+    },
+    {
+      "icao": "EHKD",
+      "name": "De Kooy Airfield / Den Helder Naval Air Station"
+    },
+    {
+      "icao": "EHTW",
+      "name": "Enschede - Twente"
+    },
+    {
+      "icao": "EHGR",
+      "name": "Gilze Rijen Air Base"
+    },
+    {
+      "icao": "EHWO",
+      "name": "Hoogerheide - Woensdrecht Air Base"
+    },
+    {
+      "icao": "EHLW",
+      "name": "Leeuwarden Air Base"
+    },
+    {
+      "icao": "EHLE",
+      "name": "Lelystad"
+    },
+    {
+      "icao": "EHVK",
+      "name": "Uden - Volkel Air Base"
+    },
+    {
+      "icao": "EHBD",
+      "name": "Weert - Kempen Airport Budel"
+    }
+  ],
+  "New Caledonia": [
+    {
+      "icao": "NWWW",
+      "name": "Nouméa (La Tontouta) - La Tontouta"
+    },
+    {
+      "icao": "NWWD",
+      "name": "Koné"
+    },
+    {
+      "icao": "NWWL",
+      "name": "Lifou"
+    },
+    {
+      "icao": "NWWR",
+      "name": "Maré"
+    },
+    {
+      "icao": "NWWM",
+      "name": "Nouméa Magenta"
+    },
+    {
+      "icao": "NWWV",
+      "name": "Ouvéa"
+    },
+    {
+      "icao": "NWWA",
+      "name": "Tiga"
+    },
+    {
+      "icao": "NWWU",
+      "name": "Touho"
+    },
+    {
+      "icao": "NWWE",
+      "name": "Île des Pins"
+    }
+  ],
+  "New Zealand": [
+    {
+      "icao": "NZAA",
+      "name": "Auckland"
+    },
+    {
+      "icao": "NZCH",
+      "name": "Christchurch"
+    },
+    {
+      "icao": "NZQN",
+      "name": "Queenstown"
+    },
+    {
+      "icao": "NZWN",
+      "name": "Wellington"
+    },
+    {
+      "icao": "NZLX",
+      "name": "Alexandra Aerodrome"
+    },
+    {
+      "icao": "NZKT",
+      "name": "Awanui - Kaitaia"
+    },
+    {
+      "icao": "NZWB",
+      "name": "Blenheim - Woodbourne"
+    },
+    {
+      "icao": "NZDN",
+      "name": "Dunedin"
+    },
+    {
+      "icao": "NZGS",
+      "name": "Gisborne"
+    },
+    {
+      "icao": "NZGT",
+      "name": "Glentanner Station - Glentanner"
+    },
+    {
+      "icao": "NZHN",
+      "name": "Hamilton"
+    },
+    {
+      "icao": "NZHK",
+      "name": "Hokitika Airfield"
+    },
+    {
+      "icao": "NZNV",
+      "name": "Invercargill"
+    },
+    {
+      "icao": "NZKK",
+      "name": "Kerikeri"
+    },
+    {
+      "icao": "NZMO",
+      "name": "Manapouri"
+    },
+    {
+      "icao": "NZAR",
+      "name": "Manurewa - Ardmore"
+    },
+    {
+      "icao": "NZMS",
+      "name": "Masterton - Hood"
+    },
+    {
+      "icao": "NZMC",
+      "name": "Mount Cook"
+    },
+    {
+      "icao": "NZNR",
+      "name": "Napier - Hawke's Bay"
+    },
+    {
+      "icao": "NZNS",
+      "name": "Nelson"
+    },
+    {
+      "icao": "NZNP",
+      "name": "New Plymouth"
+    },
+    {
+      "icao": "NZOU",
+      "name": "Oamaru"
+    },
+    {
+      "icao": "NZPM",
+      "name": "Palmerston North"
+    },
+    {
+      "icao": "NZPP",
+      "name": "Paraparaumu"
+    },
+    {
+      "icao": "NZWP",
+      "name": "RNZAF Base Auckland-Whenuapai"
+    },
+    {
+      "icao": "NZOH",
+      "name": "RNZAF Base Ohakea"
+    },
+    {
+      "icao": "NZRO",
+      "name": "Rotorua Regional"
+    },
+    {
+      "icao": "NZAP",
+      "name": "Taupo"
+    },
+    {
+      "icao": "NZTG",
+      "name": "Tauranga"
+    },
+    {
+      "icao": "NZCI",
+      "name": "Te One - Inia William Tuuta Memorial"
+    },
+    {
+      "icao": "NZTU",
+      "name": "Timaru"
+    },
+    {
+      "icao": "NZUK",
+      "name": "Twitzel - Pukaki"
+    },
+    {
+      "icao": "NZWO",
+      "name": "Wairoa"
+    },
+    {
+      "icao": "NZWF",
+      "name": "Wanaka"
+    },
+    {
+      "icao": "NZWU",
+      "name": "Wanganui"
+    },
+    {
+      "icao": "NZWS",
+      "name": "Westport"
+    },
+    {
+      "icao": "NZWK",
+      "name": "Whakatāne"
+    },
+    {
+      "icao": "NZWR",
+      "name": "Whangarei"
+    }
+  ],
+  "Nicaragua": [
+    {
+      "icao": "MNMG",
+      "name": "Augusto C. Sandino (Managua)"
+    },
+    {
+      "icao": "MNBL",
+      "name": "Bluefields"
+    },
+    {
+      "icao": "MNPC",
+      "name": "Puerto Cabezas"
+    }
+  ],
+  "Niger": [
+    {
+      "icao": "DRRN",
+      "name": "Niamey - Diori Hamani"
+    },
+    {
+      "icao": "DRZA",
+      "name": "Agadez - Mano Dayak"
+    },
+    {
+      "icao": "DRRM",
+      "name": "Maradi"
+    },
+    {
+      "icao": "DRRT",
+      "name": "Tahoua"
+    },
+    {
+      "icao": "DRZR",
+      "name": "Zinder"
+    }
+  ],
+  "Nigeria": [
+    {
+      "icao": "DNAA",
+      "name": "Abuja - Nnamdi Azikiwe"
+    },
+    {
+      "icao": "DNAS",
+      "name": "Asaba"
+    },
+    {
+      "icao": "DNBK",
+      "name": "Birinin Kebbi - Sir Ahmadu Bello"
+    },
+    {
+      "icao": "DNEN",
+      "name": "Enegu - Akanu Ibiam"
+    },
+    {
+      "icao": "DNIL",
+      "name": "Ilorin/Ogbomosho - General Tunde Idiagbon"
+    },
+    {
+      "icao": "DNKA",
+      "name": "Kaduna"
+    },
+    {
+      "icao": "DNMM",
+      "name": "Lagos - Murtala Muhammed"
+    },
+    {
+      "icao": "DNMA",
+      "name": "Maiduguri"
+    },
+    {
+      "icao": "DNKN",
+      "name": "Mallam Aminu Kano"
+    },
+    {
+      "icao": "DNPO",
+      "name": "Port Harcourt"
+    },
+    {
+      "icao": "DNBC",
+      "name": "Sir Abubakar Tafawa Balewa Bauchi State"
+    },
+    {
+      "icao": "DNSO",
+      "name": "Sokoto - Sadiq Abubakar III"
+    },
+    {
+      "icao": "DNAK",
+      "name": "Akure"
+    },
+    {
+      "icao": "DNBE",
+      "name": "Benin"
+    },
+    {
+      "icao": "DNCA",
+      "name": "Calabar - Margaret Ekpo"
+    },
+    {
+      "icao": "DNGO",
+      "name": "Gombe Lawanti"
+    },
+    {
+      "icao": "DNGU",
+      "name": "Gusau"
+    },
+    {
+      "icao": "DNIB",
+      "name": "Ibadan"
+    },
+    {
+      "icao": "DNJO",
+      "name": "Jos - Yakubu Gowon"
+    },
+    {
+      "icao": "DNKT",
+      "name": "Katsina - Umaru Musa Yar'adua"
+    },
+    {
+      "icao": "DNMK",
+      "name": "Makurdi"
+    },
+    {
+      "icao": "DNMN",
+      "name": "Minna"
+    },
+    {
+      "icao": "DNSU",
+      "name": "Okpe - Warri"
+    },
+    {
+      "icao": "DNIM",
+      "name": "Owerri - Sam Mbakwe International Cargo"
+    },
+    {
+      "icao": "DNPM",
+      "name": "Port Harcourt City Airport / Port Harcourt Air Force Base"
+    },
+    {
+      "icao": "DNAI",
+      "name": "Uyo - Akwa Ibom"
+    },
+    {
+      "icao": "DNYO",
+      "name": "Yola"
+    },
+    {
+      "icao": "DNZA",
+      "name": "Zaria"
+    }
+  ],
+  "Niue": [
+    {
+      "icao": "NIUE",
+      "name": "Alofi - Niue"
+    }
+  ],
+  "Norfolk Island": [
+    {
+      "icao": "YSNF",
+      "name": "Burnt Pine - Norfolk Island"
+    }
+  ],
+  "North Korea": [
+    {
+      "icao": "ZKPY",
+      "name": "Pyongyang Sunan"
+    },
+    {
+      "icao": "ZKHM",
+      "name": "Hoemun-ri - Orang (Chongjin)"
+    },
+    {
+      "icao": "ZKSD",
+      "name": "Sŏndŏng-ni - Sondok"
+    },
+    {
+      "icao": "ZKWS",
+      "name": "Wonsan Kalma"
+    }
+  ],
+  "North Macedonia": [
+    {
+      "icao": "LWSK",
+      "name": "Ilinden - Skopje"
+    },
+    {
+      "icao": "LWOH",
+      "name": "Ohrid St. Paul the Apostle"
+    }
+  ],
+  "Northern Mariana Islands": [
+    {
+      "icao": "PGSN",
+      "name": "I Fadang, Saipan - Saipan"
+    },
+    {
+      "icao": "PGRO",
+      "name": "Rota Island - Rota"
+    },
+    {
+      "icao": "PGWT",
+      "name": "Tinian Island - Tinian"
+    }
+  ],
+  "Norway": [
+    {
+      "icao": "ENBR",
+      "name": "Bergen Airport, Flesland"
+    },
+    {
+      "icao": "ENBO",
+      "name": "Bodø"
+    },
+    {
+      "icao": "ENEV",
+      "name": "Evenes - Harstad/Narvik"
+    },
+    {
+      "icao": "ENCN",
+      "name": "Kristiansand(Kjevik) - Kristiansand"
+    },
+    {
+      "icao": "ENGM",
+      "name": "Oslo (Gardermoen) - Oslo-Gardermoen"
+    },
+    {
+      "icao": "ENTO",
+      "name": "Sandefjord(Torp) - Sandefjord Airport, Torp"
+    },
+    {
+      "icao": "ENZV",
+      "name": "Stavanger Airport, Sola"
+    },
+    {
+      "icao": "ENTC",
+      "name": "Tromsø"
+    },
+    {
+      "icao": "ENVA",
+      "name": "Trondheim Airport, Værnes"
+    },
+    {
+      "icao": "ENAL",
+      "name": "Ålesund"
+    },
+    {
+      "icao": "ENST",
+      "name": "Alstahaug - Sandnessjøen Airport, Stokka"
+    },
+    {
+      "icao": "ENAT",
+      "name": "Alta"
+    },
+    {
+      "icao": "ENAN",
+      "name": "Andøya Airport, Andenes"
+    },
+    {
+      "icao": "ENBV",
+      "name": "Berlevåg"
+    },
+    {
+      "icao": "ENBN",
+      "name": "Brønnøysund Airport, Brønnøy"
+    },
+    {
+      "icao": "ENBS",
+      "name": "Båtsfjord"
+    },
+    {
+      "icao": "ENFL",
+      "name": "Florø"
+    },
+    {
+      "icao": "ENSN",
+      "name": "Geiteryggen - Skien"
+    },
+    {
+      "icao": "ENSK",
+      "name": "Hadsel - Stokmarknes Airport, Skagen"
+    },
+    {
+      "icao": "ENHF",
+      "name": "Hammerfest"
+    },
+    {
+      "icao": "ENHD",
+      "name": "Haugesund Airport, Karmøy"
+    },
+    {
+      "icao": "ENHV",
+      "name": "Honningsvåg Airport, Valan"
+    },
+    {
+      "icao": "ENKR",
+      "name": "Kirkenes Airport, Høybuktmoen"
+    },
+    {
+      "icao": "ENKB",
+      "name": "Kristiansund Airport, Kvernberget"
+    },
+    {
+      "icao": "ENNA",
+      "name": "Lakselv Airport, Banak"
+    },
+    {
+      "icao": "ENSO",
+      "name": "Leirvik - Stord Airport, Sørstokken"
+    },
+    {
+      "icao": "ENLK",
+      "name": "Leknes"
+    },
+    {
+      "icao": "ENSB",
+      "name": "Longyearbyen - Svalbard Airport, Longyear"
+    },
+    {
+      "icao": "ENMH",
+      "name": "Mehamn"
+    },
+    {
+      "icao": "ENRA",
+      "name": "Mo i Rana Airport, Røssvoll"
+    },
+    {
+      "icao": "ENML",
+      "name": "Molde Airport, Årø"
+    },
+    {
+      "icao": "ENMS",
+      "name": "Mosjøen Airport, Kjærstad"
+    },
+    {
+      "icao": "ENDU",
+      "name": "Målselv - Bardufoss"
+    },
+    {
+      "icao": "ENNO",
+      "name": "Notodden"
+    },
+    {
+      "icao": "ENRY",
+      "name": "Oslo - Moss Airport, Rygge"
+    },
+    {
+      "icao": "ENRO",
+      "name": "Røros"
+    },
+    {
+      "icao": "ENRM",
+      "name": "Rørvik Airport, Ryum"
+    },
+    {
+      "icao": "ENSH",
+      "name": "Svolvær Airport, Helle"
+    },
+    {
+      "icao": "ENSR",
+      "name": "Sørkjosen"
+    },
+    {
+      "icao": "ENVD",
+      "name": "Vadsø"
+    },
+    {
+      "icao": "ENSS",
+      "name": "Vardø Airport, Svartnes"
+    },
+    {
+      "icao": "ENOL",
+      "name": "Ørland"
+    },
+    {
+      "icao": "ENOV",
+      "name": "Ørsta-Volda Airport, Hovden"
+    }
+  ],
+  "Oman": [
+    {
+      "icao": "OOMS",
+      "name": "Muscat/Seeb - Muscat"
+    },
+    {
+      "icao": "OOSA",
+      "name": "Salalah"
+    },
+    {
+      "icao": "OOSH",
+      "name": "Suhar"
+    },
+    {
+      "icao": "OOKB",
+      "name": "Khasab"
+    },
+    {
+      "icao": "OOMA",
+      "name": "RAFO Masirah"
+    },
+    {
+      "icao": "OOTH",
+      "name": "Thumrait Air Base"
+    }
+  ],
+  "Pakistan": [
+    {
+      "icao": "OPIS",
+      "name": "Attock - Islamabad"
+    },
+    {
+      "icao": "OPFA",
+      "name": "Faisalabad"
+    },
+    {
+      "icao": "OPGW",
+      "name": "Gurandani - New Gwadar"
+    },
+    {
+      "icao": "OPKC",
+      "name": "Karachi - Jinnah"
+    },
+    {
+      "icao": "OPLA",
+      "name": "Lahore - Allama Iqbal"
+    },
+    {
+      "icao": "OPMT",
+      "name": "Multan"
+    },
+    {
+      "icao": "OPPS",
+      "name": "Peshawar - Bacha Khan"
+    },
+    {
+      "icao": "OPQT",
+      "name": "Quetta"
+    },
+    {
+      "icao": "OPST",
+      "name": "Sialkot"
+    },
+    {
+      "icao": "OPSD",
+      "name": "Skardu"
+    },
+    {
+      "icao": "OPTU",
+      "name": "Turbat"
+    },
+    {
+      "icao": "OPBW",
+      "name": "Bahawalpur"
+    },
+    {
+      "icao": "OPSK",
+      "name": "Begum Nusrat Bhutto International Airport Sukkur"
+    },
+    {
+      "icao": "OPCH",
+      "name": "Chitral"
+    },
+    {
+      "icao": "OPDG",
+      "name": "Dera Ghazi Khan"
+    },
+    {
+      "icao": "OPDI",
+      "name": "Dera Ismael Khan Airport [IN-ACTIVE]"
+    },
+    {
+      "icao": "OPZB",
+      "name": "Fort Sandeman - Zhob"
+    },
+    {
+      "icao": "OPGT",
+      "name": "Gilgit"
+    },
+    {
+      "icao": "OPJA",
+      "name": "Jacobabad - Shahbaz Air Base"
+    },
+    {
+      "icao": "OPMA",
+      "name": "Mangla"
+    },
+    {
+      "icao": "OPMI",
+      "name": "Mianwali Air Base"
+    },
+    {
+      "icao": "OPMJ",
+      "name": "Moenjodaro"
+    },
+    {
+      "icao": "OPNH",
+      "name": "Nawabashah - Shaheed Benazirabad"
+    },
+    {
+      "icao": "OPPG",
+      "name": "Panjgur"
+    },
+    {
+      "icao": "OPPI",
+      "name": "Pasni"
+    },
+    {
+      "icao": "OPRK",
+      "name": "Rahim Yar Khan - Shaikh Zaid"
+    },
+    {
+      "icao": "OPRT",
+      "name": "Rawalakot"
+    },
+    {
+      "icao": "OPSS",
+      "name": "Saidu Sharif"
+    },
+    {
+      "icao": "OPSR",
+      "name": "Sargodha - Mushaf Air Base"
+    },
+    {
+      "icao": "OPSN",
+      "name": "Sehwan Sharif"
+    },
+    {
+      "icao": "OPSU",
+      "name": "Sui Airport"
+    }
+  ],
+  "Palau": [
+    {
+      "icao": "PTRO",
+      "name": "Babelthuap Island - Roman Tmetuchl"
+    }
+  ],
+  "Panama": [
+    {
+      "icao": "MPTO",
+      "name": "Tocumen"
+    },
+    {
+      "icao": "MPMG",
+      "name": "Albrook - Marcos A. Gelabert"
+    },
+    {
+      "icao": "MPBO",
+      "name": "Bocas del Toro \"Isla Colón\""
+    },
+    {
+      "icao": "MPCH",
+      "name": "Changuinola Captain Manuel Niño"
+    },
+    {
+      "icao": "MPCE",
+      "name": "Chitré - Alonso Valderrama"
+    },
+    {
+      "icao": "MPEJ",
+      "name": "Colón - Enrique Adolfo Jimenez"
+    },
+    {
+      "icao": "MPDA",
+      "name": "David - Enrique Malek"
+    },
+    {
+      "icao": "MPSA",
+      "name": "Santiago - Ruben Cantu"
+    }
+  ],
+  "Papua New Guinea": [
+    {
+      "icao": "AYNZ",
+      "name": "Lae - Nadzab Tomodachi"
+    },
+    {
+      "icao": "AYPY",
+      "name": "Port Moresby Jacksons"
+    },
+    {
+      "icao": "AYBA",
+      "name": "Baimuru"
+    },
+    {
+      "icao": "AYBM",
+      "name": "Balimo"
+    },
+    {
+      "icao": "AYBK",
+      "name": "Buka Island - Buka"
+    },
+    {
+      "icao": "AYDU",
+      "name": "Daru"
+    },
+    {
+      "icao": "AYGA",
+      "name": "Goronka - Goroka"
+    },
+    {
+      "icao": "AYGN",
+      "name": "Gurney"
+    },
+    {
+      "icao": "AYKV",
+      "name": "Kavieng"
+    },
+    {
+      "icao": "AYKM",
+      "name": "Kerema"
+    },
+    {
+      "icao": "AYHK",
+      "name": "Kimbe - Hoskins"
+    },
+    {
+      "icao": "AYTK",
+      "name": "Kokopo - Tokua"
+    },
+    {
+      "icao": "AYCH",
+      "name": "Kundiawa - Chimbu"
+    },
+    {
+      "icao": "AYMD",
+      "name": "Madang"
+    },
+    {
+      "icao": "AYMO",
+      "name": "Manus Island - Momote"
+    },
+    {
+      "icao": "AYMN",
+      "name": "Mendi"
+    },
+    {
+      "icao": "AYMH",
+      "name": "Mount Hagen Kagamuga"
+    },
+    {
+      "icao": "AYGR",
+      "name": "Popondetta - Girua"
+    },
+    {
+      "icao": "AYVN",
+      "name": "Vanimo"
+    },
+    {
+      "icao": "AYWD",
+      "name": "Wapenamanda"
+    },
+    {
+      "icao": "AYWK",
+      "name": "Wewak"
+    }
+  ],
+  "Paraguay": [
+    {
+      "icao": "SGAS",
+      "name": "Asunción - Silvio Pettirossi"
+    },
+    {
+      "icao": "SGES",
+      "name": "Ciudad del Este - Guaraní"
+    },
+    {
+      "icao": "SGEN",
+      "name": "Encarnación - Teniente Ramon A. Ayub Gonzalez"
+    },
+    {
+      "icao": "SGAY",
+      "name": "Aeropuerto Nacional Juan de Ayolas"
+    },
+    {
+      "icao": "SGCO",
+      "name": "Concepción - Lieutenant Colonel Carmelo Peralta National"
+    },
+    {
+      "icao": "SGIB",
+      "name": "Itaipú"
+    },
+    {
+      "icao": "SGME",
+      "name": "Mariscal Estigarribia - Dr. Luis María Argaña"
+    },
+    {
+      "icao": "SGPJ",
+      "name": "Pedro Juan Caballero - Aeropuerto Nacional Dr. Augusto Roberto Fuster"
+    },
+    {
+      "icao": "SGPI",
+      "name": "Pilar - Aeródromo Don Carlos Miguel Gimenez"
+    }
+  ],
+  "Peru": [
+    {
+      "icao": "SPQU",
+      "name": "Arequipa - Rodríguez Ballón"
+    },
+    {
+      "icao": "SPHI",
+      "name": "Chiclayo - Capitán FAP José A. Quiñones González"
+    },
+    {
+      "icao": "SPZO",
+      "name": "Cusco - Alejandro Velasco Astete"
+    },
+    {
+      "icao": "SPQT",
+      "name": "Iquitos - Coronel FAP Francisco Secada Vignetta"
+    },
+    {
+      "icao": "SPJL",
+      "name": "Juliaca - Inca Manco Capac"
+    },
+    {
+      "icao": "SPJC",
+      "name": "Lima - Jorge Chávez"
+    },
+    {
+      "icao": "SPSO",
+      "name": "Pisco - Captain Renán Elías Olivera"
+    },
+    {
+      "icao": "SPCL",
+      "name": "Pucallpa - Cap FAP David Abenzur Rengifo"
+    },
+    {
+      "icao": "SPRU",
+      "name": "Trujillo - Capitán FAP Carlos Martínez de Pinillos"
+    },
+    {
+      "icao": "SPHZ",
+      "name": "Anta - Comandante FAP German Arias Graziani"
+    },
+    {
+      "icao": "SPAY",
+      "name": "Atalaya - Teniente General Gerardo Pérez Pinedo"
+    },
+    {
+      "icao": "SPHO",
+      "name": "Ayacucho - Air Force Colonel Alfredo Mendivil Duarte"
+    },
+    {
+      "icao": "SPJR",
+      "name": "Cajamarca - Mayor General FAP Armando Revoredo Iglesias"
+    },
+    {
+      "icao": "SPPY",
+      "name": "Chachapoyas"
+    },
+    {
+      "icao": "SPEO",
+      "name": "Chimbote - FAP Lieutenant Jaime Andres de Montreuil Morales"
+    },
+    {
+      "icao": "SPNC",
+      "name": "Huánuco - Alferez Fap David Figueroa Fernandini"
+    },
+    {
+      "icao": "SPBR",
+      "name": "Iberia"
+    },
+    {
+      "icao": "SPLO",
+      "name": "Ilo - General Jorge Fernandez Maldon"
+    },
+    {
+      "icao": "SPJJ",
+      "name": "Jauja - Francisco Carle"
+    },
+    {
+      "icao": "SPJE",
+      "name": "Jaén - Shumba"
+    },
+    {
+      "icao": "SPJI",
+      "name": "Juanjuí - Juanjui"
+    },
+    {
+      "icao": "SPZA",
+      "name": "Nazca - Maria Reiche Neuman"
+    },
+    {
+      "icao": "SPUR",
+      "name": "Piura - PAF Captain Guillermo Concha Iberico"
+    },
+    {
+      "icao": "SPTU",
+      "name": "Puerto Maldonado - Padre Aldamiz"
+    },
+    {
+      "icao": "SPJA",
+      "name": "Rioja - Juan Simons Vela"
+    },
+    {
+      "icao": "SPTN",
+      "name": "Tacna - Coronel FAP Carlos Ciriani Santa Rosa"
+    },
+    {
+      "icao": "SPYL",
+      "name": "Talara - Captain Victor Montes Arias"
+    },
+    {
+      "icao": "SPST",
+      "name": "Tarapoto - Cadete FAP Guillermo Del Castillo Paredes"
+    },
+    {
+      "icao": "SPME",
+      "name": "Tumbes - Captain Pedro Canga Rodríguez"
+    },
+    {
+      "icao": "SPMS",
+      "name": "Yurimaguas - Moises Benzaquen Rengifo"
+    }
+  ],
+  "Philippines": [
+    {
+      "icao": "RPVB",
+      "name": "Bacolod City - Bacolod-Silay"
+    },
+    {
+      "icao": "RPVI",
+      "name": "Cabatuan - Iloilo"
+    },
+    {
+      "icao": "RPVM",
+      "name": "Cebu City/Lapu-Lapu City - Mactan Cebu"
+    },
+    {
+      "icao": "RPMD",
+      "name": "Davao - Francisco Bangoy"
+    },
+    {
+      "icao": "RPMR",
+      "name": "General Santos"
+    },
+    {
+      "icao": "RPVK",
+      "name": "Kalibo"
+    },
+    {
+      "icao": "RPMY",
+      "name": "Laguindingan"
+    },
+    {
+      "icao": "RPLI",
+      "name": "Laoag City - Laoag"
+    },
+    {
+      "icao": "RPLK",
+      "name": "Legazpi - Bicol"
+    },
+    {
+      "icao": "RPLC",
+      "name": "Mabalacat - Clark International Airport / Clark Air Base"
+    },
+    {
+      "icao": "RPLL",
+      "name": "Manila (Pasay) - Ninoy Aquino"
+    },
+    {
+      "icao": "RPLB",
+      "name": "Olongapo - Subic Bay International Airport / Naval Air Station Cubi Point"
+    },
+    {
+      "icao": "RPVP",
+      "name": "Puerto Princesa International Airport / PAF Antonio Bautista Air Base"
+    },
+    {
+      "icao": "RPMZ",
+      "name": "Zamboanga"
+    },
+    {
+      "icao": "RPUB",
+      "name": "Baguio - Loakan"
+    },
+    {
+      "icao": "RPUR",
+      "name": "Baler - Dr. Juan C. Angara"
+    },
+    {
+      "icao": "RPUO",
+      "name": "Basco"
+    },
+    {
+      "icao": "RPMF",
+      "name": "Bislig"
+    },
+    {
+      "icao": "RPSP",
+      "name": "Bohol-Panglao"
+    },
+    {
+      "icao": "RPMN",
+      "name": "Bongao - Sanga Sanga"
+    },
+    {
+      "icao": "RPME",
+      "name": "Butuan - Bancasi"
+    },
+    {
+      "icao": "RPVC",
+      "name": "Calbayog City - Calbayog"
+    },
+    {
+      "icao": "RPVF",
+      "name": "Catarman National"
+    },
+    {
+      "icao": "RPVE",
+      "name": "Caticlan - Godofredo P. Ramos"
+    },
+    {
+      "icao": "RPUY",
+      "name": "Cauayan City - Cauayan"
+    },
+    {
+      "icao": "RPLS",
+      "name": "Cavite - Danilo Atienza Air Base"
+    },
+    {
+      "icao": "RPVV",
+      "name": "Coron - Francisco B. Reyes (Busuanga)"
+    },
+    {
+      "icao": "RPUD",
+      "name": "Daet"
+    },
+    {
+      "icao": "RPMC",
+      "name": "Datu Odin Sinsuat - Cotabato (Awang)"
+    },
+    {
+      "icao": "RPMG",
+      "name": "Dipolog"
+    },
+    {
+      "icao": "RPVD",
+      "name": "Dumaguete City - Sibulan"
+    },
+    {
+      "icao": "RPUW",
+      "name": "Gasan - Marinduque"
+    },
+    {
+      "icao": "RPLT",
+      "name": "Itbayat Jorge Abad"
+    },
+    {
+      "icao": "RPMJ",
+      "name": "Jolo"
+    },
+    {
+      "icao": "RPLH",
+      "name": "Lal-lo - Cagayan North"
+    },
+    {
+      "icao": "RPLU",
+      "name": "Lubang"
+    },
+    {
+      "icao": "RPMH",
+      "name": "Mambajao - Camiguin"
+    },
+    {
+      "icao": "RPUM",
+      "name": "Mamburao"
+    },
+    {
+      "icao": "RPVJ",
+      "name": "Masbate - Moises R. Espinosa"
+    },
+    {
+      "icao": "RPMQ",
+      "name": "Mati National"
+    },
+    {
+      "icao": "RPUN",
+      "name": "Naga"
+    },
+    {
+      "icao": "RPVO",
+      "name": "Ormoc City - Ormoc"
+    },
+    {
+      "icao": "RPMO",
+      "name": "Ozamiz - Labo"
+    },
+    {
+      "icao": "RPMP",
+      "name": "Pagadian"
+    },
+    {
+      "icao": "RPVR",
+      "name": "Roxas City - Roxas"
+    },
+    {
+      "icao": "RPUS",
+      "name": "San Fernando"
+    },
+    {
+      "icao": "RPUH",
+      "name": "San Jose"
+    },
+    {
+      "icao": "RPVS",
+      "name": "San Jose - Evelio Javier"
+    },
+    {
+      "icao": "RPMA",
+      "name": "Surallah - Allah Valley"
+    },
+    {
+      "icao": "RPMS",
+      "name": "Surigao City - Surigao"
+    },
+    {
+      "icao": "RPVU",
+      "name": "Tablas Island - Tugdan"
+    },
+    {
+      "icao": "RPVA",
+      "name": "Tacloban City - Daniel Z. Romualdez"
+    },
+    {
+      "icao": "RPMW",
+      "name": "Tandag"
+    },
+    {
+      "icao": "RPUT",
+      "name": "Tuguegarao City - Tuguegarao"
+    },
+    {
+      "icao": "RPUV",
+      "name": "Virac"
+    }
+  ],
+  "Poland": [
+    {
+      "icao": "EPKK",
+      "name": "Balice - Kraków John Paul II"
+    },
+    {
+      "icao": "EPWR",
+      "name": "Copernicus Wrocław"
+    },
+    {
+      "icao": "EPGD",
+      "name": "Gdańsk Lech Wałęsa"
+    },
+    {
+      "icao": "EPKT",
+      "name": "Katowice Wojciech Korfanty"
+    },
+    {
+      "icao": "EPLB",
+      "name": "Lublin"
+    },
+    {
+      "icao": "EPMO",
+      "name": "Nowy Dwór Mazowiecki - Warsaw Modlin"
+    },
+    {
+      "icao": "EPPO",
+      "name": "Poznań-Ławica"
+    },
+    {
+      "icao": "EPRZ",
+      "name": "Rzeszów-Jasionka"
+    },
+    {
+      "icao": "EPSC",
+      "name": "Szczecin(Glewice) - Solidarity Szczecin–Goleniów"
+    },
+    {
+      "icao": "EPWA",
+      "name": "Warsaw Chopin"
+    },
+    {
+      "icao": "EPLL",
+      "name": "Łódź Władysław Reymont"
+    },
+    {
+      "icao": "EPDE",
+      "name": "Dęblin - Deblin Military Air Base"
+    },
+    {
+      "icao": "EPBY",
+      "name": "Ignacy Jan Paderewski Bydgoszcz"
+    },
+    {
+      "icao": "EPIR",
+      "name": "Inowroclaw Military Air Base"
+    },
+    {
+      "icao": "EPLY",
+      "name": "Leźnica Wielka Air Base"
+    },
+    {
+      "icao": "EPZG",
+      "name": "Nowe Kramsko - Zielona Góra-Babimost"
+    },
+    {
+      "icao": "EPTM",
+      "name": "Nowy Glinnik - Tomaszów Mazowiecki Military Air Base"
+    },
+    {
+      "icao": "EPCE",
+      "name": "Siemirowice - Cewice Naval Air Base"
+    },
+    {
+      "icao": "EPSN",
+      "name": "Swidwin Military Air Base"
+    },
+    {
+      "icao": "EPSY",
+      "name": "Szymany - Olsztyn-Mazury"
+    },
+    {
+      "icao": "EPRA",
+      "name": "Warsaw Radom"
+    }
+  ],
+  "Portugal": [
+    {
+      "icao": "LPFR",
+      "name": "Faro - Gago Coutinho"
+    },
+    {
+      "icao": "LPMA",
+      "name": "Funchal - Cristiano Ronaldo"
+    },
+    {
+      "icao": "LPPT",
+      "name": "Lisbon Humberto Delgado"
+    },
+    {
+      "icao": "LPPD",
+      "name": "Ponta Delgada - João Paulo II"
+    },
+    {
+      "icao": "LPPR",
+      "name": "Porto - Francisco de Sá Carneiro"
+    },
+    {
+      "icao": "LPVZ",
+      "name": "Aerodromo Goncalves Lobato (Viseu Airport)"
+    },
+    {
+      "icao": "LPCO",
+      "name": "Aerodromo Municipal de Coimbra"
+    },
+    {
+      "icao": "LPCB",
+      "name": "Aerodromo de Castelo Branco"
+    },
+    {
+      "icao": "LPSO",
+      "name": "Aeródromo Municipal de Ponte de Sor"
+    },
+    {
+      "icao": "LPBJ",
+      "name": "Beja Airport / Airbase"
+    },
+    {
+      "icao": "LPBR",
+      "name": "Braga Municipal Aerodrome"
+    },
+    {
+      "icao": "LPBG",
+      "name": "Bragança"
+    },
+    {
+      "icao": "LPCS",
+      "name": "Cascais"
+    },
+    {
+      "icao": "LPHR",
+      "name": "Horta"
+    },
+    {
+      "icao": "LPVL",
+      "name": "Maia - Vilar de Luz Airfield"
+    },
+    {
+      "icao": "LPMR",
+      "name": "Monte Real Air Base"
+    },
+    {
+      "icao": "LPPI",
+      "name": "Pico Island - Pico"
+    },
+    {
+      "icao": "LPPM",
+      "name": "Portimão"
+    },
+    {
+      "icao": "LPLA",
+      "name": "Praia da Vitória - Lajes"
+    },
+    {
+      "icao": "LPGR",
+      "name": "Santa Cruz da Graciosa - Graciosa"
+    },
+    {
+      "icao": "LPFL",
+      "name": "Santa Cruz das Flores - Flores"
+    },
+    {
+      "icao": "LPSJ",
+      "name": "Velas - São Jorge"
+    },
+    {
+      "icao": "LPPS",
+      "name": "Vila Baleira - Porto Santo"
+    },
+    {
+      "icao": "LPAR",
+      "name": "Vila Franca de Xira - Alverca Air Base"
+    },
+    {
+      "icao": "LPVR",
+      "name": "Vila Real"
+    },
+    {
+      "icao": "LPAZ",
+      "name": "Vila do Porto - Santa Maria"
+    }
+  ],
+  "Puerto Rico": [
+    {
+      "icao": "TJSJ",
+      "name": "San Juan - Luis Munoz Marin"
+    },
+    {
+      "icao": "TJBQ",
+      "name": "Aguadilla - Rafael Hernández"
+    },
+    {
+      "icao": "TJAB",
+      "name": "Arecibo - Antonio Nery Juarbe Pol"
+    },
+    {
+      "icao": "TJRV",
+      "name": "Ceiba - José Aponte de la Torre"
+    },
+    {
+      "icao": "TJCP",
+      "name": "Culebra - Benjamin Rivera Noriega"
+    },
+    {
+      "icao": "TJMZ",
+      "name": "Mayaguez - Eugenio Maria De Hostos"
+    },
+    {
+      "icao": "TJPS",
+      "name": "Ponce - Mercedita"
+    },
+    {
+      "icao": "TJIG",
+      "name": "San Juan - Fernando Luis Ribas Dominicci"
+    },
+    {
+      "icao": "TJVQ",
+      "name": "Vieques - Antonio Rivera Rodriguez"
+    }
+  ],
+  "Qatar": [
+    {
+      "icao": "OTBD",
+      "name": "Doha"
+    },
+    {
+      "icao": "OTHH",
+      "name": "Doha - Hamad"
+    },
+    {
+      "icao": "OTBH",
+      "name": "Ar Rayyan - Al Udeid Air Base"
+    }
+  ],
+  "Republic of the Congo": [
+    {
+      "icao": "FCBB",
+      "name": "Brazzaville - Maya-Maya"
+    },
+    {
+      "icao": "FCPP",
+      "name": "Pointe Noire - Antonio Agostinho-Neto"
+    },
+    {
+      "icao": "FCPD",
+      "name": "Dolisie - Ngot Nzoungou"
+    },
+    {
+      "icao": "FCOU",
+      "name": "Ouesso"
+    },
+    {
+      "icao": "FCOO",
+      "name": "Owando"
+    },
+    {
+      "icao": "FCOD",
+      "name": "Oyo Ollombo"
+    }
+  ],
+  "Romania": [
+    {
+      "icao": "LRBC",
+      "name": "Bacău George Enescu International "
+    },
+    {
+      "icao": "LRBV",
+      "name": "Brașov (Ghimbav) - Brașov-Ghimbav"
+    },
+    {
+      "icao": "LRBS",
+      "name": "Bucharest Băneasa Aurel Vlaicu"
+    },
+    {
+      "icao": "LRCL",
+      "name": "Cluj-Napoca - Avram Iancu Cluj"
+    },
+    {
+      "icao": "LRCK",
+      "name": "Constanța - Mihail Kogălniceanu"
+    },
+    {
+      "icao": "LRCV",
+      "name": "Craiova"
+    },
+    {
+      "icao": "LRIA",
+      "name": "Iaşi"
+    },
+    {
+      "icao": "LROD",
+      "name": "Oradea"
+    },
+    {
+      "icao": "LROP",
+      "name": "Otopeni - Bucharest Henri Coandă"
+    },
+    {
+      "icao": "LRSB",
+      "name": "Sibiu"
+    },
+    {
+      "icao": "LRSV",
+      "name": "Suceava Ștefan cel Mare"
+    },
+    {
+      "icao": "LRTR",
+      "name": "Timişoara - Timișoara Traian Vuia"
+    },
+    {
+      "icao": "LRAR",
+      "name": "Arad"
+    },
+    {
+      "icao": "LRBO",
+      "name": "Boboc Air Base"
+    },
+    {
+      "icao": "LRCS",
+      "name": "Caransebeş"
+    },
+    {
+      "icao": "LRCT",
+      "name": "Câmpia Turzii Air Base"
+    },
+    {
+      "icao": "LRFT",
+      "name": "Feteşti Borcea Air Base"
+    },
+    {
+      "icao": "LRTC",
+      "name": "Mihail Kogălniceanu - Tulcea Danube Delta"
+    },
+    {
+      "icao": "LRTM",
+      "name": "Recea - Târgu Mureş Transilvania"
+    },
+    {
+      "icao": "LRSM",
+      "name": "Satu Mare"
+    },
+    {
+      "icao": "LRBM",
+      "name": "Tăuții-Măgherăuș - Maramureș"
+    }
+  ],
+  "Russia": [
+    {
+      "icao": "UNAA",
+      "name": "Abakan"
+    },
+    {
+      "icao": "URMG",
+      "name": "Akhmat Kadyrov Grozny"
+    },
+    {
+      "icao": "UNEE",
+      "name": "Alexei Leonov Kemerovo"
+    },
+    {
+      "icao": "UHWW",
+      "name": "Artyom - Vladivostok"
+    },
+    {
+      "icao": "URWA",
+      "name": "Astrakhan Narimanovo Boris M. Kustodiev"
+    },
+    {
+      "icao": "UNBB",
+      "name": "Barnaul Gherman Titov"
+    },
+    {
+      "icao": "UIAA",
+      "name": "Chita-Kadala"
+    },
+    {
+      "icao": "ULMM",
+      "name": "Emperor Nicholas II Murmansk"
+    },
+    {
+      "icao": "UIII",
+      "name": "Irkutsk"
+    },
+    {
+      "icao": "UMKK",
+      "name": "Kaliningrad - Khrabrovo"
+    },
+    {
+      "icao": "UWKD",
+      "name": "Kazan"
+    },
+    {
+      "icao": "URKK",
+      "name": "Krasnodar Pashkovsky"
+    },
+    {
+      "icao": "UNKL",
+      "name": "Krasnoyarsk"
+    },
+    {
+      "icao": "USCC",
+      "name": "Kurchatov Chelyabinsk"
+    },
+    {
+      "icao": "USCM",
+      "name": "Magnitogorsk"
+    },
+    {
+      "icao": "URML",
+      "name": "Makhachkala Uytash"
+    },
+    {
+      "icao": "URMM",
+      "name": "Mineralnyye Vody - Mineralnye Vody"
+    },
+    {
+      "icao": "UUDD",
+      "name": "Moscow - Domodedovo"
+    },
+    {
+      "icao": "UUEE",
+      "name": "Moscow - Sheremetyevo"
+    },
+    {
+      "icao": "UUWW",
+      "name": "Moscow - Vnukovo"
+    },
+    {
+      "icao": "UUBW",
+      "name": "Moscow - Zhukovsky"
+    },
+    {
+      "icao": "USNN",
+      "name": "Nizhnevartovsk"
+    },
+    {
+      "icao": "UWGG",
+      "name": "Nizhny Novgorod / Strigino"
+    },
+    {
+      "icao": "UOOO",
+      "name": "Norilsk - Alykel"
+    },
+    {
+      "icao": "UNNT",
+      "name": "Novosibirsk Tolmachevo"
+    },
+    {
+      "icao": "UNOO",
+      "name": "Omsk Central"
+    },
+    {
+      "icao": "USPP",
+      "name": "Perm"
+    },
+    {
+      "icao": "UHPP",
+      "name": "Petropavlovsk-Kamchatsky - Yelizovo"
+    },
+    {
+      "icao": "UEEE",
+      "name": "Platon Oyunsky Yakutsk"
+    },
+    {
+      "icao": "URRP",
+      "name": "Rostov-on-Don - Platov"
+    },
+    {
+      "icao": "UWWW",
+      "name": "Samara - Kurumoch"
+    },
+    {
+      "icao": "UWPS",
+      "name": "Saransk"
+    },
+    {
+      "icao": "UWSG",
+      "name": "Saratov - Gagarin"
+    },
+    {
+      "icao": "URSS",
+      "name": "Sochi"
+    },
+    {
+      "icao": "ULLI",
+      "name": "St. Petersburg - Pulkovo"
+    },
+    {
+      "icao": "USRR",
+      "name": "Surgut"
+    },
+    {
+      "icao": "UNTT",
+      "name": "Tomsk Kamov"
+    },
+    {
+      "icao": "UUDL",
+      "name": "Tunoshna - Golden Ring Yaroslavl"
+    },
+    {
+      "icao": "USTR",
+      "name": "Tyumen - Roshchino"
+    },
+    {
+      "icao": "UWUU",
+      "name": "Ufa International"
+    },
+    {
+      "icao": "UIUU",
+      "name": "Ulan Ude - Baikal"
+    },
+    {
+      "icao": "UWLL",
+      "name": "Ulyanovsk Baratayevka"
+    },
+    {
+      "icao": "URWW",
+      "name": "Volgograd"
+    },
+    {
+      "icao": "UUOO",
+      "name": "Voronezh"
+    },
+    {
+      "icao": "USSS",
+      "name": "Yekaterinburg - Koltsovo"
+    },
+    {
+      "icao": "UHSS",
+      "name": "Yuzhno-Sakhalinsk"
+    },
+    {
+      "icao": "UNKS",
+      "name": "Achinsk"
+    },
+    {
+      "icao": "UODN",
+      "name": "Alexandra Land - Nagurskoye Airfield"
+    },
+    {
+      "icao": "ULDD",
+      "name": "Amderma"
+    },
+    {
+      "icao": "UHMA",
+      "name": "Anadyr - Ugolny Yuri Ryktheu"
+    },
+    {
+      "icao": "UHMP",
+      "name": "Apapelgino - Pevek"
+    },
+    {
+      "icao": "ULAA",
+      "name": "Archangelsk - Talagi"
+    },
+    {
+      "icao": "UWSB",
+      "name": "Balakovo"
+    },
+    {
+      "icao": "UESG",
+      "name": "Belaya Gora"
+    },
+    {
+      "icao": "UUOB",
+      "name": "Belgorod"
+    },
+    {
+      "icao": "USHQ",
+      "name": "Beloyarskiy"
+    },
+    {
+      "icao": "UHBB",
+      "name": "Blagoveschensk - Ignatyevo"
+    },
+    {
+      "icao": "UNIP",
+      "name": "Bor - Podkamennaya Tunguska"
+    },
+    {
+      "icao": "USDB",
+      "name": "Bovanenkovo"
+    },
+    {
+      "icao": "UIBB",
+      "name": "Bratsk"
+    },
+    {
+      "icao": "UUBP",
+      "name": "Bryansk"
+    },
+    {
+      "icao": "UWKB",
+      "name": "Bugulma"
+    },
+    {
+      "icao": "UWKS",
+      "name": "Cheboksary"
+    },
+    {
+      "icao": "UWLW",
+      "name": "Cherdakly - Ulyanovsk Vostochny"
+    },
+    {
+      "icao": "ULWC",
+      "name": "Cherepovets"
+    },
+    {
+      "icao": "UESS",
+      "name": "Cherskiy"
+    },
+    {
+      "icao": "UESO",
+      "name": "Chokurdah - Chokurdakh"
+    },
+    {
+      "icao": "UHMD",
+      "name": "Chukotka - Provideniya Bay"
+    },
+    {
+      "icao": "UODD",
+      "name": "Dikson"
+    },
+    {
+      "icao": "URWI",
+      "name": "Elista"
+    },
+    {
+      "icao": "URKG",
+      "name": "Gelendzhik"
+    },
+    {
+      "icao": "UNBG",
+      "name": "Gorno-Altaysk"
+    },
+    {
+      "icao": "UOII",
+      "name": "Igarka"
+    },
+    {
+      "icao": "UUYI",
+      "name": "Inta"
+    },
+    {
+      "icao": "UUBI",
+      "name": "Ivanovo South"
+    },
+    {
+      "icao": "USII",
+      "name": "Izhevsk"
+    },
+    {
+      "icao": "UUBC",
+      "name": "Kaluga - Grabtsevo"
+    },
+    {
+      "icao": "UHMK",
+      "name": "Keperveem"
+    },
+    {
+      "icao": "UHHH",
+      "name": "Khabarovsk Novy"
+    },
+    {
+      "icao": "USHH",
+      "name": "Khanty-Mansiysk - Khanty Mansiysk"
+    },
+    {
+      "icao": "UOHH",
+      "name": "Khatanga"
+    },
+    {
+      "icao": "UEMA",
+      "name": "Khonuu - Moma"
+    },
+    {
+      "icao": "USKK",
+      "name": "Kirov - Pobedilovo"
+    },
+    {
+      "icao": "USRK",
+      "name": "Kogalym"
+    },
+    {
+      "icao": "UHKK",
+      "name": "Komsomolsk-on-Amur"
+    },
+    {
+      "icao": "UUBA",
+      "name": "Kostroma Sokerkino"
+    },
+    {
+      "icao": "ULKK",
+      "name": "Kotlas"
+    },
+    {
+      "icao": "URKA",
+      "name": "Krasnyi Kurgan - Anapa Vityazevo"
+    },
+    {
+      "icao": "UUMB",
+      "name": "Kubinka Air Base"
+    },
+    {
+      "icao": "USUU",
+      "name": "Kurgan"
+    },
+    {
+      "icao": "UUOK",
+      "name": "Kursk East"
+    },
+    {
+      "icao": "UNKY",
+      "name": "Kyzyl"
+    },
+    {
+      "icao": "UERL",
+      "name": "Lensk"
+    },
+    {
+      "icao": "UUOL",
+      "name": "Lipetsk"
+    },
+    {
+      "icao": "UHMM",
+      "name": "Magadan - Sokol"
+    },
+    {
+      "icao": "UEMM",
+      "name": "Magan"
+    },
+    {
+      "icao": "UERR",
+      "name": "Mirny"
+    },
+    {
+      "icao": "UUMU",
+      "name": "Moscow - Chkalovskiy Air Base"
+    },
+    {
+      "icao": "USMM",
+      "name": "Nadym"
+    },
+    {
+      "icao": "URMN",
+      "name": "Nalchik"
+    },
+    {
+      "icao": "ULAM",
+      "name": "Naryan Mar"
+    },
+    {
+      "icao": "USRN",
+      "name": "Nefteyugansk"
+    },
+    {
+      "icao": "UELL",
+      "name": "Neryungri - Chulman"
+    },
+    {
+      "icao": "UHNN",
+      "name": "Nikolayevsk-na-Amure"
+    },
+    {
+      "icao": "UWKE",
+      "name": "Nizhnekamsk - Begishevo"
+    },
+    {
+      "icao": "UNWW",
+      "name": "Novokuznetsk - Spichenkovo"
+    },
+    {
+      "icao": "USMU",
+      "name": "Novy Urengoy"
+    },
+    {
+      "icao": "USRO",
+      "name": "Noyabrsk"
+    },
+    {
+      "icao": "USHN",
+      "name": "Nyagan"
+    },
+    {
+      "icao": "UHOO",
+      "name": "Okhotsk"
+    },
+    {
+      "icao": "UEMO",
+      "name": "Olyokminsk"
+    },
+    {
+      "icao": "UWOO",
+      "name": "Orenburg Central"
+    },
+    {
+      "icao": "UWOR",
+      "name": "Orsk"
+    },
+    {
+      "icao": "UUYP",
+      "name": "Pechora"
+    },
+    {
+      "icao": "UWPP",
+      "name": "Penza"
+    },
+    {
+      "icao": "ULPB",
+      "name": "Petrozavodsk"
+    },
+    {
+      "icao": "ULOO",
+      "name": "Princess Olga Pskov"
+    },
+    {
+      "icao": "UUBK",
+      "name": "Rybinsk - Staroselye"
+    },
+    {
+      "icao": "USDA",
+      "name": "Sabetta"
+    },
+    {
+      "icao": "USDD",
+      "name": "Salekhard"
+    },
+    {
+      "icao": "UERS",
+      "name": "Saskylakh"
+    },
+    {
+      "icao": "UHMW",
+      "name": "Severo-Evensk"
+    },
+    {
+      "icao": "UHMS",
+      "name": "Seymchan"
+    },
+    {
+      "icao": "UHKM",
+      "name": "Sovetskaya Gavan (Maygatka)"
+    },
+    {
+      "icao": "UHKG",
+      "name": "Sovetskaya Gavan - Kamenny Ruchey Naval Air Base"
+    },
+    {
+      "icao": "USHS",
+      "name": "Sovetskiy"
+    },
+    {
+      "icao": "UESK",
+      "name": "Srednekolymsk"
+    },
+    {
+      "icao": "URMT",
+      "name": "Stavropol Shpakovskoye"
+    },
+    {
+      "icao": "UNSS",
+      "name": "Strezhevoy"
+    },
+    {
+      "icao": "URMS",
+      "name": "Sunzha - Magas"
+    },
+    {
+      "icao": "UUYY",
+      "name": "Syktyvkar"
+    },
+    {
+      "icao": "URRT",
+      "name": "Taganrog Yuzhny"
+    },
+    {
+      "icao": "UUOT",
+      "name": "Tambov - Donskoye"
+    },
+    {
+      "icao": "UEST",
+      "name": "Tiksi"
+    },
+    {
+      "icao": "UUEM",
+      "name": "Tver - Migalovo Air Base"
+    },
+    {
+      "icao": "UUYH",
+      "name": "Ukhta"
+    },
+    {
+      "icao": "USHU",
+      "name": "Uray"
+    },
+    {
+      "icao": "UUYS",
+      "name": "Usinsk"
+    },
+    {
+      "icao": "UITT",
+      "name": "Ust-Kut"
+    },
+    {
+      "icao": "UEMT",
+      "name": "Ust-Nera"
+    },
+    {
+      "icao": "UUYX",
+      "name": "Ust-Tsylma"
+    },
+    {
+      "icao": "ULWU",
+      "name": "Velikiy Ustyug"
+    },
+    {
+      "icao": "UENW",
+      "name": "Vilyuisk"
+    },
+    {
+      "icao": "URMO",
+      "name": "Vladikavkaz Beslan"
+    },
+    {
+      "icao": "ULWW",
+      "name": "Vologda"
+    },
+    {
+      "icao": "UUYW",
+      "name": "Vorkuta"
+    },
+    {
+      "icao": "UERP",
+      "name": "Yakutia - Polyarny"
+    },
+    {
+      "icao": "UNII",
+      "name": "Yeniseysk"
+    },
+    {
+      "icao": "UWKJ",
+      "name": "Yoshkar-Ola"
+    },
+    {
+      "icao": "UEVV",
+      "name": "Zhigansk"
+    },
+    {
+      "icao": "UESU",
+      "name": "Zyryanka"
+    }
+  ],
+  "Rwanda": [
+    {
+      "icao": "HRYR",
+      "name": "Kigali"
+    },
+    {
+      "icao": "HRYG",
+      "name": "Gisenyi"
+    },
+    {
+      "icao": "HRZA",
+      "name": "Kamembe"
+    }
+  ],
+  "Réunion": [
+    {
+      "icao": "FMEP",
+      "name": "Saint-Pierre Pierrefonds"
+    },
+    {
+      "icao": "FMEE",
+      "name": "Sainte-Marie - Roland Garros"
+    }
+  ],
+  "Saint Barthélemy": [
+    {
+      "icao": "TFFJ",
+      "name": "Gustavia - St. Jean"
+    }
+  ],
+  "Saint Helena, Ascension and Tristan da Cunha": [
+    {
+      "icao": "FHAW",
+      "name": "Cat Hill - RAF Ascension Island"
+    },
+    {
+      "icao": "FHSH",
+      "name": "Jamestown - Saint Helena"
+    }
+  ],
+  "Saint Kitts and Nevis": [
+    {
+      "icao": "TKPK",
+      "name": "Basseterre - Robert L. Bradshaw"
+    },
+    {
+      "icao": "TKPN",
+      "name": "Charlestown - Vance W. Amory"
+    }
+  ],
+  "Saint Lucia": [
+    {
+      "icao": "TLPL",
+      "name": "Vieux Fort - Hewanorra"
+    },
+    {
+      "icao": "TLPC",
+      "name": "Castries - George F. L. Charles"
+    }
+  ],
+  "Saint Martin": [
+    {
+      "icao": "TFFG",
+      "name": "Grand Case-l'Espérance"
+    }
+  ],
+  "Saint Pierre and Miquelon": [
+    {
+      "icao": "LFVP",
+      "name": "Saint-Pierre Pointe-Blanche"
+    }
+  ],
+  "Saint Vincent and the Grenadines": [
+    {
+      "icao": "TVSA",
+      "name": "Kingstown - Argyle"
+    },
+    {
+      "icao": "TVSB",
+      "name": "Bequia - J F Mitchell"
+    },
+    {
+      "icao": "TVSC",
+      "name": "Canouan"
+    },
+    {
+      "icao": "TVSM",
+      "name": "Lovell - Mustique"
+    },
+    {
+      "icao": "TVSU",
+      "name": "Union Island"
+    }
+  ],
+  "Samoa": [
+    {
+      "icao": "NSFA",
+      "name": "Apia - Faleolo"
+    }
+  ],
+  "Saudi Arabia": [
+    {
+      "icao": "OEAB",
+      "name": "Abha"
+    },
+    {
+      "icao": "OEDF",
+      "name": "Ad Dammam - King Fahd"
+    },
+    {
+      "icao": "OESK",
+      "name": "Al-Jawf"
+    },
+    {
+      "icao": "OEDR",
+      "name": "Dhahran - King Abdulaziz Air Base"
+    },
+    {
+      "icao": "OERS",
+      "name": "Hanak - Red Sea"
+    },
+    {
+      "icao": "OEAH",
+      "name": "Hofuf - Al-Ahsa"
+    },
+    {
+      "icao": "OEJN",
+      "name": "Jeddah - King Abdulaziz"
+    },
+    {
+      "icao": "OEMA",
+      "name": "Medina - Prince Mohammad Bin Abdulaziz"
+    },
+    {
+      "icao": "OEGS",
+      "name": "Qassim - Prince Naif bin Abdulaziz"
+    },
+    {
+      "icao": "OERK",
+      "name": "Riyadh - King Khalid"
+    },
+    {
+      "icao": "OENN",
+      "name": "Sharma - Neom Bay"
+    },
+    {
+      "icao": "OETB",
+      "name": "Tabuk - Prince Sultan bin Abdulaziz"
+    },
+    {
+      "icao": "OETF",
+      "name": "Taif"
+    },
+    {
+      "icao": "OEYN",
+      "name": "Yanbu - Prince Abdulmohsen Bin Abdulaziz"
+    },
+    {
+      "icao": "OEPS",
+      "name": "Al Kharj - Prince Sultan Air Base"
+    },
+    {
+      "icao": "OERM",
+      "name": "Al Mishab - Ras Mishab"
+    },
+    {
+      "icao": "OEPA",
+      "name": "Al Qaisumah/Hafr Al Batin"
+    },
+    {
+      "icao": "OEWJ",
+      "name": "Al Wajh Domestic"
+    },
+    {
+      "icao": "OEBA",
+      "name": "Al-Baha - King Saud Bin Abdulaziz (Al Baha)"
+    },
+    {
+      "icao": "OEAO",
+      "name": "Al-Ula"
+    },
+    {
+      "icao": "OERR",
+      "name": "Arar Domestic"
+    },
+    {
+      "icao": "OEAD",
+      "name": "Ardah - Aradah"
+    },
+    {
+      "icao": "OETN",
+      "name": "As Saffaniyah - Ras Tanajib"
+    },
+    {
+      "icao": "OEBH",
+      "name": "Bisha"
+    },
+    {
+      "icao": "OEDM",
+      "name": "Dawadmi Domestic"
+    },
+    {
+      "icao": "OEGT",
+      "name": "Gurayat Domestic"
+    },
+    {
+      "icao": "OEHL",
+      "name": "Ha'il"
+    },
+    {
+      "icao": "OEJF",
+      "name": "Jeddah - King Faisal Naval Base"
+    },
+    {
+      "icao": "OEGN",
+      "name": "Jizan Regional Airport / King Abdullah bin Abdulaziz"
+    },
+    {
+      "icao": "OEKM",
+      "name": "Khamis Mushait - King Khalid Air Base"
+    },
+    {
+      "icao": "OEKK",
+      "name": "King Khaled Military City"
+    },
+    {
+      "icao": "OENG",
+      "name": "Najran Domestic"
+    },
+    {
+      "icao": "OERF",
+      "name": "Rafha Domestic"
+    },
+    {
+      "icao": "OERT",
+      "name": "Ras Tanura"
+    },
+    {
+      "icao": "OESN",
+      "name": "Riyadh - King Salman Air Base"
+    },
+    {
+      "icao": "OESH",
+      "name": "Sharurah Domestic"
+    },
+    {
+      "icao": "OETR",
+      "name": "Turaif Domestic"
+    },
+    {
+      "icao": "OEWD",
+      "name": "Wadi Al Dawasir Domestic"
+    }
+  ],
+  "Senegal": [
+    {
+      "icao": "GOBD",
+      "name": "Dakar - Blaise Diagne"
+    },
+    {
+      "icao": "GOOY",
+      "name": "Dakar - Léopold Sédar Senghor"
+    },
+    {
+      "icao": "GOTB",
+      "name": "Bakel"
+    },
+    {
+      "icao": "GOGS",
+      "name": "Cap Skirring"
+    },
+    {
+      "icao": "GOOK",
+      "name": "Kaolack"
+    },
+    {
+      "icao": "GOTK",
+      "name": "Kédougou"
+    },
+    {
+      "icao": "GOSM",
+      "name": "Ouro Sogui"
+    },
+    {
+      "icao": "GOSS",
+      "name": "Saint Louis"
+    },
+    {
+      "icao": "GOTT",
+      "name": "Tambacounda"
+    },
+    {
+      "icao": "GOGG",
+      "name": "Ziguinchor"
+    }
+  ],
+  "Serbia": [
+    {
+      "icao": "LYBE",
+      "name": "Belgrade Nikola Tesla"
+    },
+    {
+      "icao": "LYNI",
+      "name": "Niš Constantine the Great"
+    },
+    {
+      "icao": "LYKV",
+      "name": "Kraljevo - Morava"
+    },
+    {
+      "icao": "LYUZ",
+      "name": "Stapari - Ponikve"
+    },
+    {
+      "icao": "LYBT",
+      "name": "Zemun - Batajnica Air Base"
+    }
+  ],
+  "Seychelles": [
+    {
+      "icao": "FSIA",
+      "name": "Victoria - Seychelles"
+    },
+    {
+      "icao": "FSPP",
+      "name": "Praslin Island"
+    }
+  ],
+  "Sierra Leone": [
+    {
+      "icao": "GFLL",
+      "name": "Freetown (Lungi-Town) - Lungi"
+    },
+    {
+      "icao": "GFBO",
+      "name": "Bo Airport"
+    },
+    {
+      "icao": "GFKE",
+      "name": "Kenema"
+    },
+    {
+      "icao": "GFYE",
+      "name": "Yengema"
+    }
+  ],
+  "Singapore": [
+    {
+      "icao": "WSSS",
+      "name": "Singapore Changi"
+    },
+    {
+      "icao": "WSAP",
+      "name": "Paya Lebar Air Base"
+    },
+    {
+      "icao": "WSSL",
+      "name": "Seletar"
+    },
+    {
+      "icao": "WSAT",
+      "name": "Western Water Catchment - Tengah Air Base"
+    }
+  ],
+  "Sint Maarten": [
+    {
+      "icao": "TNCM",
+      "name": "Sint Maarten - Princess Juliana"
+    }
+  ],
+  "Slovakia": [
+    {
+      "icao": "LZIB",
+      "name": "Bratislava - M. R. Štefánik"
+    },
+    {
+      "icao": "LZKZ",
+      "name": "Košice"
+    },
+    {
+      "icao": "LZMC",
+      "name": "Malacky/Kuchyňa Air Base"
+    },
+    {
+      "icao": "LZPP",
+      "name": "Piešťany"
+    },
+    {
+      "icao": "LZTT",
+      "name": "Poprad-Tatry"
+    },
+    {
+      "icao": "LZSL",
+      "name": "Sliač"
+    },
+    {
+      "icao": "LZZI",
+      "name": "Žilina-Dolný Hričov"
+    }
+  ],
+  "Slovenia": [
+    {
+      "icao": "LJLJ",
+      "name": "Zgornji Brnik - Ljubljana Jože Pučnik"
+    },
+    {
+      "icao": "LJMB",
+      "name": "Maribor Edvard Rusjan"
+    },
+    {
+      "icao": "LJPZ",
+      "name": "Sečovlje - Portorož"
+    }
+  ],
+  "Solomon Islands": [
+    {
+      "icao": "AGGH",
+      "name": "Honiara"
+    },
+    {
+      "icao": "AGGM",
+      "name": "Munda"
+    }
+  ],
+  "Somalia": [
+    {
+      "icao": "HCMF",
+      "name": "Bosaso - Bender Qassim"
+    },
+    {
+      "icao": "HCMH",
+      "name": "Hargeisa - Egal"
+    },
+    {
+      "icao": "HCMM",
+      "name": "Mogadishu - Aden Adde"
+    },
+    {
+      "icao": "HCMI",
+      "name": "Berbera"
+    },
+    {
+      "icao": "HCMK",
+      "name": "Kismayo"
+    }
+  ],
+  "South Africa": [
+    {
+      "icao": "FABL",
+      "name": "Bloemfontein - Bram Fischer"
+    },
+    {
+      "icao": "FACT",
+      "name": "Cape Town"
+    },
+    {
+      "icao": "FALE",
+      "name": "Durban - King Shaka"
+    },
+    {
+      "icao": "FAEL",
+      "name": "East London - King Phalo"
+    },
+    {
+      "icao": "FAGG",
+      "name": "George"
+    },
+    {
+      "icao": "FAPE",
+      "name": "Gqeberha (Port Elizabeth) - Chief Dawid Stuurman"
+    },
+    {
+      "icao": "FALA",
+      "name": "Johannesburg - Lanseria"
+    },
+    {
+      "icao": "FAOR",
+      "name": "Johannesburg - O.R. Tambo"
+    },
+    {
+      "icao": "FAKM",
+      "name": "Kimberley"
+    },
+    {
+      "icao": "FAKN",
+      "name": "Mbombela - Kruger Mpumalanga"
+    },
+    {
+      "icao": "FAPP",
+      "name": "Polokwane"
+    },
+    {
+      "icao": "FAAG",
+      "name": "Aggeneys"
+    },
+    {
+      "icao": "FAAB",
+      "name": "Alexander Bay"
+    },
+    {
+      "icao": "FABE",
+      "name": "Bisho"
+    },
+    {
+      "icao": "FAYP",
+      "name": "Cape Town - Ysterplaat Air Force Base"
+    },
+    {
+      "icao": "FAVG",
+      "name": "Durban - Virginia"
+    },
+    {
+      "icao": "FAHS",
+      "name": "Eastgate Airport / Air Force Base Hoedspruit"
+    },
+    {
+      "icao": "FAEO",
+      "name": "Ermelo"
+    },
+    {
+      "icao": "FAFB",
+      "name": "Ficksburg Sentraoes"
+    },
+    {
+      "icao": "FAHR",
+      "name": "Harrismith"
+    },
+    {
+      "icao": "FAGM",
+      "name": "Johannesburg - Rand"
+    },
+    {
+      "icao": "FAKZ",
+      "name": "Kleinsee"
+    },
+    {
+      "icao": "FAKD",
+      "name": "Klerksdorp - P C Pelser"
+    },
+    {
+      "icao": "FAKU",
+      "name": "Kuruman - Johan Pienaar"
+    },
+    {
+      "icao": "FALY",
+      "name": "Ladysmith"
+    },
+    {
+      "icao": "FALW",
+      "name": "Langebaanweg"
+    },
+    {
+      "icao": "FALC",
+      "name": "Lime Acres Finsch Mine"
+    },
+    {
+      "icao": "FAMM",
+      "name": "Mafeking - Mmabatho"
+    },
+    {
+      "icao": "FAMD",
+      "name": "Malamala"
+    },
+    {
+      "icao": "FAMG",
+      "name": "Margate"
+    },
+    {
+      "icao": "FAGC",
+      "name": "Midrand - Grand Central"
+    },
+    {
+      "icao": "FAMU",
+      "name": "Mkuze"
+    },
+    {
+      "icao": "FAUT",
+      "name": "Mthatha - K. D. Matanzima"
+    },
+    {
+      "icao": "FANC",
+      "name": "Newcastle"
+    },
+    {
+      "icao": "FAOH",
+      "name": "Oudtshoorn"
+    },
+    {
+      "icao": "FAPH",
+      "name": "Phalaborwa - Hendrik Van Eck"
+    },
+    {
+      "icao": "FAPM",
+      "name": "Pietermaritzburg"
+    },
+    {
+      "icao": "FAPN",
+      "name": "Pilanesberg"
+    },
+    {
+      "icao": "FAPG",
+      "name": "Plettenberg Bay"
+    },
+    {
+      "icao": "FAPI",
+      "name": "Polokwane - Pietersburg Municipal"
+    },
+    {
+      "icao": "FAPJ",
+      "name": "Port St Johns"
+    },
+    {
+      "icao": "FAPS",
+      "name": "Potchefstroom"
+    },
+    {
+      "icao": "FASK",
+      "name": "Pretoria - Swartkop Air Force Base"
+    },
+    {
+      "icao": "FAWK",
+      "name": "Pretoria - Waterkloof Air Force Base"
+    },
+    {
+      "icao": "FAWB",
+      "name": "Pretoria - Wonderboom"
+    },
+    {
+      "icao": "FAQT",
+      "name": "Queenstown"
+    },
+    {
+      "icao": "FARB",
+      "name": "Richards Bay"
+    },
+    {
+      "icao": "FARS",
+      "name": "Robertson"
+    },
+    {
+      "icao": "FARG",
+      "name": "Rustenburg"
+    },
+    {
+      "icao": "FASD",
+      "name": "Saldanha-Vredenburg - Saldanha/Vredenburg"
+    },
+    {
+      "icao": "FASC",
+      "name": "Secunda"
+    },
+    {
+      "icao": "FAMS",
+      "name": "Silveroaks - Morningside Farm"
+    },
+    {
+      "icao": "FASS",
+      "name": "Sishen"
+    },
+    {
+      "icao": "FASZ",
+      "name": "Skukuza"
+    },
+    {
+      "icao": "FASB",
+      "name": "Springbok"
+    },
+    {
+      "icao": "FATZ",
+      "name": "Tzaneen"
+    },
+    {
+      "icao": "FAUL",
+      "name": "Ulundi - Prince Mangosuthu Buthelezi"
+    },
+    {
+      "icao": "FAUP",
+      "name": "Upington"
+    },
+    {
+      "icao": "FAVV",
+      "name": "Vereeniging"
+    },
+    {
+      "icao": "FAVR",
+      "name": "Vredendal"
+    },
+    {
+      "icao": "FAVB",
+      "name": "Vyrburg - Vryburg"
+    }
+  ],
+  "South Korea": [
+    {
+      "icao": "RKPK",
+      "name": "Busan - Gimhae"
+    },
+    {
+      "icao": "RKTU",
+      "name": "Cheongju International Airport/Cheongju Air Base (K-59/G-513)"
+    },
+    {
+      "icao": "RKTN",
+      "name": "Daegu"
+    },
+    {
+      "icao": "RKNY",
+      "name": "Gonghang-ro - Yangyang"
+    },
+    {
+      "icao": "RKPC",
+      "name": "Jeju City - Jeju"
+    },
+    {
+      "icao": "RKJB",
+      "name": "Muan (Piseo-ri) - Muan"
+    },
+    {
+      "icao": "RKSS",
+      "name": "Seoul - Gimpo"
+    },
+    {
+      "icao": "RKSI",
+      "name": "Seoul - Incheon"
+    },
+    {
+      "icao": "RKNN",
+      "name": "Gangneung Airport (K-18)"
+    },
+    {
+      "icao": "RKTI",
+      "name": "Gimseang-ro - Jungwon Air Base/Chungju"
+    },
+    {
+      "icao": "RKJK",
+      "name": "Gunsan Airport / Gunsan Air Base"
+    },
+    {
+      "icao": "RKJJ",
+      "name": "Gwangju"
+    },
+    {
+      "icao": "RKPD",
+      "name": "Jeju Island - Jeongseok"
+    },
+    {
+      "icao": "RKTH",
+      "name": "Pohang Airport (G-815/K-3)"
+    },
+    {
+      "icao": "RKSO",
+      "name": "Pyeongtaek - Osan Air Base"
+    },
+    {
+      "icao": "RKPS",
+      "name": "Sacheon Airport / Sacheon Air Base"
+    },
+    {
+      "icao": "RKSW",
+      "name": "Suwon"
+    },
+    {
+      "icao": "RKPU",
+      "name": "Ulsan"
+    },
+    {
+      "icao": "RKNW",
+      "name": "Wonju Airport / Hoengseong Air Base (K-38/K-46)"
+    },
+    {
+      "icao": "RKTY",
+      "name": "Yecheon-ri - Yecheon Airbase"
+    },
+    {
+      "icao": "RKJY",
+      "name": "Yeosu"
+    }
+  ],
+  "South Sudan": [
+    {
+      "icao": "HJJJ",
+      "name": "Juba"
+    },
+    {
+      "icao": "HSSM",
+      "name": "Malakal"
+    }
+  ],
+  "Spain": [
+    {
+      "icao": "LEMD",
+      "name": "Adolfo Suárez Madrid–Barajas"
+    },
+    {
+      "icao": "LEAL",
+      "name": "Alicante-Elche Miguel Hernández"
+    },
+    {
+      "icao": "LEBB",
+      "name": "Bilbao"
+    },
+    {
+      "icao": "LEMI",
+      "name": "Corvera - Region of Murcia"
+    },
+    {
+      "icao": "GCFV",
+      "name": "El Matorral - Fuerteventura"
+    },
+    {
+      "icao": "LEGE",
+      "name": "Girona-Costa Brava"
+    },
+    {
+      "icao": "GCLP",
+      "name": "Gran Canaria Island - Gran Canaria"
+    },
+    {
+      "icao": "LEIB",
+      "name": "Ibiza (Eivissa) - Ibiza"
+    },
+    {
+      "icao": "LEBL",
+      "name": "Josep Tarradellas Barcelona-El Prat"
+    },
+    {
+      "icao": "LELN",
+      "name": "La Virgen Del Camino - León Int'l"
+    },
+    {
+      "icao": "LEMH",
+      "name": "Mahón (Maó) - Menorca"
+    },
+    {
+      "icao": "LEMG",
+      "name": "Málaga-Costa del Sol"
+    },
+    {
+      "icao": "LEPA",
+      "name": "Palma de Mallorca"
+    },
+    {
+      "icao": "LEAS",
+      "name": "Ranón - Asturias"
+    },
+    {
+      "icao": "LERS",
+      "name": "Reus"
+    },
+    {
+      "icao": "GCRR",
+      "name": "San Bartolomé - César Manrique-Lanzarote"
+    },
+    {
+      "icao": "LEST",
+      "name": "Santiago de Compostela - Santiago-Rosalía de Castro"
+    },
+    {
+      "icao": "LEZL",
+      "name": "Seville"
+    },
+    {
+      "icao": "GCXO",
+      "name": "Tenerife Norte-Ciudad de La Laguna"
+    },
+    {
+      "icao": "GCTS",
+      "name": "Tenerife Sur"
+    },
+    {
+      "icao": "LEVC",
+      "name": "Valencia"
+    },
+    {
+      "icao": "LEZG",
+      "name": "Zaragoza"
+    },
+    {
+      "icao": "LEVT",
+      "name": "Alava - Vitoria"
+    },
+    {
+      "icao": "LEAB",
+      "name": "Albacete Airport / Los Llanos Air Base"
+    },
+    {
+      "icao": "LEAM",
+      "name": "Almería"
+    },
+    {
+      "icao": "LEBZ",
+      "name": "Badajoz"
+    },
+    {
+      "icao": "LEBG",
+      "name": "Burgos"
+    },
+    {
+      "icao": "LECH",
+      "name": "Castellón de la Plana - Castellón-Costa Azahar"
+    },
+    {
+      "icao": "LERL",
+      "name": "Ciudad Real"
+    },
+    {
+      "icao": "LECO",
+      "name": "Culleredo - A Coruña"
+    },
+    {
+      "icao": "LEBA",
+      "name": "Córdoba"
+    },
+    {
+      "icao": "GCHI",
+      "name": "El Hierro Island - El Hierro"
+    },
+    {
+      "icao": "LEGR",
+      "name": "F.G.L. Airport Granada-Jaén"
+    },
+    {
+      "icao": "LEGT",
+      "name": "Getafe Air Base"
+    },
+    {
+      "icao": "LESO",
+      "name": "Hondarribia - San Sebastián"
+    },
+    {
+      "icao": "LEJR",
+      "name": "Jerez de la Frontera - Jerez"
+    },
+    {
+      "icao": "LESU",
+      "name": "La Seu d'Urgell Pyrenees and Andorra - Pirineus - la Seu d'Urgel"
+    },
+    {
+      "icao": "LEDA",
+      "name": "Lleida-Alguaire"
+    },
+    {
+      "icao": "LECU",
+      "name": "Madrid-Cuatro Vientos"
+    },
+    {
+      "icao": "LETO",
+      "name": "Madrid–Torrejón Airport / Torrejón Air Base"
+    },
+    {
+      "icao": "GEML",
+      "name": "Melilla"
+    },
+    {
+      "icao": "LEMO",
+      "name": "Morón - Moron Air Base"
+    },
+    {
+      "icao": "LEPP",
+      "name": "Pamplona"
+    },
+    {
+      "icao": "LERT",
+      "name": "Rota Naval Station"
+    },
+    {
+      "icao": "LESA",
+      "name": "Salamanca"
+    },
+    {
+      "icao": "LELC",
+      "name": "San Javier"
+    },
+    {
+      "icao": "LEXJ",
+      "name": "Seve Ballesteros-Santander"
+    },
+    {
+      "icao": "GCLA",
+      "name": "Sta Cruz de la Palma, La Palma Island - La Palma"
+    },
+    {
+      "icao": "LETL",
+      "name": "Teruel"
+    },
+    {
+      "icao": "LEVD",
+      "name": "Valladolid"
+    },
+    {
+      "icao": "LEVX",
+      "name": "Vigo"
+    }
+  ],
+  "Sri Lanka": [
+    {
+      "icao": "VCBI",
+      "name": "Bandaranaike International Colombo"
+    },
+    {
+      "icao": "VCCC",
+      "name": "Colombo Ratmalana"
+    },
+    {
+      "icao": "VCCJ",
+      "name": "Jaffna"
+    },
+    {
+      "icao": "VCRI",
+      "name": "Mattala Rajapaksa"
+    },
+    {
+      "icao": "VCCG",
+      "name": "Ampara"
+    },
+    {
+      "icao": "VCCA",
+      "name": "Anuradhapura"
+    },
+    {
+      "icao": "VCCB",
+      "name": "Batticaloa"
+    },
+    {
+      "icao": "VCCK",
+      "name": "Galle - Koggala"
+    },
+    {
+      "icao": "VCCH",
+      "name": "Polonnaruwa Town - Hingurakgoda Air Force Base"
+    },
+    {
+      "icao": "VCCT",
+      "name": "Trincomalee - China Bay"
+    }
+  ],
+  "Sudan": [
+    {
+      "icao": "HSSK",
+      "name": "Khartoum"
+    },
+    {
+      "icao": "HSPN",
+      "name": "Port Sudan New"
+    },
+    {
+      "icao": "HSDN",
+      "name": "Dongola"
+    },
+    {
+      "icao": "HSFS",
+      "name": "El Fasher"
+    },
+    {
+      "icao": "HSOB",
+      "name": "El-Obeid"
+    },
+    {
+      "icao": "HSKA",
+      "name": "Kassala"
+    },
+    {
+      "icao": "HSMN",
+      "name": "Merowe"
+    },
+    {
+      "icao": "HSNN",
+      "name": "Nyala"
+    }
+  ],
+  "Suriname": [
+    {
+      "icao": "SMJP",
+      "name": "Paramaribo - Johan Adolf Pengel"
+    }
+  ],
+  "Sweden": [
+    {
+      "icao": "ESGG",
+      "name": "Göteborg Landvetter"
+    },
+    {
+      "icao": "ESNQ",
+      "name": "Kiruna"
+    },
+    {
+      "icao": "ESSL",
+      "name": "Linköping City"
+    },
+    {
+      "icao": "ESPA",
+      "name": "Luleå"
+    },
+    {
+      "icao": "ESMS",
+      "name": "Malmö Sturup"
+    },
+    {
+      "icao": "ESKN",
+      "name": "Nyköping - Stockholm Skavsta"
+    },
+    {
+      "icao": "ESOW",
+      "name": "Stockholm / Västerås - Stockholm Västerås"
+    },
+    {
+      "icao": "ESSA",
+      "name": "Stockholm-Arlanda"
+    },
+    {
+      "icao": "ESNU",
+      "name": "Umeå"
+    },
+    {
+      "icao": "ESSV",
+      "name": "Visby"
+    },
+    {
+      "icao": "ESNZ",
+      "name": "Åre Östersund"
+    },
+    {
+      "icao": "ESNX",
+      "name": "Arvidsjaur"
+    },
+    {
+      "icao": "ESSD",
+      "name": "Borlange - Dala"
+    },
+    {
+      "icao": "ESSU",
+      "name": "Eskilstuna"
+    },
+    {
+      "icao": "ESNG",
+      "name": "Gällivare"
+    },
+    {
+      "icao": "ESSK",
+      "name": "Gävle / Sandviken - Gävle Sandviken"
+    },
+    {
+      "icao": "ESGP",
+      "name": "Göteborg - Säve"
+    },
+    {
+      "icao": "ESMT",
+      "name": "Halmstad"
+    },
+    {
+      "icao": "ESGJ",
+      "name": "Jönköping"
+    },
+    {
+      "icao": "ESMQ",
+      "name": "Kalmar"
+    },
+    {
+      "icao": "ESKK",
+      "name": "Karlskoga"
+    },
+    {
+      "icao": "ESOK",
+      "name": "Karlstad"
+    },
+    {
+      "icao": "ESMK",
+      "name": "Kristianstad"
+    },
+    {
+      "icao": "ESCF",
+      "name": "Linköping - Malmen Air Base"
+    },
+    {
+      "icao": "ESNL",
+      "name": "Lycksele"
+    },
+    {
+      "icao": "ESKM",
+      "name": "Mora"
+    },
+    {
+      "icao": "ESSP",
+      "name": "Norrköping"
+    },
+    {
+      "icao": "ESNK",
+      "name": "Nyland - Kramfors-Sollefteå Höga Kusten"
+    },
+    {
+      "icao": "ESDF",
+      "name": "Ronneby"
+    },
+    {
+      "icao": "ESFR",
+      "name": "Råda Air Base"
+    },
+    {
+      "icao": "ESNS",
+      "name": "Skellefteå"
+    },
+    {
+      "icao": "ESGR",
+      "name": "Skövde"
+    },
+    {
+      "icao": "ESSB",
+      "name": "Stockholm-Bromma"
+    },
+    {
+      "icao": "ESUD",
+      "name": "Storuman"
+    },
+    {
+      "icao": "ESNN",
+      "name": "Sundsvall/ Härnösand - Sundsvall-Härnösand"
+    },
+    {
+      "icao": "ESNY",
+      "name": "Söderhamn"
+    },
+    {
+      "icao": "ESST",
+      "name": "Torsby"
+    },
+    {
+      "icao": "ESGT",
+      "name": "Trollhättan-Vänersborg"
+    },
+    {
+      "icao": "ESNV",
+      "name": "Vilhelmina South Lapland"
+    },
+    {
+      "icao": "ESMX",
+      "name": "Växjö Kronoberg"
+    },
+    {
+      "icao": "ESTA",
+      "name": "Ängelholm-Helsingborg"
+    },
+    {
+      "icao": "ESOE",
+      "name": "Örebro"
+    },
+    {
+      "icao": "ESNO",
+      "name": "Örnsköldsvik"
+    }
+  ],
+  "Switzerland": [
+    {
+      "icao": "LSGG",
+      "name": "Geneva"
+    },
+    {
+      "icao": "LSZH",
+      "name": "Zurich - Zürich"
+    },
+    {
+      "icao": "LSZA",
+      "name": "Agno - Lugano"
+    },
+    {
+      "icao": "LSMA",
+      "name": "Alpnach Air Base"
+    },
+    {
+      "icao": "LSZB",
+      "name": "Bern"
+    },
+    {
+      "icao": "LSME",
+      "name": "Emmen Air Base"
+    },
+    {
+      "icao": "LSZG",
+      "name": "Grenchen Airfield"
+    },
+    {
+      "icao": "LSGC",
+      "name": "La Chaux-de-Fonds - Les Eplatures"
+    },
+    {
+      "icao": "LSMP",
+      "name": "Payerne Air Base"
+    },
+    {
+      "icao": "LSZS",
+      "name": "Samedan - Engadin"
+    },
+    {
+      "icao": "LSGS",
+      "name": "Sion"
+    },
+    {
+      "icao": "LSZR",
+      "name": "St. Gallen - Sankt Gallen Altenrhein"
+    },
+    {
+      "icao": "LSMD",
+      "name": "Zurich - Dübendorf Air Base"
+    }
+  ],
+  "Syria": [
+    {
+      "icao": "OSAP",
+      "name": "Aleppo"
+    },
+    {
+      "icao": "OSDI",
+      "name": "Damascus"
+    },
+    {
+      "icao": "OSDZ",
+      "name": "Deir ez-Zor"
+    },
+    {
+      "icao": "OSLK",
+      "name": "Latakia"
+    },
+    {
+      "icao": "OSKL",
+      "name": "Qamishli"
+    },
+    {
+      "icao": "OSPR",
+      "name": "Tadmur - Palmyra"
+    }
+  ],
+  "São Tomé and Principe": [
+    {
+      "icao": "FPST",
+      "name": "São Tomé"
+    },
+    {
+      "icao": "FPPR",
+      "name": "São Tomé & Príncipe - Principe"
+    }
+  ],
+  "Taiwan": [
+    {
+      "icao": "RCYU",
+      "name": "Hualien City - Hualien Chiashan"
+    },
+    {
+      "icao": "RCQC",
+      "name": "Huxi - Penghu Magong"
+    },
+    {
+      "icao": "RCKH",
+      "name": "Kaohsiung (Xiaogang) - Kaohsiung"
+    },
+    {
+      "icao": "RCMQ",
+      "name": "Taichung (Qingshui) - Taichung International Airport / Ching Chuang Kang Air Base"
+    },
+    {
+      "icao": "RCNN",
+      "name": "Tainan (Rende) - Tainan International Airport / Tainan Air Base"
+    },
+    {
+      "icao": "RCSS",
+      "name": "Taipei (Songshan) - Taipei Songshan"
+    },
+    {
+      "icao": "RCTP",
+      "name": "Taiwan Taoyuan"
+    },
+    {
+      "icao": "RCKW",
+      "name": "Hengchun"
+    },
+    {
+      "icao": "RCPO",
+      "name": "Hsinchu City - Hsinchu Air Base"
+    },
+    {
+      "icao": "RCAY",
+      "name": "Kaohsiung (Gangshan) - Gangshan Air Force Base"
+    },
+    {
+      "icao": "RCMT",
+      "name": "Matsu (Beigan) - Matsu Beigan"
+    },
+    {
+      "icao": "RCFG",
+      "name": "Matsu (Nangan) - Matsu Nangan"
+    },
+    {
+      "icao": "RCLY",
+      "name": "Orchid Island - Lanyu"
+    },
+    {
+      "icao": "RCDC",
+      "name": "Pingtung Air Force Base"
+    },
+    {
+      "icao": "RCBS",
+      "name": "Shang-I - Kinmen"
+    },
+    {
+      "icao": "RCKU",
+      "name": "Shuishang - Chiayi"
+    },
+    {
+      "icao": "RCFN",
+      "name": "Taitung City - Taitung"
+    }
+  ],
+  "Tajikistan": [
+    {
+      "icao": "UTDT",
+      "name": "Bokhtar"
+    },
+    {
+      "icao": "UTDD",
+      "name": "Dushanbe"
+    },
+    {
+      "icao": "UTDL",
+      "name": "Khujand"
+    },
+    {
+      "icao": "UTDK",
+      "name": "Kulob"
+    }
+  ],
+  "Tanzania": [
+    {
+      "icao": "HTKJ",
+      "name": "Arusha - Kilimanjaro"
+    },
+    {
+      "icao": "HTDA",
+      "name": "Dar es Salaam - Julius Nyerere"
+    },
+    {
+      "icao": "HTMW",
+      "name": "Mwanza"
+    },
+    {
+      "icao": "HTZA",
+      "name": "Zanzibar - Abeid Amani Karume"
+    },
+    {
+      "icao": "HTAR",
+      "name": "Arusha"
+    },
+    {
+      "icao": "HTPE",
+      "name": "Chake Chake - Pemba"
+    },
+    {
+      "icao": "HTDO",
+      "name": "Dodoma"
+    },
+    {
+      "icao": "HTLM",
+      "name": "Lake Manyara National Park - Lake Manyara"
+    },
+    {
+      "icao": "HTGW",
+      "name": "Mbeya - Songwe"
+    },
+    {
+      "icao": "HTMT",
+      "name": "Mtwara"
+    },
+    {
+      "icao": "HTIR",
+      "name": "Nduli - Iringa"
+    },
+    {
+      "icao": "HTTG",
+      "name": "Tanga"
+    }
+  ],
+  "Thailand": [
+    {
+      "icao": "VTBD",
+      "name": "Bangkok - Don Mueang"
+    },
+    {
+      "icao": "VTBS",
+      "name": "Bangkok - Suvarnabhumi"
+    },
+    {
+      "icao": "VTCC",
+      "name": "Chiang Mai"
+    },
+    {
+      "icao": "VTSS",
+      "name": "Hat Yai"
+    },
+    {
+      "icao": "VTSG",
+      "name": "Krabi"
+    },
+    {
+      "icao": "VTCT",
+      "name": "Mae Fah Luang - Chiang Rai"
+    },
+    {
+      "icao": "VTSM",
+      "name": "Na Thon (Ko Samui Island) - Samui"
+    },
+    {
+      "icao": "VTSP",
+      "name": "Phuket"
+    },
+    {
+      "icao": "VTBU",
+      "name": "U-Tapao–Rayong–Pattaya"
+    },
+    {
+      "icao": "VTUD",
+      "name": "Udon Thani"
+    },
+    {
+      "icao": "VTSY",
+      "name": "Betong"
+    },
+    {
+      "icao": "VTUO",
+      "name": "Buriram - Buri Ram"
+    },
+    {
+      "icao": "VTUQ",
+      "name": "Chaloem Phra Kiat - Nakhon Ratchasima"
+    },
+    {
+      "icao": "VTSE",
+      "name": "Chumphon"
+    },
+    {
+      "icao": "VTPH",
+      "name": "Hua Hin"
+    },
+    {
+      "icao": "VTUK",
+      "name": "Khon Kaen"
+    },
+    {
+      "icao": "VTBO",
+      "name": "Laem Ngop - Trat"
+    },
+    {
+      "icao": "VTCL",
+      "name": "Lampang"
+    },
+    {
+      "icao": "VTUL",
+      "name": "Loei"
+    },
+    {
+      "icao": "VTBL",
+      "name": "Lop Buri - Khok Kathiam"
+    },
+    {
+      "icao": "VTCH",
+      "name": "Mae Hong Son"
+    },
+    {
+      "icao": "VTPM",
+      "name": "Mae Sot"
+    },
+    {
+      "icao": "VTBK",
+      "name": "Nakhon Pathom - Kamphaeng Saen"
+    },
+    {
+      "icao": "VTUW",
+      "name": "Nakhon Phanom"
+    },
+    {
+      "icao": "VTSF",
+      "name": "Nakhon Si Thammarat"
+    },
+    {
+      "icao": "VTSN",
+      "name": "Nakhon Si Thammarat - Cha Eian"
+    },
+    {
+      "icao": "VTCN",
+      "name": "Nan Airport"
+    },
+    {
+      "icao": "VTSC",
+      "name": "Narathiwat"
+    },
+    {
+      "icao": "VTSK",
+      "name": "Pattani"
+    },
+    {
+      "icao": "VTPB",
+      "name": "Phetchabun"
+    },
+    {
+      "icao": "VTPP",
+      "name": "Phitsanulok"
+    },
+    {
+      "icao": "VTCP",
+      "name": "Phrae"
+    },
+    {
+      "icao": "VTSR",
+      "name": "Ranong"
+    },
+    {
+      "icao": "VTUV",
+      "name": "Roi Et"
+    },
+    {
+      "icao": "VTUI",
+      "name": "Sakon Nakhon"
+    },
+    {
+      "icao": "VTSH",
+      "name": "Songkhla"
+    },
+    {
+      "icao": "VTPO",
+      "name": "Sukhothai"
+    },
+    {
+      "icao": "VTSB",
+      "name": "Surat Thani"
+    },
+    {
+      "icao": "VTUJ",
+      "name": "Surin"
+    },
+    {
+      "icao": "VTPT",
+      "name": "Tak Airport"
+    },
+    {
+      "icao": "VTPI",
+      "name": "Takhli Royal Thai Air Force Base"
+    },
+    {
+      "icao": "VTST",
+      "name": "Trang"
+    },
+    {
+      "icao": "VTUU",
+      "name": "Ubon Ratchathani"
+    }
+  ],
+  "Timor-Leste": [
+    {
+      "icao": "WPDL",
+      "name": "Dili - Presidente Nicolau Lobato"
+    },
+    {
+      "icao": "WPOC",
+      "name": "Oecussi-Ambeno - Oecusse Route of the Sandalwood"
+    },
+    {
+      "icao": "WPEC",
+      "name": "Baucau"
+    },
+    {
+      "icao": "WPDB",
+      "name": "Suai - Commander in Chief of FALINTIL, Kay Rala Xanana Gusmão,"
+    }
+  ],
+  "Togo": [
+    {
+      "icao": "DXXX",
+      "name": "Lomé–Tokoin"
+    },
+    {
+      "icao": "DXNG",
+      "name": "Niamtougou"
+    }
+  ],
+  "Tonga": [
+    {
+      "icao": "NFTF",
+      "name": "Nuku'alofa - Fua'amotu"
+    },
+    {
+      "icao": "NFTV",
+      "name": "Vava'u Island - Vava'u"
+    },
+    {
+      "icao": "NFTL",
+      "name": "Lifuka Island"
+    }
+  ],
+  "Trinidad and Tobago": [
+    {
+      "icao": "TTPP",
+      "name": "Port of Spain - Piarco"
+    },
+    {
+      "icao": "TTCP",
+      "name": "Scarborough - A.N.R. Robinson"
+    }
+  ],
+  "Tunisia": [
+    {
+      "icao": "DTTJ",
+      "name": "Mellita - Djerba Zarzis"
+    },
+    {
+      "icao": "DTTX",
+      "name": "Sfax Thyna"
+    },
+    {
+      "icao": "DTTA",
+      "name": "Tunis Carthage"
+    },
+    {
+      "icao": "DTTB",
+      "name": "Borj Challouf - Bizerte Sidi Ahmed Air Base"
+    },
+    {
+      "icao": "DTTR",
+      "name": "El Borma"
+    },
+    {
+      "icao": "DTNH",
+      "name": "Enfidha - Hammamet"
+    },
+    {
+      "icao": "DTTG",
+      "name": "Gabès Matmata"
+    },
+    {
+      "icao": "DTTF",
+      "name": "Gafsa Ksar"
+    },
+    {
+      "icao": "DTMB",
+      "name": "Monastir Habib Bourguiba"
+    },
+    {
+      "icao": "DTTD",
+      "name": "Remada Air Base"
+    },
+    {
+      "icao": "DTKA",
+      "name": "Tabarka-Aïn Draham"
+    },
+    {
+      "icao": "DTTZ",
+      "name": "Tozeur Nefta"
+    }
+  ],
+  "Turkey": [
+    {
+      "icao": "LTAC",
+      "name": "Ankara - Esenboğa"
+    },
+    {
+      "icao": "LTAI",
+      "name": "Antalya"
+    },
+    {
+      "icao": "LTBS",
+      "name": "Dalaman"
+    },
+    {
+      "icao": "LTFD",
+      "name": "Edremit - Balıkesir Koca Seyit"
+    },
+    {
+      "icao": "LTBY",
+      "name": "Eskişehir - Hasan Polatkan"
+    },
+    {
+      "icao": "LTAJ",
+      "name": "Gaziantep Oğuzeli"
+    },
+    {
+      "icao": "LTBJ",
+      "name": "Gaziemir - Adnan Menderes"
+    },
+    {
+      "icao": "LTFM",
+      "name": "Istanbul - İstanbul"
+    },
+    {
+      "icao": "LTBA",
+      "name": "Istanbul(Bakırköy) - İstanbul Atatürk"
+    },
+    {
+      "icao": "LTAU",
+      "name": "Kayseri Erkilet"
+    },
+    {
+      "icao": "LTAN",
+      "name": "Konya"
+    },
+    {
+      "icao": "LTFE",
+      "name": "Milas Bodrum"
+    },
+    {
+      "icao": "LTAZ",
+      "name": "Nevşehir Kapadokya"
+    },
+    {
+      "icao": "LTFJ",
+      "name": "Pendik, Istanbul - Istanbul Sabiha Gökçen"
+    },
+    {
+      "icao": "LTFO",
+      "name": "Rize–Artvin"
+    },
+    {
+      "icao": "LTAF",
+      "name": "Seyhan - Adana Şakirpaşa"
+    },
+    {
+      "icao": "LTDB",
+      "name": "Tarsus - Çukurova"
+    },
+    {
+      "icao": "LTCS",
+      "name": "Şanlıurfa GAP"
+    },
+    {
+      "icao": "LTCP",
+      "name": "Adıyaman"
+    },
+    {
+      "icao": "LTAH",
+      "name": "Afyonkarahisar - Afyon Air Base"
+    },
+    {
+      "icao": "LTAE",
+      "name": "Ankara - Akıncı Air Base"
+    },
+    {
+      "icao": "LTAD",
+      "name": "Ankara - Etimesgut Air Base"
+    },
+    {
+      "icao": "LTDA",
+      "name": "Antakya - Hatay"
+    },
+    {
+      "icao": "LTCO",
+      "name": "Ağrı"
+    },
+    {
+      "icao": "LTBF",
+      "name": "Balıkesir"
+    },
+    {
+      "icao": "LTBG",
+      "name": "Bandırma"
+    },
+    {
+      "icao": "LTCJ",
+      "name": "Batman"
+    },
+    {
+      "icao": "LTBR",
+      "name": "Bursa Yenişehir"
+    },
+    {
+      "icao": "LTAY",
+      "name": "Denizli - Çardak"
+    },
+    {
+      "icao": "LTCC",
+      "name": "Diyarbakır"
+    },
+    {
+      "icao": "LTCA",
+      "name": "Elazığ"
+    },
+    {
+      "icao": "LTCD",
+      "name": "Erzincan"
+    },
+    {
+      "icao": "LTCE",
+      "name": "Erzurum"
+    },
+    {
+      "icao": "LTBI",
+      "name": "Eskişehir Air Base"
+    },
+    {
+      "icao": "LTFG",
+      "name": "Gazipaşa-Alanya"
+    },
+    {
+      "icao": "LTCW",
+      "name": "Hakkari Yüksekova"
+    },
+    {
+      "icao": "LTFC",
+      "name": "Isparta - Süleyman Demirel"
+    },
+    {
+      "icao": "LTCT",
+      "name": "Iğdır"
+    },
+    {
+      "icao": "LTCN",
+      "name": "Kahramanmaraş"
+    },
+    {
+      "icao": "LTCF",
+      "name": "Kars"
+    },
+    {
+      "icao": "LTBQ",
+      "name": "Kartepe - Cengiz Topel"
+    },
+    {
+      "icao": "LTAL",
+      "name": "Kastamonu"
+    },
+    {
+      "icao": "LTAT",
+      "name": "Malatya Erhaç"
+    },
+    {
+      "icao": "LTCR",
+      "name": "Mardin"
+    },
+    {
+      "icao": "LTCK",
+      "name": "Muş Airport"
+    },
+    {
+      "icao": "LTCB",
+      "name": "Ordu–Giresun"
+    },
+    {
+      "icao": "LTFH",
+      "name": "Samsun-Çarşamba"
+    },
+    {
+      "icao": "LTAG",
+      "name": "Sarıçam - İncirlik Air Base"
+    },
+    {
+      "icao": "LTCL",
+      "name": "Siirt"
+    },
+    {
+      "icao": "LTCM",
+      "name": "Sinop"
+    },
+    {
+      "icao": "LTBU",
+      "name": "Tekirdağ Çorlu"
+    },
+    {
+      "icao": "LTAW",
+      "name": "Tokat"
+    },
+    {
+      "icao": "LTCG",
+      "name": "Trabzon"
+    },
+    {
+      "icao": "LTBO",
+      "name": "Uşak"
+    },
+    {
+      "icao": "LTCI",
+      "name": "Van Ferit Melen"
+    },
+    {
+      "icao": "LTAS",
+      "name": "Zonguldak Çaycuma"
+    },
+    {
+      "icao": "LTBH",
+      "name": "Çanakkale"
+    },
+    {
+      "icao": "LTCV",
+      "name": "Şırnak Şerafettin Elçi"
+    }
+  ],
+  "Turkmenistan": [
+    {
+      "icao": "UTAA",
+      "name": "Ashgabat"
+    },
+    {
+      "icao": "UTAN",
+      "name": "Balkanabat"
+    },
+    {
+      "icao": "UTAT",
+      "name": "Daşoguz - Dashoguz"
+    },
+    {
+      "icao": "UTAM",
+      "name": "Mary"
+    },
+    {
+      "icao": "UTAV",
+      "name": "Türkmenabat"
+    },
+    {
+      "icao": "UTAK",
+      "name": "Turkmenbaşy"
+    }
+  ],
+  "Turks and Caicos Islands": [
+    {
+      "icao": "MBPV",
+      "name": "Providenciales"
+    },
+    {
+      "icao": "MBGT",
+      "name": "Cockburn Town - JAGS McCartney"
+    },
+    {
+      "icao": "MBNC",
+      "name": "North Caicos"
+    },
+    {
+      "icao": "MBSC",
+      "name": "South Caicos"
+    }
+  ],
+  "Tuvalu": [
+    {
+      "icao": "NGFU",
+      "name": "Funafuti"
+    }
+  ],
+  "U.S. Virgin Islands": [
+    {
+      "icao": "TIST",
+      "name": "Charlotte Amalie - Cyril E. King"
+    },
+    {
+      "icao": "TISX",
+      "name": "Christiansted - Henry E. Rohlsen"
+    }
+  ],
+  "Uganda": [
+    {
+      "icao": "HUEN",
+      "name": "Entebbe"
+    },
+    {
+      "icao": "HUAR",
+      "name": "Arua"
+    },
+    {
+      "icao": "HUGU",
+      "name": "Gulu"
+    },
+    {
+      "icao": "HUSO",
+      "name": "Soroti"
+    }
+  ],
+  "Ukraine": [
+    {
+      "icao": "UKLL",
+      "name": "Lviv"
+    },
+    {
+      "icao": "UKOO",
+      "name": "Odesa"
+    },
+    {
+      "icao": "UKFF",
+      "name": "Simferopol"
+    },
+    {
+      "icao": "UKLU",
+      "name": "Uzhhorod"
+    },
+    {
+      "icao": "UKDE",
+      "name": "Zaporizhia - Zaporizhzhia"
+    },
+    {
+      "icao": "UKDB",
+      "name": "Berdyansk"
+    },
+    {
+      "icao": "UKBB",
+      "name": "Boryspil"
+    },
+    {
+      "icao": "UKKE",
+      "name": "Cherkasy"
+    },
+    {
+      "icao": "UKLN",
+      "name": "Chernivtsi"
+    },
+    {
+      "icao": "UKDD",
+      "name": "Dnipro"
+    },
+    {
+      "icao": "UKKK",
+      "name": "Ihor Sikorsky Kyiv International Airport (Zhuliany)"
+    },
+    {
+      "icao": "UKLI",
+      "name": "Ivano-Frankivsk"
+    },
+    {
+      "icao": "UKKA",
+      "name": "Kacha Air Base"
+    },
+    {
+      "icao": "UKHH",
+      "name": "Kharkiv"
+    },
+    {
+      "icao": "UKOH",
+      "name": "Kherson"
+    },
+    {
+      "icao": "UKLH",
+      "name": "Khmelnytskyi"
+    },
+    {
+      "icao": "UKDR",
+      "name": "Kryvyi Rih"
+    },
+    {
+      "icao": "UKCM",
+      "name": "Mariupol"
+    },
+    {
+      "icao": "UKLR",
+      "name": "Rivne"
+    },
+    {
+      "icao": "UKFB",
+      "name": "Sevastopol International Airport / Belbek Air Base"
+    },
+    {
+      "icao": "UKWW",
+      "name": "Vinnitsa - Vinnytsia/Gavyryshivka"
+    }
+  ],
+  "United Arab Emirates": [
+    {
+      "icao": "OMAD",
+      "name": "Abu Dhabi - Al Bateen Executive"
+    },
+    {
+      "icao": "OMAA",
+      "name": "Abu Dhabi - Zayed"
+    },
+    {
+      "icao": "OMAL",
+      "name": "Al Ain"
+    },
+    {
+      "icao": "OMDB",
+      "name": "Dubai"
+    },
+    {
+      "icao": "OMDW",
+      "name": "Dubai(Jebel Ali) - Al Maktoum"
+    },
+    {
+      "icao": "OMFJ",
+      "name": "Fujairah"
+    },
+    {
+      "icao": "OMRK",
+      "name": "Ras Al Khaimah"
+    },
+    {
+      "icao": "OMSJ",
+      "name": "Sharjah"
+    },
+    {
+      "icao": "OMAM",
+      "name": "Al Dhafra Air Base"
+    },
+    {
+      "icao": "OMDM",
+      "name": "Dubai - Al Minhad Air Base"
+    },
+    {
+      "icao": "OMNK",
+      "name": "Sas Al Nakheel Air Base"
+    },
+    {
+      "icao": "OMBY",
+      "name": "Sir Bani Yas"
+    }
+  ],
+  "United Kingdom": [
+    {
+      "icao": "EGPD",
+      "name": "Aberdeen"
+    },
+    {
+      "icao": "EGAA",
+      "name": "Belfast"
+    },
+    {
+      "icao": "EGBB",
+      "name": "Birmingham, West Midlands - Birmingham"
+    },
+    {
+      "icao": "EGGD",
+      "name": "Bristol"
+    },
+    {
+      "icao": "EGFF",
+      "name": "Cardiff"
+    },
+    {
+      "icao": "EGPH",
+      "name": "Edinburgh"
+    },
+    {
+      "icao": "EGPF",
+      "name": "Glasgow"
+    },
+    {
+      "icao": "EGNM",
+      "name": "Leeds, West Yorkshire - Leeds Bradford"
+    },
+    {
+      "icao": "EGGP",
+      "name": "Liverpool John Lennon"
+    },
+    {
+      "icao": "EGKK",
+      "name": "London Gatwick"
+    },
+    {
+      "icao": "EGLL",
+      "name": "London Heathrow"
+    },
+    {
+      "icao": "EGSS",
+      "name": "London, Essex - London Stansted"
+    },
+    {
+      "icao": "EGGW",
+      "name": "Luton, Luton - London Luton"
+    },
+    {
+      "icao": "EGCC",
+      "name": "Manchester, Greater Manchester - Manchester"
+    },
+    {
+      "icao": "EGNT",
+      "name": "Newcastle upon Tyne, Tyne and Wear - Newcastle"
+    },
+    {
+      "icao": "EGNX",
+      "name": "Nottingham, Leicestershire - East Midlands"
+    },
+    {
+      "icao": "EGPK",
+      "name": "Prestwick, South Ayrshire - Glasgow Prestwick"
+    },
+    {
+      "icao": "EGHL",
+      "name": "Alton, Hampshire - Lasham Airfield"
+    },
+    {
+      "icao": "EGOV",
+      "name": "Angelsey - Anglesey"
+    },
+    {
+      "icao": "EGPU",
+      "name": "Balemartine, Argyll and Bute - Tiree"
+    },
+    {
+      "icao": "EGPL",
+      "name": "Balivanich - Benbecula"
+    },
+    {
+      "icao": "EGNL",
+      "name": "Barrow-in-Furness - Barrow Walney Island"
+    },
+    {
+      "icao": "EGNH",
+      "name": "Blackpool"
+    },
+    {
+      "icao": "EGHH",
+      "name": "Bournemouth"
+    },
+    {
+      "icao": "EGUL",
+      "name": "Brandon, Suffolk - RAF Lakenheath"
+    },
+    {
+      "icao": "EGKA",
+      "name": "Brighton, East Sussex - Brighton City"
+    },
+    {
+      "icao": "EGNR",
+      "name": "Broughton - Hawarden"
+    },
+    {
+      "icao": "EGXH",
+      "name": "Bury Saint Edmunds, Suffolk - RAF Honington"
+    },
+    {
+      "icao": "EGUN",
+      "name": "Bury Saint Edmunds, Suffolk - RAF Mildenhall"
+    },
+    {
+      "icao": "EGLK",
+      "name": "Camberley, Surrey - Blackbushe"
+    },
+    {
+      "icao": "EGSC",
+      "name": "Cambridge, Cambridgeshire - Cambridge City"
+    },
+    {
+      "icao": "EGEC",
+      "name": "Campbeltown"
+    },
+    {
+      "icao": "EGNC",
+      "name": "Carlisle, Cumbria - Carlisle Lake District"
+    },
+    {
+      "icao": "EGVN",
+      "name": "Carterton, Oxfordshire - RAF Brize Norton"
+    },
+    {
+      "icao": "EGHQ",
+      "name": "Cornwall Airport Newquay"
+    },
+    {
+      "icao": "EGBE",
+      "name": "Coventry, West Midlands - Coventry"
+    },
+    {
+      "icao": "EGTC",
+      "name": "Cranfield, Central Bedfordshire - Cranfield"
+    },
+    {
+      "icao": "EGNV",
+      "name": "Darlington, Durham - Teesside"
+    },
+    {
+      "icao": "EGAE",
+      "name": "Derry, Derry and Strabane - City of Derry"
+    },
+    {
+      "icao": "EGPN",
+      "name": "Dundee"
+    },
+    {
+      "icao": "EGED",
+      "name": "Eday"
+    },
+    {
+      "icao": "EGAB",
+      "name": "Enniskillen, Fermanagh and Omagh - Enniskillen/St Angelo"
+    },
+    {
+      "icao": "EGPR",
+      "name": "Eoligarry - Barra"
+    },
+    {
+      "icao": "EGTE",
+      "name": "Exeter, Devon - Exeter"
+    },
+    {
+      "icao": "EGVA",
+      "name": "Fairford, Gloucestershire - RAF Fairford"
+    },
+    {
+      "icao": "EGLF",
+      "name": "Farnborough, Hampshire - Farnborough"
+    },
+    {
+      "icao": "EGAC",
+      "name": "George Best Belfast City"
+    },
+    {
+      "icao": "EGYE",
+      "name": "Grantham, Lincolnshire - RAF Barkston Heath"
+    },
+    {
+      "icao": "EGNJ",
+      "name": "Grimsby, Lincolnshire - Humberside"
+    },
+    {
+      "icao": "EGFE",
+      "name": "Haverfordwest"
+    },
+    {
+      "icao": "EGVO",
+      "name": "Hook, Hampshire - RAF Odiham"
+    },
+    {
+      "icao": "EGPE",
+      "name": "Inverness"
+    },
+    {
+      "icao": "EGPI",
+      "name": "Isle of Islay, Argyll and Bute - Islay"
+    },
+    {
+      "icao": "EGTK",
+      "name": "Kidlington, Oxfordshire - London Oxford"
+    },
+    {
+      "icao": "EGYM",
+      "name": "King's Lynn, Norfolk - RAF Marham"
+    },
+    {
+      "icao": "EGPA",
+      "name": "Kirkwall, Orkney Islands - Kirkwall"
+    },
+    {
+      "icao": "EGPB",
+      "name": "Lerwick, Shetland - Sumburgh"
+    },
+    {
+      "icao": "EGQL",
+      "name": "Leuchars, Fife - Leuchars Station Airfield"
+    },
+    {
+      "icao": "EGXC",
+      "name": "Lincoln, Lincolnshire - RAF Coningsby"
+    },
+    {
+      "icao": "EGXW",
+      "name": "Lincoln, Lincolnshire - RAF Waddington"
+    },
+    {
+      "icao": "EGKB",
+      "name": "London Biggin Hill"
+    },
+    {
+      "icao": "EGLC",
+      "name": "London City"
+    },
+    {
+      "icao": "EGQS",
+      "name": "Lossiemouth, Moray - RAF Lossiemouth"
+    },
+    {
+      "icao": "EGWU",
+      "name": "Northolt, Greater London - RAF Northolt"
+    },
+    {
+      "icao": "EGSH",
+      "name": "Norwich, Norfolk - Norwich"
+    },
+    {
+      "icao": "EGBN",
+      "name": "Nottingham, Nottinghamshire - Nottingham City"
+    },
+    {
+      "icao": "EGXT",
+      "name": "Peterborough, Cambridgeshire - RAF Wittering"
+    },
+    {
+      "icao": "EGMD",
+      "name": "Romney Marsh, Kent - Lydd London Ashford"
+    },
+    {
+      "icao": "EGOS",
+      "name": "Shrewsbury, Shropshire - RAF Shawbury"
+    },
+    {
+      "icao": "EGYD",
+      "name": "Sleaford, Lincolnshire - RAF Cranwell"
+    },
+    {
+      "icao": "EGHI",
+      "name": "Southampton"
+    },
+    {
+      "icao": "EGMC",
+      "name": "Southend-on-Sea, Essex - London Southend"
+    },
+    {
+      "icao": "EGBJ",
+      "name": "Staverton, Gloucestershire - Gloucestershire"
+    },
+    {
+      "icao": "EGPO",
+      "name": "Stornoway, Western Isles - Stornoway"
+    },
+    {
+      "icao": "EGFH",
+      "name": "Swansea"
+    },
+    {
+      "icao": "EGCM",
+      "name": "Tadcaster, North Yorkshire - Leeds East"
+    },
+    {
+      "icao": "EGUB",
+      "name": "Wallingford, Oxfordshire - RAF Benson"
+    },
+    {
+      "icao": "EGNO",
+      "name": "Warton Aerodrome"
+    },
+    {
+      "icao": "EGPC",
+      "name": "Wick John O'Groats"
+    },
+    {
+      "icao": "EGDY",
+      "name": "Yeovil, Somerset - RNAS Yeovilton"
+    }
+  ],
+  "United States": [
+    {
+      "icao": "KALB",
+      "name": "Albany"
+    },
+    {
+      "icao": "KABQ",
+      "name": "Albuquerque International Sunport"
+    },
+    {
+      "icao": "KAUS",
+      "name": "Austin Bergstrom"
+    },
+    {
+      "icao": "KBWI",
+      "name": "Baltimore/Washington International Thurgood Marshall"
+    },
+    {
+      "icao": "KBHM",
+      "name": "Birmingham-Shuttlesworth"
+    },
+    {
+      "icao": "KBOI",
+      "name": "Boise Air Terminal/Gowen Field"
+    },
+    {
+      "icao": "KBOS",
+      "name": "Boston Logan"
+    },
+    {
+      "icao": "KBUF",
+      "name": "Buffalo Niagara"
+    },
+    {
+      "icao": "KCHS",
+      "name": "Charleston"
+    },
+    {
+      "icao": "KCLT",
+      "name": "Charlotte Douglas"
+    },
+    {
+      "icao": "KMDW",
+      "name": "Chicago Midway"
+    },
+    {
+      "icao": "KORD",
+      "name": "Chicago O'Hare"
+    },
+    {
+      "icao": "KCVG",
+      "name": "Cincinnati / Covington - Cincinnati Northern Kentucky"
+    },
+    {
+      "icao": "KCOS",
+      "name": "City of Colorado Springs Municipal"
+    },
+    {
+      "icao": "KCLE",
+      "name": "Cleveland Hopkins"
+    },
+    {
+      "icao": "KDAL",
+      "name": "Dallas Love Field"
+    },
+    {
+      "icao": "KDFW",
+      "name": "Dallas-Fort Worth - Dallas Fort Worth"
+    },
+    {
+      "icao": "KDEN",
+      "name": "Denver"
+    },
+    {
+      "icao": "KDSM",
+      "name": "Des Moines"
+    },
+    {
+      "icao": "KDTW",
+      "name": "Detroit Metropolitan Wayne County"
+    },
+    {
+      "icao": "KELP",
+      "name": "El Paso"
+    },
+    {
+      "icao": "KFLL",
+      "name": "Fort Lauderdale Hollywood"
+    },
+    {
+      "icao": "KRSW",
+      "name": "Fort Myers - Southwest Florida"
+    },
+    {
+      "icao": "KROC",
+      "name": "Frederick Douglass Greater Rochester"
+    },
+    {
+      "icao": "KFAT",
+      "name": "Fresno Yosemite"
+    },
+    {
+      "icao": "KGRR",
+      "name": "Grand Rapids - Gerald R. Ford"
+    },
+    {
+      "icao": "KGSO",
+      "name": "Greensboro - Piedmont Triad"
+    },
+    {
+      "icao": "KBDL",
+      "name": "Hartford - Bradley"
+    },
+    {
+      "icao": "KATL",
+      "name": "Hartsfield Jackson Atlanta"
+    },
+    {
+      "icao": "KBUR",
+      "name": "Hollywood Burbank"
+    },
+    {
+      "icao": "PHNL",
+      "name": "Honolulu, Oahu - Daniel K. Inouye"
+    },
+    {
+      "icao": "KIAH",
+      "name": "Houston - George Bush Intercontinental"
+    },
+    {
+      "icao": "KHOU",
+      "name": "Houston - William P. Hobby"
+    },
+    {
+      "icao": "KIND",
+      "name": "Indianapolis"
+    },
+    {
+      "icao": "KJAX",
+      "name": "Jacksonville"
+    },
+    {
+      "icao": "KCMH",
+      "name": "John Glenn Columbus"
+    },
+    {
+      "icao": "PHOG",
+      "name": "Kahului"
+    },
+    {
+      "icao": "PHKO",
+      "name": "Kailua-Kona - Ellison Onizuka Kona International Airport at Keāhole"
+    },
+    {
+      "icao": "KMCI",
+      "name": "Kansas City"
+    },
+    {
+      "icao": "KTYS",
+      "name": "Knoxville/Maryville - McGhee Tyson"
+    },
+    {
+      "icao": "KLAS",
+      "name": "Las Vegas - Harry Reid"
+    },
+    {
+      "icao": "PHLI",
+      "name": "Lihue, Kauai - Lihue"
+    },
+    {
+      "icao": "KLGB",
+      "name": "Long Beach"
+    },
+    {
+      "icao": "KLAX",
+      "name": "Los Angeles"
+    },
+    {
+      "icao": "KMSY",
+      "name": "Louis Armstrong New Orleans"
+    },
+    {
+      "icao": "KSDF",
+      "name": "Louisville Muhammad Ali"
+    },
+    {
+      "icao": "KMEM",
+      "name": "Memphis"
+    },
+    {
+      "icao": "KMIA",
+      "name": "Miami"
+    },
+    {
+      "icao": "KMKE",
+      "name": "Milwaukee - General Mitchell"
+    },
+    {
+      "icao": "KMSP",
+      "name": "Minneapolis–Saint Paul International Airport / Wold–Chamberlain Field"
+    },
+    {
+      "icao": "KMYR",
+      "name": "Myrtle Beach"
+    },
+    {
+      "icao": "KBNA",
+      "name": "Nashville"
+    },
+    {
+      "icao": "KJFK",
+      "name": "New York - John F. Kennedy"
+    },
+    {
+      "icao": "KLGA",
+      "name": "New York - LaGuardia"
+    },
+    {
+      "icao": "KEWR",
+      "name": "Newark Liberty"
+    },
+    {
+      "icao": "KORF",
+      "name": "Norfolk"
+    },
+    {
+      "icao": "KSJC",
+      "name": "Norman Y. Mineta San Jose"
+    },
+    {
+      "icao": "KOKC",
+      "name": "Oklahoma City - OKC Will Rogers World"
+    },
+    {
+      "icao": "KOMA",
+      "name": "Omaha - Eppley Airfield"
+    },
+    {
+      "icao": "KONT",
+      "name": "Ontario"
+    },
+    {
+      "icao": "KMCO",
+      "name": "Orlando"
+    },
+    {
+      "icao": "KSFB",
+      "name": "Orlando Sanford"
+    },
+    {
+      "icao": "KPSP",
+      "name": "Palm Springs"
+    },
+    {
+      "icao": "KPNS",
+      "name": "Pensacola"
+    },
+    {
+      "icao": "KPHL",
+      "name": "Philadelphia"
+    },
+    {
+      "icao": "KPHX",
+      "name": "Phoenix Sky Harbor"
+    },
+    {
+      "icao": "KPIE",
+      "name": "Pinellas Park - St. Petersburg Clearwater"
+    },
+    {
+      "icao": "KPIT",
+      "name": "Pittsburgh"
+    },
+    {
+      "icao": "KPDX",
+      "name": "Portland"
+    },
+    {
+      "icao": "KPWM",
+      "name": "Portland International Jetport"
+    },
+    {
+      "icao": "KPVD",
+      "name": "Providence/Warwick - Rhode Island T. F. Green"
+    },
+    {
+      "icao": "KRDU",
+      "name": "Raleigh/Durham - Raleigh-Durham"
+    },
+    {
+      "icao": "KRNO",
+      "name": "Reno Tahoe"
+    },
+    {
+      "icao": "KRIC",
+      "name": "Richmond"
+    },
+    {
+      "icao": "KDCA",
+      "name": "Ronald Reagan Washington National"
+    },
+    {
+      "icao": "KSMF",
+      "name": "Sacramento"
+    },
+    {
+      "icao": "KSLC",
+      "name": "Salt Lake City"
+    },
+    {
+      "icao": "KSAT",
+      "name": "San Antonio"
+    },
+    {
+      "icao": "KSBD",
+      "name": "San Bernardino"
+    },
+    {
+      "icao": "KSAN",
+      "name": "San Diego"
+    },
+    {
+      "icao": "KSFO",
+      "name": "San Francisco"
+    },
+    {
+      "icao": "KOAK",
+      "name": "San Francisco Bay Oakland"
+    },
+    {
+      "icao": "KSNA",
+      "name": "Santa Ana - John Wayne Orange County"
+    },
+    {
+      "icao": "KSRQ",
+      "name": "Sarasota/Bradenton - Sarasota Bradenton"
+    },
+    {
+      "icao": "KSAV",
+      "name": "Savannah Hilton Head"
+    },
+    {
+      "icao": "KSEA",
+      "name": "Seattle–Tacoma"
+    },
+    {
+      "icao": "KGEG",
+      "name": "Spokane"
+    },
+    {
+      "icao": "KSTL",
+      "name": "St Louis - St. Louis Lambert"
+    },
+    {
+      "icao": "KSYR",
+      "name": "Syracuse Hancock"
+    },
+    {
+      "icao": "KTPA",
+      "name": "Tampa"
+    },
+    {
+      "icao": "PANC",
+      "name": "Ted Stevens Anchorage"
+    },
+    {
+      "icao": "KTUS",
+      "name": "Tucson"
+    },
+    {
+      "icao": "KTUL",
+      "name": "Tulsa"
+    },
+    {
+      "icao": "KVNY",
+      "name": "Van Nuys"
+    },
+    {
+      "icao": "KIAD",
+      "name": "Washington Dulles"
+    },
+    {
+      "icao": "KPBI",
+      "name": "West Palm Beach - Palm Beach"
+    },
+    {
+      "icao": "KAPG",
+      "name": "Aberdeen - Phillips Army Air Field"
+    },
+    {
+      "icao": "KABR",
+      "name": "Aberdeen Regional"
+    },
+    {
+      "icao": "KDYS",
+      "name": "Abilene - Dyess Air Force Base"
+    },
+    {
+      "icao": "KABI",
+      "name": "Abilene Regional"
+    },
+    {
+      "icao": "KADH",
+      "name": "Ada Regional"
+    },
+    {
+      "icao": "PADK",
+      "name": "Adak"
+    },
+    {
+      "icao": "KCAK",
+      "name": "Akron Canton Regional"
+    },
+    {
+      "icao": "KAKR",
+      "name": "Akron Fulton"
+    },
+    {
+      "icao": "KHMN",
+      "name": "Alamogordo - Holloman Air Force Base"
+    },
+    {
+      "icao": "KALM",
+      "name": "Alamogordo White Sands Regional"
+    },
+    {
+      "icao": "KALS",
+      "name": "Alamosa - San Luis Valley Regional Airport/Bergman Field"
+    },
+    {
+      "icao": "KABY",
+      "name": "Albany - Southwest Georgia Regional"
+    },
+    {
+      "icao": "KAEX",
+      "name": "Alexandria"
+    },
+    {
+      "icao": "KAXN",
+      "name": "Alexandria - Chandler Field"
+    },
+    {
+      "icao": "KESF",
+      "name": "Alexandria - Esler Army Airfield / Esler Regional"
+    },
+    {
+      "icao": "KALI",
+      "name": "Alice"
+    },
+    {
+      "icao": "KABE",
+      "name": "Allentown/Bethlehem - Lehigh Valley"
+    },
+    {
+      "icao": "KAIA",
+      "name": "Alliance Municipal"
+    },
+    {
+      "icao": "KAPN",
+      "name": "Alpena County Regional"
+    },
+    {
+      "icao": "KSRR",
+      "name": "Alto - Sierra Blanca Regional"
+    },
+    {
+      "icao": "KALN",
+      "name": "Alton/St Louis - St Louis Regional"
+    },
+    {
+      "icao": "KAOO",
+      "name": "Altoona Blair County"
+    },
+    {
+      "icao": "KLTS",
+      "name": "Altus Air Force Base"
+    },
+    {
+      "icao": "PAFM",
+      "name": "Ambler"
+    },
+    {
+      "icao": "PAKP",
+      "name": "Anaktuvuk Pass"
+    },
+    {
+      "icao": "PAED",
+      "name": "Anchorage - Elmendorf Air Force Base"
+    },
+    {
+      "icao": "PAMR",
+      "name": "Anchorage - Merrill Field"
+    },
+    {
+      "icao": "KAND",
+      "name": "Anderson Regional"
+    },
+    {
+      "icao": "KLBX",
+      "name": "Angleton - Texas Gulf Coast Regional"
+    },
+    {
+      "icao": "PANI",
+      "name": "Aniak"
+    },
+    {
+      "icao": "KANB",
+      "name": "Anniston Regional"
+    },
+    {
+      "icao": "PANV",
+      "name": "Anvik"
+    },
+    {
+      "icao": "KATW",
+      "name": "Appleton"
+    },
+    {
+      "icao": "KACV",
+      "name": "Arcata/Eureka - California Redwood Coast-Humboldt County"
+    },
+    {
+      "icao": "PARC",
+      "name": "Arctic Village"
+    },
+    {
+      "icao": "KAVL",
+      "name": "Asheville Regional"
+    },
+    {
+      "icao": "KHZY",
+      "name": "Ashtabula - Northeast Ohio Regional"
+    },
+    {
+      "icao": "KASE",
+      "name": "Aspen-Pitkin County Airport (Sardy Field)"
+    },
+    {
+      "icao": "KAST",
+      "name": "Astoria Regional"
+    },
+    {
+      "icao": "KAHN",
+      "name": "Athens Ben Epps"
+    },
+    {
+      "icao": "KPDK",
+      "name": "Atlanta - DeKalb Peachtree"
+    },
+    {
+      "icao": "KFTY",
+      "name": "Atlanta - Fulton County Airport Brown Field"
+    },
+    {
+      "icao": "KACY",
+      "name": "Atlantic City"
+    },
+    {
+      "icao": "PATQ",
+      "name": "Atqasuk Edward Burnell Sr Memorial"
+    },
+    {
+      "icao": "KDNL",
+      "name": "Augusta - Daniel Field"
+    },
+    {
+      "icao": "KAGS",
+      "name": "Augusta Regional At Bush Field"
+    },
+    {
+      "icao": "KAUG",
+      "name": "Augusta State"
+    },
+    {
+      "icao": "KBKF",
+      "name": "Aurora - Buckley Space Force Base"
+    },
+    {
+      "icao": "KBKE",
+      "name": "Baker City Municipal"
+    },
+    {
+      "icao": "KBFL",
+      "name": "Bakersfield - Meadows Field"
+    },
+    {
+      "icao": "KMTN",
+      "name": "Baltimore - Martin State"
+    },
+    {
+      "icao": "KBGR",
+      "name": "Bangor"
+    },
+    {
+      "icao": "KMPV",
+      "name": "Barre/Montpelier - Edward F Knapp State"
+    },
+    {
+      "icao": "KDAG",
+      "name": "Barstow Daggett"
+    },
+    {
+      "icao": "PABA",
+      "name": "Barter Island Long Range Radar Station"
+    },
+    {
+      "icao": "KBTR",
+      "name": "Baton Rouge Metropolitan"
+    },
+    {
+      "icao": "KBTL",
+      "name": "Battle Creek Executive Airport at Kellogg Field"
+    },
+    {
+      "icao": "KBDE",
+      "name": "Baudette"
+    },
+    {
+      "icao": "KBAB",
+      "name": "Beale Air Force Base"
+    },
+    {
+      "icao": "KBPT",
+      "name": "Beaumont/Port Arthur - Jack Brooks Regional"
+    },
+    {
+      "icao": "KBKW",
+      "name": "Beaver - Raleigh County Memorial"
+    },
+    {
+      "icao": "KBVI",
+      "name": "Beaver Falls - Beaver County"
+    },
+    {
+      "icao": "KBED",
+      "name": "Bedford - Laurence G Hanscom Field"
+    },
+    {
+      "icao": "KBLV",
+      "name": "Belleville - Scott AFB/Midamerica"
+    },
+    {
+      "icao": "KBLI",
+      "name": "Bellingham"
+    },
+    {
+      "icao": "KBJI",
+      "name": "Bemidji Regional"
+    },
+    {
+      "icao": "PABE",
+      "name": "Bethel"
+    },
+    {
+      "icao": "KBVY",
+      "name": "Beverly / Danvers - Beverly Regional"
+    },
+    {
+      "icao": "KBPI",
+      "name": "Big Piney - Miley Memorial Field"
+    },
+    {
+      "icao": "KBIL",
+      "name": "Billings Logan"
+    },
+    {
+      "icao": "KBIX",
+      "name": "Biloxi - Keesler Air Force Base"
+    },
+    {
+      "icao": "PABV",
+      "name": "Birchwood"
+    },
+    {
+      "icao": "KBIH",
+      "name": "Bishop - Eastern Sierra Regional"
+    },
+    {
+      "icao": "KBIS",
+      "name": "Bismarck Municipal"
+    },
+    {
+      "icao": "KBMG",
+      "name": "Bloomington - Monroe County"
+    },
+    {
+      "icao": "KBMI",
+      "name": "Bloomington/Normal - Central Illinois Regional Airport at Bloomington-Normal"
+    },
+    {
+      "icao": "KTRI",
+      "name": "Blountville - Tri-Cities Regional TN/VA"
+    },
+    {
+      "icao": "KBLF",
+      "name": "Bluefield - Mercer County"
+    },
+    {
+      "icao": "KBLH",
+      "name": "Blythe"
+    },
+    {
+      "icao": "KBYH",
+      "name": "Blytheville - Arkansas"
+    },
+    {
+      "icao": "KBCT",
+      "name": "Boca Raton"
+    },
+    {
+      "icao": "KBAD",
+      "name": "Bossier City - Barksdale Air Force Base"
+    },
+    {
+      "icao": "KBWG",
+      "name": "Bowling Green Warren County Regional"
+    },
+    {
+      "icao": "KBZN",
+      "name": "Bozeman Yellowstone"
+    },
+    {
+      "icao": "KBFD",
+      "name": "Bradford Regional"
+    },
+    {
+      "icao": "KBBD",
+      "name": "Brady - Curtis Field"
+    },
+    {
+      "icao": "KBRD",
+      "name": "Brainerd Lakes Regional"
+    },
+    {
+      "icao": "KBBG",
+      "name": "Branson"
+    },
+    {
+      "icao": "KPWT",
+      "name": "Bremerton National"
+    },
+    {
+      "icao": "KBDR",
+      "name": "Bridgeport - Igor I Sikorsky Memorial"
+    },
+    {
+      "icao": "KCKB",
+      "name": "Bridgeport - North Central West Virginia"
+    },
+    {
+      "icao": "KBRO",
+      "name": "Brownsville South Padre Island"
+    },
+    {
+      "icao": "KBXM",
+      "name": "Brunswick Executive"
+    },
+    {
+      "icao": "KBQK",
+      "name": "Brunswick Golden Isles"
+    },
+    {
+      "icao": "KBCE",
+      "name": "Bryce Canyon"
+    },
+    {
+      "icao": "KIFP",
+      "name": "Bullhead City - Laughlin Bullhead"
+    },
+    {
+      "icao": "KBYI",
+      "name": "Burley Municipal"
+    },
+    {
+      "icao": "KBRL",
+      "name": "Burlington - Southeast Iowa Regional"
+    },
+    {
+      "icao": "KBNO",
+      "name": "Burns Municipal"
+    },
+    {
+      "icao": "KBTM",
+      "name": "Butte - Bert Mooney"
+    },
+    {
+      "icao": "KFCS",
+      "name": "Butts AAF (Fort Carson) Air Field"
+    },
+    {
+      "icao": "KVOK",
+      "name": "Camp Douglas - Volk Field"
+    },
+    {
+      "icao": "KADW",
+      "name": "Camp Springs - Joint Base Andrews"
+    },
+    {
+      "icao": "KHOP",
+      "name": "Campbell Army Airfield (Fort Campbell)"
+    },
+    {
+      "icao": "KCGI",
+      "name": "Cape Girardeau Regional"
+    },
+    {
+      "icao": "PALU",
+      "name": "Cape Lisburne LRRS"
+    },
+    {
+      "icao": "PAEH",
+      "name": "Cape Newenham LRRS"
+    },
+    {
+      "icao": "PACZ",
+      "name": "Cape Romanzof LRRS"
+    },
+    {
+      "icao": "KCAR",
+      "name": "Caribou Municipal"
+    },
+    {
+      "icao": "KCNM",
+      "name": "Carlsbad - Cavern City Air Terminal"
+    },
+    {
+      "icao": "KCRQ",
+      "name": "Carlsbad - McClellan-Palomar"
+    },
+    {
+      "icao": "KCXP",
+      "name": "Carson City - Carson"
+    },
+    {
+      "icao": "KCPR",
+      "name": "Casper-Natrona County"
+    },
+    {
+      "icao": "KCDC",
+      "name": "Cedar City Regional"
+    },
+    {
+      "icao": "KCID",
+      "name": "Cedar Rapids - The Eastern Iowa"
+    },
+    {
+      "icao": "KCDR",
+      "name": "Chadron Municipal"
+    },
+    {
+      "icao": "KCNU",
+      "name": "Chanute Martin Johnson"
+    },
+    {
+      "icao": "KCCY",
+      "name": "Charles City - Northeast Iowa Regional"
+    },
+    {
+      "icao": "KCRW",
+      "name": "Charleston - Yeager"
+    },
+    {
+      "icao": "KCHO",
+      "name": "Charlottesville Albemarle"
+    },
+    {
+      "icao": "KCHA",
+      "name": "Chattanooga Metropolitan Airport (Lovell Field)"
+    },
+    {
+      "icao": "KJHW",
+      "name": "Chautauqua County-Jamestown"
+    },
+    {
+      "icao": "KNKT",
+      "name": "Cherry Point MCAS / Cunningham Field/"
+    },
+    {
+      "icao": "KCYS",
+      "name": "Cheyenne Regional Jerry Olson Field"
+    },
+    {
+      "icao": "KRFD",
+      "name": "Chicago/Rockford - Chicago Rockford"
+    },
+    {
+      "icao": "KDPA",
+      "name": "Chicago/West Chicago - Dupage"
+    },
+    {
+      "icao": "KCDS",
+      "name": "Childress Municipal"
+    },
+    {
+      "icao": "KLUK",
+      "name": "Cincinnati Municipal Airport Lunken Field"
+    },
+    {
+      "icao": "PACL",
+      "name": "Clear"
+    },
+    {
+      "icao": "KBKL",
+      "name": "Cleveland - Burke Lakefront"
+    },
+    {
+      "icao": "KCGF",
+      "name": "Cleveland - Cuyahoga County"
+    },
+    {
+      "icao": "KCVS",
+      "name": "Clovis - Cannon Air Force Base"
+    },
+    {
+      "icao": "KCVN",
+      "name": "Clovis Municipal"
+    },
+    {
+      "icao": "KXMR",
+      "name": "Cocoa Beach - Cape Canaveral SFS Skid Strip"
+    },
+    {
+      "icao": "KCOF",
+      "name": "Cocoa Beach - Patrick Space Force Base"
+    },
+    {
+      "icao": "KCOD",
+      "name": "Cody - Yellowstone Regional"
+    },
+    {
+      "icao": "KCOE",
+      "name": "Coeur D'Alene Airport - Pappy Boyington Field"
+    },
+    {
+      "icao": "PACD",
+      "name": "Cold Bay"
+    },
+    {
+      "icao": "KCLL",
+      "name": "College Station - Easterwood Field"
+    },
+    {
+      "icao": "KCUB",
+      "name": "Columbia - Jim Hamilton L.B. Owens"
+    },
+    {
+      "icao": "KCAE",
+      "name": "Columbia Metropolitan"
+    },
+    {
+      "icao": "KCOU",
+      "name": "Columbia Regional"
+    },
+    {
+      "icao": "KCSG",
+      "name": "Columbus"
+    },
+    {
+      "icao": "KLCK",
+      "name": "Columbus - Rickenbacker"
+    },
+    {
+      "icao": "KOSU",
+      "name": "Columbus - The Ohio State University Airport - Don Scott Field"
+    },
+    {
+      "icao": "KCBM",
+      "name": "Columbus Air Force Base"
+    },
+    {
+      "icao": "KBAK",
+      "name": "Columbus Municipal"
+    },
+    {
+      "icao": "KOLU",
+      "name": "Columbus Municipal"
+    },
+    {
+      "icao": "KGTR",
+      "name": "Columbus/W Point/Starkville - Golden Triangle Regional"
+    },
+    {
+      "icao": "KCCR",
+      "name": "Concord - Buchanan Field"
+    },
+    {
+      "icao": "KCON",
+      "name": "Concord Municipal"
+    },
+    {
+      "icao": "KJQF",
+      "name": "Concord-Padgett Regional"
+    },
+    {
+      "icao": "KCXO",
+      "name": "Conroe-North Houston Regional"
+    },
+    {
+      "icao": "PACV",
+      "name": "Cordova - Merle K (Mudhole) Smith"
+    },
+    {
+      "icao": "KCRP",
+      "name": "Corpus Christi"
+    },
+    {
+      "icao": "KCEZ",
+      "name": "Cortez Municipal"
+    },
+    {
+      "icao": "KCVO",
+      "name": "Corvallis Municipal"
+    },
+    {
+      "icao": "KCEC",
+      "name": "Crescent City - Jack Mc Namara Field"
+    },
+    {
+      "icao": "KCEW",
+      "name": "Crestview - Bob Sikes"
+    },
+    {
+      "icao": "KEGI",
+      "name": "Crestview - Duke Field"
+    },
+    {
+      "icao": "KCSV",
+      "name": "Crossville Memorial Airport Whitson Field"
+    },
+    {
+      "icao": "KCTB",
+      "name": "Cut Bank"
+    },
+    {
+      "icao": "KDHT",
+      "name": "Dalhart Municipal"
+    },
+    {
+      "icao": "KDLS",
+      "name": "Dallesport / The Dalles - Columbia Gorge Regional"
+    },
+    {
+      "icao": "KDXR",
+      "name": "Danbury Municipal"
+    },
+    {
+      "icao": "KDAN",
+      "name": "Danville Regional"
+    },
+    {
+      "icao": "KFFO",
+      "name": "Dayton - Wright-Patterson Air Force Base"
+    },
+    {
+      "icao": "KDAB",
+      "name": "Daytona Beach"
+    },
+    {
+      "icao": "KDRI",
+      "name": "DeRidder - Beauregard Regional"
+    },
+    {
+      "icao": "PASC",
+      "name": "Deadhorse"
+    },
+    {
+      "icao": "KDEC",
+      "name": "Decatur"
+    },
+    {
+      "icao": "PADE",
+      "name": "Deering"
+    },
+    {
+      "icao": "KDRT",
+      "name": "Del Rio"
+    },
+    {
+      "icao": "KDLF",
+      "name": "Del Rio - Laughlin Air Force Base"
+    },
+    {
+      "icao": "PABI",
+      "name": "Delta Junction Ft Greely - Allen Army Airfield"
+    },
+    {
+      "icao": "KDMN",
+      "name": "Deming Municipal"
+    },
+    {
+      "icao": "KGYI",
+      "name": "Denison - North Texas Regional Airport Perrin Field"
+    },
+    {
+      "icao": "KAPA",
+      "name": "Denver - Centennial"
+    },
+    {
+      "icao": "KBJC",
+      "name": "Denver - Rocky Mountain Metropolitan"
+    },
+    {
+      "icao": "KDTS",
+      "name": "Destin Executive"
+    },
+    {
+      "icao": "KYIP",
+      "name": "Detroit - Willow Run"
+    },
+    {
+      "icao": "KDVL",
+      "name": "Devils Lake Regional"
+    },
+    {
+      "icao": "KDIK",
+      "name": "Dickinson Theodore Roosevelt Regional"
+    },
+    {
+      "icao": "PADL",
+      "name": "Dillingham"
+    },
+    {
+      "icao": "KDDC",
+      "name": "Dodge City Regional"
+    },
+    {
+      "icao": "KDHN",
+      "name": "Dothan Regional"
+    },
+    {
+      "icao": "KDUG",
+      "name": "Douglas Bisbee - Bisbee Douglas"
+    },
+    {
+      "icao": "KDOV",
+      "name": "Dover Civil Air Terminal/Dover Air Force Base"
+    },
+    {
+      "icao": "KDUJ",
+      "name": "DuBois Regional"
+    },
+    {
+      "icao": "KDBQ",
+      "name": "Dubuque Regional"
+    },
+    {
+      "icao": "KDLH",
+      "name": "Duluth"
+    },
+    {
+      "icao": "KDRO",
+      "name": "Durango La Plata County"
+    },
+    {
+      "icao": "KDUA",
+      "name": "Durant Regional Airport - Eaker Field"
+    },
+    {
+      "icao": "KEGE",
+      "name": "Eagle County Regional"
+    },
+    {
+      "icao": "KFRG",
+      "name": "East Farmingdale - Republic"
+    },
+    {
+      "icao": "KPDT",
+      "name": "Eastern Oregon Regional Airport at Pendleton"
+    },
+    {
+      "icao": "KMMT",
+      "name": "Eastover - Mc Entire Joint National Guard Base"
+    },
+    {
+      "icao": "KORS",
+      "name": "Eastsound - Orcas Island"
+    },
+    {
+      "icao": "KEAU",
+      "name": "Eau Claire - Chippewa Valley Regional"
+    },
+    {
+      "icao": "KEDW",
+      "name": "Edwards Air Force Base"
+    },
+    {
+      "icao": "PAII",
+      "name": "Egegik"
+    },
+    {
+      "icao": "KNJK",
+      "name": "El Centro NAF Airport (Vraciu Field)"
+    },
+    {
+      "icao": "KELD",
+      "name": "El Dorado - South Arkansas Regional Airport at Goodwin Field"
+    },
+    {
+      "icao": "KECG",
+      "name": "Elizabeth City Regional Airport & Coast Guard Air Station"
+    },
+    {
+      "icao": "KEKN",
+      "name": "Elkins-Randolph County Regional"
+    },
+    {
+      "icao": "KEKO",
+      "name": "Elko Regional"
+    },
+    {
+      "icao": "KELM",
+      "name": "Elmira/Corning - Elmira Corning Regional"
+    },
+    {
+      "icao": "KELY",
+      "name": "Ely Airport Yelland Field"
+    },
+    {
+      "icao": "KELO",
+      "name": "Ely Municipal"
+    },
+    {
+      "icao": "PAEM",
+      "name": "Emmonak"
+    },
+    {
+      "icao": "KEND",
+      "name": "Enid - Vance Air Force Base"
+    },
+    {
+      "icao": "KERI",
+      "name": "Erie International Tom Ridge Field"
+    },
+    {
+      "icao": "KESC",
+      "name": "Escanaba - Delta County"
+    },
+    {
+      "icao": "KEUG",
+      "name": "Eugene"
+    },
+    {
+      "icao": "KTOL",
+      "name": "Eugene F. Kranz Toledo Express"
+    },
+    {
+      "icao": "KEKA",
+      "name": "Eureka - Murray Field"
+    },
+    {
+      "icao": "KEVW",
+      "name": "Evanston-Uinta County Airport-Burns Field"
+    },
+    {
+      "icao": "KEVV",
+      "name": "Evansville Regional"
+    },
+    {
+      "icao": "KPAE",
+      "name": "Everett - Seattle Paine Field"
+    },
+    {
+      "icao": "KTTN",
+      "name": "Ewing Township - Trenton Mercer"
+    },
+    {
+      "icao": "PAFA",
+      "name": "Fairbanks"
+    },
+    {
+      "icao": "PAEI",
+      "name": "Fairbanks - Eielson Air Force Base"
+    },
+    {
+      "icao": "PAFB",
+      "name": "Fairbanks - Ladd Army Airfield"
+    },
+    {
+      "icao": "KSUU",
+      "name": "Fairfield - Travis Air Force Base"
+    },
+    {
+      "icao": "KNFL",
+      "name": "Fallon Naval Air Station"
+    },
+    {
+      "icao": "KFAR",
+      "name": "Fargo - Hector"
+    },
+    {
+      "icao": "KFMN",
+      "name": "Farmington - Four Corners Regional"
+    },
+    {
+      "icao": "KFYV",
+      "name": "Fayetteville - Drake Field"
+    },
+    {
+      "icao": "KFAY",
+      "name": "Fayetteville Regional Airport - Grannis Field"
+    },
+    {
+      "icao": "KXNA",
+      "name": "Fayetteville/Springdale/Rogers - Northwest Arkansas National"
+    },
+    {
+      "icao": "KFDY",
+      "name": "Findlay"
+    },
+    {
+      "icao": "KFLG",
+      "name": "Flagstaff Pulliam"
+    },
+    {
+      "icao": "KFNT",
+      "name": "Flint - Bishop"
+    },
+    {
+      "icao": "KFLO",
+      "name": "Florence Regional"
+    },
+    {
+      "icao": "KMTH",
+      "name": "Florida Keys Marathon"
+    },
+    {
+      "icao": "KDAA",
+      "name": "Fort Belvoir - Davison Army Air Field"
+    },
+    {
+      "icao": "KLSF",
+      "name": "Fort Benning - Lawson Army Air Field"
+    },
+    {
+      "icao": "KBIF",
+      "name": "Fort Bliss/El Paso - Biggs Army Air Field (Fort Bliss)"
+    },
+    {
+      "icao": "KPOB",
+      "name": "Fort Bragg - Pope Field"
+    },
+    {
+      "icao": "KFBG",
+      "name": "Fort Bragg - Simmons Army Air Field"
+    },
+    {
+      "icao": "KGRK",
+      "name": "Fort Cavazos - Killeen Regional Airport / Robert Gray Army Airfield"
+    },
+    {
+      "icao": "KFOD",
+      "name": "Fort Dodge Regional"
+    },
+    {
+      "icao": "KGTB",
+      "name": "Fort Drum - Wheeler Sack Army Air Field"
+    },
+    {
+      "icao": "KFHU",
+      "name": "Fort Huachuca / Sierra Vista - Sierra Vista Municipal Airport / Libby Army Air Field"
+    },
+    {
+      "icao": "KMUI",
+      "name": "Fort Indiantown Gap(Annville) - Muir Army Air Field (Fort Indiantown Gap)"
+    },
+    {
+      "icao": "KBYS",
+      "name": "Fort Irwin/Barstow - Bicycle Lake Army Air Field"
+    },
+    {
+      "icao": "KFTK",
+      "name": "Fort Knox - Godman Army Air Field"
+    },
+    {
+      "icao": "KFXE",
+      "name": "Fort Lauderdale Executive"
+    },
+    {
+      "icao": "KTBN",
+      "name": "Fort Leonard Wood - Waynesville-St. Robert Regional Airport-Forney Field"
+    },
+    {
+      "icao": "KGRF",
+      "name": "Fort Lewis/Tacoma - Gray Army Air Field"
+    },
+    {
+      "icao": "KFME",
+      "name": "Fort Meade(Odenton) - Fort Meade Executive"
+    },
+    {
+      "icao": "KFMY",
+      "name": "Fort Myers - Page Field"
+    },
+    {
+      "icao": "KFPR",
+      "name": "Fort Pierce - Treasure Coast"
+    },
+    {
+      "icao": "KPOE",
+      "name": "Fort Polk - Polk Army Air Field"
+    },
+    {
+      "icao": "KFRI",
+      "name": "Fort Riley (Junction City) - Marshall Army Air Field"
+    },
+    {
+      "icao": "KOZR",
+      "name": "Fort Rucker/Ozark - Cairns AAF (Fort Rucker) Air Field"
+    },
+    {
+      "icao": "KFSI",
+      "name": "Fort Sill - Henry Post Army Air Field"
+    },
+    {
+      "icao": "KFSM",
+      "name": "Fort Smith Regional"
+    },
+    {
+      "icao": "KFST",
+      "name": "Fort Stockton Pecos County"
+    },
+    {
+      "icao": "KFWA",
+      "name": "Fort Wayne"
+    },
+    {
+      "icao": "KFTW",
+      "name": "Fort Worth Meacham"
+    },
+    {
+      "icao": "PFYU",
+      "name": "Fort Yukon"
+    },
+    {
+      "icao": "KFKL",
+      "name": "Franklin - Venango Regional"
+    },
+    {
+      "icao": "KMBS",
+      "name": "Freeland - MBS"
+    },
+    {
+      "icao": "KFHR",
+      "name": "Friday Harbor"
+    },
+    {
+      "icao": "KGNV",
+      "name": "Gainesville Regional"
+    },
+    {
+      "icao": "PAGA",
+      "name": "Galena - Edward G. Pitka Sr"
+    },
+    {
+      "icao": "KGUP",
+      "name": "Gallup Municipal"
+    },
+    {
+      "icao": "PAGM",
+      "name": "Gambell"
+    },
+    {
+      "icao": "KGCK",
+      "name": "Garden City Regional"
+    },
+    {
+      "icao": "KPIA",
+      "name": "General Wayne A. Downing Peoria"
+    },
+    {
+      "icao": "KGCC",
+      "name": "Gillette - Northeast Wyoming Regional"
+    },
+    {
+      "icao": "KGGW",
+      "name": "Glasgow Valley County Airport Wokal Field"
+    },
+    {
+      "icao": "KLUF",
+      "name": "Glendale - Luke Air Force Base"
+    },
+    {
+      "icao": "KGDV",
+      "name": "Glendive - Dawson Community"
+    },
+    {
+      "icao": "KGFL",
+      "name": "Glens Falls - Floyd Bennett Memorial"
+    },
+    {
+      "icao": "KGSB",
+      "name": "Goldsboro - Seymour Johnson Air Force Base"
+    },
+    {
+      "icao": "KGLD",
+      "name": "Goodland Municipal"
+    },
+    {
+      "icao": "KGCN",
+      "name": "Grand Canyon - Tusayan - Grand Canyon National Park"
+    },
+    {
+      "icao": "KGFK",
+      "name": "Grand Forks"
+    },
+    {
+      "icao": "KRDR",
+      "name": "Grand Forks Air Force Base"
+    },
+    {
+      "icao": "KGRI",
+      "name": "Grand Island - Central Nebraska Regional"
+    },
+    {
+      "icao": "KGJT",
+      "name": "Grand Junction Regional"
+    },
+    {
+      "icao": "KGTF",
+      "name": "Great Falls"
+    },
+    {
+      "icao": "KBGM",
+      "name": "Greater Binghamton/Edwin A Link field"
+    },
+    {
+      "icao": "KIKK",
+      "name": "Greater Kankakee"
+    },
+    {
+      "icao": "KGRB",
+      "name": "Green Bay - Austin Straubel"
+    },
+    {
+      "icao": "KGLH",
+      "name": "Greenville - Mid Delta Regional"
+    },
+    {
+      "icao": "KGMU",
+      "name": "Greenville Downtown"
+    },
+    {
+      "icao": "KGSP",
+      "name": "Greenville/Greer/Spartanburg - Greenville-Spartanburg"
+    },
+    {
+      "icao": "KGWO",
+      "name": "Greenwood–Leflore"
+    },
+    {
+      "icao": "KGON",
+      "name": "Groton New London"
+    },
+    {
+      "icao": "KGPT",
+      "name": "Gulfport Biloxi"
+    },
+    {
+      "icao": "PAGK",
+      "name": "Gulkana"
+    },
+    {
+      "icao": "KGUC",
+      "name": "Gunnison Crested Butte Regional"
+    },
+    {
+      "icao": "PAGS",
+      "name": "Gustavus"
+    },
+    {
+      "icao": "KGUY",
+      "name": "Guymon Municipal"
+    },
+    {
+      "icao": "KSAW",
+      "name": "Gwinn - Marquette/Sawyer"
+    },
+    {
+      "icao": "KHGR",
+      "name": "Hagerstown Regional Richard A Henson Field"
+    },
+    {
+      "icao": "KSUN",
+      "name": "Hailey - Friedman Memorial"
+    },
+    {
+      "icao": "PAHN",
+      "name": "Haines"
+    },
+    {
+      "icao": "KLFI",
+      "name": "Hampton - Langley Air Force Base"
+    },
+    {
+      "icao": "PHHN",
+      "name": "Hana"
+    },
+    {
+      "icao": "KCMX",
+      "name": "Hancock - Houghton County Memorial"
+    },
+    {
+      "icao": "KBHB",
+      "name": "Hancock County-Bar Harbor"
+    },
+    {
+      "icao": "KHRL",
+      "name": "Harlingen - Valley"
+    },
+    {
+      "icao": "KMDT",
+      "name": "Harrisburg"
+    },
+    {
+      "icao": "KHRO",
+      "name": "Harrison - Boone County"
+    },
+    {
+      "icao": "KHFD",
+      "name": "Hartford Brainard"
+    },
+    {
+      "icao": "KHBG",
+      "name": "Hattiesburg Bobby L Chain Municipal"
+    },
+    {
+      "icao": "KHVR",
+      "name": "Havre City County"
+    },
+    {
+      "icao": "KHDN",
+      "name": "Hayden - Yampa Valley"
+    },
+    {
+      "icao": "KHYS",
+      "name": "Hays Regional"
+    },
+    {
+      "icao": "KHYR",
+      "name": "Hayward - Sawyer County"
+    },
+    {
+      "icao": "KHLN",
+      "name": "Helena Regional"
+    },
+    {
+      "icao": "KHIB",
+      "name": "Hibbing - Range Regional"
+    },
+    {
+      "icao": "KHKY",
+      "name": "Hickory Regional"
+    },
+    {
+      "icao": "PHTO",
+      "name": "Hilo"
+    },
+    {
+      "icao": "KHXD",
+      "name": "Hilton Head Island - Hilton Head"
+    },
+    {
+      "icao": "KHBR",
+      "name": "Hobart Regional"
+    },
+    {
+      "icao": "KHOB",
+      "name": "Hobbs - Lea County Regional"
+    },
+    {
+      "icao": "KHWO",
+      "name": "Hollywood - North Perry"
+    },
+    {
+      "icao": "PAHC",
+      "name": "Holy Cross"
+    },
+    {
+      "icao": "PAHO",
+      "name": "Homer"
+    },
+    {
+      "icao": "KHST",
+      "name": "Homestead Air Reserve Base"
+    },
+    {
+      "icao": "PHIK",
+      "name": "Honolulu - Hickam Air Force Base"
+    },
+    {
+      "icao": "KHQM",
+      "name": "Hoquiam - Bowerman"
+    },
+    {
+      "icao": "KHOT",
+      "name": "Hot Springs - Memorial Field"
+    },
+    {
+      "icao": "KHUL",
+      "name": "Houlton"
+    },
+    {
+      "icao": "KEFD",
+      "name": "Houston - Ellington"
+    },
+    {
+      "icao": "KSGR",
+      "name": "Houston - Sugar Land Regional"
+    },
+    {
+      "icao": "KHTS",
+      "name": "Huntington - Tri-State Airport / Milton J. Ferguson Field"
+    },
+    {
+      "icao": "KHSV",
+      "name": "Huntsville"
+    },
+    {
+      "icao": "KUTS",
+      "name": "Huntsville Regional"
+    },
+    {
+      "icao": "KHON",
+      "name": "Huron Regional"
+    },
+    {
+      "icao": "PAHL",
+      "name": "Huslia"
+    },
+    {
+      "icao": "KHUT",
+      "name": "Hutchinson Municipal"
+    },
+    {
+      "icao": "KHYA",
+      "name": "Hyannis - Cape Cod Gateway"
+    },
+    {
+      "icao": "KIDA",
+      "name": "Idaho Falls Regional"
+    },
+    {
+      "icao": "PAIL",
+      "name": "Iliamna"
+    },
+    {
+      "icao": "KIPL",
+      "name": "Imperial County"
+    },
+    {
+      "icao": "KINL",
+      "name": "International Falls - Falls"
+    },
+    {
+      "icao": "KISP",
+      "name": "Islip - Long Island MacArthur"
+    },
+    {
+      "icao": "KITH",
+      "name": "Ithaca Tompkins Regional"
+    },
+    {
+      "icao": "KHHR",
+      "name": "Jack Northrop Field Hawthorne Municipal"
+    },
+    {
+      "icao": "KMKL",
+      "name": "Jackson - McKellar-Sipes Regional"
+    },
+    {
+      "icao": "KJXN",
+      "name": "Jackson County Airport/Reynolds Field"
+    },
+    {
+      "icao": "KJAC",
+      "name": "Jackson Hole"
+    },
+    {
+      "icao": "KJAN",
+      "name": "Jackson-Medgar Wiley Evers"
+    },
+    {
+      "icao": "KVQQ",
+      "name": "Jacksonville - Cecil"
+    },
+    {
+      "icao": "KLRF",
+      "name": "Jacksonville - Little Rock Air Force Base"
+    },
+    {
+      "icao": "KNCA",
+      "name": "Jacksonville - MCAS New River / McCutcheon Field"
+    },
+    {
+      "icao": "KNRB",
+      "name": "Jacksonville - Naval Station Mayport / Admiral David L McDonald Field"
+    },
+    {
+      "icao": "KCRG",
+      "name": "Jacksonville Executive at Craig"
+    },
+    {
+      "icao": "KNIP",
+      "name": "Jacksonville Naval Air Station (Towers Field)"
+    },
+    {
+      "icao": "KDAY",
+      "name": "James M. Cox Dayton"
+    },
+    {
+      "icao": "KJMS",
+      "name": "Jamestown Regional"
+    },
+    {
+      "icao": "KJST",
+      "name": "John Murtha Johnstown Cambria County"
+    },
+    {
+      "icao": "KJBR",
+      "name": "Jonesboro Municipal"
+    },
+    {
+      "icao": "KJLN",
+      "name": "Joplin Regional"
+    },
+    {
+      "icao": "KJCT",
+      "name": "Junction - Kimble County"
+    },
+    {
+      "icao": "PAJN",
+      "name": "Juneau"
+    },
+    {
+      "icao": "PAFE",
+      "name": "Kake"
+    },
+    {
+      "icao": "KAZO",
+      "name": "Kalamazoo/Battle Creek"
+    },
+    {
+      "icao": "KGPI",
+      "name": "Kalispell - Glacier Park"
+    },
+    {
+      "icao": "PHNG",
+      "name": "Kaneohe Bay MCAS (Marion E. Carl Field)"
+    },
+    {
+      "icao": "KMKC",
+      "name": "Kansas City - Charles B. Wheeler Downtown"
+    },
+    {
+      "icao": "PHJR",
+      "name": "Kapolei - Kalaeloa"
+    },
+    {
+      "icao": "PHMK",
+      "name": "Kaunakakai - Molokai"
+    },
+    {
+      "icao": "KEAR",
+      "name": "Kearney Regional"
+    },
+    {
+      "icao": "KEEN",
+      "name": "Keene - Dillant Hopkins"
+    },
+    {
+      "icao": "PHBK",
+      "name": "Kekaha - Barking Sands"
+    },
+    {
+      "icao": "KKLS",
+      "name": "Kelso - Southwest Washington Regional"
+    },
+    {
+      "icao": "PAEN",
+      "name": "Kenai Municipal"
+    },
+    {
+      "icao": "KENW",
+      "name": "Kenosha Regional"
+    },
+    {
+      "icao": "PAKT",
+      "name": "Ketchikan"
+    },
+    {
+      "icao": "KMEI",
+      "name": "Key Field / Meridian Regional"
+    },
+    {
+      "icao": "KEYW",
+      "name": "Key West"
+    },
+    {
+      "icao": "PAIK",
+      "name": "Kiana - Bob Baker Memorial"
+    },
+    {
+      "icao": "KCIU",
+      "name": "Kincheloe - Chippewa County"
+    },
+    {
+      "icao": "PAKN",
+      "name": "King Salmon"
+    },
+    {
+      "icao": "KIGM",
+      "name": "Kingman"
+    },
+    {
+      "icao": "KIMT",
+      "name": "Kingsford - Ford"
+    },
+    {
+      "icao": "KNQI",
+      "name": "Kingsville Naval Air Station"
+    },
+    {
+      "icao": "KISO",
+      "name": "Kinston Regional Jetport At Stallings Field"
+    },
+    {
+      "icao": "KIRK",
+      "name": "Kirksville Regional"
+    },
+    {
+      "icao": "KLMT",
+      "name": "Klamath Falls - Crater Lake-Klamath Regional"
+    },
+    {
+      "icao": "PAKW",
+      "name": "Klawock"
+    },
+    {
+      "icao": "KSZL",
+      "name": "Knob Noster - Whiteman Air Force Base"
+    },
+    {
+      "icao": "PADQ",
+      "name": "Kodiak"
+    },
+    {
+      "icao": "PAOT",
+      "name": "Kotzebue - Ralph Wien Memorial"
+    },
+    {
+      "icao": "KLSE",
+      "name": "La Crosse Regional"
+    },
+    {
+      "icao": "KLFT",
+      "name": "Lafayette Regional"
+    },
+    {
+      "icao": "PHJH",
+      "name": "Lahaina - Kapalua"
+    },
+    {
+      "icao": "KLCH",
+      "name": "Lake Charles Regional"
+    },
+    {
+      "icao": "KHII",
+      "name": "Lake Havasu City"
+    },
+    {
+      "icao": "KNEL",
+      "name": "Lakehurst Maxfield Field"
+    },
+    {
+      "icao": "KLAL",
+      "name": "Lakeland Linder"
+    },
+    {
+      "icao": "KLAA",
+      "name": "Lamar - Southeast Colorado Regional"
+    },
+    {
+      "icao": "PHNY",
+      "name": "Lanai City - Lanai"
+    },
+    {
+      "icao": "KLNS",
+      "name": "Lancaster"
+    },
+    {
+      "icao": "KWJF",
+      "name": "Lancaster - General William J Fox Airfield"
+    },
+    {
+      "icao": "KLND",
+      "name": "Lander - Hunt Field"
+    },
+    {
+      "icao": "KLAN",
+      "name": "Lansing - Capital Region"
+    },
+    {
+      "icao": "KLAR",
+      "name": "Laramie Regional"
+    },
+    {
+      "icao": "KLRD",
+      "name": "Laredo"
+    },
+    {
+      "icao": "KLRU",
+      "name": "Las Cruces"
+    },
+    {
+      "icao": "KLSV",
+      "name": "Las Vegas - Nellis Air Force Base"
+    },
+    {
+      "icao": "KLVS",
+      "name": "Las Vegas Municipal"
+    },
+    {
+      "icao": "KLBE",
+      "name": "Latrobe - Arnold Palmer Regional"
+    },
+    {
+      "icao": "KLWM",
+      "name": "Lawrence Municipal"
+    },
+    {
+      "icao": "KLAW",
+      "name": "Lawton Fort Sill Regional"
+    },
+    {
+      "icao": "KLEB",
+      "name": "Lebanon Municipal"
+    },
+    {
+      "icao": "KLEE",
+      "name": "Leesburg"
+    },
+    {
+      "icao": "KNLC",
+      "name": "Lemoore Naval Air Station (Reeves Field)"
+    },
+    {
+      "icao": "KLWB",
+      "name": "Lewisburg - Greenbrier Valley"
+    },
+    {
+      "icao": "KLWS",
+      "name": "Lewiston Nez Perce County"
+    },
+    {
+      "icao": "KLWT",
+      "name": "Lewistown Municipal"
+    },
+    {
+      "icao": "KLEX",
+      "name": "Lexington - Blue Grass"
+    },
+    {
+      "icao": "KLBL",
+      "name": "Liberal Mid-America Regional"
+    },
+    {
+      "icao": "KLNK",
+      "name": "Lincoln"
+    },
+    {
+      "icao": "KLIT",
+      "name": "Little Rock - Bill & Hillary Clinton National Airport/Adams Field"
+    },
+    {
+      "icao": "KLVM",
+      "name": "Livingston - Mission Field"
+    },
+    {
+      "icao": "KLGU",
+      "name": "Logan-Cache"
+    },
+    {
+      "icao": "KVBG",
+      "name": "Lompoc - Vandenberg Space Force Base"
+    },
+    {
+      "icao": "KLOZ",
+      "name": "London-Corbin Airport/Magee Field"
+    },
+    {
+      "icao": "KGGG",
+      "name": "Longview - East Texas Regional"
+    },
+    {
+      "icao": "KSLI",
+      "name": "Los Alamitos Army Air Field"
+    },
+    {
+      "icao": "KLOU",
+      "name": "Louisville - Bowman Field"
+    },
+    {
+      "icao": "KFNL",
+      "name": "Loveland - Northern Colorado Regional"
+    },
+    {
+      "icao": "KLOL",
+      "name": "Lovelock - Derby Field"
+    },
+    {
+      "icao": "KLBB",
+      "name": "Lubbock Preston Smith"
+    },
+    {
+      "icao": "KLFK",
+      "name": "Lufkin - Angelina County"
+    },
+    {
+      "icao": "KLBT",
+      "name": "Lumberton Regional"
+    },
+    {
+      "icao": "KLYH",
+      "name": "Lynchburg Regional Airport - Preston Glenn Field"
+    },
+    {
+      "icao": "KMCN",
+      "name": "Macon - Middle Georgia Regional"
+    },
+    {
+      "icao": "KMSN",
+      "name": "Madison - Dane County Regional Truax Field"
+    },
+    {
+      "icao": "KHEF",
+      "name": "Manassas Regional Airport/Harry P. Davis Field"
+    },
+    {
+      "icao": "KMHT",
+      "name": "Manchester-Boston Regional"
+    },
+    {
+      "icao": "KMHK",
+      "name": "Manhattan Regional"
+    },
+    {
+      "icao": "KMFD",
+      "name": "Mansfield Lahm Regional"
+    },
+    {
+      "icao": "KMGE",
+      "name": "Marietta - Dobbins Air Reserve Base"
+    },
+    {
+      "icao": "KMWA",
+      "name": "Marion - Veterans Airport of Southern Illinois"
+    },
+    {
+      "icao": "KMRB",
+      "name": "Martinsburg - Eastern WV Regional Airport/Shepherd Field"
+    },
+    {
+      "icao": "KMYV",
+      "name": "Marysville - Yuba County"
+    },
+    {
+      "icao": "KMCW",
+      "name": "Mason City Municipal"
+    },
+    {
+      "icao": "KMSS",
+      "name": "Massena International Airport Richards Field"
+    },
+    {
+      "icao": "KMLC",
+      "name": "Mc Alester Regional"
+    },
+    {
+      "icao": "KMFE",
+      "name": "McAllen Miller"
+    },
+    {
+      "icao": "KMYL",
+      "name": "McCall Municipal"
+    },
+    {
+      "icao": "KMCB",
+      "name": "McComb-Pike County Airport / John E Lewis Field"
+    },
+    {
+      "icao": "KMCK",
+      "name": "McCook Ben Nelson Regional"
+    },
+    {
+      "icao": "PAMC",
+      "name": "McGrath"
+    },
+    {
+      "icao": "KMMV",
+      "name": "McMinnville Municipal"
+    },
+    {
+      "icao": "PAMY",
+      "name": "Mekoryuk"
+    },
+    {
+      "icao": "KMLB",
+      "name": "Melbourne Orlando"
+    },
+    {
+      "icao": "KMER",
+      "name": "Merced - Castle"
+    },
+    {
+      "icao": "KMCE",
+      "name": "Merced Regional Macready Field"
+    },
+    {
+      "icao": "KDRA",
+      "name": "Mercury - Desert Rock"
+    },
+    {
+      "icao": "KIWA",
+      "name": "Mesa Gateway"
+    },
+    {
+      "icao": "PANT",
+      "name": "Metlakatla - Annette Island"
+    },
+    {
+      "icao": "KTMB",
+      "name": "Miami Executive"
+    },
+    {
+      "icao": "KOPF",
+      "name": "Miami-Opa Locka Executive"
+    },
+    {
+      "icao": "KMGC",
+      "name": "Michigan City Municipal"
+    },
+    {
+      "icao": "KMAF",
+      "name": "Midland International Air and Space Port"
+    },
+    {
+      "icao": "KMLS",
+      "name": "Miles City Airport - Frank Wiley Field"
+    },
+    {
+      "icao": "KNQA",
+      "name": "Millington-Memphis"
+    },
+    {
+      "icao": "KMIV",
+      "name": "Millville Municipal"
+    },
+    {
+      "icao": "KNSE",
+      "name": "Milton - Whiting Field Naval Air Station - North"
+    },
+    {
+      "icao": "KMWL",
+      "name": "Mineral Wells Regional"
+    },
+    {
+      "icao": "KMOT",
+      "name": "Minot"
+    },
+    {
+      "icao": "KMIB",
+      "name": "Minot Air Force Base"
+    },
+    {
+      "icao": "KMSO",
+      "name": "Missoula Montana"
+    },
+    {
+      "icao": "KCNY",
+      "name": "Moab - Canyonlands Regional"
+    },
+    {
+      "icao": "KBFM",
+      "name": "Mobile Downtown"
+    },
+    {
+      "icao": "KMOB",
+      "name": "Mobile Regional"
+    },
+    {
+      "icao": "KMBG",
+      "name": "Mobridge Municipal"
+    },
+    {
+      "icao": "KMOD",
+      "name": "Modesto City Co-Harry Sham Field"
+    },
+    {
+      "icao": "KMHV",
+      "name": "Mojave Air &  Space Port"
+    },
+    {
+      "icao": "KMLI",
+      "name": "Moline - Quad City"
+    },
+    {
+      "icao": "KMLU",
+      "name": "Monroe Regional"
+    },
+    {
+      "icao": "KMRY",
+      "name": "Monterey Regional"
+    },
+    {
+      "icao": "KMXF",
+      "name": "Montgomery - Maxwell Air Force Base"
+    },
+    {
+      "icao": "KMGM",
+      "name": "Montgomery Regional (Dannelly Field)"
+    },
+    {
+      "icao": "KMTJ",
+      "name": "Montrose Regional"
+    },
+    {
+      "icao": "KMGW",
+      "name": "Morgantown Municipal Airport Walter L. (Bill) Hart Field"
+    },
+    {
+      "icao": "KMMU",
+      "name": "Morristown Municipal"
+    },
+    {
+      "icao": "KPIB",
+      "name": "Moselle - Hattiesburg Laurel Regional"
+    },
+    {
+      "icao": "KMWH",
+      "name": "Moses Lake - Grant County"
+    },
+    {
+      "icao": "KCWA",
+      "name": "Mosinee - Central Wisconsin"
+    },
+    {
+      "icao": "KMTC",
+      "name": "Mount Clemens - Selfridge Air National Guard Base"
+    },
+    {
+      "icao": "KBPK",
+      "name": "Mountain Home - Ozark Regional"
+    },
+    {
+      "icao": "KMUO",
+      "name": "Mountain Home Air Force Base"
+    },
+    {
+      "icao": "KNUQ",
+      "name": "Mountain View - Moffett Federal Airfield"
+    },
+    {
+      "icao": "KMIE",
+      "name": "Muncie - Delaware County Johnson Field"
+    },
+    {
+      "icao": "KMDH",
+      "name": "Murphysboro - Southern Illinois"
+    },
+    {
+      "icao": "KMSL",
+      "name": "Muscle Shoals - Northwest Alabama Regional"
+    },
+    {
+      "icao": "KMKG",
+      "name": "Muskegon County"
+    },
+    {
+      "icao": "KNFW",
+      "name": "NAS Fort Worth JRB / Carswell Field"
+    },
+    {
+      "icao": "KACK",
+      "name": "Nantucket Memorial"
+    },
+    {
+      "icao": "KAPF",
+      "name": "Naples Municipal"
+    },
+    {
+      "icao": "KNGP",
+      "name": "Naval Air Station Corpus Christi Truax Field"
+    },
+    {
+      "icao": "KNQX",
+      "name": "Naval Air Station Key West/Boca Chica Field"
+    },
+    {
+      "icao": "KNPA",
+      "name": "Naval Air Station Pensacola Forrest Sherman Field"
+    },
+    {
+      "icao": "KEED",
+      "name": "Needles"
+    },
+    {
+      "icao": "PANN",
+      "name": "Nenana Municipal"
+    },
+    {
+      "icao": "KEWB",
+      "name": "New Bedford Regional"
+    },
+    {
+      "icao": "KEWN",
+      "name": "New Bern - Coastal Carolina Regional"
+    },
+    {
+      "icao": "KBAZ",
+      "name": "New Braunfels National"
+    },
+    {
+      "icao": "KARA",
+      "name": "New Iberia - Acadiana Regional"
+    },
+    {
+      "icao": "KNEW",
+      "name": "New Orleans - Lakefront"
+    },
+    {
+      "icao": "KNBG",
+      "name": "New Orleans NAS JRB/Alvin Callender Field"
+    },
+    {
+      "icao": "KRNH",
+      "name": "New Richmond Regional"
+    },
+    {
+      "icao": "KSWF",
+      "name": "Newburgh - New York Stewart"
+    },
+    {
+      "icao": "KONP",
+      "name": "Newport Municipal"
+    },
+    {
+      "icao": "KFAF",
+      "name": "Newport News (Fort Eustis) - Felker Army Air Field"
+    },
+    {
+      "icao": "KPHF",
+      "name": "Newport News Williamsburg"
+    },
+    {
+      "icao": "KUUU",
+      "name": "Newport State"
+    },
+    {
+      "icao": "KIAG",
+      "name": "Niagara Falls"
+    },
+    {
+      "icao": "KOLS",
+      "name": "Nogales"
+    },
+    {
+      "icao": "PAOM",
+      "name": "Nome"
+    },
+    {
+      "icao": "KOFK",
+      "name": "Norfolk - Karl Stefan Memorial"
+    },
+    {
+      "icao": "KNGU",
+      "name": "Norfolk Naval Station (Chambers Field)"
+    },
+    {
+      "icao": "KOTH",
+      "name": "North Bend - Southwest Oregon Regional"
+    },
+    {
+      "icao": "KOQU",
+      "name": "North Kingstown - Quonset State"
+    },
+    {
+      "icao": "KVGT",
+      "name": "North Las Vegas"
+    },
+    {
+      "icao": "KCRE",
+      "name": "North Myrtle Beach - Grand Strand"
+    },
+    {
+      "icao": "KLBF",
+      "name": "North Platte Regional Airport Lee Bird Field"
+    },
+    {
+      "icao": "KPNE",
+      "name": "Northeast Philadelphia"
+    },
+    {
+      "icao": "PAOR",
+      "name": "Northway"
+    },
+    {
+      "icao": "KOWD",
+      "name": "Norwood Memorial"
+    },
+    {
+      "icao": "PAQT",
+      "name": "Nuiqsut"
+    },
+    {
+      "icao": "KNUW",
+      "name": "Oak Harbor - Whidbey Island Naval Air Station (Ault Field)"
+    },
+    {
+      "icao": "KOXB",
+      "name": "Ocean City Municipal"
+    },
+    {
+      "icao": "KOKB",
+      "name": "Oceanside Municipal"
+    },
+    {
+      "icao": "KHIF",
+      "name": "Ogden - Hill Air Force Base"
+    },
+    {
+      "icao": "KOGD",
+      "name": "Ogden Hinckley"
+    },
+    {
+      "icao": "KOGS",
+      "name": "Ogdensburg"
+    },
+    {
+      "icao": "KTIK",
+      "name": "Oklahoma City - Tinker Air Force Base"
+    },
+    {
+      "icao": "KOLM",
+      "name": "Olympia Regional"
+    },
+    {
+      "icao": "KOFF",
+      "name": "Omaha - Offutt Air Force Base"
+    },
+    {
+      "icao": "KOGB",
+      "name": "Orangeburg Municipal"
+    },
+    {
+      "icao": "KONO",
+      "name": "Oregon - Ontario Municipal"
+    },
+    {
+      "icao": "KISM",
+      "name": "Orlando - Kissimmee Gateway"
+    },
+    {
+      "icao": "KORL",
+      "name": "Orlando Executive"
+    },
+    {
+      "icao": "KOSH",
+      "name": "Oshkosh - Wittman Regional"
+    },
+    {
+      "icao": "KOTM",
+      "name": "Ottumwa Regional"
+    },
+    {
+      "icao": "KOWB",
+      "name": "Owensboro Daviess County"
+    },
+    {
+      "icao": "KOXR",
+      "name": "Oxnard"
+    },
+    {
+      "icao": "KPAH",
+      "name": "Paducah - Barkley Regional"
+    },
+    {
+      "icao": "KPGA",
+      "name": "Page Municipal"
+    },
+    {
+      "icao": "KTRM",
+      "name": "Palm Springs - Jacqueline Cochran Regional"
+    },
+    {
+      "icao": "KPMD",
+      "name": "Palmdale Regional Airport / USAF Plant 42"
+    },
+    {
+      "icao": "KPAO",
+      "name": "Palo Alto"
+    },
+    {
+      "icao": "KPAM",
+      "name": "Panama City - Tyndall Air Force Base"
+    },
+    {
+      "icao": "KECP",
+      "name": "Panama City Beach - Northwest Florida Beaches"
+    },
+    {
+      "icao": "KPRX",
+      "name": "Paris - Cox Field"
+    },
+    {
+      "icao": "KPKB",
+      "name": "Parkersburg (Williamstown) - Mid Ohio Valley Regional"
+    },
+    {
+      "icao": "KPSC",
+      "name": "Pasco - Tri Cities"
+    },
+    {
+      "icao": "KPRB",
+      "name": "Paso Robles Municipal"
+    },
+    {
+      "icao": "KBTV",
+      "name": "Patrick Leahy Burlington"
+    },
+    {
+      "icao": "KNHK",
+      "name": "Patuxent River Naval Air Station (Trapnell Field)"
+    },
+    {
+      "icao": "KPLN",
+      "name": "Pellston Regional Airport of Emmet County"
+    },
+    {
+      "icao": "KAFW",
+      "name": "Perot Field/Fort Worth Alliance"
+    },
+    {
+      "icao": "KGUS",
+      "name": "Peru - Grissom Air Reserve Base"
+    },
+    {
+      "icao": "PAPG",
+      "name": "Petersburg James A Johnson"
+    },
+    {
+      "icao": "KPIR",
+      "name": "Pierre Regional"
+    },
+    {
+      "icao": "KPBF",
+      "name": "Pine Bluff Regional Airport, Grider Field"
+    },
+    {
+      "icao": "KPNA",
+      "name": "Pinedale - Ralph Wenz Field"
+    },
+    {
+      "icao": "KPGV",
+      "name": "Pitt-Greenville"
+    },
+    {
+      "icao": "KAGC",
+      "name": "Pittsburgh - Allegheny County"
+    },
+    {
+      "icao": "PAPM",
+      "name": "Platinum"
+    },
+    {
+      "icao": "KPBG",
+      "name": "Plattsburgh"
+    },
+    {
+      "icao": "KPIH",
+      "name": "Pocatello Regional"
+    },
+    {
+      "icao": "PPIZ",
+      "name": "Point Lay LRRS"
+    },
+    {
+      "icao": "KNTD",
+      "name": "Point Mugu Naval Air Station (Naval Base Ventura Co)"
+    },
+    {
+      "icao": "KPNC",
+      "name": "Ponca City Regional"
+    },
+    {
+      "icao": "KPTK",
+      "name": "Pontiac - Oakland County"
+    },
+    {
+      "icao": "KCLM",
+      "name": "Port Angeles - William R Fairchild"
+    },
+    {
+      "icao": "PAPC",
+      "name": "Port Clarence Coast Guard Station"
+    },
+    {
+      "icao": "PAPH",
+      "name": "Port Heiden"
+    },
+    {
+      "icao": "KHIO",
+      "name": "Portland Hillsboro"
+    },
+    {
+      "icao": "KTTD",
+      "name": "Portland Troutdale"
+    },
+    {
+      "icao": "KPSM",
+      "name": "Portsmouth International Airport at Pease"
+    },
+    {
+      "icao": "KPOU",
+      "name": "Poughkeepsie - Dutchess County"
+    },
+    {
+      "icao": "KPRC",
+      "name": "Prescott Regional Airport - Ernest A. Love Field"
+    },
+    {
+      "icao": "KPQI",
+      "name": "Presque Isle"
+    },
+    {
+      "icao": "KPVU",
+      "name": "Provo Municipal"
+    },
+    {
+      "icao": "KPUB",
+      "name": "Pueblo Memorial"
+    },
+    {
+      "icao": "KPUW",
+      "name": "Pullman-Moscow Regional"
+    },
+    {
+      "icao": "KPGD",
+      "name": "Punta Gorda"
+    },
+    {
+      "icao": "KNYG",
+      "name": "Quantico Marine Corps Airfield / Turner Field"
+    },
+    {
+      "icao": "KUIN",
+      "name": "Quincy Regional Airport Baldwin Field"
+    },
+    {
+      "icao": "KRCA",
+      "name": "Rapid City - Ellsworth Air Force Base"
+    },
+    {
+      "icao": "KRAP",
+      "name": "Rapid City Regional"
+    },
+    {
+      "icao": "KRWL",
+      "name": "Rawlins Municipal Airport/Harvey Field"
+    },
+    {
+      "icao": "KRDG",
+      "name": "Reading Regional Airport (Carl A Spaatz Field)"
+    },
+    {
+      "icao": "KRBL",
+      "name": "Red Bluff Municipal"
+    },
+    {
+      "icao": "KRDD",
+      "name": "Redding Municipal"
+    },
+    {
+      "icao": "KRDM",
+      "name": "Redmond - Roberts Field"
+    },
+    {
+      "icao": "KHUA",
+      "name": "Redstone Arsnl Huntsville - Redstone Army Air Field"
+    },
+    {
+      "icao": "KRWF",
+      "name": "Redwood Falls Municipal"
+    },
+    {
+      "icao": "KRHI",
+      "name": "Rhinelander Oneida County"
+    },
+    {
+      "icao": "KOAJ",
+      "name": "Richlands - Albert J Ellis"
+    },
+    {
+      "icao": "KAMA",
+      "name": "Rick Husband Amarillo"
+    },
+    {
+      "icao": "KRIL",
+      "name": "Rifle - Garfield County Regional"
+    },
+    {
+      "icao": "KRIV",
+      "name": "Riverside - March Air Reserve Base"
+    },
+    {
+      "icao": "KRAL",
+      "name": "Riverside Municipal"
+    },
+    {
+      "icao": "KRIW",
+      "name": "Riverton - Central Wyoming Regional"
+    },
+    {
+      "icao": "KROA",
+      "name": "Roanoke–Blacksburg Regional"
+    },
+    {
+      "icao": "KRST",
+      "name": "Rochester"
+    },
+    {
+      "icao": "KRKS",
+      "name": "Rock Springs - Southwest Wyoming Regional"
+    },
+    {
+      "icao": "KRKD",
+      "name": "Rockland - Knox County Regional"
+    },
+    {
+      "icao": "KRWI",
+      "name": "Rocky Mount Wilson Regional"
+    },
+    {
+      "icao": "KMFR",
+      "name": "Rogue Valley International-Medford"
+    },
+    {
+      "icao": "KRME",
+      "name": "Rome - Griffiss"
+    },
+    {
+      "icao": "KRMG",
+      "name": "Rome - Richard B Russell"
+    },
+    {
+      "icao": "KROW",
+      "name": "Roswell Air Center"
+    },
+    {
+      "icao": "PARY",
+      "name": "Ruby"
+    },
+    {
+      "icao": "KRSL",
+      "name": "Russell Municipal"
+    },
+    {
+      "icao": "KRUT",
+      "name": "Rutland - Southern Vermont Regional"
+    },
+    {
+      "icao": "KMCC",
+      "name": "Sacramento - McClellan Airfield"
+    },
+    {
+      "icao": "KSAC",
+      "name": "Sacramento Executive"
+    },
+    {
+      "icao": "KMHR",
+      "name": "Sacramento Mather"
+    },
+    {
+      "icao": "KSTC",
+      "name": "Saint Cloud Regional"
+    },
+    {
+      "icao": "KSTP",
+      "name": "Saint Paul Downtown Holman Field"
+    },
+    {
+      "icao": "KSLE",
+      "name": "Salem-Willamette Valley Airport/McNary Field"
+    },
+    {
+      "icao": "KSLN",
+      "name": "Salina Municipal"
+    },
+    {
+      "icao": "KSNS",
+      "name": "Salinas Municipal"
+    },
+    {
+      "icao": "KSBY",
+      "name": "Salisbury Ocean City Wicomico Regional"
+    },
+    {
+      "icao": "KSMN",
+      "name": "Salmon - Lemhi County"
+    },
+    {
+      "icao": "KSVR",
+      "name": "Salt Lake City - South Valley Regional"
+    },
+    {
+      "icao": "KSJT",
+      "name": "San Angelo Regional Mathis Field"
+    },
+    {
+      "icao": "KSKF",
+      "name": "San Antonio - Lackland Air Force Base"
+    },
+    {
+      "icao": "KSSF",
+      "name": "San Antonio - Stinson Municipal"
+    },
+    {
+      "icao": "KSQL",
+      "name": "San Carlos"
+    },
+    {
+      "icao": "KSDM",
+      "name": "San Diego - Brown Field Municipal"
+    },
+    {
+      "icao": "KNKX",
+      "name": "San Diego - Miramar Marine Corps Air Station - Mitscher Field"
+    },
+    {
+      "icao": "KNZY",
+      "name": "San Diego - North Island Naval Air Station-Halsey Field"
+    },
+    {
+      "icao": "KSBP",
+      "name": "San Luis Obispo - San Luis County Regional"
+    },
+    {
+      "icao": "PASD",
+      "name": "Sand Point"
+    },
+    {
+      "icao": "KSBA",
+      "name": "Santa Barbara Municipal"
+    },
+    {
+      "icao": "KSAF",
+      "name": "Santa Fe Municipal"
+    },
+    {
+      "icao": "KSMX",
+      "name": "Santa Maria Public Airport Captain G Allan Hancock Field"
+    },
+    {
+      "icao": "KSMO",
+      "name": "Santa Monica Municipal"
+    },
+    {
+      "icao": "KSTS",
+      "name": "Santa Rosa - Charles M. Schulz Sonoma County"
+    },
+    {
+      "icao": "KSLK",
+      "name": "Saranac Lake - Adirondack Regional"
+    },
+    {
+      "icao": "KSVN",
+      "name": "Savannah - Hunter Army Air Field"
+    },
+    {
+      "icao": "PASA",
+      "name": "Savoonga"
+    },
+    {
+      "icao": "KCMI",
+      "name": "Savoy - University of Illinois Willard"
+    },
+    {
+      "icao": "KSCH",
+      "name": "Schenectady County"
+    },
+    {
+      "icao": "KGLS",
+      "name": "Scholes International At Galveston"
+    },
+    {
+      "icao": "KBFF",
+      "name": "Scottsbluff - Western Neb. Rgnl/William B. Heilig"
+    },
+    {
+      "icao": "KBFI",
+      "name": "Seattle - King County International Airport - Boeing Field"
+    },
+    {
+      "icao": "PAWD",
+      "name": "Seward"
+    },
+    {
+      "icao": "PASY",
+      "name": "Shemya - Eareckson Air Station"
+    },
+    {
+      "icao": "KSHR",
+      "name": "Sheridan County"
+    },
+    {
+      "icao": "KSOW",
+      "name": "Show Low Regional"
+    },
+    {
+      "icao": "KSHV",
+      "name": "Shreveport Regional"
+    },
+    {
+      "icao": "KSDY",
+      "name": "Sidney - Richland Regional"
+    },
+    {
+      "icao": "KSNY",
+      "name": "Sidney Municipal Airport Lloyd W Carr Field"
+    },
+    {
+      "icao": "KSVC",
+      "name": "Silver City - Grant County"
+    },
+    {
+      "icao": "KSUX",
+      "name": "Sioux City - Sioux Gateway Airport / Brigadier General Bud Day Field"
+    },
+    {
+      "icao": "KFSD",
+      "name": "Sioux Falls Regional"
+    },
+    {
+      "icao": "PASI",
+      "name": "Sitka Rocky Gutierrez"
+    },
+    {
+      "icao": "KMQY",
+      "name": "Smyrna"
+    },
+    {
+      "icao": "PASX",
+      "name": "Soldotna"
+    },
+    {
+      "icao": "KSME",
+      "name": "Somerset - Lake Cumberland Regional"
+    },
+    {
+      "icao": "KSBN",
+      "name": "South Bend"
+    },
+    {
+      "icao": "KTVL",
+      "name": "South Lake Tahoe - Lake Tahoe"
+    },
+    {
+      "icao": "PASV",
+      "name": "Sparrevohn LRRS"
+    },
+    {
+      "icao": "KSUS",
+      "name": "Spirit of St Louis"
+    },
+    {
+      "icao": "KSKA",
+      "name": "Spokane - Fairchild Air Force Base"
+    },
+    {
+      "icao": "KSFF",
+      "name": "Spokane - Felts Field"
+    },
+    {
+      "icao": "KSPI",
+      "name": "Springfield - Abraham Lincoln Capital"
+    },
+    {
+      "icao": "KSGF",
+      "name": "Springfield Branson National"
+    },
+    {
+      "icao": "KSGH",
+      "name": "Springfield-Beckley Municipal"
+    },
+    {
+      "icao": "KSGJ",
+      "name": "St Augustine - Northeast Florida Regional"
+    },
+    {
+      "icao": "PAPB",
+      "name": "St George"
+    },
+    {
+      "icao": "KSGU",
+      "name": "St George Regional"
+    },
+    {
+      "icao": "KSTJ",
+      "name": "St Joseph - Rosecrans Memorial"
+    },
+    {
+      "icao": "PASN",
+      "name": "St Paul Island"
+    },
+    {
+      "icao": "KSSI",
+      "name": "St Simons Island"
+    },
+    {
+      "icao": "KUNV",
+      "name": "State College Regional"
+    },
+    {
+      "icao": "KSWO",
+      "name": "Stillwater Regional"
+    },
+    {
+      "icao": "KSCK",
+      "name": "Stockton Metropolitan"
+    },
+    {
+      "icao": "KSSC",
+      "name": "Sumter - Shaw Air Force Base"
+    },
+    {
+      "icao": "KTCM",
+      "name": "Tacoma - McChord Air Force Base"
+    },
+    {
+      "icao": "KTIW",
+      "name": "Tacoma Narrows"
+    },
+    {
+      "icao": "PATL",
+      "name": "Takotna - Tatalina LRRS"
+    },
+    {
+      "icao": "PATK",
+      "name": "Talkeetna"
+    },
+    {
+      "icao": "KTLH",
+      "name": "Tallahassee"
+    },
+    {
+      "icao": "KMCF",
+      "name": "Tampa - MacDill Air Force Base"
+    },
+    {
+      "icao": "KSKX",
+      "name": "Taos Regional"
+    },
+    {
+      "icao": "KTEX",
+      "name": "Telluride Regional"
+    },
+    {
+      "icao": "KTPL",
+      "name": "Temple - Draughon Miller Central Texas Regional"
+    },
+    {
+      "icao": "KTEB",
+      "name": "Teterboro"
+    },
+    {
+      "icao": "KTXK",
+      "name": "Texarkana Regional Airport (Webb Field)"
+    },
+    {
+      "icao": "KTVF",
+      "name": "Thief River Falls Regional"
+    },
+    {
+      "icao": "KTIX",
+      "name": "Titusville - Space Coast Regional"
+    },
+    {
+      "icao": "KTPH",
+      "name": "Tonopah"
+    },
+    {
+      "icao": "KTOP",
+      "name": "Topeka - Philip Billard Municipal"
+    },
+    {
+      "icao": "KFOE",
+      "name": "Topeka Regional"
+    },
+    {
+      "icao": "KTVC",
+      "name": "Traverse City - Cherry Capital"
+    },
+    {
+      "icao": "KTOI",
+      "name": "Troy Municipal Airport at N Kenneth Campbell Field"
+    },
+    {
+      "icao": "KTRK",
+      "name": "Truckee Tahoe"
+    },
+    {
+      "icao": "KTCS",
+      "name": "Truth or Consequences Municipal"
+    },
+    {
+      "icao": "KDMA",
+      "name": "Tucson - Davis Monthan Air Force Base"
+    },
+    {
+      "icao": "KTCC",
+      "name": "Tucumcari Municipal"
+    },
+    {
+      "icao": "KRVS",
+      "name": "Tulsa Riverside"
+    },
+    {
+      "icao": "KTUP",
+      "name": "Tupelo Regional"
+    },
+    {
+      "icao": "KTCL",
+      "name": "Tuscaloosa National"
+    },
+    {
+      "icao": "KHVN",
+      "name": "Tweed New Haven"
+    },
+    {
+      "icao": "KTWF",
+      "name": "Twin Falls - Joslin Field Magic Valley Regional"
+    },
+    {
+      "icao": "KTYR",
+      "name": "Tyler Pounds Regional"
+    },
+    {
+      "icao": "KUKI",
+      "name": "Ukiah Municipal"
+    },
+    {
+      "icao": "PAUN",
+      "name": "Unalakleet"
+    },
+    {
+      "icao": "PADU",
+      "name": "Unalaska - Tom Madsen (Dutch Harbor)"
+    },
+    {
+      "icao": "KRND",
+      "name": "Universal City - Randolph Air Force Base"
+    },
+    {
+      "icao": "KUOX",
+      "name": "University Oxford"
+    },
+    {
+      "icao": "PAIM",
+      "name": "Utopia Creek - Indian Mountain LRRS"
+    },
+    {
+      "icao": "PABR",
+      "name": "Utqiaġvik - Wiley Post Will Rogers Memorial"
+    },
+    {
+      "icao": "PAVD",
+      "name": "Valdez Pioneer Field"
+    },
+    {
+      "icao": "KVAD",
+      "name": "Valdosta - Moody Air Force Base"
+    },
+    {
+      "icao": "KVLD",
+      "name": "Valdosta Regional"
+    },
+    {
+      "icao": "KVTN",
+      "name": "Valentine - Miller Field"
+    },
+    {
+      "icao": "KVPS",
+      "name": "Valparaiso - Destin-Fort Walton Beach"
+    },
+    {
+      "icao": "KVPZ",
+      "name": "Valparaiso - Porter County Municipal"
+    },
+    {
+      "icao": "KVEL",
+      "name": "Vernal Regional"
+    },
+    {
+      "icao": "KVRB",
+      "name": "Vero Beach Regional"
+    },
+    {
+      "icao": "KVCT",
+      "name": "Victoria Regional"
+    },
+    {
+      "icao": "KNTU",
+      "name": "Virginia Beach - Oceana Naval Air Station"
+    },
+    {
+      "icao": "KVIS",
+      "name": "Visalia Municipal"
+    },
+    {
+      "icao": "KACT",
+      "name": "Waco Regional"
+    },
+    {
+      "icao": "PHMU",
+      "name": "Waimea (Kamuela) - Waimea Kohala"
+    },
+    {
+      "icao": "PAWI",
+      "name": "Wainwright"
+    },
+    {
+      "icao": "KALW",
+      "name": "Walla Walla Regional"
+    },
+    {
+      "icao": "KWRB",
+      "name": "Warner Robins - Robins Air Force Base"
+    },
+    {
+      "icao": "PAAQ",
+      "name": "Warren \"Bud\" Woods Palmer Municipal"
+    },
+    {
+      "icao": "PAWS",
+      "name": "Wasilla"
+    },
+    {
+      "icao": "KALO",
+      "name": "Waterloo Regional"
+    },
+    {
+      "icao": "KART",
+      "name": "Watertown"
+    },
+    {
+      "icao": "KATY",
+      "name": "Watertown Regional"
+    },
+    {
+      "icao": "KAUW",
+      "name": "Wausau Downtown"
+    },
+    {
+      "icao": "KEAT",
+      "name": "Wenatchee - Pangborn Memorial"
+    },
+    {
+      "icao": "KENV",
+      "name": "Wendover"
+    },
+    {
+      "icao": "KLAF",
+      "name": "West Lafayette - Purdue University"
+    },
+    {
+      "icao": "KWWR",
+      "name": "West Woodward"
+    },
+    {
+      "icao": "KWYS",
+      "name": "West Yellowstone - Yellowstone"
+    },
+    {
+      "icao": "KWST",
+      "name": "Westerly State"
+    },
+    {
+      "icao": "KBAF",
+      "name": "Westfield-Barnes Regional"
+    },
+    {
+      "icao": "KSHD",
+      "name": "Weyers Cave - Shenandoah Valley Regional"
+    },
+    {
+      "icao": "KHLG",
+      "name": "Wheeling Ohio County"
+    },
+    {
+      "icao": "KHPN",
+      "name": "White Plains - Westchester County"
+    },
+    {
+      "icao": "KIAB",
+      "name": "Wichita - McConnell Air Force Base"
+    },
+    {
+      "icao": "KICT",
+      "name": "Wichita Dwight D. Eisenhower National"
+    },
+    {
+      "icao": "KSPS",
+      "name": "Wichita Falls Municipal Airport / Sheppard Air Force Base"
+    },
+    {
+      "icao": "KWWD",
+      "name": "Wildwood - Cape May County"
+    },
+    {
+      "icao": "KAVP",
+      "name": "Wilkes-Barre/Scranton"
+    },
+    {
+      "icao": "KIPT",
+      "name": "Williamsport Regional"
+    },
+    {
+      "icao": "KXWA",
+      "name": "Williston Basin"
+    },
+    {
+      "icao": "KILG",
+      "name": "Wilmington"
+    },
+    {
+      "icao": "KILM",
+      "name": "Wilmington"
+    },
+    {
+      "icao": "KILN",
+      "name": "Wilmington Airpark"
+    },
+    {
+      "icao": "KINK",
+      "name": "Winkler County"
+    },
+    {
+      "icao": "KWMC",
+      "name": "Winnemucca Municipal"
+    },
+    {
+      "icao": "KINW",
+      "name": "Winslow Lindbergh Regional"
+    },
+    {
+      "icao": "KINT",
+      "name": "Winston Salem - Smith Reynolds"
+    },
+    {
+      "icao": "KOLF",
+      "name": "Wolf Point - L M Clayton"
+    },
+    {
+      "icao": "KORH",
+      "name": "Worcester Regional"
+    },
+    {
+      "icao": "KWRL",
+      "name": "Worland Municipal"
+    },
+    {
+      "icao": "PAWG",
+      "name": "Wrangell"
+    },
+    {
+      "icao": "KWRI",
+      "name": "Wrightstown - Mc Guire Air Force Base"
+    },
+    {
+      "icao": "KYKM",
+      "name": "Yakima Air Terminal McAllister Field"
+    },
+    {
+      "icao": "PAYA",
+      "name": "Yakutat"
+    },
+    {
+      "icao": "KYKN",
+      "name": "Yankton - Chan Gurney Municipal"
+    },
+    {
+      "icao": "KYNG",
+      "name": "Youngstown/Warren - Youngstown Warren Regional"
+    },
+    {
+      "icao": "KNYL",
+      "name": "Yuma International Airport / Marine Corps Air Station Yuma"
+    },
+    {
+      "icao": "KZZV",
+      "name": "Zanesville Municipal"
+    }
+  ],
+  "United States Minor Outlying Islands": [
+    {
+      "icao": "PMDY",
+      "name": "Sand Island - Henderson Field"
+    },
+    {
+      "icao": "PWAK",
+      "name": "Wake Island Airfield"
+    }
+  ],
+  "Uruguay": [
+    {
+      "icao": "SUMU",
+      "name": "Ciudad de la Costa - Carrasco General Cesáreo L. Berisso"
+    },
+    {
+      "icao": "SUDU",
+      "name": "Durazno - Santa Bernardina"
+    },
+    {
+      "icao": "SUPU",
+      "name": "Paysandú - Tydeo Larre Borges"
+    },
+    {
+      "icao": "SULS",
+      "name": "Punta del Este - Capitan Corbeta CA Curbelo"
+    },
+    {
+      "icao": "SURV",
+      "name": "Rivera/Santana do Livramento - Pres. Gral. Óscar D. Gestido Binational"
+    },
+    {
+      "icao": "SUSO",
+      "name": "Salto - Nueva Hesperides"
+    }
+  ],
+  "Uzbekistan": [
+    {
+      "icao": "UZFA",
+      "name": "Andijan"
+    },
+    {
+      "icao": "UZSB",
+      "name": "Bukhara"
+    },
+    {
+      "icao": "UZFN",
+      "name": "Namangan"
+    },
+    {
+      "icao": "UZSA",
+      "name": "Navoi"
+    },
+    {
+      "icao": "UZNN",
+      "name": "Nukus"
+    },
+    {
+      "icao": "UZSS",
+      "name": "Samarkand"
+    },
+    {
+      "icao": "UZTT",
+      "name": "Tashkent"
+    },
+    {
+      "icao": "UZNU",
+      "name": "Urgench"
+    },
+    {
+      "icao": "UZFF",
+      "name": "Fergana"
+    },
+    {
+      "icao": "UZTP",
+      "name": "Tashkent East"
+    },
+    {
+      "icao": "UZST",
+      "name": "Termez"
+    },
+    {
+      "icao": "UTTZ",
+      "name": "Zomin"
+    }
+  ],
+  "Vanuatu": [
+    {
+      "icao": "NVVV",
+      "name": "Port Vila - Bauerfield"
+    },
+    {
+      "icao": "NVSQ",
+      "name": "Gaua Island"
+    },
+    {
+      "icao": "NVSS",
+      "name": "Luganville - Santo Pekoa"
+    },
+    {
+      "icao": "NVVW",
+      "name": "Tanna Island - Whitegrass"
+    }
+  ],
+  "Venezuela": [
+    {
+      "icao": "SVBC",
+      "name": "Barcelona - General José Antonio Anzoategui"
+    },
+    {
+      "icao": "SVBM",
+      "name": "Barquisimeto - Jacinto Lara"
+    },
+    {
+      "icao": "SVPR",
+      "name": "Guyana City - General Manuel Carlos Piar"
+    },
+    {
+      "icao": "SVMG",
+      "name": "Isla Margarita - Del Caribe Santiago Mariño"
+    },
+    {
+      "icao": "SVMI",
+      "name": "Maiquetía Simón Bolívar"
+    },
+    {
+      "icao": "SVMC",
+      "name": "Maracaibo - La Chinita"
+    },
+    {
+      "icao": "SVVA",
+      "name": "Valencia - Arturo Michelena"
+    },
+    {
+      "icao": "SVAC",
+      "name": "Acarigua - Oswaldo Guevara Mujica"
+    },
+    {
+      "icao": "SVAN",
+      "name": "Anaco"
+    },
+    {
+      "icao": "SVBI",
+      "name": "Barinas"
+    },
+    {
+      "icao": "SVED",
+      "name": "Bolivar - El Dorado"
+    },
+    {
+      "icao": "SVCD",
+      "name": "Caicara del Orinoco"
+    },
+    {
+      "icao": "SVCN",
+      "name": "Canaima"
+    },
+    {
+      "icao": "SVCP",
+      "name": "Carúpano - General Francisco Bermúdez"
+    },
+    {
+      "icao": "SVCS",
+      "name": "Charallave - Caracas Óscar Machado Zuloaga"
+    },
+    {
+      "icao": "SVCB",
+      "name": "Ciudad Bolivar - General Tomas de Heres"
+    },
+    {
+      "icao": "SVCR",
+      "name": "Coro - José Leonardo Chirinos"
+    },
+    {
+      "icao": "SVCU",
+      "name": "Cumaná - Antonio José de Sucre"
+    },
+    {
+      "icao": "SVST",
+      "name": "El Tigre - San Tomé"
+    },
+    {
+      "icao": "SVVG",
+      "name": "El Vigía - Juan Pablo Pérez Alfonso"
+    },
+    {
+      "icao": "SVEZ",
+      "name": "Elorza"
+    },
+    {
+      "icao": "SVGU",
+      "name": "Guanare"
+    },
+    {
+      "icao": "SVCL",
+      "name": "Guarico - Calabozo"
+    },
+    {
+      "icao": "SVGD",
+      "name": "Guasdualito"
+    },
+    {
+      "icao": "SVGI",
+      "name": "Guiria"
+    },
+    {
+      "icao": "SVLF",
+      "name": "La Fria"
+    },
+    {
+      "icao": "SVBS",
+      "name": "Maracay - Escuela Mariscal Sucre"
+    },
+    {
+      "icao": "SVMT",
+      "name": "Maturín - José Tadeo Monagas"
+    },
+    {
+      "icao": "SVMD",
+      "name": "Mérida - Alberto Carnevalli"
+    },
+    {
+      "icao": "SVMP",
+      "name": "Ocumare del Tuy - Metropolitano"
+    },
+    {
+      "icao": "SVPT",
+      "name": "Palmarito"
+    },
+    {
+      "icao": "SVJC",
+      "name": "Paraguaná - Josefa Camejo"
+    },
+    {
+      "icao": "SVPA",
+      "name": "Puerto Ayacucho - Cacique Aramare"
+    },
+    {
+      "icao": "SVPC",
+      "name": "Puerto Cabello - General Bartolome Salom"
+    },
+    {
+      "icao": "SVSA",
+      "name": "San Antonio del Tachira - Juan Vicente Gómez"
+    },
+    {
+      "icao": "SVSZ",
+      "name": "San Carlos del Zulia - Miguel Urdaneta Fernández"
+    },
+    {
+      "icao": "SVPM",
+      "name": "San Cristóbal - Paramillo"
+    },
+    {
+      "icao": "SVSP",
+      "name": "San Felipe - Sub Teniente Nestor Arias"
+    },
+    {
+      "icao": "SVSR",
+      "name": "San Fernando de Apure Las Flecheras National"
+    },
+    {
+      "icao": "SVJM",
+      "name": "San Juan de Los Morros"
+    },
+    {
+      "icao": "SVSE",
+      "name": "Santa Elena de Uairén"
+    },
+    {
+      "icao": "SVSO",
+      "name": "Santo Domingo - Mayor Buenaventura Vivas"
+    },
+    {
+      "icao": "SVTC",
+      "name": "Tucupita"
+    },
+    {
+      "icao": "SVTM",
+      "name": "Tumeremo"
+    },
+    {
+      "icao": "SVVL",
+      "name": "Valera - Dr. Antonio Nicolás Briceño"
+    },
+    {
+      "icao": "SVVP",
+      "name": "Valle de La Pascua"
+    }
+  ],
+  "Vietnam": [
+    {
+      "icao": "VVCT",
+      "name": "Can Tho"
+    },
+    {
+      "icao": "VVDN",
+      "name": "Da Nang"
+    },
+    {
+      "icao": "VVCI",
+      "name": "Haiphong (Hai An) - Cat Bi"
+    },
+    {
+      "icao": "VVNB",
+      "name": "Hanoi (Soc Son) - Noi Bai"
+    },
+    {
+      "icao": "VVLT",
+      "name": "Ho Chi Minh City (Long Thanh) - Long Thanh International Airport (Under Construction)"
+    },
+    {
+      "icao": "VVTS",
+      "name": "Ho Chi Minh City - Tan Son Nhat"
+    },
+    {
+      "icao": "VVCR",
+      "name": "Nha Trang/nha Trang aiurportCam Ranh - Cam Ranh International Airport / Cam Ranh Air Base"
+    },
+    {
+      "icao": "VVPQ",
+      "name": "Phu Quoc Island - Phú Quốc"
+    },
+    {
+      "icao": "VVBM",
+      "name": "Buon Ma Thuot"
+    },
+    {
+      "icao": "VVCM",
+      "name": "Ca Mau City - Cà Mau"
+    },
+    {
+      "icao": "VVCS",
+      "name": "Con Dao"
+    },
+    {
+      "icao": "VVDL",
+      "name": "Da Lat - Lien Khuong"
+    },
+    {
+      "icao": "VVDB",
+      "name": "Dien Bien Phu"
+    },
+    {
+      "icao": "VVDH",
+      "name": "Dong Hoi"
+    },
+    {
+      "icao": "VVPB",
+      "name": "Huế - Phu Bai"
+    },
+    {
+      "icao": "VVPK",
+      "name": "Pleiku"
+    },
+    {
+      "icao": "VVPC",
+      "name": "Quy Nohn - Phu Cat"
+    },
+    {
+      "icao": "VVRG",
+      "name": "Rach Gia"
+    },
+    {
+      "icao": "VVTH",
+      "name": "Tuy Hoa - Dong Tac"
+    },
+    {
+      "icao": "VVVD",
+      "name": "Van Don"
+    },
+    {
+      "icao": "VVVH",
+      "name": "Vinh"
+    }
+  ],
+  "Wallis and Futuna": [
+    {
+      "icao": "NLWW",
+      "name": "Wallis Island - Hihifo"
+    }
+  ],
+  "Western Sahara (disputed territory)": [
+    {
+      "icao": "GMMH",
+      "name": "Dakhla"
+    },
+    {
+      "icao": "GMML",
+      "name": "El Aaiún - Laayoune Hassan I"
+    },
+    {
+      "icao": "GMMA",
+      "name": "Smara"
+    }
+  ],
+  "Yemen": [
+    {
+      "icao": "OYAA",
+      "name": "Aden"
+    },
+    {
+      "icao": "OYMK",
+      "name": "Mokha"
+    },
+    {
+      "icao": "OYRN",
+      "name": "Mukalla(Riyan) - Riyan"
+    },
+    {
+      "icao": "OYSN",
+      "name": "Sanaa"
+    },
+    {
+      "icao": "OYSY",
+      "name": "Seiyun Hadhramaut"
+    },
+    {
+      "icao": "OYGD",
+      "name": "Al Ghaydah"
+    },
+    {
+      "icao": "OYAT",
+      "name": "Ataq"
+    },
+    {
+      "icao": "OYSQ",
+      "name": "Mori - Socotra"
+    },
+    {
+      "icao": "OYTZ",
+      "name": "Taiz"
+    }
+  ],
+  "Zambia": [
+    {
+      "icao": "FLHN",
+      "name": "Livingstone - Harry Mwanga Nkumbula"
+    },
+    {
+      "icao": "FLKK",
+      "name": "Lusaka - Kenneth Kaunda"
+    },
+    {
+      "icao": "FLMF",
+      "name": "Mfuwe"
+    },
+    {
+      "icao": "FLSK",
+      "name": "Ndola - Simon Mwansa Kapwepwe"
+    },
+    {
+      "icao": "FLKE",
+      "name": "Chingola - Kasompe"
+    },
+    {
+      "icao": "FLSO",
+      "name": "Kitwe - Southdowns"
+    },
+    {
+      "icao": "FLLC",
+      "name": "Lusaka City"
+    },
+    {
+      "icao": "FLMG",
+      "name": "Mongu"
+    },
+    {
+      "icao": "FLND",
+      "name": "Ndola - Peter Zuze Air Force Base"
+    }
+  ],
+  "Zimbabwe": [
+    {
+      "icao": "FVJN",
+      "name": "Bulawayo - Joshua Mqabuko Nkomo"
+    },
+    {
+      "icao": "FVFA",
+      "name": "Victoria Falls"
+    },
+    {
+      "icao": "FVCZ",
+      "name": "Chiredzi - Buffalo Range"
+    },
+    {
+      "icao": "FVWN",
+      "name": "Gwayi River Farms - Hwange National Park"
+    },
+    {
+      "icao": "FVTL",
+      "name": "Gweru - Josiah Tungamirai Air Force Base"
+    },
+    {
+      "icao": "FVKB",
+      "name": "Kariba"
+    },
+    {
+      "icao": "FVMV",
+      "name": "Masvingo"
+    },
+    {
+      "icao": "FVMT",
+      "name": "Mutoko"
+    }
+  ]
+};

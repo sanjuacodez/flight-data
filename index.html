@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airport Flight Board</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Courier New', 'Consolas', monospace;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Top Bar ── */
+        .topbar {
+            background: #101028;
+            padding: 10px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #1a1a3e;
+            flex-shrink: 0;
+            min-height: 56px;
+        }
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .topbar h1 {
+            font-size: 1.5rem;
+            color: #e94560;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .airport-badge {
+            color: #ffd700;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .airport-name {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .clock {
+            color: #00d4ff;
+            font-size: 1.6rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .date-display {
+            color: #666;
+            font-size: 0.85rem;
+        }
+        .btn-settings {
+            background: transparent;
+            border: 1px solid #333;
+            color: #555;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            opacity: 0.4;
+        }
+        .btn-settings:hover { opacity: 1; border-color: #e94560; color: #e94560; }
+
+        /* ── Split Board ── */
+        .board {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .board-half {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .board-half:first-child {
+            border-right: 3px solid #1a1a3e;
+        }
+
+        /* ── Section Headers ── */
+        .section-header {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .section-header.arrivals {
+            background: #0d1a2d;
+            color: #5dade2;
+            border-bottom: 2px solid #1a3050;
+        }
+        .section-header.departures {
+            background: #1a0d1a;
+            color: #e94560;
+            border-bottom: 2px solid #3a1a2a;
+        }
+
+        /* ── Flight Rows ── */
+        .flight-list {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        .flight-scroll {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        .flight-scroll.auto-scroll .flight-inner {
+            animation: scrollUp var(--scroll-duration, 30s) linear infinite;
+        }
+        .flight-scroll:hover .flight-inner {
+            animation-play-state: paused;
+        }
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        .col-header {
+            display: grid;
+            padding: 8px 16px;
+            font-size: 0.65rem;
+            color: #555;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: #0a0a18;
+            border-bottom: 1px solid #1a1a30;
+            flex-shrink: 0;
+        }
+        .col-header.arr-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
+        .col-header.dep-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
+
+        .flight-row {
+            display: grid;
+            padding: 9px 16px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #111125;
+            align-items: center;
+            transition: background 0.3s;
+        }
+        .flight-row:nth-child(even) { background: rgba(255,255,255,0.01); }
+        .flight-row.arr-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
+        .flight-row.dep-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
+
+        .flight-row .callsign {
+            color: #00d4ff;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        .flight-row .city {
+            color: #ccc;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding-right: 8px;
+        }
+        .flight-row .airline-hint {
+            color: #555;
+            font-size: 0.7rem;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .flight-row .time {
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        /* ── Status ── */
+        .status {
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 2px;
+            text-align: center;
+        }
+        .status-landed   { background: #0d2818; color: #58d68d; }
+        .status-en-route  { background: #0d1a2d; color: #5dade2; }
+        .status-expected  { background: #2a1f0a; color: #f0c040; }
+        .status-departed  { background: #1a1a2a; color: #aab7b8; }
+        .status-unknown   { background: #1a1a1a; color: #555; }
+
+        /* ── Bottom Bar ── */
+        .bottombar {
+            background: #101028;
+            padding: 6px 28px;
+            font-size: 0.65rem;
+            color: #444;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #1a1a3e;
+            flex-shrink: 0;
+        }
+        .live-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #58d68d;
+            margin-right: 6px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .demo-dot { background: #e94560; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* ── Empty / loading ── */
+        .state-msg {
+            text-align: center;
+            padding: 40px 16px;
+            color: #444;
+            font-size: 0.85rem;
+        }
+        .state-msg .spinner {
+            width: 28px; height: 28px;
+            border: 2px solid #222;
+            border-top-color: #e94560;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            margin: 0 auto 12px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Settings Panel ── */
+        .settings-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+        .settings-overlay.open { display: flex; }
+        .settings-panel {
+            background: #12122a;
+            border: 2px solid #1a1a3e;
+            padding: 28px;
+            width: 440px;
+            max-width: 95vw;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .settings-panel h2 {
+            color: #ffd700;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+        .settings-panel h3 {
+            color: #e94560;
+            margin: 20px 0 10px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-top: 1px solid #1a1a3e;
+            padding-top: 14px;
+        }
+        .field { margin-bottom: 16px; }
+        .field label {
+            display: block;
+            color: #888;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .field input, .field select {
+            width: 100%;
+            padding: 8px 10px;
+            background: #0a0a1a;
+            border: 1px solid #1a1a3e;
+            color: #e0e0e0;
+            font-family: inherit;
+            font-size: 0.85rem;
+        }
+        .field input:focus, .field select:focus { outline: none; border-color: #e94560; }
+        .field .hint { font-size: 0.65rem; color: #555; margin-top: 3px; }
+        .field .hint a { color: #5dade2; }
+        .settings-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .settings-actions button {
+            flex: 1;
+            padding: 9px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: none;
+        }
+        .btn-save { background: #e94560; color: #fff; }
+        .btn-save:hover { background: #c73a52; }
+        .btn-cancel { background: #1a1a3e; color: #888; border: 1px solid #333 !important; }
+        .btn-cancel:hover { background: #222250; }
+
+        /* ── Responsive: smaller screens ── */
+        @media (max-width: 900px) {
+            .board { flex-direction: column; }
+            .board-half:first-child { border-right: none; border-bottom: 3px solid #1a1a3e; }
+            .col-header, .flight-row { font-size: 0.75rem; padding: 6px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Top Bar ── -->
+<div class="topbar">
+    <div class="topbar-left">
+        <h1>&#9992; Flight Board</h1>
+        <span class="airport-badge" id="airportLabel">KJFK</span>
+        <span class="airport-name" id="airportName"></span>
+    </div>
+    <div class="topbar-right">
+        <span class="date-display" id="dateDisplay"></span>
+        <span class="clock" id="clock">--:--</span>
+        <button class="btn-settings" onclick="openSettings()" title="Settings">&#9881;</button>
+    </div>
+</div>
+
+<!-- ── Split Board ── -->
+<div class="board">
+    <!-- Arrivals -->
+    <div class="board-half">
+        <div class="section-header arrivals">&#11015; Arrivals</div>
+        <div class="col-header arr-cols">
+            <span>Flight</span><span>Origin</span><span>Time</span><span>Landed</span><span>Status</span>
+        </div>
+        <div class="flight-list">
+            <div class="flight-scroll" id="arrScroll">
+                <div class="flight-inner" id="arrBody">
+                    <div class="state-msg"><div class="spinner"></div>Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Departures -->
+    <div class="board-half">
+        <div class="section-header departures">&#11014; Departures</div>
+        <div class="col-header dep-cols">
+            <span>Flight</span><span>Destination</span><span>Time</span><span>Last Seen</span><span>Status</span>
+        </div>
+        <div class="flight-list">
+            <div class="flight-scroll" id="depScroll">
+                <div class="flight-inner" id="depBody">
+                    <div class="state-msg"><div class="spinner"></div>Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Bottom Bar ── -->
+<div class="bottombar">
+    <span id="lastUpdated">Updating...</span>
+    <span id="flightCount"></span>
+    <span id="dataSource"></span>
+</div>
+
+<!-- ── Settings ── -->
+<div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-panel">
+        <h2>&#9881; Display Settings</h2>
+        <div class="field">
+            <label>Country</label>
+            <select id="setCountry"><option value="">Loading...</option></select>
+        </div>
+        <div class="field">
+            <label>Airport</label>
+            <select id="setAirport"><option value="">Select a country first</option></select>
+            <div class="hint">Select country, then pick the airport.</div>
+        </div>
+        <div class="field">
+            <label>Time Span (hours before &amp; after now)</label>
+            <select id="setTimeSpan">
+                <option value="1">± 1 hour</option>
+                <option value="2">± 2 hours</option>
+                <option value="3">± 3 hours</option>
+                <option value="4">± 4 hours</option>
+                <option value="6">± 6 hours</option>
+                <option value="8">± 8 hours</option>
+                <option value="12">± 12 hours</option>
+            </select>
+            <div class="hint">Shows flights within this window before and after current time.</div>
+        </div>
+        <div class="field">
+            <label>Time Format</label>
+            <select id="setTimeFormat">
+                <option value="24">24-hour</option>
+                <option value="12">12-hour (AM/PM)</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Auto-Refresh Interval</label>
+            <select id="setRefreshInterval">
+                <option value="120">2 minutes</option>
+                <option value="300">5 minutes</option>
+                <option value="600">10 minutes</option>
+                <option value="900">15 minutes</option>
+                <option value="0">Off (manual only)</option>
+            </select>
+            <div class="hint">OpenSky rate-limits anonymous requests. 5+ min recommended.</div>
+        </div>
+        <div class="field">
+            <label>Auto-Scroll Speed</label>
+            <select id="setScrollSpeed">
+                <option value="0">Off</option>
+                <option value="60">Slow (60s)</option>
+                <option value="40">Medium (40s)</option>
+                <option value="25">Fast (25s)</option>
+            </select>
+            <div class="hint">Auto-scrolls long lists for TV display. Pause by hovering.</div>
+        </div>
+
+        <h3>OpenSky Authentication (Optional)</h3>
+        <div class="field">
+            <label>Username</label>
+            <input type="text" id="setUsername" placeholder="OpenSky username (optional)">
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <input type="password" id="setPassword" placeholder="OpenSky password (optional)">
+            <div class="hint">Free account at <a href="https://opensky-network.org/index.php/-/login" target="_blank" rel="noopener">opensky-network.org</a> for higher rate limits. Leave blank for anonymous.</div>
+        </div>
+
+        <div class="settings-actions">
+            <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
+            <button class="btn-save" onclick="saveSettings()">Save &amp; Reload</button>
+        </div>
+    </div>
+</div>
+
+<script src="airports.js"></script>
+<script>
+    // ── Airport data (loaded from airports.js / airports.json) ──
+    let airportsByCountry = {};  // { country: [{icao, name}, ...] }
+    let AIRPORTS = {};           // { icao: name } flat lookup
+
+    async function loadAirportData() {
+        try {
+            // Prefer global AIRPORT_DATA (works with file:// protocol)
+            if (typeof AIRPORT_DATA !== 'undefined') {
+                airportsByCountry = AIRPORT_DATA;
+            } else {
+                const resp = await fetch('airports.json');
+                if (!resp.ok) throw new Error('Failed to load airports.json');
+                airportsByCountry = await resp.json();
+            }
+            // Build flat ICAO → name lookup
+            AIRPORTS = {};
+            for (const country in airportsByCountry) {
+                for (const ap of airportsByCountry[country]) {
+                    AIRPORTS[ap.icao] = ap.name;
+                }
+            }
+            populateCountryDropdown();
+        } catch (e) {
+            console.error('Airport data load error:', e);
+            // Fallback minimal data
+            airportsByCountry = { 'United States': [{ icao: 'KJFK', name: 'New York JFK' }] };
+            AIRPORTS = { 'KJFK': 'New York JFK' };
+            populateCountryDropdown();
+        }
+    }
+
+    function populateCountryDropdown() {
+        const sel = document.getElementById('setCountry');
+        sel.innerHTML = '<option value="">— Select Country —</option>';
+        const countries = Object.keys(airportsByCountry).sort();
+        for (const c of countries) {
+            const opt = document.createElement('option');
+            opt.value = c;
+            opt.textContent = c;
+            sel.appendChild(opt);
+        }
+    }
+
+    function populateAirportDropdown(country, selectedIcao) {
+        const sel = document.getElementById('setAirport');
+        sel.innerHTML = '';
+        if (!country || !airportsByCountry[country]) {
+            sel.innerHTML = '<option value="">Select a country first</option>';
+            return;
+        }
+        const airports = airportsByCountry[country];
+        for (const ap of airports) {
+            const opt = document.createElement('option');
+            opt.value = ap.icao;
+            opt.textContent = `${ap.name} (${ap.icao})`;
+            if (ap.icao === selectedIcao) opt.selected = true;
+            sel.appendChild(opt);
+        }
+    }
+
+    function findCountryForIcao(icao) {
+        for (const country in airportsByCountry) {
+            if (airportsByCountry[country].some(a => a.icao === icao)) return country;
+        }
+        return '';
+    }
+
+    // Wire up country → airport cascade
+    document.getElementById('setCountry').addEventListener('change', function() {
+        populateAirportDropdown(this.value, '');
+    });
+
+    // ── Airline prefix → name ──
+    const AIRLINES = {
+        'AAL':'American','DAL':'Delta','UAL':'United',
+        'SWA':'Southwest','JBU':'JetBlue','ASA':'Alaska',
+        'NKS':'Spirit','FFT':'Frontier','HAL':'Hawaiian',
+        'BAW':'British Airways','DLH':'Lufthansa','AFR':'Air France',
+        'KLM':'KLM','SAS':'SAS','FIN':'Finnair',
+        'IBE':'Iberia','TAP':'TAP','AZA':'ITA Airways',
+        'SWR':'Swiss','AUA':'Austrian','BEL':'Brussels',
+        'EIN':'Aer Lingus','RYR':'Ryanair','EZY':'easyJet',
+        'WZZ':'Wizz Air','VLG':'Vueling','NAX':'Norwegian',
+        'THY':'Turkish','LOT':'LOT Polish','AFL':'Aeroflot',
+        'UAE':'Emirates','ETD':'Etihad','QTR':'Qatar Airways',
+        'SVA':'Saudia','GFA':'Gulf Air','OMA':'Oman Air',
+        'CPA':'Cathay Pacific','ANA':'ANA','JAL':'JAL',
+        'KAL':'Korean Air','AAR':'Asiana','SIA':'Singapore',
+        'THA':'Thai Airways','MAS':'Malaysia','GIA':'Garuda',
+        'PAL':'Philippine','CCA':'Air China','CES':'China Eastern',
+        'CSN':'China Southern','EVA':'EVA Air','CAL':'China Airlines',
+        'AIC':'Air India','IGO':'IndiGo','VTI':'Vistara',
+        'QFA':'Qantas','VOZ':'Virgin Australia','ANZ':'Air NZ',
+        'SAA':'South African','MSR':'EgyptAir','ETH':'Ethiopian',
+        'RAM':'Royal Air Maroc','KQA':'Kenya Airways',
+        'TAM':'LATAM Brasil','LAN':'LATAM Chile','AVA':'Avianca',
+        'AMX':'AeroMexico','ACA':'Air Canada','WJA':'WestJet',
+        'ELY':'El Al','FDB':'flydubai','AXM':'AirAsia',
+        'JST':'Jetstar','SCO':'Scoot','PIA':'PIA','SLK':'SriLankan',
+    };
+
+    // ── Config ──
+    const DEFAULTS = {
+        airport: 'KJFK',
+        timeSpan: 3,
+        timeFormat: '24',
+        refreshInterval: 300,
+        scrollSpeed: 40,
+        username: '',
+        password: ''
+    };
+
+    function loadConfig() {
+        try {
+            const s = localStorage.getItem('flightBoardConfig');
+            return s ? { ...DEFAULTS, ...JSON.parse(s) } : { ...DEFAULTS };
+        } catch { return { ...DEFAULTS }; }
+    }
+    function saveConfigToStorage(cfg) {
+        const c = { ...cfg };
+        delete c.password;
+        localStorage.setItem('flightBoardConfig', JSON.stringify(c));
+    }
+
+    let config = loadConfig();
+    let refreshTimer = null;
+    let flightsCache = { arrivals: [], departures: [] };
+
+    // ── Helpers ──
+    function esc(s) {
+        if (!s) return '';
+        const el = document.createElement('span');
+        el.textContent = String(s);
+        return el.innerHTML;
+    }
+    function airportName(icao) { return (icao && AIRPORTS[icao.toUpperCase()]) || icao || '—'; }
+    function airlineFromCall(cs) {
+        if (!cs) return '';
+        const p = cs.trim().substring(0, 3).toUpperCase();
+        return AIRLINES[p] || '';
+    }
+    function fmtTime(unix) {
+        if (!unix) return '—';
+        const d = new Date(unix * 1000);
+        if (isNaN(d)) return '—';
+        return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', hour12: config.timeFormat === '12' });
+    }
+
+    function inferStatus(f, dir) {
+        const now = Math.floor(Date.now() / 1000);
+        if (dir === 'arrival') {
+            if (f.lastSeen) return 'Landed';
+            if (f.firstSeen) return 'En Route';
+            return 'Expected';
+        } else {
+            if (f.firstSeen && f.lastSeen) return 'Departed';
+            if (f.firstSeen) return 'En Route';
+            return 'Departed';
+        }
+    }
+
+    // ── Clock ──
+    function tick() {
+        const now = new Date();
+        const h12 = config.timeFormat === '12';
+        document.getElementById('clock').textContent =
+            now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: h12 });
+        document.getElementById('dateDisplay').textContent =
+            now.toLocaleDateString([], { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+    }
+    setInterval(tick, 1000);
+    tick();
+
+    // ── Render ──
+    function renderBoard() {
+        renderHalf('arrBody', 'arrScroll', flightsCache.arrivals, 'arrival');
+        renderHalf('depBody', 'depScroll', flightsCache.departures, 'departure');
+
+        const total = flightsCache.arrivals.length + flightsCache.departures.length;
+        document.getElementById('flightCount').textContent =
+            `${flightsCache.arrivals.length} arr / ${flightsCache.departures.length} dep`;
+    }
+
+    function renderHalf(bodyId, scrollId, flights, dir) {
+        const body = document.getElementById(bodyId);
+        const scroll = document.getElementById(scrollId);
+        const colClass = dir === 'arrival' ? 'arr-cols' : 'dep-cols';
+
+        if (!flights.length) {
+            body.innerHTML = `<div class="state-msg">No flights in this time window.</div>`;
+            scroll.classList.remove('auto-scroll');
+            return;
+        }
+
+        const rows = flights.map(f => {
+            const statusCls = 'status-' + (f.status || 'unknown').toLowerCase().replace(/\s+/g, '-');
+            const airline = esc(airlineFromCall(f.callsign));
+            const t1 = dir === 'arrival' ? fmtTime(f.firstSeen) : fmtTime(f.firstSeen);
+            const t2 = dir === 'arrival' ? fmtTime(f.lastSeen) : fmtTime(f.lastSeen);
+
+            return `<div class="flight-row ${colClass}">
+                <span class="callsign">${esc(f.callsign)}</span>
+                <span class="city">${esc(f.city)}${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span>
+                <span class="time">${t1}</span>
+                <span class="time">${t2}</span>
+                <span class="status ${statusCls}">${esc(f.status)}</span>
+            </div>`;
+        }).join('');
+
+        // If auto-scroll enabled & content overflows, duplicate for seamless loop
+        if (config.scrollSpeed > 0 && flights.length > 12) {
+            body.innerHTML = rows + rows;
+            scroll.classList.add('auto-scroll');
+            scroll.style.setProperty('--scroll-duration', config.scrollSpeed + 's');
+        } else {
+            body.innerHTML = rows;
+            scroll.classList.remove('auto-scroll');
+        }
+    }
+
+    // ── Fetch from OpenSky ──
+    async function fetchFlights() {
+        document.getElementById('arrBody').innerHTML = `<div class="state-msg"><div class="spinner"></div>Fetching arrivals...</div>`;
+        document.getElementById('depBody').innerHTML = `<div class="state-msg"><div class="spinner"></div>Fetching departures...</div>`;
+
+        const now = Math.floor(Date.now() / 1000);
+        const spanSec = config.timeSpan * 3600;
+        const begin = now - spanSec;
+        const end = now + spanSec;
+        // OpenSky only returns past flights, so we query begin → now for historical data
+        // For "upcoming" feel, we query a window from (now - span) to now
+        const queryEnd = Math.min(end, now);
+
+        try {
+            const [arrData, depData] = await Promise.all([
+                fetchOpenSky('arrival', config.airport, begin, queryEnd),
+                fetchOpenSky('departure', config.airport, begin, queryEnd)
+            ]);
+
+            flightsCache.arrivals = parseFlights(arrData, 'arrival');
+            flightsCache.departures = parseFlights(depData, 'departure');
+
+            document.getElementById('dataSource').innerHTML =
+                `<span class="live-dot"></span>LIVE &mdash; OpenSky Network`;
+            updateTimestamp();
+            renderBoard();
+        } catch (err) {
+            console.error('OpenSky error:', err);
+            let hint = 'Check ICAO code and try again.';
+            if (String(err.message).includes('429')) hint = 'Rate limited. Wait and retry, or add credentials.';
+            if (String(err.message).includes('Failed to fetch')) hint = 'Network error or CORS blocked.';
+
+            document.getElementById('arrBody').innerHTML =
+                `<div class="state-msg">${esc(err.message)}<br><small>${esc(hint)}</small></div>`;
+            document.getElementById('depBody').innerHTML =
+                `<div class="state-msg">Loading demo data...</div>`;
+
+            setTimeout(loadDemoData, 2000);
+        }
+    }
+
+    async function fetchOpenSky(dir, airport, begin, end) {
+        const ep = dir === 'arrival' ? 'arrival' : 'departure';
+        const url = `https://opensky-network.org/api/flights/${ep}?airport=${encodeURIComponent(airport)}&begin=${begin}&end=${end}`;
+        const opts = {};
+        if (config.username && config.password) {
+            opts.headers = { 'Authorization': 'Basic ' + btoa(config.username + ':' + config.password) };
+        }
+        const r = await fetch(url, opts);
+        if (!r.ok) throw new Error(`HTTP ${r.status}: ${r.statusText}`);
+        return await r.json();
+    }
+
+    function parseFlights(data, dir) {
+        if (!Array.isArray(data)) return [];
+        return data.map(f => {
+            const cs = (f.callsign || '').trim();
+            const other = dir === 'arrival' ? f.estDepartureAirport : f.estArrivalAirport;
+            return {
+                callsign: cs || f.icao24 || '—',
+                city: airportName(other),
+                firstSeen: f.firstSeen,
+                lastSeen: f.lastSeen,
+                status: inferStatus(f, dir)
+            };
+        }).sort((a, b) => {
+            const tA = a.lastSeen || a.firstSeen || 0;
+            const tB = b.lastSeen || b.firstSeen || 0;
+            return tB - tA;
+        });
+    }
+
+    // ── Demo Data ──
+    function loadDemoData() {
+        const now = Math.floor(Date.now() / 1000);
+        const m = (min) => now + min * 60;
+
+        flightsCache.arrivals = [
+            { callsign:'AAL101', city:'Los Angeles', firstSeen:m(-170), lastSeen:m(-12), status:'Landed' },
+            { callsign:'DAL402', city:'Atlanta', firstSeen:m(-110), lastSeen:m(-3), status:'Landed' },
+            { callsign:'UAL557', city:'Chicago O\'Hare', firstSeen:m(-85), lastSeen:null, status:'En Route' },
+            { callsign:'BAW178', city:'London Heathrow', firstSeen:m(-390), lastSeen:m(-25), status:'Landed' },
+            { callsign:'UAE201', city:'Dubai', firstSeen:m(-580), lastSeen:m(-40), status:'Landed' },
+            { callsign:'DLH400', city:'Frankfurt', firstSeen:m(-280), lastSeen:null, status:'En Route' },
+            { callsign:'AFR008', city:'Paris CDG', firstSeen:m(-340), lastSeen:m(-55), status:'Landed' },
+            { callsign:'JAL005', city:'Tokyo Narita', firstSeen:m(-700), lastSeen:m(-80), status:'Landed' },
+            { callsign:'QFA011', city:'Sydney', firstSeen:m(-900), lastSeen:m(-110), status:'Landed' },
+            { callsign:'SIA023', city:'Singapore Changi', firstSeen:m(-480), lastSeen:m(-6), status:'Landed' },
+            { callsign:'THY001', city:'Istanbul', firstSeen:m(-190), lastSeen:null, status:'En Route' },
+            { callsign:'ACA856', city:'Toronto Pearson', firstSeen:m(-140), lastSeen:m(-18), status:'Landed' },
+        ];
+
+        flightsCache.departures = [
+            { callsign:'AAL100', city:'Los Angeles', firstSeen:m(-18), lastSeen:null, status:'En Route' },
+            { callsign:'DAL403', city:'Atlanta', firstSeen:m(-30), lastSeen:null, status:'En Route' },
+            { callsign:'UAL558', city:'San Francisco', firstSeen:m(-45), lastSeen:null, status:'En Route' },
+            { callsign:'BAW179', city:'London Heathrow', firstSeen:m(-65), lastSeen:null, status:'En Route' },
+            { callsign:'UAE202', city:'Dubai', firstSeen:m(-95), lastSeen:null, status:'En Route' },
+            { callsign:'DLH401', city:'Frankfurt', firstSeen:m(-120), lastSeen:m(-8), status:'Departed' },
+            { callsign:'AAL245', city:'Miami', firstSeen:m(-25), lastSeen:null, status:'En Route' },
+            { callsign:'DAL910', city:'Boston', firstSeen:m(-40), lastSeen:m(-4), status:'Departed' },
+            { callsign:'JAL006', city:'Tokyo Narita', firstSeen:m(-150), lastSeen:null, status:'En Route' },
+            { callsign:'KAL082', city:'Seoul Incheon', firstSeen:m(-160), lastSeen:null, status:'En Route' },
+        ];
+
+        document.getElementById('dataSource').innerHTML =
+            '<span class="live-dot demo-dot"></span>DEMO DATA';
+        updateTimestamp();
+        renderBoard();
+    }
+
+    function updateTimestamp() {
+        const now = new Date();
+        const h12 = config.timeFormat === '12';
+        document.getElementById('lastUpdated').textContent =
+            'Updated ' + now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: h12 });
+    }
+
+    // ── Settings ──
+    function openSettings() {
+        const country = findCountryForIcao(config.airport);
+        document.getElementById('setCountry').value = country;
+        populateAirportDropdown(country, config.airport);
+        document.getElementById('setTimeSpan').value = config.timeSpan;
+        document.getElementById('setTimeFormat').value = config.timeFormat;
+        document.getElementById('setRefreshInterval').value = config.refreshInterval;
+        document.getElementById('setScrollSpeed').value = config.scrollSpeed;
+        document.getElementById('setUsername').value = config.username;
+        document.getElementById('setPassword').value = config.password;
+        document.getElementById('settingsOverlay').classList.add('open');
+    }
+    function closeSettings() {
+        document.getElementById('settingsOverlay').classList.remove('open');
+    }
+    function saveSettings() {
+        const ap = document.getElementById('setAirport').value;
+        if (!ap) {
+            alert('Please select a country and airport.');
+            return;
+        }
+        config.airport = ap;
+        config.timeSpan = parseInt(document.getElementById('setTimeSpan').value, 10);
+        config.timeFormat = document.getElementById('setTimeFormat').value;
+        config.refreshInterval = parseInt(document.getElementById('setRefreshInterval').value, 10);
+        config.scrollSpeed = parseInt(document.getElementById('setScrollSpeed').value, 10);
+        config.username = document.getElementById('setUsername').value.trim();
+        config.password = document.getElementById('setPassword').value;
+
+        saveConfigToStorage(config);
+        updateAirportDisplay();
+        closeSettings();
+        startAutoRefresh();
+        fetchFlights();
+    }
+
+    function updateAirportDisplay() {
+        document.getElementById('airportLabel').textContent = config.airport;
+        const n = AIRPORTS[config.airport.toUpperCase()];
+        document.getElementById('airportName').textContent = n ? `(${n})` : '';
+    }
+
+    document.getElementById('settingsOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeSettings();
+    });
+
+    // ── Auto Refresh ──
+    function startAutoRefresh() {
+        if (refreshTimer) clearInterval(refreshTimer);
+        if (config.refreshInterval > 0) {
+            refreshTimer = setInterval(fetchFlights, config.refreshInterval * 1000);
+        }
+    }
+
+    // ── Init ──
+    loadAirportData().then(() => {
+        updateAirportDisplay();
+        fetchFlights();
+        startAutoRefresh();
+    });
+</script>
+</body>
+</html>
