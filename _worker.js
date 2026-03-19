@@ -1,8 +1,21 @@
-// Cloudflare Pages Function: proxies OpenSky API requests to avoid CORS issues.
-// Route: /api/opensky?dir=arrival&airport=KJFK&begin=...&end=...
+// Cloudflare Pages Advanced Mode: _worker.js
+// Handles /api/opensky proxy requests, serves static assets for everything else
 
-export async function onRequest(context) {
-  const url = new URL(context.request.url);
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+
+    // Proxy OpenSky API requests
+    if (url.pathname === '/api/opensky') {
+      return handleOpenSkyProxy(url, request);
+    }
+
+    // For all other requests, pass through to static assets
+    return env.ASSETS.fetch(request);
+  }
+};
+
+async function handleOpenSkyProxy(url, request) {
   const dir = url.searchParams.get('dir');
   const airport = url.searchParams.get('airport');
   const begin = url.searchParams.get('begin');
@@ -15,14 +28,11 @@ export async function onRequest(context) {
     });
   }
 
-  // Only allow arrival/departure endpoints
   const endpoint = dir === 'arrival' ? 'arrival' : 'departure';
-
   const apiUrl = `https://opensky-network.org/api/flights/${endpoint}?airport=${encodeURIComponent(airport)}&begin=${encodeURIComponent(begin)}&end=${encodeURIComponent(end)}`;
 
-  // Forward auth header if present
   const headers = {};
-  const auth = context.request.headers.get('Authorization');
+  const auth = request.headers.get('Authorization');
   if (auth) {
     headers['Authorization'] = auth;
   }
