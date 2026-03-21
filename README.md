@@ -142,10 +142,34 @@ This generates:
 
 ## Limitations
 
-- **Free plan: 1,000 requests/month** — Each refresh uses 2 API calls (arrivals + departures). At 5-minute intervals, that's ~576 calls/day, so budget accordingly.
+- **Free plan: 1,000 requests/month** — Each refresh uses 2 API calls (arrivals + departures). Default 2h interval = ~720 calls/month, safe for 24/7.
 - **50 results per request on free plan** — Busy airports may have more flights than the limit shows.
 - **Schedules up to ~10 hours ahead** — AirLabs returns current and near-future schedules, not full-day flight plans.
 - **Small airports may have limited data** — Coverage depends on AirLabs' data sources.
+
+## Configuring for Pro / Paid Plans
+
+The refresh rate is controlled by the `API_PLAN` config block at the top of `public/index.html`:
+
+```javascript
+const API_PLAN = {
+    name: 'Free',              // Plan display name
+    monthlyLimit: 1000,        // Monthly API call limit
+    refreshInterval: 7200,     // Default refresh in seconds (2 hours)
+};
+```
+
+**Recommended values by plan:**
+
+| Plan | Monthly Limit | Refresh Interval | Calls/Month (24/7) |
+|------|--------------|------------------|---------------------|
+| Free | 1,000 | `7200` (2 hours) | ~720 |
+| Basic | 10,000 | `600` (10 minutes) | ~8,640 |
+| Pro | 100,000 | `120` (2 minutes) | ~43,200 |
+
+To upgrade: change `API_PLAN` values, and optionally update `AIRLABS_API_KEY` in Cloudflare secrets with your new key.
+
+> **Formula:** `(30 days × 24h × 60min) / (interval_minutes) × 2 = monthly calls`
 
 ## Tech Stack
 

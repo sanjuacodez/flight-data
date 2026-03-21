@@ -356,7 +356,7 @@
 
 <!-- ── Rate Limit Banner ── -->
 <div class="rate-banner" id="rateBanner">
-    &#9888; Free API key &mdash; limited to 1,000 calls/month. Auto-refresh set to 1 hour (~960 calls/month at 16h/day usage). Running 24/7 at 1h interval will exceed the limit.
+    &#9888; Free API key &mdash; limited to 1,000 calls/month. Auto-refresh set to 2 hours (~720 calls/month for 24/7 operation).
     <span class="dismiss" onclick="document.getElementById('rateBanner').style.display='none'" title="Dismiss">&times;</span>
 </div>
 
@@ -436,13 +436,14 @@
         <div class="field">
             <label>Auto-Refresh Interval</label>
             <select id="setRefreshInterval">
+                <option value="120">2 minutes (Pro)</option>
+                <option value="600">10 minutes (Basic)</option>
                 <option value="1800">30 minutes</option>
                 <option value="3600">1 hour</option>
-                <option value="7200">2 hours</option>
-                <option value="10800">3 hours</option>
+                <option value="7200">2 hours (Free safe)</option>
                 <option value="0">Off (manual only)</option>
             </select>
-            <div class="hint">Free API: 1,000 calls/month. Each refresh = 2 calls. 1h recommended.</div>
+            <div class="hint">Free: 1,000 calls/mo → 2h safe for 24/7. See API_PLAN in source to configure.</div>
         </div>
         <div class="field">
             <label>Auto-Scroll Speed</label>
@@ -465,6 +466,23 @@
 
 <script src="airports.js"></script>
 <script>
+    // ══════════════════════════════════════════════════════════════
+    // API PLAN CONFIGURATION
+    // Change these values when upgrading your AirLabs plan.
+    // Free: 1,000 calls/month  |  Pro: 100,000+/month
+    // Each refresh = 2 API calls (arrivals + departures).
+    //
+    // Recommended refresh intervals:
+    //   Free  (1,000/mo)  → 7200s (2h)  = 720 calls/mo (24/7 safe)
+    //   Basic (10,000/mo)  → 600s (10m) = 8,640 calls/mo
+    //   Pro   (100,000/mo) → 120s (2m)  = 43,200 calls/mo
+    // ══════════════════════════════════════════════════════════════
+    const API_PLAN = {
+        name: 'Free',              // Plan display name
+        monthlyLimit: 1000,        // Monthly API call limit
+        refreshInterval: 7200,     // Default refresh in seconds (2 hours)
+    };
+
     // ── Airport data (loaded from airports.js / airports.json) ──
     let airportsByCountry = {};  // { country: [{icao, iata, name}, ...] }
     let AIRPORTS_ICAO = {};      // { icao: name } flat lookup
@@ -555,7 +573,7 @@
     const DEFAULTS = {
         airport: 'KJFK',
         timeFormat: '24',
-        refreshInterval: 3600,
+        refreshInterval: API_PLAN.refreshInterval,
         scrollSpeed: 40,
 
     };
