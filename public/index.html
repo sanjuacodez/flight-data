@@ -493,6 +493,7 @@
         name: 'Free',              // Plan display name
         monthlyLimit: 1000,        // Monthly API call limit
         refreshInterval: 7200,     // Default refresh in seconds (2 hours)
+        timeWindow: 2,             // Default time window in hours (±2h). Set 0 for all.
     };
 
     // ── Airport data (loaded from airports.js / airports.json) ──
@@ -587,7 +588,7 @@
         timeFormat: '24',
         refreshInterval: API_PLAN.refreshInterval,
         scrollSpeed: 40,
-        timeWindow: 2,
+        timeWindow: API_PLAN.timeWindow,
     };
 
     function loadConfig() {

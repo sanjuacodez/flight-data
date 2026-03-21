@@ -12,10 +12,12 @@ A real-time airport flight information display built for TV screens and monitors
 
 - **Live Flight Data** — Real-time arrivals and departures with status (scheduled, active, landed, cancelled)
 - **Split-Board Layout** — Arrivals on the left, departures on the right, just like a real airport display
+- **Time Window Filter** — Only show flights within ±N hours of now (default ±2h). No morning flights cluttering the evening board.
+- **URL Airport Parameter** — Pass `?airport=JFK` (IATA) or `?airport=KJFK` (ICAO) in the URL for direct/shareable links
 - **TV/Kiosk Mode** — Full-screen, auto-scrolling display designed for wall-mounted monitors
 - **235 Countries, 4,600+ Airports** — Comprehensive airport database sourced from [OurAirports](https://ourairports.com/data/)
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
-- **Configurable Settings** — Country/airport picker, 12/24h format, refresh interval, scroll speed
+- **Configurable Settings** — Country/airport picker, time window, 12/24h format, refresh interval, scroll speed
 - **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side)
 - **No Framework** — Pure HTML, CSS, and JavaScript — lightweight and fast
 
@@ -156,16 +158,17 @@ const API_PLAN = {
     name: 'Free',              // Plan display name
     monthlyLimit: 1000,        // Monthly API call limit
     refreshInterval: 7200,     // Default refresh in seconds (2 hours)
+    timeWindow: 2,             // Show flights within ±N hours of now (0 = all)
 };
 ```
 
 **Recommended values by plan:**
 
-| Plan | Monthly Limit | Refresh Interval | Calls/Month (24/7) |
-|------|--------------|------------------|---------------------|
-| Free | 1,000 | `7200` (2 hours) | ~720 |
-| Basic | 10,000 | `600` (10 minutes) | ~8,640 |
-| Pro | 100,000 | `120` (2 minutes) | ~43,200 |
+| Plan | Monthly Limit | Refresh Interval | Time Window | Calls/Month (24/7) |
+|------|--------------|------------------|-------------|---------------------|
+| Free | 1,000 | `7200` (2 hours) | `2` (±2h) | ~720 |
+| Basic | 10,000 | `600` (10 minutes) | `4` (±4h) | ~8,640 |
+| Pro | 100,000 | `120` (2 minutes) | `6` (±6h) | ~43,200 |
 
 To upgrade: change `API_PLAN` values, and optionally update `AIRLABS_API_KEY` in Cloudflare secrets with your new key.
 
