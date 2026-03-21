@@ -163,16 +163,16 @@
         .col-header {
             display: grid;
             padding: 8px 16px;
-            font-size: 0.65rem;
-            color: #555;
+            font-size: 0.7rem;
+            color: #777;
             letter-spacing: 2px;
             text-transform: uppercase;
             background: #0a0a18;
             border-bottom: 1px solid #1a1a30;
             flex-shrink: 0;
         }
-        .col-header.arr-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
-        .col-header.dep-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
+        .col-header.arr-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
+        .col-header.dep-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
 
         .flight-row {
             display: grid;
@@ -183,16 +183,17 @@
             transition: background 0.3s;
         }
         .flight-row:nth-child(even) { background: rgba(255,255,255,0.01); }
-        .flight-row.arr-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
-        .flight-row.dep-cols { grid-template-columns: 100px 1fr 90px 90px 90px; }
+        .flight-row.arr-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
+        .flight-row.dep-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
 
         .flight-row .callsign {
             color: #00d4ff;
             font-weight: bold;
             font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
         .flight-row .city {
-            color: #ccc;
+            color: #e0e0e0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -207,13 +208,22 @@
             white-space: nowrap;
         }
         .flight-row .time {
-            color: #aaa;
+            color: #ccc;
             font-size: 0.85rem;
+        }
+        .flight-row .term-gate {
+            color: #ffd700;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* ── Status ── */
         .status {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -349,6 +359,10 @@
             .board { flex-direction: column; }
             .board-half:first-child { border-right: none; border-bottom: 3px solid #1a1a3e; }
             .col-header, .flight-row { font-size: 0.75rem; padding: 6px 10px; }
+            .col-header.arr-cols, .col-header.dep-cols,
+            .flight-row.arr-cols, .flight-row.dep-cols {
+                grid-template-columns: 80px 1fr 70px 70px 65px 75px;
+            }
         }
     </style>
 </head>
@@ -380,7 +394,7 @@
     <div class="board-half">
         <div class="section-header arrivals">&#11015; Arrivals</div>
         <div class="col-header arr-cols">
-            <span>Flight</span><span>Origin</span><span>Sched.</span><span>Estimated</span><span>Status</span>
+            <span>Flight</span><span>Origin</span><span>Sched.</span><span>Estimated</span><span>T / Gate</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="arrScroll">
@@ -394,7 +408,7 @@
     <div class="board-half">
         <div class="section-header departures">&#11014; Departures</div>
         <div class="col-header dep-cols">
-            <span>Flight</span><span>Destination</span><span>Sched.</span><span>Estimated</span><span>Status</span>
+            <span>Flight</span><span>Destination</span><span>Sched.</span><span>Estimated</span><span>T / Gate</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="depScroll">
@@ -684,12 +698,14 @@
             const airline = esc(f.airline || '');
             const scheduled = fmtTime(dir === 'arrival' ? f.arr_time : f.dep_time);
             const estimated = fmtTime(dir === 'arrival' ? f.arr_estimated : f.dep_estimated);
+            const termGate = esc(f.termGate || '—');
 
             return `<div class="flight-row ${colClass}">
                 <span class="callsign">${esc(f.flight)}</span>
                 <span class="city">${esc(f.city)}${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span>
                 <span class="time">${scheduled}</span>
                 <span class="time">${estimated || scheduled}</span>
+                <span class="term-gate">${termGate}</span>
                 <span class="status ${stCls}">${stLabel}</span>
             </div>`;
         }).join('');
@@ -764,6 +780,13 @@
         return data.map(f => {
             const flight = f.flight_iata || f.flight_icao || '—';
             const otherCode = dir === 'arrival' ? (f.dep_iata || f.dep_icao) : (f.arr_iata || f.arr_icao);
+            // Build terminal/gate string
+            const terminal = dir === 'arrival' ? f.arr_terminal : f.dep_terminal;
+            const gate = dir === 'arrival' ? f.arr_gate : f.dep_gate;
+            let termGate = '';
+            if (terminal && gate) termGate = `T${terminal} / ${gate}`;
+            else if (terminal) termGate = `T${terminal}`;
+            else if (gate) termGate = gate;
             return {
                 flight: flight,
                 city: airportName(otherCode),
@@ -773,7 +796,8 @@
                 arr_time: f.arr_time_utc || f.arr_time,
                 arr_estimated: f.arr_estimated_utc || f.arr_estimated,
                 status: f.status || '—',
-                delayed: f.delayed || 0
+                delayed: f.delayed || 0,
+                termGate: termGate
             };
         }).filter(f => {
             // Apply time window filter
@@ -802,31 +826,31 @@
         };
 
         flightsCache.arrivals = [
-            { flight:'AA101', city:'Los Angeles', airline:'AA', dep_time:m(-170), arr_time:m(-12), arr_estimated:m(-10), status:'landed' },
-            { flight:'DL402', city:'Atlanta', airline:'DL', dep_time:m(-110), arr_time:m(-3), arr_estimated:m(-1), status:'landed' },
-            { flight:'UA557', city:'Chicago O\'Hare', airline:'UA', dep_time:m(-85), arr_time:m(15), arr_estimated:m(18), status:'active' },
-            { flight:'BA178', city:'London Heathrow', airline:'BA', dep_time:m(-390), arr_time:m(-25), arr_estimated:m(-20), status:'landed' },
-            { flight:'EK201', city:'Dubai', airline:'EK', dep_time:m(-580), arr_time:m(-40), arr_estimated:m(-35), status:'landed' },
-            { flight:'LH400', city:'Frankfurt', airline:'LH', dep_time:m(-280), arr_time:m(30), arr_estimated:m(35), status:'active' },
-            { flight:'AF008', city:'Paris CDG', airline:'AF', dep_time:m(-340), arr_time:m(-55), arr_estimated:m(-50), status:'landed' },
-            { flight:'JL005', city:'Tokyo Narita', airline:'JL', dep_time:m(-700), arr_time:m(-80), arr_estimated:m(-75), status:'landed' },
-            { flight:'QF011', city:'Sydney', airline:'QF', dep_time:m(-900), arr_time:m(-110), arr_estimated:m(-105), status:'landed' },
-            { flight:'SQ023', city:'Singapore Changi', airline:'SQ', dep_time:m(-480), arr_time:m(-6), arr_estimated:m(-4), status:'landed' },
-            { flight:'TK001', city:'Istanbul', airline:'TK', dep_time:m(-190), arr_time:m(45), arr_estimated:m(50), status:'active' },
-            { flight:'AC856', city:'Toronto Pearson', airline:'AC', dep_time:m(-140), arr_time:m(-18), arr_estimated:m(-15), status:'landed' },
+            { flight:'AA101', city:'Los Angeles', airline:'AA', dep_time:m(-170), arr_time:m(-12), arr_estimated:m(-10), status:'landed', termGate:'T4 / B23' },
+            { flight:'DL402', city:'Atlanta', airline:'DL', dep_time:m(-110), arr_time:m(-3), arr_estimated:m(-1), status:'landed', termGate:'T4 / B30' },
+            { flight:'UA557', city:'Chicago O\'Hare', airline:'UA', dep_time:m(-85), arr_time:m(15), arr_estimated:m(18), status:'active', termGate:'T7 / 10' },
+            { flight:'BA178', city:'London Heathrow', airline:'BA', dep_time:m(-390), arr_time:m(-25), arr_estimated:m(-20), status:'landed', termGate:'T7 / 1' },
+            { flight:'EK201', city:'Dubai', airline:'EK', dep_time:m(-580), arr_time:m(-40), arr_estimated:m(-35), status:'landed', termGate:'T4 / A7' },
+            { flight:'LH400', city:'Frankfurt', airline:'LH', dep_time:m(-280), arr_time:m(30), arr_estimated:m(35), status:'active', termGate:'T1 / B35' },
+            { flight:'AF008', city:'Paris CDG', airline:'AF', dep_time:m(-340), arr_time:m(-55), arr_estimated:m(-50), status:'landed', termGate:'T1 / B41' },
+            { flight:'JL005', city:'Tokyo Narita', airline:'JL', dep_time:m(-700), arr_time:m(-80), arr_estimated:m(-75), status:'landed', termGate:'T1 / 7' },
+            { flight:'QF011', city:'Sydney', airline:'QF', dep_time:m(-900), arr_time:m(-110), arr_estimated:m(-105), status:'landed', termGate:'T8' },
+            { flight:'SQ023', city:'Singapore Changi', airline:'SQ', dep_time:m(-480), arr_time:m(-6), arr_estimated:m(-4), status:'landed', termGate:'T4 / A2' },
+            { flight:'TK001', city:'Istanbul', airline:'TK', dep_time:m(-190), arr_time:m(45), arr_estimated:m(50), status:'active', termGate:'T1 / B22' },
+            { flight:'AC856', city:'Toronto Pearson', airline:'AC', dep_time:m(-140), arr_time:m(-18), arr_estimated:m(-15), status:'landed', termGate:'T4 / B28' },
         ];
 
         flightsCache.departures = [
-            { flight:'AA100', city:'Los Angeles', airline:'AA', dep_time:m(20), dep_estimated:m(25), arr_time:m(340), status:'scheduled' },
-            { flight:'DL403', city:'Atlanta', airline:'DL', dep_time:m(-30), dep_estimated:m(-28), arr_time:m(120), status:'active' },
-            { flight:'UA558', city:'San Francisco', airline:'UA', dep_time:m(45), dep_estimated:m(50), arr_time:m(380), status:'scheduled' },
-            { flight:'BA179', city:'London Heathrow', airline:'BA', dep_time:m(-65), dep_estimated:m(-60), arr_time:m(350), status:'active' },
-            { flight:'EK202', city:'Dubai', airline:'EK', dep_time:m(90), dep_estimated:m(90), arr_time:m(780), status:'scheduled' },
-            { flight:'LH401', city:'Frankfurt', airline:'LH', dep_time:m(-120), dep_estimated:m(-115), arr_time:m(360), status:'active' },
-            { flight:'AA245', city:'Miami', airline:'AA', dep_time:m(60), dep_estimated:m(65), arr_time:m(230), status:'scheduled' },
-            { flight:'DL910', city:'Boston', airline:'DL', dep_time:m(-40), dep_estimated:m(-38), arr_time:m(40), status:'active' },
-            { flight:'JL006', city:'Tokyo Narita', airline:'JL', dep_time:m(150), dep_estimated:m(150), arr_time:m(990), status:'scheduled' },
-            { flight:'KE082', city:'Seoul Incheon', airline:'KE', dep_time:m(180), dep_estimated:m(180), arr_time:m(1020), status:'scheduled' },
+            { flight:'AA100', city:'Los Angeles', airline:'AA', dep_time:m(20), dep_estimated:m(25), arr_time:m(340), status:'scheduled', termGate:'T8 / 42' },
+            { flight:'DL403', city:'Atlanta', airline:'DL', dep_time:m(-30), dep_estimated:m(-28), arr_time:m(120), status:'active', termGate:'T4 / B38' },
+            { flight:'UA558', city:'San Francisco', airline:'UA', dep_time:m(45), dep_estimated:m(50), arr_time:m(380), status:'scheduled', termGate:'T7 / 12' },
+            { flight:'BA179', city:'London Heathrow', airline:'BA', dep_time:m(-65), dep_estimated:m(-60), arr_time:m(350), status:'active', termGate:'T7 / 1' },
+            { flight:'EK202', city:'Dubai', airline:'EK', dep_time:m(90), dep_estimated:m(90), arr_time:m(780), status:'scheduled', termGate:'T4 / A9' },
+            { flight:'LH401', city:'Frankfurt', airline:'LH', dep_time:m(-120), dep_estimated:m(-115), arr_time:m(360), status:'active', termGate:'T1 / B37' },
+            { flight:'AA245', city:'Miami', airline:'AA', dep_time:m(60), dep_estimated:m(65), arr_time:m(230), status:'scheduled', termGate:'T8 / 40' },
+            { flight:'DL910', city:'Boston', airline:'DL', dep_time:m(-40), dep_estimated:m(-38), arr_time:m(40), status:'active', termGate:'T4 / B44' },
+            { flight:'JL006', city:'Tokyo Narita', airline:'JL', dep_time:m(150), dep_estimated:m(150), arr_time:m(990), status:'scheduled', termGate:'T1 / 8' },
+            { flight:'KE082', city:'Seoul Incheon', airline:'KE', dep_time:m(180), dep_estimated:m(180), arr_time:m(1020), status:'scheduled', termGate:'T1 / 3' },
         ];
 
         document.getElementById('dataSource').innerHTML =
