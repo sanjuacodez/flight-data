@@ -1,92 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airport Flight Board</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
+        /* ── Theme Variables ── */
+        :root {
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+            --shadow-lg: 0 8px 30px rgba(0,0,0,0.25);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0b0b1e;
+            --bg-secondary: #111130;
+            --bg-surface: #16163a;
+            --bg-hover: rgba(255,255,255,0.04);
+            --bg-stripe: rgba(255,255,255,0.015);
+            --border-primary: #1e1e4a;
+            --border-subtle: #1a1a3e;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b8;
+            --text-muted: #666680;
+            --text-faint: #44445a;
+            --accent-red: #ff4d6d;
+            --accent-blue: #4cc9f0;
+            --accent-gold: #ffd60a;
+            --accent-green: #06d6a0;
+            --accent-orange: #f48c06;
+            --arr-bg: rgba(76,201,240,0.06);
+            --arr-border: rgba(76,201,240,0.2);
+            --arr-text: #4cc9f0;
+            --dep-bg: rgba(255,77,109,0.06);
+            --dep-border: rgba(255,77,109,0.2);
+            --dep-text: #ff4d6d;
+            --overlay-bg: rgba(0,0,0,0.75);
+            --input-bg: #0e0e28;
+            --banner-bg: linear-gradient(90deg, #2a1f0a, #1a1508);
+            --banner-border: #3a2a10;
+            --banner-text: #f0c040;
+            --banner-dismiss: #886a20;
+            --status-landed-bg: rgba(6,214,160,0.12);
+            --status-landed-text: #06d6a0;
+            --status-enroute-bg: rgba(76,201,240,0.12);
+            --status-enroute-text: #4cc9f0;
+            --status-sched-bg: rgba(255,214,10,0.12);
+            --status-sched-text: #ffd60a;
+            --status-departed-bg: rgba(160,160,184,0.1);
+            --status-departed-text: #a0a0b8;
+            --status-cancel-bg: rgba(255,77,109,0.12);
+            --status-cancel-text: #ff4d6d;
+            --status-unknown-bg: rgba(100,100,120,0.1);
+            --status-unknown-text: #666680;
+            --scrollbar-track: #111130;
+            --scrollbar-thumb: #2a2a5a;
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f4f5f7;
+            --bg-secondary: #ffffff;
+            --bg-surface: #ffffff;
+            --bg-hover: rgba(0,0,0,0.03);
+            --bg-stripe: rgba(0,0,0,0.015);
+            --border-primary: #dde1e6;
+            --border-subtle: #e8ecf0;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a68;
+            --text-muted: #8888a0;
+            --text-faint: #b0b0c0;
+            --accent-red: #d63d5e;
+            --accent-blue: #0077b6;
+            --accent-gold: #c49000;
+            --accent-green: #05a17d;
+            --accent-orange: #d47706;
+            --arr-bg: rgba(0,119,182,0.06);
+            --arr-border: rgba(0,119,182,0.2);
+            --arr-text: #0077b6;
+            --dep-bg: rgba(214,61,94,0.06);
+            --dep-border: rgba(214,61,94,0.2);
+            --dep-text: #d63d5e;
+            --overlay-bg: rgba(0,0,0,0.45);
+            --input-bg: #f0f2f5;
+            --banner-bg: linear-gradient(90deg, #fff8e1, #fffde7);
+            --banner-border: #ffe082;
+            --banner-text: #b8860b;
+            --banner-dismiss: #c09530;
+            --status-landed-bg: rgba(5,161,125,0.1);
+            --status-landed-text: #05a17d;
+            --status-enroute-bg: rgba(0,119,182,0.1);
+            --status-enroute-text: #0077b6;
+            --status-sched-bg: rgba(196,144,0,0.1);
+            --status-sched-text: #a07800;
+            --status-departed-bg: rgba(74,74,104,0.08);
+            --status-departed-text: #4a4a68;
+            --status-cancel-bg: rgba(214,61,94,0.1);
+            --status-cancel-text: #d63d5e;
+            --status-unknown-bg: rgba(136,136,160,0.1);
+            --status-unknown-text: #8888a0;
+            --scrollbar-track: #f0f0f4;
+            --scrollbar-thumb: #c4c4d4;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Courier New', 'Consolas', monospace;
-            background: #0a0a1a;
-            color: #e0e0e0;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
             height: 100vh;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
         }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+        ::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
 
         /* ── Top Bar ── */
         .topbar {
-            background: #101028;
-            padding: 10px 28px;
+            background: var(--bg-secondary);
+            padding: 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #1a1a3e;
+            border-bottom: 1px solid var(--border-primary);
             flex-shrink: 0;
-            min-height: 56px;
+            min-height: 60px;
+            box-shadow: var(--shadow-sm);
+            z-index: 10;
         }
         .topbar-left {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
         }
         .topbar h1 {
-            font-size: 1.5rem;
-            color: #e94560;
-            letter-spacing: 3px;
+            font-family: var(--font-body);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
         .airport-badge {
-            color: #ffd700;
-            font-size: 1.4rem;
-            font-weight: bold;
+            font-family: var(--font-mono);
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            font-weight: 700;
             letter-spacing: 2px;
+            background: rgba(255,214,10,0.08);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255,214,10,0.15);
         }
         .airport-name {
-            color: #777;
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 400;
         }
         .topbar-right {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
         }
         .clock {
-            color: #00d4ff;
-            font-size: 1.6rem;
-            font-weight: bold;
+            font-family: var(--font-mono);
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            font-weight: 700;
             letter-spacing: 2px;
         }
         .date-display {
-            color: #666;
-            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
         }
         .btn-settings {
-            background: rgba(233, 69, 96, 0.15);
-            border: 2px solid #e94560;
-            color: #e94560;
-            padding: 8px 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-primary);
+            color: var(--accent-red);
+            padding: 8px 14px;
             cursor: pointer;
-            font-family: inherit;
-            font-size: 1.2rem;
-            letter-spacing: 1px;
-            transition: all 0.2s;
-            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all var(--transition);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .btn-settings:hover { background: #e94560; color: #fff; }
+        .btn-settings:hover {
+            background: var(--accent-red);
+            color: #fff;
+            border-color: var(--accent-red);
+            box-shadow: 0 2px 12px rgba(255,77,109,0.3);
+        }
 
         /* ── Rate Limit Banner ── */
         .rate-banner {
-            background: linear-gradient(90deg, #2a1f0a, #1a1508);
-            color: #f0c040;
+            background: var(--banner-bg);
+            color: var(--banner-text);
             text-align: center;
-            padding: 6px 28px;
-            font-size: 0.72rem;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid #3a2a10;
+            padding: 7px 24px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            border-bottom: 1px solid var(--banner-border);
             flex-shrink: 0;
             display: flex;
             align-items: center;
@@ -94,48 +228,58 @@
             gap: 8px;
         }
         .rate-banner .dismiss {
-            color: #886a20;
+            color: var(--banner-dismiss);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1rem;
             margin-left: 12px;
-            transition: color 0.2s;
+            transition: color var(--transition);
+            line-height: 1;
         }
-        .rate-banner .dismiss:hover { color: #f0c040; }
+        .rate-banner .dismiss:hover { color: var(--banner-text); }
 
         /* ── Split Board ── */
         .board {
             display: flex;
             flex: 1;
             overflow: hidden;
+            gap: 0;
         }
         .board-half {
             flex: 1;
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            min-width: 0;
         }
         .board-half:first-child {
-            border-right: 3px solid #1a1a3e;
+            border-right: 1px solid var(--border-primary);
         }
 
         /* ── Section Headers ── */
         .section-header {
             padding: 10px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            letter-spacing: 3px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-header .icon {
+            font-size: 1rem;
+            opacity: 0.8;
         }
         .section-header.arrivals {
-            background: #0d1a2d;
-            color: #5dade2;
-            border-bottom: 2px solid #1a3050;
+            background: var(--arr-bg);
+            color: var(--arr-text);
+            border-bottom: 2px solid var(--arr-border);
         }
         .section-header.departures {
-            background: #1a0d1a;
-            color: #e94560;
-            border-bottom: 2px solid #3a1a2a;
+            background: var(--dep-bg);
+            color: var(--dep-text);
+            border-bottom: 2px solid var(--dep-border);
         }
 
         /* ── Flight Rows ── */
@@ -163,117 +307,128 @@
         .col-header {
             display: grid;
             padding: 8px 16px;
-            font-size: 0.7rem;
-            color: #777;
-            letter-spacing: 2px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            background: #0a0a18;
-            border-bottom: 1px solid #1a1a30;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-subtle);
             flex-shrink: 0;
         }
-        .col-header.arr-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
-        .col-header.dep-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
+        .col-header.arr-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
+        .col-header.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
 
         .flight-row {
             display: grid;
-            padding: 9px 16px;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #111125;
+            padding: 10px 16px;
+            font-size: 0.88rem;
+            border-bottom: 1px solid var(--border-subtle);
             align-items: center;
-            transition: background 0.3s;
+            transition: background var(--transition);
         }
-        .flight-row:nth-child(even) { background: rgba(255,255,255,0.01); }
-        .flight-row.arr-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
-        .flight-row.dep-cols { grid-template-columns: 100px 1fr 90px 90px 80px 90px; }
+        .flight-row:nth-child(even) { background: var(--bg-stripe); }
+        .flight-row:hover { background: var(--bg-hover); }
+        .flight-row.arr-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
+        .flight-row.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
 
         .flight-row .callsign {
-            color: #00d4ff;
-            font-weight: bold;
-            font-size: 0.95rem;
+            font-family: var(--font-mono);
+            color: var(--accent-blue);
+            font-weight: 700;
+            font-size: 0.88rem;
             letter-spacing: 0.5px;
         }
         .flight-row .city {
-            color: #e0e0e0;
+            color: var(--text-primary);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
             padding-right: 8px;
+            font-weight: 500;
         }
         .flight-row .airline-hint {
-            color: #555;
-            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.68rem;
+            font-weight: 400;
             display: block;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
         .flight-row .time {
-            color: #ccc;
-            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 500;
         }
         .flight-row .term-gate {
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            color: var(--accent-gold);
+            font-weight: 700;
+            font-size: 0.82rem;
             text-align: center;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* ── Status ── */
+        /* ── Status Pills ── */
         .status {
-            font-size: 0.75rem;
-            font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
-            padding: 3px 8px;
-            border-radius: 2px;
+            padding: 4px 10px;
+            border-radius: 20px;
             text-align: center;
+            white-space: nowrap;
         }
-        .status-landed   { background: #0d2818; color: #58d68d; }
-        .status-en-route  { background: #0d1a2d; color: #5dade2; }
-        .status-expected  { background: #2a1f0a; color: #f0c040; }
-        .status-departed  { background: #1a1a2a; color: #aab7b8; }
-        .status-cancelled { background: #2a0d0d; color: #e94560; }
-        .status-unknown   { background: #1a1a1a; color: #555; }
+        .status-landed   { background: var(--status-landed-bg); color: var(--status-landed-text); }
+        .status-en-route  { background: var(--status-enroute-bg); color: var(--status-enroute-text); }
+        .status-expected  { background: var(--status-sched-bg); color: var(--status-sched-text); }
+        .status-departed  { background: var(--status-departed-bg); color: var(--status-departed-text); }
+        .status-cancelled { background: var(--status-cancel-bg); color: var(--status-cancel-text); }
+        .status-unknown   { background: var(--status-unknown-bg); color: var(--status-unknown-text); }
 
         /* ── Bottom Bar ── */
         .bottombar {
-            background: #101028;
-            padding: 6px 28px;
-            font-size: 0.65rem;
-            color: #444;
+            background: var(--bg-secondary);
+            padding: 7px 24px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--text-muted);
             display: flex;
             justify-content: space-between;
-            border-top: 1px solid #1a1a3e;
+            border-top: 1px solid var(--border-primary);
             flex-shrink: 0;
         }
         .live-dot {
             display: inline-block;
-            width: 6px; height: 6px;
+            width: 7px; height: 7px;
             border-radius: 50%;
-            background: #58d68d;
+            background: var(--accent-green);
             margin-right: 6px;
             animation: pulse 2s ease-in-out infinite;
+            vertical-align: middle;
         }
-        .demo-dot { background: #e94560; }
+        .demo-dot { background: var(--accent-red); }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* ── Empty / loading ── */
         .state-msg {
             text-align: center;
-            padding: 40px 16px;
-            color: #444;
-            font-size: 0.85rem;
+            padding: 48px 16px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
         }
         .state-msg .spinner {
-            width: 28px; height: 28px;
-            border: 2px solid #222;
-            border-top-color: #e94560;
+            width: 32px; height: 32px;
+            border: 3px solid var(--border-primary);
+            border-top-color: var(--accent-red);
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
-            margin: 0 auto 12px;
+            margin: 0 auto 14px;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -282,87 +437,186 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.8);
+            background: var(--overlay-bg);
             z-index: 100;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
         }
         .settings-overlay.open { display: flex; }
         .settings-panel {
-            background: #12122a;
-            border: 2px solid #1a1a3e;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
             padding: 28px;
-            width: 440px;
+            width: 460px;
             max-width: 95vw;
             max-height: 90vh;
             overflow-y: auto;
+            box-shadow: var(--shadow-lg);
         }
         .settings-panel h2 {
-            color: #ffd700;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+            color: var(--accent-gold);
+            margin-bottom: 22px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             font-size: 1rem;
+            font-weight: 700;
         }
-        .settings-panel h3 {
-            color: #e94560;
-            margin: 20px 0 10px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-top: 1px solid #1a1a3e;
-            padding-top: 14px;
-        }
-        .field { margin-bottom: 16px; }
+        .field { margin-bottom: 18px; }
         .field label {
             display: block;
-            color: #888;
-            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
-        .field input, .field select {
+        .field select {
             width: 100%;
-            padding: 8px 10px;
-            background: #0a0a1a;
-            border: 1px solid #1a1a3e;
-            color: #e0e0e0;
-            font-family: inherit;
+            padding: 10px 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--border-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
             font-size: 0.85rem;
+            border-radius: var(--radius-sm);
+            transition: border-color var(--transition);
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
         }
-        .field input:focus, .field select:focus { outline: none; border-color: #e94560; }
-        .field .hint { font-size: 0.65rem; color: #555; margin-top: 3px; }
-        .field .hint a { color: #5dade2; }
+        [data-theme="dark"] .field select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a0a0b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+        [data-theme="light"] .field select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a4a68' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+        }
+        .field select:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(76,201,240,0.15); }
+        .field .hint { font-size: 0.68rem; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+        .field .hint a { color: var(--accent-blue); text-decoration: none; }
+        .field .hint a:hover { text-decoration: underline; }
         .settings-actions {
             display: flex;
             gap: 12px;
-            margin-top: 24px;
+            margin-top: 26px;
         }
         .settings-actions button {
             flex: 1;
-            padding: 9px;
-            font-family: inherit;
-            font-size: 0.8rem;
+            padding: 11px;
+            font-family: var(--font-body);
+            font-size: 0.82rem;
+            font-weight: 600;
             cursor: pointer;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
             border: none;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
         }
-        .btn-save { background: #e94560; color: #fff; }
-        .btn-save:hover { background: #c73a52; }
-        .btn-cancel { background: #1a1a3e; color: #888; border: 1px solid #333 !important; }
-        .btn-cancel:hover { background: #222250; }
+        .btn-save { background: var(--accent-red); color: #fff; }
+        .btn-save:hover { filter: brightness(1.1); box-shadow: 0 4px 14px rgba(255,77,109,0.3); }
+        .btn-cancel { background: var(--bg-hover); color: var(--text-secondary); border: 1px solid var(--border-primary) !important; }
+        .btn-cancel:hover { background: var(--border-primary); }
 
-        /* ── Responsive: smaller screens ── */
-        @media (max-width: 900px) {
-            .board { flex-direction: column; }
-            .board-half:first-child { border-right: none; border-bottom: 3px solid #1a1a3e; }
-            .col-header, .flight-row { font-size: 0.75rem; padding: 6px 10px; }
+        /* ── Theme Toggle in Settings ── */
+        .theme-switch {
+            display: flex;
+            gap: 4px;
+            background: var(--input-bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-primary);
+            overflow: hidden;
+        }
+        .theme-switch label {
+            flex: 1;
+            text-align: center;
+            padding: 9px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--text-muted);
+            text-transform: none;
+            letter-spacing: 0;
+            margin-bottom: 0;
+        }
+        .theme-switch input { display: none; }
+        .theme-switch input:checked + label {
+            background: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* ── Responsive: Tablet ── */
+        @media (max-width: 1024px) {
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 80px 1fr 70px 70px 65px 75px;
+                grid-template-columns: 80px 1fr 72px 72px 80px 82px;
             }
+            .col-header, .flight-row { padding: 8px 12px; }
+            .topbar { padding: 10px 16px; }
+            .topbar h1 { font-size: 1.1rem; }
+            .airport-badge { font-size: 1.1rem; }
+            .clock { font-size: 1.2rem; }
+        }
+
+        /* ── Responsive: Mobile landscape / small tablet ── */
+        @media (max-width: 768px) {
+            .board { flex-direction: column; }
+            .board-half:first-child { border-right: none; border-bottom: 1px solid var(--border-primary); }
+            .board-half { min-height: 0; flex: 1; }
+
+            .topbar { flex-wrap: wrap; gap: 8px; padding: 10px 14px; min-height: auto; }
+            .topbar-left { gap: 10px; }
+            .topbar-right { gap: 12px; }
+            .topbar h1 { font-size: 1rem; letter-spacing: 1px; }
+            .airport-badge { font-size: 1rem; padding: 3px 8px; }
+            .airport-name { display: none; }
+            .date-display { display: none; }
+            .clock { font-size: 1.1rem; }
+
+            .col-header.arr-cols, .col-header.dep-cols,
+            .flight-row.arr-cols, .flight-row.dep-cols {
+                grid-template-columns: 70px 1fr 62px 62px 70px 76px;
+            }
+            .col-header { font-size: 0.6rem; padding: 6px 10px; }
+            .flight-row { font-size: 0.8rem; padding: 8px 10px; }
+            .flight-row .callsign { font-size: 0.8rem; }
+            .flight-row .time { font-size: 0.75rem; }
+            .flight-row .term-gate { font-size: 0.75rem; }
+            .status { font-size: 0.6rem; padding: 3px 6px; }
+            .section-header { font-size: 0.78rem; padding: 8px 14px; letter-spacing: 1.5px; }
+        }
+
+        /* ── Responsive: Mobile portrait ── */
+        @media (max-width: 480px) {
+            .topbar { padding: 8px 10px; }
+            .topbar h1 { font-size: 0.85rem; }
+            .btn-settings { padding: 6px 10px; font-size: 0.95rem; }
+
+            /* Compact grid: drop Estimated column on very small screens */
+            .col-header.arr-cols, .col-header.dep-cols { grid-template-columns: 62px 1fr 56px 70px 68px; }
+            .flight-row.arr-cols, .flight-row.dep-cols { grid-template-columns: 62px 1fr 56px 70px 68px; }
+            .col-header .hide-xs, .flight-row .hide-xs { display: none; }
+
+            .col-header { font-size: 0.55rem; padding: 5px 8px; letter-spacing: 1px; }
+            .flight-row { font-size: 0.75rem; padding: 7px 8px; }
+            .flight-row .callsign { font-size: 0.75rem; }
+            .flight-row .time { font-size: 0.7rem; }
+            .flight-row .term-gate { font-size: 0.7rem; }
+            .status { font-size: 0.55rem; padding: 2px 5px; letter-spacing: 0.5px; }
+
+            .rate-banner { font-size: 0.65rem; padding: 5px 10px; }
+            .bottombar { font-size: 0.6rem; padding: 5px 10px; }
+            .section-header { font-size: 0.7rem; padding: 7px 10px; letter-spacing: 1px; }
+
+            .settings-panel { padding: 20px 16px; border-radius: var(--radius-md); }
         }
     </style>
 </head>
@@ -370,7 +624,7 @@
 
 <!-- ── Rate Limit Banner ── -->
 <div class="rate-banner" id="rateBanner">
-    &#9888; Free API key &mdash; limited to 1,000 calls/month. Auto-refresh set to 2 hours (~720 calls/month for 24/7 operation).
+    &#9888; Free API &mdash; 1,000 calls/month. Auto-refresh: 2h (~720 calls/month 24/7).
     <span class="dismiss" onclick="document.getElementById('rateBanner').style.display='none'" title="Dismiss">&times;</span>
 </div>
 
@@ -384,7 +638,7 @@
     <div class="topbar-right">
         <span class="date-display" id="dateDisplay"></span>
         <span class="clock" id="clock">--:--</span>
-        <button class="btn-settings" onclick="openSettings()" title="Settings">&#9881;</button>
+        <button class="btn-settings" onclick="openSettings()" title="Settings">&#9881; <span class="hide-xs">Settings</span></button>
     </div>
 </div>
 
@@ -392,9 +646,9 @@
 <div class="board">
     <!-- Arrivals -->
     <div class="board-half">
-        <div class="section-header arrivals">&#11015; Arrivals</div>
+        <div class="section-header arrivals"><span class="icon">&#11015;</span> Arrivals</div>
         <div class="col-header arr-cols">
-            <span>Flight</span><span>Origin</span><span>Sched.</span><span>Estimated</span><span>T / Gate</span><span>Status</span>
+            <span>Flight</span><span>Origin</span><span>Sched.</span><span class="hide-xs">Est.</span><span>T / Gate</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="arrScroll">
@@ -406,9 +660,9 @@
     </div>
     <!-- Departures -->
     <div class="board-half">
-        <div class="section-header departures">&#11014; Departures</div>
+        <div class="section-header departures"><span class="icon">&#11014;</span> Departures</div>
         <div class="col-header dep-cols">
-            <span>Flight</span><span>Destination</span><span>Sched.</span><span>Estimated</span><span>T / Gate</span><span>Status</span>
+            <span>Flight</span><span>Destination</span><span>Sched.</span><span class="hide-xs">Est.</span><span>T / Gate</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="depScroll">
@@ -431,6 +685,17 @@
 <div class="settings-overlay" id="settingsOverlay">
     <div class="settings-panel">
         <h2>&#9881; Display Settings</h2>
+
+        <div class="field">
+            <label>Theme</label>
+            <div class="theme-switch">
+                <input type="radio" name="theme" id="themeDark" value="dark">
+                <label for="themeDark">&#9790; Dark</label>
+                <input type="radio" name="theme" id="themeLight" value="light">
+                <label for="themeLight">&#9788; Light</label>
+            </div>
+        </div>
+
         <div class="field">
             <label>Country</label>
             <select id="setCountry"><option value="">Loading...</option></select>
@@ -457,7 +722,7 @@
                 <option value="7200">2 hours (Free safe)</option>
                 <option value="0">Off (manual only)</option>
             </select>
-            <div class="hint">Free: 1,000 calls/mo → 2h safe for 24/7. See API_PLAN in source to configure.</div>
+            <div class="hint">Free: 1,000 calls/mo &rarr; 2h safe for 24/7. See API_PLAN in source to configure.</div>
         </div>
         <div class="field">
             <label>Auto-Scroll Speed</label>
@@ -479,9 +744,8 @@
                 <option value="6">&plusmn; 6 hours</option>
                 <option value="0">All (no filter)</option>
             </select>
-            <div class="hint">Only show flights within this window around now. Hides early morning flights in evening, etc.</div>
+            <div class="hint">Only show flights within this window around now.</div>
         </div>
-
 
         <div class="settings-actions">
             <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
@@ -603,6 +867,7 @@
         refreshInterval: API_PLAN.refreshInterval,
         scrollSpeed: 40,
         timeWindow: API_PLAN.timeWindow,
+        theme: 'dark',
     };
 
     function loadConfig() {
@@ -704,7 +969,7 @@
                 <span class="callsign">${esc(f.flight)}</span>
                 <span class="city">${esc(f.city)}${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span>
                 <span class="time">${scheduled}</span>
-                <span class="time">${estimated || scheduled}</span>
+                <span class="time hide-xs">${estimated || scheduled}</span>
                 <span class="term-gate">${termGate}</span>
                 <span class="status ${stCls}">${stLabel}</span>
             </div>`;
@@ -867,6 +1132,10 @@
     }
 
     // ── Settings ──
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+
     function openSettings() {
         const country = findCountryForIcao(config.airport);
         document.getElementById('setCountry').value = country;
@@ -875,9 +1144,14 @@
         document.getElementById('setRefreshInterval').value = config.refreshInterval;
         document.getElementById('setScrollSpeed').value = config.scrollSpeed;
         document.getElementById('setTimeWindow').value = config.timeWindow;
+        // Theme toggle
+        const themeRadio = document.getElementById(config.theme === 'light' ? 'themeLight' : 'themeDark');
+        if (themeRadio) themeRadio.checked = true;
         document.getElementById('settingsOverlay').classList.add('open');
     }
     function closeSettings() {
+        // Revert live theme preview if cancelled
+        applyTheme(config.theme || 'dark');
         document.getElementById('settingsOverlay').classList.remove('open');
     }
     function saveSettings() {
@@ -891,6 +1165,9 @@
         config.refreshInterval = parseInt(document.getElementById('setRefreshInterval').value, 10);
         config.scrollSpeed = parseInt(document.getElementById('setScrollSpeed').value, 10);
         config.timeWindow = parseInt(document.getElementById('setTimeWindow').value, 10);
+        const selectedTheme = document.querySelector('input[name="theme"]:checked');
+        config.theme = selectedTheme ? selectedTheme.value : 'dark';
+        applyTheme(config.theme);
         saveConfigToStorage(config);
         // Update URL with airport code for shareable links
         const iata = ICAO_TO_IATA[config.airport] || config.airport;
@@ -935,6 +1212,14 @@
         // Unknown code — try as-is (might be a valid ICAO not in our db)
         return null;
     }
+
+    // ── Apply saved theme ──
+    applyTheme(config.theme || 'dark');
+
+    // Live theme preview in settings
+    document.querySelectorAll('input[name="theme"]').forEach(radio => {
+        radio.addEventListener('change', () => applyTheme(radio.value));
+    });
 
     // ── Init ──
     loadAirportData().then(() => {
