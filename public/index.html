@@ -184,6 +184,17 @@
             font-weight: 700;
             letter-spacing: 2px;
         }
+        .tz-label {
+            font-family: var(--font-mono);
+            color: var(--accent-gold);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: rgba(255,214,10,0.1);
+            padding: 2px 7px;
+            border-radius: 3px;
+            border: 1px solid rgba(255,214,10,0.15);
+        }
         .date-display {
             color: var(--text-muted);
             font-size: 0.8rem;
@@ -599,6 +610,7 @@
             .topbar { padding: 8px 10px; }
             .topbar h1 { font-size: 0.85rem; }
             .btn-settings { padding: 6px 10px; font-size: 0.95rem; }
+            .tz-label { display: none; }
 
             /* Compact grid: drop Estimated column on very small screens */
             .col-header.arr-cols, .col-header.dep-cols { grid-template-columns: 62px 1fr 56px 70px 68px; }
@@ -638,6 +650,7 @@
     <div class="topbar-right">
         <span class="date-display" id="dateDisplay"></span>
         <span class="clock" id="clock">--:--</span>
+        <span class="tz-label" id="tzLabel"></span>
         <button class="btn-settings" onclick="openSettings()" title="Settings">&#9881; <span class="hide-xs">Settings</span></button>
     </div>
 </div>
@@ -711,6 +724,81 @@
                 <option value="24">24-hour</option>
                 <option value="12">12-hour (AM/PM)</option>
             </select>
+        </div>
+        <div class="field">
+            <label>Display Timezone</label>
+            <select id="setTimezone">
+                <option value="auto">Device Local</option>
+                <option value="UTC">UTC</option>
+                <optgroup label="Americas">
+                    <option value="America/New_York">New York (ET)</option>
+                    <option value="America/Chicago">Chicago (CT)</option>
+                    <option value="America/Denver">Denver (MT)</option>
+                    <option value="America/Los_Angeles">Los Angeles (PT)</option>
+                    <option value="America/Anchorage">Anchorage (AKT)</option>
+                    <option value="Pacific/Honolulu">Honolulu (HST)</option>
+                    <option value="America/Toronto">Toronto (ET)</option>
+                    <option value="America/Vancouver">Vancouver (PT)</option>
+                    <option value="America/Mexico_City">Mexico City (CST)</option>
+                    <option value="America/Bogota">Bogota (COT)</option>
+                    <option value="America/Lima">Lima (PET)</option>
+                    <option value="America/Sao_Paulo">S&atilde;o Paulo (BRT)</option>
+                    <option value="America/Argentina/Buenos_Aires">Buenos Aires (ART)</option>
+                    <option value="America/Santiago">Santiago (CLT)</option>
+                </optgroup>
+                <optgroup label="Europe">
+                    <option value="Europe/London">London (GMT/BST)</option>
+                    <option value="Europe/Paris">Paris (CET)</option>
+                    <option value="Europe/Berlin">Berlin (CET)</option>
+                    <option value="Europe/Madrid">Madrid (CET)</option>
+                    <option value="Europe/Rome">Rome (CET)</option>
+                    <option value="Europe/Amsterdam">Amsterdam (CET)</option>
+                    <option value="Europe/Zurich">Zurich (CET)</option>
+                    <option value="Europe/Stockholm">Stockholm (CET)</option>
+                    <option value="Europe/Helsinki">Helsinki (EET)</option>
+                    <option value="Europe/Athens">Athens (EET)</option>
+                    <option value="Europe/Istanbul">Istanbul (TRT)</option>
+                    <option value="Europe/Moscow">Moscow (MSK)</option>
+                </optgroup>
+                <optgroup label="Asia">
+                    <option value="Asia/Dubai">Dubai (GST)</option>
+                    <option value="Asia/Karachi">Karachi (PKT)</option>
+                    <option value="Asia/Kolkata">India (IST)</option>
+                    <option value="Asia/Colombo">Colombo (IST)</option>
+                    <option value="Asia/Dhaka">Dhaka (BST)</option>
+                    <option value="Asia/Bangkok">Bangkok (ICT)</option>
+                    <option value="Asia/Singapore">Singapore (SGT)</option>
+                    <option value="Asia/Kuala_Lumpur">Kuala Lumpur (MYT)</option>
+                    <option value="Asia/Jakarta">Jakarta (WIB)</option>
+                    <option value="Asia/Hong_Kong">Hong Kong (HKT)</option>
+                    <option value="Asia/Shanghai">Shanghai (CST)</option>
+                    <option value="Asia/Taipei">Taipei (CST)</option>
+                    <option value="Asia/Seoul">Seoul (KST)</option>
+                    <option value="Asia/Tokyo">Tokyo (JST)</option>
+                </optgroup>
+                <optgroup label="Middle East">
+                    <option value="Asia/Riyadh">Riyadh (AST)</option>
+                    <option value="Asia/Tehran">Tehran (IRST)</option>
+                    <option value="Asia/Jerusalem">Jerusalem (IST)</option>
+                    <option value="Asia/Qatar">Doha (AST)</option>
+                </optgroup>
+                <optgroup label="Africa">
+                    <option value="Africa/Cairo">Cairo (EET)</option>
+                    <option value="Africa/Lagos">Lagos (WAT)</option>
+                    <option value="Africa/Johannesburg">Johannesburg (SAST)</option>
+                    <option value="Africa/Nairobi">Nairobi (EAT)</option>
+                    <option value="Africa/Casablanca">Casablanca (WET)</option>
+                </optgroup>
+                <optgroup label="Oceania">
+                    <option value="Australia/Perth">Perth (AWST)</option>
+                    <option value="Australia/Sydney">Sydney (AEST)</option>
+                    <option value="Australia/Melbourne">Melbourne (AEST)</option>
+                    <option value="Australia/Brisbane">Brisbane (AEST)</option>
+                    <option value="Pacific/Auckland">Auckland (NZST)</option>
+                    <option value="Pacific/Fiji">Fiji (FJT)</option>
+                </optgroup>
+            </select>
+            <div class="hint">Clock and all flight times are displayed in this timezone.</div>
         </div>
         <div class="field">
             <label>Auto-Refresh Interval</label>
@@ -868,7 +956,29 @@
         scrollSpeed: 40,
         timeWindow: API_PLAN.timeWindow,
         theme: 'dark',
+        timezone: 'auto',
     };
+
+    function resolveTimezone() {
+        if (!config.timezone || config.timezone === 'auto') {
+            return Intl.DateTimeFormat().resolvedOptions().timeZone;
+        }
+        return config.timezone;
+    }
+
+    function getTimezoneAbbr() {
+        try {
+            const tz = resolveTimezone();
+            const parts = new Intl.DateTimeFormat('en', { timeZone: tz, timeZoneName: 'short' }).formatToParts(new Date());
+            const tzPart = parts.find(p => p.type === 'timeZoneName');
+            return tzPart ? tzPart.value : tz.split('/').pop().replace(/_/g, ' ');
+        } catch { return ''; }
+    }
+
+    function updateTimezoneLabel() {
+        const el = document.getElementById('tzLabel');
+        if (el) el.textContent = getTimezoneAbbr();
+    }
 
     function loadConfig() {
         try {
@@ -899,9 +1009,15 @@
     }
     function fmtTime(timeStr) {
         if (!timeStr) return '—';
-        const d = new Date(timeStr);
+        // Ensure UTC parsing: AirLabs UTC times come as "2026-03-21 06:50"
+        const normalized = timeStr.includes('T') ? timeStr : timeStr.replace(' ', 'T');
+        const d = new Date(normalized.endsWith('Z') ? normalized : normalized + 'Z');
         if (isNaN(d)) return '—';
-        return d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', hour12: config.timeFormat === '12' });
+        return d.toLocaleTimeString([], {
+            hour: '2-digit', minute: '2-digit',
+            hour12: config.timeFormat === '12',
+            timeZone: resolveTimezone()
+        });
     }
 
     function statusClass(status) {
@@ -928,10 +1044,11 @@
     function tick() {
         const now = new Date();
         const h12 = config.timeFormat === '12';
+        const tz = resolveTimezone();
         document.getElementById('clock').textContent =
-            now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: h12 });
+            now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: h12, timeZone: tz });
         document.getElementById('dateDisplay').textContent =
-            now.toLocaleDateString([], { weekday:'short', day:'numeric', month:'short', year:'numeric' });
+            now.toLocaleDateString([], { weekday:'short', day:'numeric', month:'short', year:'numeric', timeZone: tz });
     }
     setInterval(tick, 1000);
     tick();
@@ -1087,7 +1204,7 @@
         const now = new Date();
         const m = (min) => {
             const d = new Date(now.getTime() + min * 60000);
-            return d.toISOString().slice(0, 16).replace('T', ' ');
+            return d.toISOString();
         };
 
         flightsCache.arrivals = [
@@ -1127,8 +1244,9 @@
     function updateTimestamp() {
         const now = new Date();
         const h12 = config.timeFormat === '12';
+        const tz = resolveTimezone();
         document.getElementById('lastUpdated').textContent =
-            'Updated ' + now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: h12 });
+            'Updated ' + now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12: h12, timeZone: tz });
     }
 
     // ── Settings ──
@@ -1144,6 +1262,7 @@
         document.getElementById('setRefreshInterval').value = config.refreshInterval;
         document.getElementById('setScrollSpeed').value = config.scrollSpeed;
         document.getElementById('setTimeWindow').value = config.timeWindow;
+        document.getElementById('setTimezone').value = config.timezone || 'auto';
         // Theme toggle
         const themeRadio = document.getElementById(config.theme === 'light' ? 'themeLight' : 'themeDark');
         if (themeRadio) themeRadio.checked = true;
@@ -1165,9 +1284,11 @@
         config.refreshInterval = parseInt(document.getElementById('setRefreshInterval').value, 10);
         config.scrollSpeed = parseInt(document.getElementById('setScrollSpeed').value, 10);
         config.timeWindow = parseInt(document.getElementById('setTimeWindow').value, 10);
+        config.timezone = document.getElementById('setTimezone').value;
         const selectedTheme = document.querySelector('input[name="theme"]:checked');
         config.theme = selectedTheme ? selectedTheme.value : 'dark';
         applyTheme(config.theme);
+        updateTimezoneLabel();
         saveConfigToStorage(config);
         // Update URL with airport code for shareable links
         const iata = ICAO_TO_IATA[config.airport] || config.airport;
@@ -1213,8 +1334,9 @@
         return null;
     }
 
-    // ── Apply saved theme ──
+    // ── Apply saved theme & timezone ──
     applyTheme(config.theme || 'dark');
+    updateTimezoneLabel();
 
     // Live theme preview in settings
     document.querySelectorAll('input[name="theme"]').forEach(radio => {
