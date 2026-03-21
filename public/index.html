@@ -455,6 +455,18 @@
             </select>
             <div class="hint">Auto-scrolls long lists for TV display. Pause by hovering.</div>
         </div>
+        <div class="field">
+            <label>Time Window</label>
+            <select id="setTimeWindow">
+                <option value="1">&plusmn; 1 hour</option>
+                <option value="2">&plusmn; 2 hours</option>
+                <option value="3">&plusmn; 3 hours</option>
+                <option value="4">&plusmn; 4 hours</option>
+                <option value="6">&plusmn; 6 hours</option>
+                <option value="0">All (no filter)</option>
+            </select>
+            <div class="hint">Only show flights within this window around now. Hides early morning flights in evening, etc.</div>
+        </div>
 
 
         <div class="settings-actions">
@@ -575,7 +587,7 @@
         timeFormat: '24',
         refreshInterval: API_PLAN.refreshInterval,
         scrollSpeed: 40,
-
+        timeWindow: 2,
     };
 
     function loadConfig() {
@@ -744,6 +756,10 @@
 
     function parseFlights(data, dir) {
         if (!Array.isArray(data)) return [];
+
+        const now = Date.now();
+        const windowMs = config.timeWindow > 0 ? config.timeWindow * 3600000 : 0;
+
         return data.map(f => {
             const flight = f.flight_iata || f.flight_icao || '—';
             const otherCode = dir === 'arrival' ? (f.dep_iata || f.dep_icao) : (f.arr_iata || f.arr_icao);
@@ -758,6 +774,16 @@
                 status: f.status || '—',
                 delayed: f.delayed || 0
             };
+        }).filter(f => {
+            // Apply time window filter
+            if (!windowMs) return true; // 0 = show all
+            const timeStr = dir === 'arrival'
+                ? (f.arr_estimated || f.arr_time)
+                : (f.dep_estimated || f.dep_time);
+            if (!timeStr) return true; // keep flights with no time data
+            const t = new Date(timeStr.includes('T') ? timeStr : timeStr.replace(' ', 'T') + 'Z').getTime();
+            if (isNaN(t)) return true;
+            return t >= now - windowMs && t <= now + windowMs;
         }).sort((a, b) => {
             // Sort by scheduled time ascending (soonest first)
             const tA = dir === 'arrival' ? (a.arr_time || '') : (a.dep_time || '');
@@ -823,6 +849,7 @@
         document.getElementById('setTimeFormat').value = config.timeFormat;
         document.getElementById('setRefreshInterval').value = config.refreshInterval;
         document.getElementById('setScrollSpeed').value = config.scrollSpeed;
+        document.getElementById('setTimeWindow').value = config.timeWindow;
         document.getElementById('settingsOverlay').classList.add('open');
     }
     function closeSettings() {
@@ -838,6 +865,7 @@
         config.timeFormat = document.getElementById('setTimeFormat').value;
         config.refreshInterval = parseInt(document.getElementById('setRefreshInterval').value, 10);
         config.scrollSpeed = parseInt(document.getElementById('setScrollSpeed').value, 10);
+        config.timeWindow = parseInt(document.getElementById('setTimeWindow').value, 10);
         saveConfigToStorage(config);
         // Update URL with airport code for shareable links
         const iata = ICAO_TO_IATA[config.airport] || config.airport;
