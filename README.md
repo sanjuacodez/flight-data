@@ -1,55 +1,48 @@
 # ✈️ Flight Data — Airport Flight Board
 
-A real-time airport flight information display built for TV screens and monitors. Shows arrivals and departures in a split-board layout, pulling data from the [OpenSky Network](https://opensky-network.org/) API.
+A real-time airport flight information display built for TV screens and monitors. Shows arrivals and departures in a split-board layout, pulling live data from the [AirLabs](https://airlabs.co/) API.
 
 **Live Demo:** [flight-data.shankarsanjay0.workers.dev](https://flight-data.shankarsanjay0.workers.dev/)
 
-![Flight Board Preview](https://img.shields.io/badge/status-live-brightgreen) ![OpenSky API](https://img.shields.io/badge/data-OpenSky%20Network-blue) ![Cloudflare Workers](https://img.shields.io/badge/hosted-Cloudflare%20Workers-orange)
+![Flight Board Preview](https://img.shields.io/badge/status-live-brightgreen) ![AirLabs API](https://img.shields.io/badge/data-AirLabs-blue) ![Cloudflare Workers](https://img.shields.io/badge/hosted-Cloudflare%20Workers-orange)
 
 ---
 
 ## Features
 
+- **Live Flight Data** — Real-time arrivals and departures with status (scheduled, active, landed, cancelled)
 - **Split-Board Layout** — Arrivals on the left, departures on the right, just like a real airport display
 - **TV/Kiosk Mode** — Full-screen, auto-scrolling display designed for wall-mounted monitors
 - **235 Countries, 4,600+ Airports** — Comprehensive airport database sourced from [OurAirports](https://ourairports.com/data/)
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
-- **Configurable Settings** — Country/airport picker, time span, 12/24h format, refresh interval, scroll speed
-- **Server-Side API Proxy** — Cloudflare Worker proxies OpenSky API calls with OAuth2 authentication
+- **Configurable Settings** — Country/airport picker, 12/24h format, refresh interval, scroll speed
+- **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side)
 - **No Framework** — Pure HTML, CSS, and JavaScript — lightweight and fast
 
 ## How It Works
 
-1. The app queries the [OpenSky Network REST API](https://openskynetwork.github.io/opensky-api/rest.html) for arrivals and departures at the selected airport
-2. API requests go through a Cloudflare Worker proxy (`worker.js`) which handles OAuth2 authentication and avoids CORS issues
+1. The app queries the [AirLabs Schedules API](https://airlabs.co/docs/schedules) for arrivals and departures at the selected airport
+2. API requests go through a Cloudflare Worker proxy (`worker.js`) which adds the API key server-side, avoiding CORS issues and keeping the key secret
 3. Flight data is displayed in a TV-optimized split-board layout with auto-scrolling
-
-### Important: Data Delay
-
-The OpenSky arrivals/departures endpoints (`/flights/arrival` and `/flights/departure`) are **batch-processed nightly**. This means:
-
-- **Only flights from the previous day or earlier are available**
-- The app queries **yesterday's data** centered around the same time of day
-- This is an OpenSky API limitation, not a bug — [see their docs](https://openskynetwork.github.io/opensky-api/rest.html#arrivals-by-airport)
-- For truly real-time tracking, OpenSky's `/states/all` endpoint provides live state vectors, but in a different format
+4. Schedules cover up to ~10 hours ahead with real-time status updates
 
 ## API Reference
 
-This project uses the following OpenSky Network endpoints:
+This project uses the AirLabs Schedules API:
 
-| Endpoint | Description | Max Interval |
-|----------|-------------|-------------|
-| `GET /flights/arrival` | Flights arriving at an airport | 2 days |
-| `GET /flights/departure` | Flights departing from an airport | 2 days |
+| Endpoint | Description | Free Limit |
+|----------|-------------|-----------|
+| `GET /api/v9/schedules?dep_iata=XXX` | Departures from airport | 50 results |
+| `GET /api/v9/schedules?arr_iata=XXX` | Arrivals at airport | 50 results |
 
-**Authentication:** OAuth2 client credentials flow (Basic auth was deprecated on March 18, 2026)
+**Authentication:** API key (passed server-side via Cloudflare Worker)
 
-**Rate Limits:**
-- Anonymous: 400 API credits/day
-- Authenticated: 4,000 API credits/day
-- Active contributors: 8,000 API credits/day
+**Free Plan Limits:**
+- 1,000 API requests/month
+- 250 requests/minute
+- 50 results per request
 
-For full API documentation, see: [OpenSky REST API Docs](https://openskynetwork.github.io/opensky-api/rest.html)
+For full API documentation, see: [AirLabs Schedules Docs](https://airlabs.co/docs/schedules)
 
 ## Setup & Deployment
 
@@ -57,7 +50,7 @@ For full API documentation, see: [OpenSky REST API Docs](https://openskynetwork.
 
 - A [Cloudflare](https://cloudflare.com/) account (free tier works)
 - A [GitHub](https://github.com/) account
-- An [OpenSky Network](https://opensky-network.org/) account (free, for API authentication)
+- An [AirLabs](https://airlabs.co/) account (free tier available)
 
 ### 1. Clone the Repository
 
@@ -66,12 +59,11 @@ git clone https://github.com/sanjuacodez/flight-data.git
 cd flight-data
 ```
 
-### 2. Create OpenSky API Credentials
+### 2. Get an AirLabs API Key
 
-1. Log in at [opensky-network.org](https://opensky-network.org/)
-2. Go to **My OpenSky → Account**
-3. Create a new API client
-4. Note down your `client_id` and `client_secret`
+1. Sign up at [airlabs.co](https://airlabs.co/)
+2. Go to your account dashboard
+3. Copy your API key
 
 ### 3. Deploy to Cloudflare Workers
 
@@ -84,8 +76,7 @@ cd flight-data
    - **Build output directory:** `public`
 4. After deployment, add secrets:
    - Go to **Settings → Variables and Secrets**
-   - Add `OPENSKY_CLIENT_ID` = your client ID
-   - Add `OPENSKY_CLIENT_SECRET` = your client secret
+   - Add `AIRLABS_API_KEY` = your API key
 5. Redeploy for secrets to take effect
 
 **Option B: Via Wrangler CLI**
@@ -94,9 +85,8 @@ cd flight-data
 # Install wrangler and login
 npx wrangler login
 
-# Set your OpenSky API secrets
-echo "your-client-id" | npx wrangler secret put OPENSKY_CLIENT_ID
-echo "your-client-secret" | npx wrangler secret put OPENSKY_CLIENT_SECRET
+# Set your AirLabs API key
+echo "your-api-key" | npx wrangler secret put AIRLABS_API_KEY
 
 # Deploy
 npx wrangler deploy
@@ -113,7 +103,7 @@ python3 -m http.server 8080
 npx wrangler dev
 ```
 
-> **Note:** When opening `index.html` directly (`file://` protocol), the airport data loads via `<script src="airports.js">` instead of `fetch()`, so the dropdown will work. However, the OpenSky API proxy requires the Worker — use `wrangler dev` for full functionality.
+> **Note:** When opening `index.html` directly (`file://` protocol), the airport data loads via `<script src="airports.js">` instead of `fetch()`, so the dropdown will work. However, the AirLabs API proxy requires the Worker — use `wrangler dev` for full functionality.
 
 ## Project Structure
 
@@ -125,7 +115,7 @@ flight-data/
 │   └── airports.json        # Airport data as JSON (fetch fallback)
 ├── data/
 │   └── build_airports.py    # Script to rebuild airport data from OurAirports
-├── worker.js                # Cloudflare Worker (API proxy + OAuth2)
+├── worker.js                # Cloudflare Worker (API proxy for AirLabs)
 ├── wrangler.jsonc            # Cloudflare Workers configuration
 └── .gitignore
 ```
@@ -152,16 +142,15 @@ This generates:
 
 ## Limitations
 
-- **Data is from yesterday** — OpenSky batch-processes arrival/departure data nightly. Only flights from the previous day or earlier are available via these endpoints.
-- **Rate limited** — Free OpenSky accounts get 4,000 API credits/day. The app uses 2 credits per refresh (1 for arrivals, 1 for departures).
-- **Small airports may have no data** — OpenSky's coverage depends on ADS-B receiver density. Remote airports may show fewer flights.
-- **No future flights** — Unlike commercial flight trackers (FlightAware, Flightradar24), OpenSky only provides historical/observed data, not scheduled flights.
-- **Airline names are approximate** — Airline identification is based on ICAO callsign prefixes (first 3 characters), which may not always match.
+- **Free plan: 1,000 requests/month** — Each refresh uses 2 API calls (arrivals + departures). At 5-minute intervals, that's ~576 calls/day, so budget accordingly.
+- **50 results per request on free plan** — Busy airports may have more flights than the limit shows.
+- **Schedules up to ~10 hours ahead** — AirLabs returns current and near-future schedules, not full-day flight plans.
+- **Small airports may have limited data** — Coverage depends on AirLabs' data sources.
 
 ## Tech Stack
 
 - **Frontend:** Vanilla HTML, CSS, JavaScript
-- **API:** [OpenSky Network REST API](https://openskynetwork.github.io/opensky-api/rest.html) with OAuth2
+- **API:** [AirLabs Schedules API](https://airlabs.co/docs/schedules) — real-time flight schedules
 - **Hosting:** [Cloudflare Workers](https://workers.cloudflare.com/) (free tier)
 - **Airport Data:** [OurAirports](https://ourairports.com/data/) (public domain)
 

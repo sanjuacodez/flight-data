@@ -34,6 +34,7 @@ with open(os.path.join(DATA_DIR, 'airports.csv'), 'r', encoding='utf-8') as f:
         if row['type'] not in ('large_airport', 'medium_airport'):
             continue
         icao = (row.get('icao_code') or '').strip()
+        iata = (row.get('iata_code') or '').strip()
         if not icao:
             continue
 
@@ -68,6 +69,7 @@ with open(os.path.join(DATA_DIR, 'airports.csv'), 'r', encoding='utf-8') as f:
 
         airports_by_country[country_name].append({
             'icao': icao,
+            'iata': iata,
             'name': display,
             'type': row['type']
         })
@@ -102,7 +104,7 @@ for country in airports_by_country:
 result = {}
 for country in sorted(airports_by_country.keys()):
     result[country] = [
-        {'icao': a['icao'], 'name': a['name']}
+        {'icao': a['icao'], 'iata': a['iata'], 'name': a['name']}
         for a in airports_by_country[country]
     ]
 
