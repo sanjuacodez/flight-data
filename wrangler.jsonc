@@ -9,5 +9,13 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
-  }
+  },
+  // Create this KV namespace in Cloudflare Dashboard → Workers & Pages → KV
+  // Then replace the id below with your actual namespace ID
+  "kv_namespaces": [
+    {
+      "binding": "FLIGHT_CACHE",
+      "id": "YOUR_KV_NAMESPACE_ID_HERE"
+    }
+  ]
 }

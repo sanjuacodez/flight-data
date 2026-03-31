@@ -14,6 +14,7 @@ A real-time airport flight information display built for TV screens and monitors
 - **Split-Board Layout** — Arrivals on the left, departures on the right, just like a real airport display
 - **International / Domestic Filter** — Pass `?mode=int` for international only, `?mode=dom` for domestic only, or `?mode=all` for everything
 - **Arrival / Departure Filter** — Pass `?type=arrival` or `?type=departure` to show a single full-width panel, or `?type=all` for both
+- **Cloudflare KV Caching** — Lazy caching via Cloudflare KV reduces API calls. Cache TTL syncs with the refresh interval set in Settings
 - **Airline Logos** — Each flight displays the airline's logo alongside the flight name
 - **Time Window Filter** — Only show flights within ±N hours of now (default ±2h). No morning flights cluttering the evening board.
 - **URL Parameters** — Pass `?airport=JFK`, `?mode=int`, `?type=arrival` etc. for direct/shareable links (all combinable)
@@ -21,15 +22,17 @@ A real-time airport flight information display built for TV screens and monitors
 - **235 Countries, 4,600+ Airports** — Comprehensive airport database sourced from [OurAirports](https://ourairports.com/data/)
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
 - **Configurable Settings** — Country/airport picker, mode/type filters, time window, 12/24h format, refresh interval, scroll speed
-- **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side)
+- **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side), with KV caching and stale-while-error fallback
 - **No Framework** — Pure HTML, CSS, and JavaScript — lightweight and fast
 
 ## How It Works
 
 1. The app queries the [AirLabs Schedules API](https://airlabs.co/docs/schedules) for arrivals and departures at the selected airport
 2. API requests go through a Cloudflare Worker proxy (`worker.js`) which adds the API key server-side, avoiding CORS issues and keeping the key secret
-3. Flight data is displayed in a TV-optimized split-board layout with auto-scrolling
-4. Schedules cover up to ~10 hours ahead with real-time status updates
+3. Responses are cached in **Cloudflare KV** with a TTL matching the user's refresh interval. Subsequent requests within the TTL are served from cache without calling AirLabs
+4. If AirLabs is down or times out, the Worker serves stale cached data as a fallback
+5. Flight data is displayed in a TV-optimized split-board layout with auto-scrolling
+6. Schedules cover up to ~10 hours ahead with real-time status updates
 
 ## URL Parameters
 
@@ -91,7 +94,24 @@ cd flight-data
 2. Go to your account dashboard
 3. Copy your API key
 
-### 3. Deploy to Cloudflare Workers
+### 3. Create a KV Namespace
+
+1. Go to **Cloudflare Dashboard → Workers & Pages → KV**
+2. Click **Create a namespace**
+3. Name it `FLIGHT_CACHE`
+4. Copy the **Namespace ID**
+5. Open `wrangler.jsonc` and replace `YOUR_KV_NAMESPACE_ID_HERE` with the actual ID:
+
+```jsonc
+"kv_namespaces": [
+  {
+    "binding": "FLIGHT_CACHE",
+    "id": "paste-your-namespace-id-here"
+  }
+]
+```
+
+### 4. Deploy to Cloudflare Workers
 
 **Option A: Via Cloudflare Dashboard (recommended)**
 
@@ -100,9 +120,10 @@ cd flight-data
 3. Set build settings:
    - **Build command:** `npx wrangler deploy`
    - **Build output directory:** `public`
-4. After deployment, add secrets:
+4. After deployment, add secrets and bindings:
    - Go to **Settings → Variables and Secrets**
    - Add `AIRLABS_API_KEY` = your API key
+   - Go to **Settings → Bindings** and bind the `FLIGHT_CACHE` KV namespace (if not auto-detected from `wrangler.jsonc`)
 5. Redeploy for secrets to take effect
 
 **Option B: Via Wrangler CLI**
@@ -114,11 +135,11 @@ npx wrangler login
 # Set your AirLabs API key
 echo "your-api-key" | npx wrangler secret put AIRLABS_API_KEY
 
-# Deploy
+# Deploy (KV binding is picked up from wrangler.jsonc)
 npx wrangler deploy
 ```
 
-### 4. Run Locally (for development)
+### 5. Run Locally (for development)
 
 ```bash
 # Serve the public/ directory with any static server
@@ -141,8 +162,8 @@ flight-data/
 │   └── airports.json        # Airport data as JSON (fetch fallback)
 ├── data/
 │   └── build_airports.py    # Script to rebuild airport data from OurAirports
-├── worker.js                # Cloudflare Worker (API proxy for AirLabs)
-├── wrangler.jsonc            # Cloudflare Workers configuration
+├── worker.js                # Cloudflare Worker (API proxy + KV caching)
+├── wrangler.jsonc            # Cloudflare Workers config (KV binding)
 └── .gitignore
 ```
 
@@ -165,6 +186,18 @@ This generates:
 - `airports.json` — 235 countries, 4,600+ airports (large and medium airports with ICAO codes)
 - `airports.js` — Same data as a JS global variable
 - Continent CSVs for reference (africa.csv, asia.csv, etc.)
+
+## KV Caching
+
+The Worker uses **Cloudflare KV** as a lazy cache to minimize AirLabs API calls:
+
+- **Cache key format:** `flights:<IATA>:arrival` / `flights:<IATA>:departure`
+- **TTL:** Matches the refresh interval from Settings (passed via `?ttl=` query param)
+- **Staleness check:** Each cached entry stores a `fetchedAt` timestamp in metadata. If the age exceeds the TTL, the Worker fetches fresh data
+- **Stale fallback:** If AirLabs is unreachable, the Worker returns the last cached response (even if stale)
+- **Response headers:** `X-Cache: HIT`, `MISS`, or `STALE` to help debug caching behavior
+
+**Verify caching:** After the first request, check the KV dashboard — you should see keys like `flights:COK:arrival` appear.
 
 ## Limitations
 

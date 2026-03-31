@@ -980,10 +980,10 @@
         } catch (e) {
             console.error('Airport data load error:', e);
             // Fallback minimal data
-            airportsByCountry = { 'United States': [{ icao: 'KJFK', iata: 'JFK', name: 'New York JFK' }] };
-            AIRPORTS_ICAO = { 'KJFK': 'New York JFK' };
-            AIRPORTS_IATA = { 'JFK': 'New York JFK' };
-            ICAO_TO_IATA = { 'KJFK': 'JFK' };
+            airportsByCountry = { 'India': [{ icao: 'VOCL', iata: 'COK', name: 'Cochin International' }] };
+            AIRPORTS_ICAO = { 'VOCL': 'Cochin International' };
+            AIRPORTS_IATA = { 'COK': 'Cochin International' };
+            ICAO_TO_IATA = { 'VOCL': 'COK' };
             populateCountryDropdown();
         }
     }
@@ -1032,7 +1032,7 @@
 
     // ── Config ──
     const DEFAULTS = {
-        airport: 'KJFK',
+        airport: 'VOCL',
         timeFormat: '24',
         refreshInterval: API_PLAN.refreshInterval,
         scrollSpeed: 40,
@@ -1290,7 +1290,8 @@
     }
 
     async function fetchAirLabs(paramName, iataCode) {
-        const url = `/api/schedules?${paramName}=${encodeURIComponent(iataCode)}`;
+        const ttl = config.refreshInterval || API_PLAN.refreshInterval;
+        const url = `/api/schedules?${paramName}=${encodeURIComponent(iataCode)}&ttl=${ttl}`;
         const r = await fetch(url);
         if (!r.ok) {
             const body = await r.text().catch(() => '');
