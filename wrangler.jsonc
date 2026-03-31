@@ -15,7 +15,7 @@
   "kv_namespaces": [
     {
       "binding": "FLIGHT_CACHE",
-      "id": "YOUR_KV_NAMESPACE_ID_HERE"
+      "id": "53a3f24ed8bc40b294927f363002ebac"
     }
   ]
 }
