@@ -23,6 +23,8 @@ A real-time airport flight information display built for TV screens and monitors
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
 - **Configurable Settings** — Country/airport picker, mode/type filters, time window, 12/24h format, refresh interval, scroll speed
 - **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side), with KV caching and stale-while-error fallback
+- **Backup API Key** — Supports a fallback AirLabs key that activates automatically when the primary key is rate-limited (429) or fails
+- **Smart Column Hiding** — Terminal/Gate column auto-hides when no data is available (free plan), reappears on Pro plans
 - **No Framework** — Pure HTML, CSS, and JavaScript — lightweight and fast
 
 ## How It Works
@@ -30,9 +32,10 @@ A real-time airport flight information display built for TV screens and monitors
 1. The app queries the [AirLabs Schedules API](https://airlabs.co/docs/schedules) for arrivals and departures at the selected airport
 2. API requests go through a Cloudflare Worker proxy (`worker.js`) which adds the API key server-side, avoiding CORS issues and keeping the key secret
 3. Responses are cached in **Cloudflare KV** with a TTL matching the user's refresh interval. Subsequent requests within the TTL are served from cache without calling AirLabs
-4. If AirLabs is down or times out, the Worker serves stale cached data as a fallback
-5. Flight data is displayed in a TV-optimized split-board layout with auto-scrolling
-6. Schedules cover up to ~10 hours ahead with real-time status updates
+4. If the primary API key is rate-limited (429/401/403), the Worker automatically retries with the backup key
+5. If AirLabs is down or times out, the Worker serves stale cached data as a fallback
+6. Flight data is displayed in a TV-optimized split-board layout with auto-scrolling
+7. Schedules cover up to ~10 hours ahead with real-time status updates
 
 ## URL Parameters
 
@@ -198,6 +201,26 @@ The Worker uses **Cloudflare KV** as a lazy cache to minimize AirLabs API calls:
 - **Response headers:** `X-Cache: HIT`, `MISS`, or `STALE` to help debug caching behavior
 
 **Verify caching:** After the first request, check the KV dashboard — you should see keys like `flights:COK:arrival` appear.
+
+## Backup API Key
+
+The Worker supports a fallback AirLabs API key. If the primary key hits its rate limit (HTTP 429, 401, or 403), the Worker automatically retries with the backup key before falling back to stale cache.
+
+**Setup:**
+
+```bash
+# Set the backup key as a Cloudflare secret
+echo "your-backup-api-key" | npx wrangler secret put AIRLABS_API_KEY_BACKUP
+```
+
+For local development, add it to `.dev.vars`:
+
+```
+AIRLABS_API_KEY=your-primary-key
+AIRLABS_API_KEY_BACKUP=your-backup-key
+```
+
+This effectively doubles your monthly API quota (~2,000 calls/month with two free keys). The backup key is optional — if not set, the Worker uses only the primary key.
 
 ## Limitations
 
