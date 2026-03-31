@@ -13,3 +13,6 @@ data/antarctica.csv
 # Wrangler
 .wrangler/
 node_modules/
+
+# Local secrets (used by wrangler dev)
+.dev.vars
