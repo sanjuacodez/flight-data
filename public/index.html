@@ -353,10 +353,26 @@
         .flight-row .city {
             color: var(--text-primary);
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
             padding-right: 8px;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+        }
+        .flight-row .city-info {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            min-width: 0;
+        }
+        .airline-logo {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            border-radius: 3px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.05);
         }
         .flight-row .airline-hint {
             color: var(--text-muted);
@@ -401,6 +417,41 @@
         .status-departed  { background: var(--status-departed-bg); color: var(--status-departed-text); }
         .status-cancelled { background: var(--status-cancel-bg); color: var(--status-cancel-text); }
         .status-unknown   { background: var(--status-unknown-bg); color: var(--status-unknown-text); }
+
+        /* ── Filter Bar ── */
+        .filter-bar {
+            background: var(--bg-secondary);
+            padding: 6px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border-primary);
+            flex-shrink: 0;
+            flex-wrap: wrap;
+        }
+        .filter-bar .filter-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .filter-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+        .filter-tag.mode-int { background: rgba(76,201,240,0.12); color: var(--accent-blue); }
+        .filter-tag.mode-dom { background: rgba(255,214,10,0.12); color: var(--accent-gold); }
+        .filter-tag.type-arr { background: var(--arr-bg); color: var(--arr-text); border: 1px solid var(--arr-border); }
+        .filter-tag.type-dep { background: var(--dep-bg); color: var(--dep-text); border: 1px solid var(--dep-border); }
+
+        /* ── Single Panel Layout ── */
+        .board-half.panel-hidden { display: none; }
+        .board.single-panel .board-half { border-right: none !important; }
 
         /* ── Bottom Bar ── */
         .bottombar {
@@ -655,8 +706,14 @@
     </div>
 </div>
 
+<!-- ── Filter Bar ── -->
+<div class="filter-bar" id="filterBar" style="display:none">
+    <span class="filter-label">Active Filters:</span>
+    <span id="filterTags"></span>
+</div>
+
 <!-- ── Split Board ── -->
-<div class="board">
+<div class="board" id="boardContainer">
     <!-- Arrivals -->
     <div class="board-half">
         <div class="section-header arrivals"><span class="icon">&#11015;</span> Arrivals</div>
@@ -835,6 +892,25 @@
             <div class="hint">Only show flights within this window around now.</div>
         </div>
 
+        <div class="field">
+            <label>Flight Mode</label>
+            <select id="setMode">
+                <option value="all">All Flights</option>
+                <option value="int">International Only</option>
+                <option value="dom">Domestic Only</option>
+            </select>
+            <div class="hint">Filter by international or domestic flights. URL param: ?mode=int</div>
+        </div>
+        <div class="field">
+            <label>Flight Type</label>
+            <select id="setType">
+                <option value="all">Arrivals &amp; Departures</option>
+                <option value="arrival">Arrivals Only</option>
+                <option value="departure">Departures Only</option>
+            </select>
+            <div class="hint">Show arrivals, departures, or both. URL param: ?type=arrival</div>
+        </div>
+
         <div class="settings-actions">
             <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
             <button class="btn-save" onclick="saveSettings()">Save &amp; Reload</button>
@@ -868,6 +944,8 @@
     let AIRPORTS_IATA = {};      // { iata: name } flat lookup
     let ICAO_TO_IATA = {};       // { icao: iata } mapping
     let IATA_TO_ICAO = {};       // { iata: icao } reverse mapping
+    let IATA_TO_COUNTRY = {};    // { iata: country }
+    let ICAO_TO_COUNTRY = {};    // { icao: country }
 
     async function loadAirportData() {
         try {
@@ -884,13 +962,17 @@
             AIRPORTS_IATA = {};
             ICAO_TO_IATA = {};
             IATA_TO_ICAO = {};
+            IATA_TO_COUNTRY = {};
+            ICAO_TO_COUNTRY = {};
             for (const country in airportsByCountry) {
                 for (const ap of airportsByCountry[country]) {
                     AIRPORTS_ICAO[ap.icao] = ap.name;
+                    ICAO_TO_COUNTRY[ap.icao] = country;
                     if (ap.iata) {
                         AIRPORTS_IATA[ap.iata] = ap.name;
                         ICAO_TO_IATA[ap.icao] = ap.iata;
                         IATA_TO_ICAO[ap.iata] = ap.icao;
+                        IATA_TO_COUNTRY[ap.iata] = country;
                     }
                 }
             }
@@ -957,6 +1039,8 @@
         timeWindow: API_PLAN.timeWindow,
         theme: 'dark',
         timezone: 'auto',
+        mode: 'all',
+        type: 'all',
     };
 
     function resolveTimezone() {
@@ -1040,6 +1124,68 @@
         }
     }
 
+    // ── Airline logo URL ──
+    function airlineLogoUrl(code) {
+        if (!code) return '';
+        return 'https://images.kiwi.com/airlines/64/' + encodeURIComponent(code) + '.png';
+    }
+
+    // ── Mode filter: domestic vs international ──
+    function getSelectedCountry() {
+        const iata = ICAO_TO_IATA[config.airport] || config.airport;
+        return IATA_TO_COUNTRY[iata.toUpperCase()] || ICAO_TO_COUNTRY[config.airport.toUpperCase()] || '';
+    }
+
+    function isFlightDomestic(otherCode) {
+        if (!otherCode) return null;
+        const selectedCountry = getSelectedCountry();
+        if (!selectedCountry) return null;
+        const otherCountry = IATA_TO_COUNTRY[otherCode.toUpperCase()] || ICAO_TO_COUNTRY[otherCode.toUpperCase()] || '';
+        if (!otherCountry) return null;
+        return selectedCountry === otherCountry;
+    }
+
+    // ── Type/mode layout ──
+    function applyTypeFilter() {
+        const board = document.getElementById('boardContainer');
+        const arrPanel = board.children[0];
+        const depPanel = board.children[1];
+        const type = config.type || 'all';
+
+        arrPanel.classList.remove('panel-hidden');
+        depPanel.classList.remove('panel-hidden');
+        board.classList.remove('single-panel');
+
+        if (type === 'arrival') {
+            depPanel.classList.add('panel-hidden');
+            board.classList.add('single-panel');
+        } else if (type === 'departure') {
+            arrPanel.classList.add('panel-hidden');
+            board.classList.add('single-panel');
+        }
+        updateFilterBar();
+    }
+
+    function updateFilterBar() {
+        const bar = document.getElementById('filterBar');
+        const tags = document.getElementById('filterTags');
+        const mode = config.mode || 'all';
+        const type = config.type || 'all';
+
+        let html = '';
+        if (mode === 'int') html += '<span class="filter-tag mode-int">International</span> ';
+        if (mode === 'dom') html += '<span class="filter-tag mode-dom">Domestic</span> ';
+        if (type === 'arrival') html += '<span class="filter-tag type-arr">Arrivals Only</span> ';
+        if (type === 'departure') html += '<span class="filter-tag type-dep">Departures Only</span> ';
+
+        if (html) {
+            tags.innerHTML = html;
+            bar.style.display = 'flex';
+        } else {
+            bar.style.display = 'none';
+        }
+    }
+
     // ── Clock ──
     function tick() {
         const now = new Date();
@@ -1077,14 +1223,16 @@
         const rows = flights.map(f => {
             const stCls = statusClass(f.status);
             const stLabel = esc(statusLabel(f.status));
-            const airline = esc(f.airline || '');
+            const airlineRaw = f.airline || '';
+            const airline = esc(airlineRaw);
             const scheduled = fmtTime(dir === 'arrival' ? f.arr_time : f.dep_time);
             const estimated = fmtTime(dir === 'arrival' ? f.arr_estimated : f.dep_estimated);
             const termGate = esc(f.termGate || '—');
+            const logoHtml = airlineRaw ? `<img src="${airlineLogoUrl(airlineRaw)}" alt="" class="airline-logo" onerror="this.style.display='none'">` : '';
 
             return `<div class="flight-row ${colClass}">
                 <span class="callsign">${esc(f.flight)}</span>
-                <span class="city">${esc(f.city)}${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span>
+                <span class="city">${logoHtml}<span class="city-info">${esc(f.city)}${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span></span>
                 <span class="time">${scheduled}</span>
                 <span class="time hide-xs">${estimated || scheduled}</span>
                 <span class="term-gate">${termGate}</span>
@@ -1172,6 +1320,7 @@
             return {
                 flight: flight,
                 city: airportName(otherCode),
+                otherCode: otherCode,
                 airline: f.airline_iata || '',
                 dep_time: f.dep_time_utc || f.dep_time,
                 dep_estimated: f.dep_estimated_utc || f.dep_estimated,
@@ -1191,6 +1340,13 @@
             const t = new Date(timeStr.includes('T') ? timeStr : timeStr.replace(' ', 'T') + 'Z').getTime();
             if (isNaN(t)) return true;
             return t >= now - windowMs && t <= now + windowMs;
+        }).filter(f => {
+            // Apply mode filter (international / domestic)
+            const mode = config.mode || 'all';
+            if (mode === 'all') return true;
+            const domestic = isFlightDomestic(f.otherCode);
+            if (domestic === null) return true;
+            return mode === 'dom' ? domestic : !domestic;
         }).sort((a, b) => {
             // Sort by scheduled time ascending (soonest first)
             const tA = dir === 'arrival' ? (a.arr_time || '') : (a.dep_time || '');
@@ -1208,31 +1364,31 @@
         };
 
         flightsCache.arrivals = [
-            { flight:'AA101', city:'Los Angeles', airline:'AA', dep_time:m(-170), arr_time:m(-12), arr_estimated:m(-10), status:'landed', termGate:'T4 / B23' },
-            { flight:'DL402', city:'Atlanta', airline:'DL', dep_time:m(-110), arr_time:m(-3), arr_estimated:m(-1), status:'landed', termGate:'T4 / B30' },
-            { flight:'UA557', city:'Chicago O\'Hare', airline:'UA', dep_time:m(-85), arr_time:m(15), arr_estimated:m(18), status:'active', termGate:'T7 / 10' },
-            { flight:'BA178', city:'London Heathrow', airline:'BA', dep_time:m(-390), arr_time:m(-25), arr_estimated:m(-20), status:'landed', termGate:'T7 / 1' },
-            { flight:'EK201', city:'Dubai', airline:'EK', dep_time:m(-580), arr_time:m(-40), arr_estimated:m(-35), status:'landed', termGate:'T4 / A7' },
-            { flight:'LH400', city:'Frankfurt', airline:'LH', dep_time:m(-280), arr_time:m(30), arr_estimated:m(35), status:'active', termGate:'T1 / B35' },
-            { flight:'AF008', city:'Paris CDG', airline:'AF', dep_time:m(-340), arr_time:m(-55), arr_estimated:m(-50), status:'landed', termGate:'T1 / B41' },
-            { flight:'JL005', city:'Tokyo Narita', airline:'JL', dep_time:m(-700), arr_time:m(-80), arr_estimated:m(-75), status:'landed', termGate:'T1 / 7' },
-            { flight:'QF011', city:'Sydney', airline:'QF', dep_time:m(-900), arr_time:m(-110), arr_estimated:m(-105), status:'landed', termGate:'T8' },
-            { flight:'SQ023', city:'Singapore Changi', airline:'SQ', dep_time:m(-480), arr_time:m(-6), arr_estimated:m(-4), status:'landed', termGate:'T4 / A2' },
-            { flight:'TK001', city:'Istanbul', airline:'TK', dep_time:m(-190), arr_time:m(45), arr_estimated:m(50), status:'active', termGate:'T1 / B22' },
-            { flight:'AC856', city:'Toronto Pearson', airline:'AC', dep_time:m(-140), arr_time:m(-18), arr_estimated:m(-15), status:'landed', termGate:'T4 / B28' },
+            { flight:'AA101', city:'Los Angeles', otherCode:'LAX', airline:'AA', dep_time:m(-170), arr_time:m(-12), arr_estimated:m(-10), status:'landed', termGate:'T4 / B23' },
+            { flight:'DL402', city:'Atlanta', otherCode:'ATL', airline:'DL', dep_time:m(-110), arr_time:m(-3), arr_estimated:m(-1), status:'landed', termGate:'T4 / B30' },
+            { flight:'UA557', city:'Chicago O\'Hare', otherCode:'ORD', airline:'UA', dep_time:m(-85), arr_time:m(15), arr_estimated:m(18), status:'active', termGate:'T7 / 10' },
+            { flight:'BA178', city:'London Heathrow', otherCode:'LHR', airline:'BA', dep_time:m(-390), arr_time:m(-25), arr_estimated:m(-20), status:'landed', termGate:'T7 / 1' },
+            { flight:'EK201', city:'Dubai', otherCode:'DXB', airline:'EK', dep_time:m(-580), arr_time:m(-40), arr_estimated:m(-35), status:'landed', termGate:'T4 / A7' },
+            { flight:'LH400', city:'Frankfurt', otherCode:'FRA', airline:'LH', dep_time:m(-280), arr_time:m(30), arr_estimated:m(35), status:'active', termGate:'T1 / B35' },
+            { flight:'AF008', city:'Paris CDG', otherCode:'CDG', airline:'AF', dep_time:m(-340), arr_time:m(-55), arr_estimated:m(-50), status:'landed', termGate:'T1 / B41' },
+            { flight:'JL005', city:'Tokyo Narita', otherCode:'NRT', airline:'JL', dep_time:m(-700), arr_time:m(-80), arr_estimated:m(-75), status:'landed', termGate:'T1 / 7' },
+            { flight:'QF011', city:'Sydney', otherCode:'SYD', airline:'QF', dep_time:m(-900), arr_time:m(-110), arr_estimated:m(-105), status:'landed', termGate:'T8' },
+            { flight:'SQ023', city:'Singapore Changi', otherCode:'SIN', airline:'SQ', dep_time:m(-480), arr_time:m(-6), arr_estimated:m(-4), status:'landed', termGate:'T4 / A2' },
+            { flight:'TK001', city:'Istanbul', otherCode:'IST', airline:'TK', dep_time:m(-190), arr_time:m(45), arr_estimated:m(50), status:'active', termGate:'T1 / B22' },
+            { flight:'AC856', city:'Toronto Pearson', otherCode:'YYZ', airline:'AC', dep_time:m(-140), arr_time:m(-18), arr_estimated:m(-15), status:'landed', termGate:'T4 / B28' },
         ];
 
         flightsCache.departures = [
-            { flight:'AA100', city:'Los Angeles', airline:'AA', dep_time:m(20), dep_estimated:m(25), arr_time:m(340), status:'scheduled', termGate:'T8 / 42' },
-            { flight:'DL403', city:'Atlanta', airline:'DL', dep_time:m(-30), dep_estimated:m(-28), arr_time:m(120), status:'active', termGate:'T4 / B38' },
-            { flight:'UA558', city:'San Francisco', airline:'UA', dep_time:m(45), dep_estimated:m(50), arr_time:m(380), status:'scheduled', termGate:'T7 / 12' },
-            { flight:'BA179', city:'London Heathrow', airline:'BA', dep_time:m(-65), dep_estimated:m(-60), arr_time:m(350), status:'active', termGate:'T7 / 1' },
-            { flight:'EK202', city:'Dubai', airline:'EK', dep_time:m(90), dep_estimated:m(90), arr_time:m(780), status:'scheduled', termGate:'T4 / A9' },
-            { flight:'LH401', city:'Frankfurt', airline:'LH', dep_time:m(-120), dep_estimated:m(-115), arr_time:m(360), status:'active', termGate:'T1 / B37' },
-            { flight:'AA245', city:'Miami', airline:'AA', dep_time:m(60), dep_estimated:m(65), arr_time:m(230), status:'scheduled', termGate:'T8 / 40' },
-            { flight:'DL910', city:'Boston', airline:'DL', dep_time:m(-40), dep_estimated:m(-38), arr_time:m(40), status:'active', termGate:'T4 / B44' },
-            { flight:'JL006', city:'Tokyo Narita', airline:'JL', dep_time:m(150), dep_estimated:m(150), arr_time:m(990), status:'scheduled', termGate:'T1 / 8' },
-            { flight:'KE082', city:'Seoul Incheon', airline:'KE', dep_time:m(180), dep_estimated:m(180), arr_time:m(1020), status:'scheduled', termGate:'T1 / 3' },
+            { flight:'AA100', city:'Los Angeles', otherCode:'LAX', airline:'AA', dep_time:m(20), dep_estimated:m(25), arr_time:m(340), status:'scheduled', termGate:'T8 / 42' },
+            { flight:'DL403', city:'Atlanta', otherCode:'ATL', airline:'DL', dep_time:m(-30), dep_estimated:m(-28), arr_time:m(120), status:'active', termGate:'T4 / B38' },
+            { flight:'UA558', city:'San Francisco', otherCode:'SFO', airline:'UA', dep_time:m(45), dep_estimated:m(50), arr_time:m(380), status:'scheduled', termGate:'T7 / 12' },
+            { flight:'BA179', city:'London Heathrow', otherCode:'LHR', airline:'BA', dep_time:m(-65), dep_estimated:m(-60), arr_time:m(350), status:'active', termGate:'T7 / 1' },
+            { flight:'EK202', city:'Dubai', otherCode:'DXB', airline:'EK', dep_time:m(90), dep_estimated:m(90), arr_time:m(780), status:'scheduled', termGate:'T4 / A9' },
+            { flight:'LH401', city:'Frankfurt', otherCode:'FRA', airline:'LH', dep_time:m(-120), dep_estimated:m(-115), arr_time:m(360), status:'active', termGate:'T1 / B37' },
+            { flight:'AA245', city:'Miami', otherCode:'MIA', airline:'AA', dep_time:m(60), dep_estimated:m(65), arr_time:m(230), status:'scheduled', termGate:'T8 / 40' },
+            { flight:'DL910', city:'Boston', otherCode:'BOS', airline:'DL', dep_time:m(-40), dep_estimated:m(-38), arr_time:m(40), status:'active', termGate:'T4 / B44' },
+            { flight:'JL006', city:'Tokyo Narita', otherCode:'NRT', airline:'JL', dep_time:m(150), dep_estimated:m(150), arr_time:m(990), status:'scheduled', termGate:'T1 / 8' },
+            { flight:'KE082', city:'Seoul Incheon', otherCode:'ICN', airline:'KE', dep_time:m(180), dep_estimated:m(180), arr_time:m(1020), status:'scheduled', termGate:'T1 / 3' },
         ];
 
         document.getElementById('dataSource').innerHTML =
@@ -1263,6 +1419,8 @@
         document.getElementById('setScrollSpeed').value = config.scrollSpeed;
         document.getElementById('setTimeWindow').value = config.timeWindow;
         document.getElementById('setTimezone').value = config.timezone || 'auto';
+        document.getElementById('setMode').value = config.mode || 'all';
+        document.getElementById('setType').value = config.type || 'all';
         // Theme toggle
         const themeRadio = document.getElementById(config.theme === 'light' ? 'themeLight' : 'themeDark');
         if (themeRadio) themeRadio.checked = true;
@@ -1285,17 +1443,24 @@
         config.scrollSpeed = parseInt(document.getElementById('setScrollSpeed').value, 10);
         config.timeWindow = parseInt(document.getElementById('setTimeWindow').value, 10);
         config.timezone = document.getElementById('setTimezone').value;
+        config.mode = document.getElementById('setMode').value;
+        config.type = document.getElementById('setType').value;
         const selectedTheme = document.querySelector('input[name="theme"]:checked');
         config.theme = selectedTheme ? selectedTheme.value : 'dark';
         applyTheme(config.theme);
         updateTimezoneLabel();
         saveConfigToStorage(config);
-        // Update URL with airport code for shareable links
+        // Update URL with airport code and filters for shareable links
         const iata = ICAO_TO_IATA[config.airport] || config.airport;
         const newUrl = new URL(window.location);
         newUrl.searchParams.set('airport', iata);
+        if (config.mode && config.mode !== 'all') newUrl.searchParams.set('mode', config.mode);
+        else newUrl.searchParams.delete('mode');
+        if (config.type && config.type !== 'all') newUrl.searchParams.set('type', config.type);
+        else newUrl.searchParams.delete('type');
         history.replaceState(null, '', newUrl);
         updateAirportDisplay();
+        applyTypeFilter();
         closeSettings();
         startAutoRefresh();
         fetchFlights();
@@ -1350,7 +1515,15 @@
         if (urlAirport) {
             config.airport = urlAirport;
         }
+        // Check URL for mode/type overrides
+        const params = new URLSearchParams(window.location.search);
+        const urlMode = (params.get('mode') || '').toLowerCase();
+        if (['int', 'dom', 'all'].includes(urlMode)) config.mode = urlMode;
+        const urlType = (params.get('type') || '').toLowerCase();
+        if (['arrival', 'departure', 'all'].includes(urlType)) config.type = urlType;
+
         updateAirportDisplay();
+        applyTypeFilter();
         fetchFlights();
         startAutoRefresh();
     });
