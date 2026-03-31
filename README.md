@@ -12,12 +12,15 @@ A real-time airport flight information display built for TV screens and monitors
 
 - **Live Flight Data** — Real-time arrivals and departures with status (scheduled, active, landed, cancelled)
 - **Split-Board Layout** — Arrivals on the left, departures on the right, just like a real airport display
+- **International / Domestic Filter** — Pass `?mode=int` for international only, `?mode=dom` for domestic only, or `?mode=all` for everything
+- **Arrival / Departure Filter** — Pass `?type=arrival` or `?type=departure` to show a single full-width panel, or `?type=all` for both
+- **Airline Logos** — Each flight displays the airline's logo alongside the flight name
 - **Time Window Filter** — Only show flights within ±N hours of now (default ±2h). No morning flights cluttering the evening board.
-- **URL Airport Parameter** — Pass `?airport=JFK` (IATA) or `?airport=KJFK` (ICAO) in the URL for direct/shareable links
+- **URL Parameters** — Pass `?airport=JFK`, `?mode=int`, `?type=arrival` etc. for direct/shareable links (all combinable)
 - **TV/Kiosk Mode** — Full-screen, auto-scrolling display designed for wall-mounted monitors
 - **235 Countries, 4,600+ Airports** — Comprehensive airport database sourced from [OurAirports](https://ourairports.com/data/)
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
-- **Configurable Settings** — Country/airport picker, time window, 12/24h format, refresh interval, scroll speed
+- **Configurable Settings** — Country/airport picker, mode/type filters, time window, 12/24h format, refresh interval, scroll speed
 - **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side)
 - **No Framework** — Pure HTML, CSS, and JavaScript — lightweight and fast
 
@@ -27,6 +30,27 @@ A real-time airport flight information display built for TV screens and monitors
 2. API requests go through a Cloudflare Worker proxy (`worker.js`) which adds the API key server-side, avoiding CORS issues and keeping the key secret
 3. Flight data is displayed in a TV-optimized split-board layout with auto-scrolling
 4. Schedules cover up to ~10 hours ahead with real-time status updates
+
+## URL Parameters
+
+All parameters can be combined in the URL for shareable, filtered views.
+
+| Parameter | Values | Description |
+|-----------|--------|-------------|
+| `airport` | IATA or ICAO code | Select airport, e.g. `?airport=JFK` or `?airport=KJFK` |
+| `mode` | `int`, `dom`, `all` | `int` = international only, `dom` = domestic only, `all` = both (default) |
+| `type` | `arrival`, `departure`, `all` | `arrival` = arrivals only (full width), `departure` = departures only, `all` = both panels (default) |
+
+**Examples:**
+
+```
+?airport=JFK&mode=int&type=arrival    # International arrivals at JFK
+?airport=DXB&mode=dom                 # Domestic flights at Dubai
+?airport=LHR&type=departure           # All departures from Heathrow
+?airport=SIN&mode=int&type=all        # All international flights at Singapore
+```
+
+Filters are also available in the Settings panel and persist in the URL when saved.
 
 ## API Reference
 
