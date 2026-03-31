@@ -330,6 +330,13 @@
         .col-header.arr-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
         .col-header.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
 
+        /* Hide gate column when no data */
+        .hide-gate .col-gate, .hide-gate .term-gate { display: none; }
+        .hide-gate .col-header.arr-cols,
+        .hide-gate .col-header.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px; }
+        .hide-gate .flight-row.arr-cols,
+        .hide-gate .flight-row.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px; }
+
         .flight-row {
             display: grid;
             padding: 10px 16px;
@@ -342,6 +349,9 @@
         .flight-row:hover { background: var(--bg-hover); }
         .flight-row.arr-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
         .flight-row.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px 90px; }
+
+        .hide-gate .flight-row.arr-cols { grid-template-columns: 90px 1fr 80px 80px 90px; }
+        .hide-gate .flight-row.dep-cols { grid-template-columns: 90px 1fr 80px 80px 90px; }
 
         .flight-row .callsign {
             font-family: var(--font-mono);
@@ -621,6 +631,10 @@
             .flight-row.arr-cols, .flight-row.dep-cols {
                 grid-template-columns: 80px 1fr 72px 72px 80px 82px;
             }
+            .hide-gate .col-header.arr-cols, .hide-gate .col-header.dep-cols,
+            .hide-gate .flight-row.arr-cols, .hide-gate .flight-row.dep-cols {
+                grid-template-columns: 80px 1fr 72px 72px 82px;
+            }
             .col-header, .flight-row { padding: 8px 12px; }
             .topbar { padding: 10px 16px; }
             .topbar h1 { font-size: 1.1rem; }
@@ -647,6 +661,10 @@
             .flight-row.arr-cols, .flight-row.dep-cols {
                 grid-template-columns: 70px 1fr 62px 62px 70px 76px;
             }
+            .hide-gate .col-header.arr-cols, .hide-gate .col-header.dep-cols,
+            .hide-gate .flight-row.arr-cols, .hide-gate .flight-row.dep-cols {
+                grid-template-columns: 70px 1fr 62px 62px 76px;
+            }
             .col-header { font-size: 0.6rem; padding: 6px 10px; }
             .flight-row { font-size: 0.8rem; padding: 8px 10px; }
             .flight-row .callsign { font-size: 0.8rem; }
@@ -667,6 +685,7 @@
             .col-header.arr-cols, .col-header.dep-cols { grid-template-columns: 62px 1fr 56px 70px 68px; }
             .flight-row.arr-cols, .flight-row.dep-cols { grid-template-columns: 62px 1fr 56px 70px 68px; }
             .col-header .hide-xs, .flight-row .hide-xs { display: none; }
+            /* Gate already hidden by hide-gate on xs; these grids already have no gate column */
 
             .col-header { font-size: 0.55rem; padding: 5px 8px; letter-spacing: 1px; }
             .flight-row { font-size: 0.75rem; padding: 7px 8px; }
@@ -718,7 +737,7 @@
     <div class="board-half">
         <div class="section-header arrivals"><span class="icon">&#11015;</span> Arrivals</div>
         <div class="col-header arr-cols">
-            <span>Flight</span><span>Origin</span><span>Sched.</span><span class="hide-xs">Est.</span><span>T / Gate</span><span>Status</span>
+            <span>Flight</span><span>Origin</span><span>Sched.</span><span class="hide-xs">Est.</span><span class="col-gate">T / Gate</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="arrScroll">
@@ -732,7 +751,7 @@
     <div class="board-half">
         <div class="section-header departures"><span class="icon">&#11014;</span> Departures</div>
         <div class="col-header dep-cols">
-            <span>Flight</span><span>Destination</span><span>Sched.</span><span class="hide-xs">Est.</span><span>T / Gate</span><span>Status</span>
+            <span>Flight</span><span>Destination</span><span>Sched.</span><span class="hide-xs">Est.</span><span class="col-gate">T / Gate</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="depScroll">
@@ -1201,6 +1220,10 @@
 
     // ── Render ──
     function renderBoard() {
+        // Auto-hide gate column if no flights have terminal/gate data
+        const hasGate = [...flightsCache.arrivals, ...flightsCache.departures].some(f => f.termGate);
+        document.body.classList.toggle('hide-gate', !hasGate);
+
         renderHalf('arrBody', 'arrScroll', flightsCache.arrivals, 'arrival');
         renderHalf('depBody', 'depScroll', flightsCache.departures, 'departure');
 
