@@ -20,6 +20,7 @@ const DEFAULT_TTL = 7200;
 
 async function handleAirLabsProxy(url, env) {
   const apiKey = env.AIRLABS_API_KEY;
+  const backupKey = env.AIRLABS_API_KEY_BACKUP;
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'API key not configured' }), {
       status: 500,
@@ -67,64 +68,87 @@ async function handleAirLabsProxy(url, env) {
   // ── Cache miss or stale — fetch from AirLabs ──
   // Remove ttl param before forwarding to AirLabs
   params.delete('ttl');
-  params.set('api_key', apiKey);
 
-  const apiUrl = `https://airlabs.co/api/v9/schedules?${params.toString()}`;
+  // Try primary key first, fallback to backup on rate limit / auth error
+  const keys = backupKey ? [apiKey, backupKey] : [apiKey];
+  let lastResp = null;
+  let lastData = null;
 
-  try {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
-    const resp = await fetch(apiUrl, { signal: controller.signal });
-    clearTimeout(timeout);
+  for (const key of keys) {
+    params.set('api_key', key);
+    const apiUrl = `https://airlabs.co/api/v9/schedules?${params.toString()}`;
 
-    const data = await resp.text();
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
+      const resp = await fetch(apiUrl, { signal: controller.signal });
+      clearTimeout(timeout);
 
-    // Write to KV cache on successful response (non-blocking)
-    if (resp.status === 200 && kv) {
-      try {
-        kv.put(cacheKey, data, {
-          expirationTtl: ttl,
-          metadata: { fetchedAt: Date.now() },
-        }); // intentionally not awaited — fire and forget
-      } catch (_) {
-        // KV write failed — silent
+      const data = await resp.text();
+      lastResp = resp;
+      lastData = data;
+
+      // If rate limited (429) or auth error (401/403), try next key
+      if ((resp.status === 429 || resp.status === 401 || resp.status === 403) && key !== keys[keys.length - 1]) {
+        continue;
       }
-    }
 
-    return new Response(data, {
-      status: resp.status,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Cache-Control': resp.status === 200 ? `public, max-age=${ttl}` : 'no-cache',
-        'X-Cache': 'MISS',
-      },
-    });
-  } catch (err) {
-    // On upstream failure, try serving stale cache if available
-    if (kv) {
-      try {
-        const stale = await kv.get(cacheKey, { type: 'text' });
-        if (stale) {
-          return new Response(stale, {
-            status: 200,
-            headers: {
-              'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*',
-              'Cache-Control': 'public, max-age=60',
-              'X-Cache': 'STALE',
-            },
+      // Success or final key — write to cache and return
+      if (resp.status === 200 && kv) {
+        try {
+          kv.put(cacheKey, data, {
+            expirationTtl: ttl,
+            metadata: { fetchedAt: Date.now() },
           });
+        } catch (_) {
+          // KV write failed — silent
         }
-      } catch (_) {
-        // KV unavailable
       }
-    }
 
-    const msg = err.name === 'AbortError' ? 'AirLabs API timed out' : 'Upstream request failed';
-    return new Response(JSON.stringify({ error: msg }), {
-      status: 504,
-      headers: { 'Content-Type': 'application/json' },
-    });
+      return new Response(data, {
+        status: resp.status,
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Cache-Control': resp.status === 200 ? `public, max-age=${ttl}` : 'no-cache',
+          'X-Cache': 'MISS',
+        },
+      });
+    } catch (err) {
+      // If this key timed out but there's a backup, try it
+      if (key !== keys[keys.length - 1]) continue;
+
+      // All keys exhausted — try serving stale cache
+      if (kv) {
+        try {
+          const stale = await kv.get(cacheKey, { type: 'text' });
+          if (stale) {
+            return new Response(stale, {
+              status: 200,
+              headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=60',
+                'X-Cache': 'STALE',
+              },
+            });
+          }
+        } catch (_) {
+          // KV unavailable
+        }
+      }
+
+      const msg = err.name === 'AbortError' ? 'AirLabs API timed out' : 'Upstream request failed';
+      return new Response(JSON.stringify({ error: msg }), {
+        status: 504,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
   }
+
+  // Should not reach here, but handle gracefully
+  return new Response(lastData || JSON.stringify({ error: 'No API keys available' }), {
+    status: lastResp ? lastResp.status : 500,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
