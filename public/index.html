@@ -137,50 +137,50 @@
         /* ── Top Bar ── */
         .topbar {
             background: var(--bg-secondary);
-            padding: 8px 24px;
+            padding: 10px 28px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-primary);
             flex-shrink: 0;
-            min-height: 40px;
+            min-height: 48px;
             z-index: 10;
         }
         .topbar-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
         }
         .topbar-left .meta-item {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             color: var(--text-secondary);
-            font-size: 0.82rem;
+            font-size: 1rem;
             font-weight: 500;
         }
         .topbar-left .meta-item .meta-icon {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             opacity: 0.6;
         }
         .clock {
             font-family: var(--font-mono);
             color: var(--text-primary);
-            font-size: 0.88rem;
+            font-size: 1.1rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
         .tz-label {
             font-family: var(--font-mono);
             color: var(--text-muted);
-            font-size: 0.65rem;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
         .date-display {
             font-family: var(--font-body);
             color: var(--text-secondary);
-            font-size: 0.82rem;
+            font-size: 1rem;
             font-weight: 500;
         }
         .topbar-right {
@@ -191,7 +191,7 @@
         .slide-counter {
             font-family: var(--font-mono);
             color: var(--text-muted);
-            font-size: 0.82rem;
+            font-size: 1rem;
             font-weight: 600;
             letter-spacing: 1px;
         }
@@ -219,20 +219,20 @@
         /* ── Airport Header ── */
         .airport-header {
             background: var(--bg-primary);
-            padding: 16px 24px 12px;
+            padding: 18px 28px 14px;
             text-align: center;
             flex-shrink: 0;
         }
         .airport-header .airport-full-name {
             font-family: var(--font-body);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-primary);
             letter-spacing: 0.5px;
         }
         .airport-header .airport-code-label {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--text-muted);
             letter-spacing: 2px;
@@ -285,8 +285,8 @@
 
         /* ── Section Headers ── */
         .section-header {
-            padding: 12px 20px;
-            font-size: 1.05rem;
+            padding: 14px 24px;
+            font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 1px;
             flex-shrink: 0;
@@ -296,10 +296,11 @@
             background: var(--bg-primary);
         }
         .section-header .icon {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
         .section-header .section-date {
             font-weight: 500;
+            font-size: 1rem;
             opacity: 0.8;
         }
         .section-header.arrivals {
@@ -335,8 +336,8 @@
 
         .col-header {
             display: grid;
-            padding: 12px 20px;
-            font-size: 0.72rem;
+            padding: 14px 24px;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-muted);
             letter-spacing: 1.5px;
@@ -346,12 +347,12 @@
             flex-shrink: 0;
         }
         .col-header.arr-cols,
-        .col-header.dep-cols { grid-template-columns: 150px 1fr 110px 100px 100px 90px 90px; }
+        .col-header.dep-cols { grid-template-columns: 170px 1fr 120px 110px 110px 100px 100px; }
 
         .flight-row {
             display: grid;
-            padding: 16px 20px;
-            font-size: 0.88rem;
+            padding: 18px 24px;
+            font-size: 1rem;
             border-bottom: 1px solid var(--border-subtle);
             align-items: center;
             transition: background var(--transition);
@@ -362,19 +363,19 @@
         .flight-row:nth-child(odd) { background: var(--bg-hover); }
         .flight-row:hover { filter: brightness(1.05); }
         .flight-row.arr-cols,
-        .flight-row.dep-cols { grid-template-columns: 150px 1fr 110px 100px 100px 90px 90px; }
+        .flight-row.dep-cols { grid-template-columns: 170px 1fr 120px 110px 110px 100px 100px; }
 
         /* Col 1: Airline — logo centered + flight code below */
         .flight-row .airline-col {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
+            gap: 6px;
             text-align: center;
         }
         .airline-logo {
-            width: 48px;
-            height: 32px;
+            width: 56px;
+            height: 38px;
             object-fit: contain;
             border-radius: 4px;
             flex-shrink: 0;
@@ -383,19 +384,19 @@
         }
         .flight-row .airline-name {
             color: var(--text-muted);
-            font-size: 0.62rem;
+            font-size: 0.72rem;
             font-weight: 500;
             letter-spacing: 0.3px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            max-width: 140px;
+            max-width: 150px;
         }
         .flight-row .callsign {
             font-family: var(--font-mono);
             color: var(--text-primary);
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 1rem;
             letter-spacing: 0.5px;
         }
 
@@ -403,7 +404,7 @@
         .flight-row .city {
             color: var(--text-primary);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.05rem;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -413,7 +414,7 @@
         /* Col 3: Date */
         .flight-row .flight-date {
             color: var(--text-secondary);
-            font-size: 0.78rem;
+            font-size: 0.88rem;
             font-weight: 500;
             text-align: center;
         }
@@ -422,7 +423,7 @@
         .flight-row .time {
             font-family: var(--font-mono);
             color: var(--text-primary);
-            font-size: 0.92rem;
+            font-size: 1.05rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-align: center;
@@ -433,7 +434,7 @@
             font-family: var(--font-body);
             color: var(--text-secondary);
             font-weight: 600;
-            font-size: 0.82rem;
+            font-size: 0.95rem;
             text-align: center;
             white-space: nowrap;
             overflow: hidden;
@@ -442,7 +443,7 @@
 
         /* ── Status ── */
         .status {
-            font-size: 0.72rem;
+            font-size: 0.88rem;
             font-weight: 700;
             letter-spacing: 0.3px;
             text-transform: capitalize;
@@ -494,8 +495,8 @@
         /* ── Bottom Bar ── */
         .bottombar {
             background: var(--bg-secondary);
-            padding: 7px 24px;
-            font-size: 0.7rem;
+            padding: 8px 28px;
+            font-size: 0.82rem;
             font-weight: 500;
             color: var(--text-muted);
             display: flex;
@@ -657,16 +658,18 @@
         @media (max-width: 1024px) {
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 120px 1fr 95px 80px 80px 75px 75px;
+                grid-template-columns: 140px 1fr 100px 90px 90px 85px 85px;
             }
-            .col-header, .flight-row { padding: 10px 12px; }
+            .col-header, .flight-row { padding: 12px 14px; }
             .flight-row { margin: 3px 6px; }
-            .airline-logo { width: 40px; height: 28px; }
-            .flight-row .callsign { font-size: 0.78rem; }
-            .topbar { padding: 6px 16px; }
-            .clock { font-size: 0.82rem; }
-            .airport-header { padding: 12px 16px 10px; }
-            .airport-header .airport-full-name { font-size: 1.3rem; }
+            .airline-logo { width: 44px; height: 30px; }
+            .flight-row .callsign { font-size: 0.9rem; }
+            .topbar { padding: 8px 18px; }
+            .clock { font-size: 1rem; }
+            .airport-header { padding: 14px 18px 10px; }
+            .airport-header .airport-full-name { font-size: 1.5rem; }
+            .section-header { font-size: 1.1rem; }
+            .col-header { font-size: 0.75rem; }
         }
 
         /* ── Responsive: Mobile landscape / small tablet ── */
@@ -679,80 +682,77 @@
             .topbar-left { gap: 12px; }
             .topbar-right { gap: 10px; }
             .date-display { display: none; }
-            .clock { font-size: 0.78rem; }
+            .clock { font-size: 0.9rem; }
 
             .airport-header { padding: 10px 14px 8px; }
-            .airport-header .airport-full-name { font-size: 1.1rem; }
-            .airport-header .airport-code-label { font-size: 0.65rem; }
+            .airport-header .airport-full-name { font-size: 1.2rem; }
+            .airport-header .airport-code-label { font-size: 0.72rem; }
 
             /* 7 cols, tighter */
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 100px 1fr 85px 70px 70px 65px 65px;
+                grid-template-columns: 110px 1fr 90px 75px 75px 70px 70px;
             }
-            .col-header { font-size: 0.55rem; padding: 6px 10px; }
-            .flight-row { font-size: 0.78rem; padding: 8px 10px; margin: 2px 4px; }
-            .flight-row .callsign { font-size: 0.72rem; }
-            .flight-row .time { font-size: 0.75rem; }
-            .flight-row .term-gate { font-size: 0.68rem; }
-            .flight-row .flight-date { font-size: 0.65rem; }
-            .airline-logo { width: 32px; height: 22px; }
-            .status { font-size: 0.55rem; }
-            .section-header { font-size: 0.85rem; padding: 8px 14px; letter-spacing: 0.5px; }
-            .section-header .section-date { font-size: 0.72rem; }
+            .col-header { font-size: 0.62rem; padding: 8px 10px; }
+            .flight-row { font-size: 0.88rem; padding: 10px 10px; margin: 2px 4px; }
+            .flight-row .callsign { font-size: 0.82rem; }
+            .flight-row .time { font-size: 0.85rem; }
+            .flight-row .term-gate { font-size: 0.78rem; }
+            .flight-row .flight-date { font-size: 0.75rem; }
+            .airline-logo { width: 36px; height: 24px; }
+            .status { font-size: 0.65rem; }
+            .section-header { font-size: 1rem; padding: 10px 14px; letter-spacing: 0.5px; }
+            .section-header .section-date { font-size: 0.82rem; }
         }
 
         /* ── Responsive: Mobile portrait ── */
         @media (max-width: 480px) {
             .topbar { padding: 5px 10px; }
-            .meta-item { font-size: 0.72rem; }
-            .btn-settings { padding: 4px 8px; font-size: 0.85rem; }
+            .meta-item { font-size: 0.82rem; }
+            .btn-settings { padding: 4px 8px; font-size: 0.9rem; }
             .tz-label { display: none; }
 
             .airport-header { padding: 8px 10px 6px; }
-            .airport-header .airport-full-name { font-size: 0.95rem; }
-            .airport-header .airport-code-label { font-size: 0.6rem; letter-spacing: 1px; }
+            .airport-header .airport-full-name { font-size: 1rem; }
+            .airport-header .airport-code-label { font-size: 0.65rem; letter-spacing: 1px; }
 
             /* 5-col: hide Date + Actual on small screens */
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 80px 1fr 65px 60px 60px;
+                grid-template-columns: 85px 1fr 70px 65px 65px;
             }
             .flight-date, .col-header span:nth-child(3) { display: none; }
             .flight-row .time:nth-of-type(2), .col-header span:nth-child(5) { display: none; }
 
-            .col-header { font-size: 0.5rem; padding: 5px 8px; letter-spacing: 1px; }
-            .flight-row { font-size: 0.7rem; padding: 6px 6px; margin: 2px 3px; }
-            .flight-row .callsign { font-size: 0.65rem; }
-            .flight-row .time { font-size: 0.68rem; }
-            .airline-logo { width: 24px; height: 18px; }
-            .status { font-size: 0.5rem; }
+            .col-header { font-size: 0.55rem; padding: 6px 8px; letter-spacing: 1px; }
+            .flight-row { font-size: 0.78rem; padding: 7px 7px; margin: 2px 3px; }
+            .flight-row .callsign { font-size: 0.72rem; }
+            .flight-row .time { font-size: 0.75rem; }
+            .airline-logo { width: 28px; height: 20px; }
+            .status { font-size: 0.58rem; }
 
-            .rate-banner { font-size: 0.65rem; padding: 5px 10px; }
-            .bottombar { font-size: 0.6rem; padding: 5px 10px; }
-            .section-header { font-size: 0.75rem; padding: 7px 10px; letter-spacing: 0.5px; }
-            .section-header .section-date { font-size: 0.65rem; }
-
-            .filter-bar { padding: 4px 10px; }
-            .filter-tag { font-size: 0.58rem; padding: 2px 7px; }
+            .rate-banner { font-size: 0.72rem; padding: 5px 10px; }
+            .bottombar { font-size: 0.65rem; padding: 5px 10px; }
+            .section-header { font-size: 0.85rem; padding: 8px 10px; letter-spacing: 0.5px; }
+            .section-header .section-date { font-size: 0.72rem; }
 
             .settings-panel { padding: 20px 16px; border-radius: var(--radius-md); }
         }
 
         /* ── Responsive: Very small phones ── */
         @media (max-width: 360px) {
-            .airport-header .airport-full-name { font-size: 0.82rem; }
+            .airport-header .airport-full-name { font-size: 0.88rem; }
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 65px 1fr 55px 50px 50px;
+                grid-template-columns: 70px 1fr 60px 55px 55px;
             }
-            .flight-row { font-size: 0.62rem; padding: 5px 5px; margin: 1px 2px; }
-            .flight-row .time { font-size: 0.6rem; }
-            .flight-row .callsign { font-size: 0.58rem; }
-            .airline-logo { width: 20px; height: 14px; }
-            .status { font-size: 0.45rem; }
-            .col-header { font-size: 0.45rem; padding: 4px 5px; }
-            .section-header { font-size: 0.68rem; padding: 6px 8px; }
+            .flight-row { font-size: 0.68rem; padding: 5px 5px; margin: 1px 2px; }
+            .flight-row .time { font-size: 0.65rem; }
+            .flight-row .callsign { font-size: 0.62rem; }
+            .airline-logo { width: 22px; height: 16px; }
+            .status { font-size: 0.5rem; }
+            .col-header { font-size: 0.48rem; padding: 4px 5px; }
+            .section-header { font-size: 0.72rem; padding: 6px 8px; }
         }
     </style>
 </head>
@@ -782,7 +782,7 @@
     <div class="airport-code-label" id="airportLabel"></div>
 </div>
 
-<!-- ── Filter Bar ── -->
+<!-- ── Filter Bar (hidden, section titles used instead) ── -->
 <div class="filter-bar" id="filterBar" style="display:none">
     <span class="filter-label">Active Filters:</span>
     <span id="filterTags"></span>
@@ -792,7 +792,7 @@
 <div class="board" id="boardContainer">
     <!-- Departures (LEFT) -->
     <div class="board-half" id="depPanel">
-        <div class="section-header departures"><span class="icon">&#9992;</span> <span class="section-title">Departures</span> <span class="section-date" id="depDate"></span></div>
+        <div class="section-header departures"><span class="icon">&#9992;</span> <span class="section-title" id="depTitle">Departures</span> <span class="section-date" id="depDate"></span></div>
         <div class="col-header dep-cols">
             <span>Airline</span><span>To</span><span>Date</span><span>Sch</span><span>Actual</span><span>Terminal</span><span>Status</span>
         </div>
@@ -806,7 +806,7 @@
     </div>
     <!-- Arrivals (RIGHT) -->
     <div class="board-half" id="arrPanel">
-        <div class="section-header arrivals"><span class="icon">&#9992;</span> <span class="section-title">Arrivals</span> <span class="section-date" id="arrDate"></span></div>
+        <div class="section-header arrivals"><span class="icon">&#9992;</span> <span class="section-title" id="arrTitle">Arrivals</span> <span class="section-date" id="arrDate"></span></div>
         <div class="col-header arr-cols">
             <span>Airline</span><span>From</span><span>Date</span><span>Sch</span><span>Actual</span><span>Terminal</span><span>Status</span>
         </div>
@@ -1280,11 +1280,12 @@
         config.type = step.type;
         applyTypeFilter();
         renderBoard();
-        // Update filter bar to show current slideshow view
-        const bar = document.getElementById('filterBar');
-        const tags = document.getElementById('filterTags');
-        tags.innerHTML = `<span class="filter-tag mode-${step.mode === 'int' ? 'int' : 'dom'}">${esc(step.label)}</span> <span class="filter-tag" style="background:rgba(255,255,255,0.06);color:var(--text-muted)">Slide ${slideshowStep + 1}/${SLIDESHOW_STEPS.length}</span>`;
-        bar.style.display = 'flex';
+        // Update section titles to reflect current slideshow view
+        const depTitle = document.getElementById('depTitle');
+        const arrTitle = document.getElementById('arrTitle');
+        const modeLabel = step.mode === 'int' ? 'International ' : 'Domestic ';
+        if (depTitle) depTitle.textContent = modeLabel + 'Departures';
+        if (arrTitle) arrTitle.textContent = modeLabel + 'Arrivals';
         // Update slide counter in top bar
         const counter = document.getElementById('slideCounter');
         if (counter) counter.textContent = `${slideshowStep + 1} / ${SLIDESHOW_STEPS.length}`;
@@ -1315,25 +1316,17 @@
     }
 
     function updateFilterBar() {
-        const bar = document.getElementById('filterBar');
-        const tags = document.getElementById('filterTags');
         const mode = config.mode || 'all';
         const type = config.type || 'all';
-        const show = config.show || 'all';
-
-        let html = '';
-        if (show === '1') html += '<span class="filter-tag" style="background:rgba(6,214,160,0.12);color:var(--accent-green)">Slideshow</span> ';
-        if (mode === 'int') html += '<span class="filter-tag mode-int">International</span> ';
-        if (mode === 'dom') html += '<span class="filter-tag mode-dom">Domestic</span> ';
-        if (type === 'arrival') html += '<span class="filter-tag type-arr">Arrivals Only</span> ';
-        if (type === 'departure') html += '<span class="filter-tag type-dep">Departures Only</span> ';
-
-        if (html) {
-            tags.innerHTML = html;
-            bar.style.display = 'flex';
-        } else {
-            bar.style.display = 'none';
-        }
+        // Build prefix based on mode
+        let prefix = '';
+        if (mode === 'int') prefix = 'International ';
+        else if (mode === 'dom') prefix = 'Domestic ';
+        // Update section titles
+        const depTitle = document.getElementById('depTitle');
+        const arrTitle = document.getElementById('arrTitle');
+        if (depTitle) depTitle.textContent = prefix + 'Departures';
+        if (arrTitle) arrTitle.textContent = prefix + 'Arrivals';
     }
 
     // ── Clock ──
@@ -1442,7 +1435,7 @@
             flightsCache.departures = parseFlights(depData, 'departure');
 
             document.getElementById('dataSource').innerHTML =
-                `<span class="live-dot"></span>AirLabs &mdash; Live`;
+                `<span class="live-dot"></span>Live`;
             updateTimestamp();
             renderBoard();
             // Start slideshow if show=1 (re-renders from cache, no extra API calls)
