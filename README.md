@@ -11,21 +11,24 @@ A real-time airport flight information display built for TV screens and monitors
 ## Features
 
 - **Live Flight Data** — Real-time arrivals and departures with status (scheduled, active, landed, cancelled)
-- **Split-Board Layout** — Arrivals on the left, departures on the right, just like a real airport display
+- **Professional Airport Display** — Departures on the left, arrivals on the right, with prominent airport name header — inspired by real airport FIDS boards
+- **5-Column Layout** — Time | City | Flight (with airline logo + name) | Status | Terminal/Gate — clean and readable
 - **International / Domestic Filter** — Pass `?mode=int` for international only, `?mode=dom` for domestic only, or `?mode=all` for everything
 - **Arrival / Departure Filter** — Pass `?type=arrival` or `?type=departure` to show a single full-width panel, or `?type=all` for both
 - **Cloudflare KV Caching** — Lazy caching via Cloudflare KV reduces API calls. Cache TTL syncs with the refresh interval set in Settings
-- **Airline Logos** — Each flight displays the airline's logo alongside the flight name
+- **Airline Logos** — Each flight displays the airline's logo next to the flight code with airline name below
 - **Time Window Filter** — Only show flights within ±N hours of now (default ±2h). No morning flights cluttering the evening board.
-- **Slideshow Mode** — `?show=1` rotates through Arrivals International → Arrivals Domestic → Departures International → Departures Domestic every 10 seconds. Uses cached data — zero extra API calls
+- **Slideshow Mode** — `?show=1` rotates through Arrivals International → Arrivals Domestic → Departures International → Departures Domestic every 10 seconds. Uses cached data — zero extra API calls. Slide counter shown in top bar.
 - **URL Parameters** — Pass `?airport=JFK`, `?mode=int`, `?type=arrival`, `?show=1` etc. for direct/shareable links (all combinable)
 - **TV/Kiosk Mode** — Full-screen, auto-scrolling display designed for wall-mounted monitors
 - **235 Countries, 4,600+ Airports** — Comprehensive airport database sourced from [OurAirports](https://ourairports.com/data/)
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
-- **Configurable Settings** — Country/airport picker, mode/type filters, time window, 12/24h format, refresh interval, scroll speed
+- **Configurable Settings** — Country/airport picker, mode/type filters, time window, 12/24h format, refresh interval, scroll speed, dark/light theme
 - **Server-Side API Proxy** — Cloudflare Worker proxies AirLabs API calls (API key stays server-side), with KV caching and stale-while-error fallback
 - **Backup API Key** — Supports a fallback AirLabs key that activates automatically when the primary key is rate-limited (429) or fails
 - **Smart Column Hiding** — Terminal/Gate column auto-hides when no data is available (free plan), reappears on Pro plans
+- **Fully Responsive** — Adapts from large TV screens (1920px+) down to small phones (360px). Columns, fonts, and layout adjust at 1024px, 768px, 480px, and 360px breakpoints
+- **Dark & Light Themes** — Professional dark blue-black theme (default) and clean light theme, switchable from Settings
 - **No Framework** — Pure HTML, CSS, and JavaScript — lightweight and fast
 
 ## How It Works
@@ -239,10 +242,8 @@ The refresh rate is controlled by the `API_PLAN` config block at the top of `pub
 
 ```javascript
 const API_PLAN = {
-    name: 'Free',              // Plan display name
-    monthlyLimit: 1000,        // Monthly API call limit
     refreshInterval: 7200,     // Default refresh in seconds (2 hours)
-    timeWindow: 2,             // Show flights within ±N hours of now (0 = all)
+    timeWindow: 12,            // Show flights within ±N hours of now (0 = all)
 };
 ```
 
