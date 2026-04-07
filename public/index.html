@@ -879,14 +879,15 @@
         <div class="field">
             <label>Auto-Refresh Interval</label>
             <select id="setRefreshInterval">
-                <option value="120">2 minutes (Pro)</option>
-                <option value="600">10 minutes (Basic)</option>
+                <option value="180">3 minutes (aggressive)</option>
+                <option value="240">4 minutes</option>
+                <option value="300">5 minutes (recommended)</option>
+                <option value="600">10 minutes</option>
+                <option value="900">15 minutes</option>
                 <option value="1800">30 minutes</option>
-                <option value="3600">1 hour</option>
-                <option value="7200">2 hours (Free safe)</option>
                 <option value="0">Off (manual only)</option>
             </select>
-            <div class="hint">Free: 1,000 calls/mo &rarr; 2h safe for 24/7. See API_PLAN in source to configure.</div>
+            <div class="hint">Pro: 25,000 calls/mo &rarr; 5 min recommended for 24/7. Unlimited screens via KV cache.</div>
         </div>
         <div class="field">
             <label>Auto-Scroll Speed</label>
@@ -930,6 +931,15 @@
             <div class="hint">Show arrivals, departures, or both. URL param: ?type=arrival</div>
         </div>
 
+        <div class="field">
+            <label>Display Mode</label>
+            <select id="setShow">
+                <option value="all">Normal (show all at once)</option>
+                <option value="1">Slideshow (rotate views every 10s)</option>
+            </select>
+            <div class="hint">Slideshow cycles: Arr Int → Arr Dom → Dep Int → Dep Dom. No extra API calls. URL param: ?show=1</div>
+        </div>
+
         <div class="settings-actions">
             <button class="btn-cancel" onclick="closeSettings()">Cancel</button>
             <button class="btn-save" onclick="saveSettings()">Save &amp; Reload</button>
@@ -941,20 +951,20 @@
 <script>
     // ══════════════════════════════════════════════════════════════
     // API PLAN CONFIGURATION
-    // Change these values when upgrading your AirLabs plan.
-    // Free: 1,000 calls/month  |  Pro: 100,000+/month
+    // Primary: Pro $49/mo (25,000 calls)  |  Backup: Free (1,000 calls)
+    // Total budget: 26,000 calls/month = 13,000 refreshes
     // Each refresh = 2 API calls (arrivals + departures).
     //
-    // Recommended refresh intervals:
-    //   Free  (1,000/mo)  → 7200s (2h)  = 720 calls/mo (24/7 safe)
-    //   Basic (10,000/mo)  → 600s (10m) = 8,640 calls/mo
-    //   Pro   (100,000/mo) → 120s (2m)  = 43,200 calls/mo
+    // Recommended refresh intervals (single airport, 24/7):
+    //   5 min → 8,640 calls/mo  (34% of Pro — comfortable)
+    //   4 min → 21,600 calls/mo (86% of Pro — tight)
+    //   3 min → 28,800 calls/mo (exceeds Pro, needs backup)
+    //
+    // KV cache means unlimited screens/devices at zero extra cost.
     // ══════════════════════════════════════════════════════════════
     const API_PLAN = {
-        name: 'Free',              // Plan display name
-        monthlyLimit: 1000,        // Monthly API call limit
-        refreshInterval: 7200,     // Default refresh in seconds (2 hours)
-        timeWindow: 2,             // Default time window in hours (±2h). Set 0 for all.
+        refreshInterval: 7200,     // Default refresh in seconds (2h for Free plan)
+        timeWindow: 12,            // Default time window in hours (±12h). Set 0 for all.
     };
 
     // ── Airport data (loaded from airports.js / airports.json) ──
@@ -999,10 +1009,10 @@
         } catch (e) {
             console.error('Airport data load error:', e);
             // Fallback minimal data
-            airportsByCountry = { 'India': [{ icao: 'VOCL', iata: 'COK', name: 'Cochin International' }] };
-            AIRPORTS_ICAO = { 'VOCL': 'Cochin International' };
+            airportsByCountry = { 'India': [{ icao: 'VOCI', iata: 'COK', name: 'Cochin International' }] };
+            AIRPORTS_ICAO = { 'VOCI': 'Cochin International' };
             AIRPORTS_IATA = { 'COK': 'Cochin International' };
-            ICAO_TO_IATA = { 'VOCL': 'COK' };
+            ICAO_TO_IATA = { 'VOCI': 'COK' };
             populateCountryDropdown();
         }
     }
@@ -1051,7 +1061,7 @@
 
     // ── Config ──
     const DEFAULTS = {
-        airport: 'VOCL',
+        airport: 'VOCI',
         timeFormat: '24',
         refreshInterval: API_PLAN.refreshInterval,
         scrollSpeed: 40,
@@ -1060,6 +1070,7 @@
         timezone: 'auto',
         mode: 'all',
         type: 'all',
+        show: 'all',
     };
 
     function resolveTimezone() {
@@ -1164,6 +1175,51 @@
         return selectedCountry === otherCountry;
     }
 
+    // ── Slideshow mode (show=1) ──
+    // Rotates through 4 views using cached data — zero extra API calls.
+    const SLIDESHOW_STEPS = [
+        { type: 'arrival',   mode: 'int', label: 'Arrivals — International' },
+        { type: 'arrival',   mode: 'dom', label: 'Arrivals — Domestic' },
+        { type: 'departure', mode: 'int', label: 'Departures — International' },
+        { type: 'departure', mode: 'dom', label: 'Departures — Domestic' },
+    ];
+    let slideshowTimer = null;
+    let slideshowStep = 0;
+
+    function startSlideshow() {
+        stopSlideshow();
+        if (config.show !== '1') return;
+        slideshowStep = 0;
+        applySlideshowStep();
+        slideshowTimer = setInterval(() => {
+            slideshowStep = (slideshowStep + 1) % SLIDESHOW_STEPS.length;
+            applySlideshowStep();
+        }, 10000);
+    }
+
+    function stopSlideshow() {
+        if (slideshowTimer) { clearInterval(slideshowTimer); slideshowTimer = null; }
+    }
+
+    function applySlideshowStep() {
+        const step = SLIDESHOW_STEPS[slideshowStep];
+        // Temporarily override mode/type for rendering
+        const savedMode = config.mode;
+        const savedType = config.type;
+        config.mode = step.mode;
+        config.type = step.type;
+        applyTypeFilter();
+        renderBoard();
+        // Update filter bar to show current slideshow view
+        const bar = document.getElementById('filterBar');
+        const tags = document.getElementById('filterTags');
+        tags.innerHTML = `<span class="filter-tag mode-${step.mode === 'int' ? 'int' : 'dom'}">${esc(step.label)}</span> <span class="filter-tag" style="background:rgba(255,255,255,0.06);color:var(--text-muted)">Slide ${slideshowStep + 1}/${SLIDESHOW_STEPS.length}</span>`;
+        bar.style.display = 'flex';
+        // Restore original config (so settings/URL stay correct)
+        config.mode = savedMode;
+        config.type = savedType;
+    }
+
     // ── Type/mode layout ──
     function applyTypeFilter() {
         const board = document.getElementById('boardContainer');
@@ -1190,8 +1246,10 @@
         const tags = document.getElementById('filterTags');
         const mode = config.mode || 'all';
         const type = config.type || 'all';
+        const show = config.show || 'all';
 
         let html = '';
+        if (show === '1') html += '<span class="filter-tag" style="background:rgba(6,214,160,0.12);color:var(--accent-green)">Slideshow</span> ';
         if (mode === 'int') html += '<span class="filter-tag mode-int">International</span> ';
         if (mode === 'dom') html += '<span class="filter-tag mode-dom">Domestic</span> ';
         if (type === 'arrival') html += '<span class="filter-tag type-arr">Arrivals Only</span> ';
@@ -1219,17 +1277,30 @@
     tick();
 
     // ── Render ──
+    function filterByMode(flights) {
+        const mode = config.mode || 'all';
+        if (mode === 'all') return flights;
+        return flights.filter(f => {
+            const domestic = isFlightDomestic(f.otherCode);
+            if (domestic === null) return true;
+            return mode === 'dom' ? domestic : !domestic;
+        });
+    }
+
     function renderBoard() {
         // Auto-hide gate column if no flights have terminal/gate data
         const hasGate = [...flightsCache.arrivals, ...flightsCache.departures].some(f => f.termGate);
         document.body.classList.toggle('hide-gate', !hasGate);
 
-        renderHalf('arrBody', 'arrScroll', flightsCache.arrivals, 'arrival');
-        renderHalf('depBody', 'depScroll', flightsCache.departures, 'departure');
+        // Apply mode filter at render time (not parse time) so slideshow can re-filter
+        const filteredArr = filterByMode(flightsCache.arrivals);
+        const filteredDep = filterByMode(flightsCache.departures);
 
-        const total = flightsCache.arrivals.length + flightsCache.departures.length;
+        renderHalf('arrBody', 'arrScroll', filteredArr, 'arrival');
+        renderHalf('depBody', 'depScroll', filteredDep, 'departure');
+
         document.getElementById('flightCount').textContent =
-            `${flightsCache.arrivals.length} arr / ${flightsCache.departures.length} dep`;
+            `${filteredArr.length} arr / ${filteredDep.length} dep`;
     }
 
     function renderHalf(bodyId, scrollId, flights, dir) {
@@ -1295,6 +1366,8 @@
                 `<span class="live-dot"></span>AirLabs &mdash; Live`;
             updateTimestamp();
             renderBoard();
+            // Start slideshow if show=1 (re-renders from cache, no extra API calls)
+            if (config.show === '1') startSlideshow();
         } catch (err) {
             console.error('AirLabs error:', err);
             const msg = String(err.message);
@@ -1309,6 +1382,8 @@
                 `<div class="state-msg">Loading demo data...</div>`;
 
             setTimeout(loadDemoData, 2000);
+            // Start slideshow even on demo data
+            if (config.show === '1') startSlideshow();
         }
     }
 
@@ -1364,13 +1439,6 @@
             const t = new Date(timeStr.includes('T') ? timeStr : timeStr.replace(' ', 'T') + 'Z').getTime();
             if (isNaN(t)) return true;
             return t >= now - windowMs && t <= now + windowMs;
-        }).filter(f => {
-            // Apply mode filter (international / domestic)
-            const mode = config.mode || 'all';
-            if (mode === 'all') return true;
-            const domestic = isFlightDomestic(f.otherCode);
-            if (domestic === null) return true;
-            return mode === 'dom' ? domestic : !domestic;
         }).sort((a, b) => {
             // Sort by scheduled time ascending (soonest first)
             const tA = dir === 'arrival' ? (a.arr_time || '') : (a.dep_time || '');
@@ -1445,6 +1513,7 @@
         document.getElementById('setTimezone').value = config.timezone || 'auto';
         document.getElementById('setMode').value = config.mode || 'all';
         document.getElementById('setType').value = config.type || 'all';
+        document.getElementById('setShow').value = config.show || 'all';
         // Theme toggle
         const themeRadio = document.getElementById(config.theme === 'light' ? 'themeLight' : 'themeDark');
         if (themeRadio) themeRadio.checked = true;
@@ -1469,6 +1538,7 @@
         config.timezone = document.getElementById('setTimezone').value;
         config.mode = document.getElementById('setMode').value;
         config.type = document.getElementById('setType').value;
+        config.show = document.getElementById('setShow').value;
         const selectedTheme = document.querySelector('input[name="theme"]:checked');
         config.theme = selectedTheme ? selectedTheme.value : 'dark';
         applyTheme(config.theme);
@@ -1482,10 +1552,13 @@
         else newUrl.searchParams.delete('mode');
         if (config.type && config.type !== 'all') newUrl.searchParams.set('type', config.type);
         else newUrl.searchParams.delete('type');
+        if (config.show && config.show !== 'all') newUrl.searchParams.set('show', config.show);
+        else newUrl.searchParams.delete('show');
         history.replaceState(null, '', newUrl);
         updateAirportDisplay();
         applyTypeFilter();
         closeSettings();
+        stopSlideshow();
         startAutoRefresh();
         fetchFlights();
     }
@@ -1545,6 +1618,8 @@
         if (['int', 'dom', 'all'].includes(urlMode)) config.mode = urlMode;
         const urlType = (params.get('type') || '').toLowerCase();
         if (['arrival', 'departure', 'all'].includes(urlType)) config.type = urlType;
+        const urlShow = (params.get('show') || '').toLowerCase();
+        if (['1', 'all'].includes(urlShow)) config.show = urlShow;
 
         updateAirportDisplay();
         applyTypeFilter();

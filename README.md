@@ -17,7 +17,8 @@ A real-time airport flight information display built for TV screens and monitors
 - **Cloudflare KV Caching** — Lazy caching via Cloudflare KV reduces API calls. Cache TTL syncs with the refresh interval set in Settings
 - **Airline Logos** — Each flight displays the airline's logo alongside the flight name
 - **Time Window Filter** — Only show flights within ±N hours of now (default ±2h). No morning flights cluttering the evening board.
-- **URL Parameters** — Pass `?airport=JFK`, `?mode=int`, `?type=arrival` etc. for direct/shareable links (all combinable)
+- **Slideshow Mode** — `?show=1` rotates through Arrivals International → Arrivals Domestic → Departures International → Departures Domestic every 10 seconds. Uses cached data — zero extra API calls
+- **URL Parameters** — Pass `?airport=JFK`, `?mode=int`, `?type=arrival`, `?show=1` etc. for direct/shareable links (all combinable)
 - **TV/Kiosk Mode** — Full-screen, auto-scrolling display designed for wall-mounted monitors
 - **235 Countries, 4,600+ Airports** — Comprehensive airport database sourced from [OurAirports](https://ourairports.com/data/)
 - **Auto-Scroll** — Long flight lists scroll automatically with configurable speed
@@ -46,6 +47,7 @@ All parameters can be combined in the URL for shareable, filtered views.
 | `airport` | IATA or ICAO code | Select airport, e.g. `?airport=JFK` or `?airport=KJFK` |
 | `mode` | `int`, `dom`, `all` | `int` = international only, `dom` = domestic only, `all` = both (default) |
 | `type` | `arrival`, `departure`, `all` | `arrival` = arrivals only (full width), `departure` = departures only, `all` = both panels (default) |
+| `show` | `1`, `all` | `1` = slideshow mode (rotates 4 views every 10s), `all` = normal display (default) |
 
 **Examples:**
 
@@ -54,6 +56,8 @@ All parameters can be combined in the URL for shareable, filtered views.
 ?airport=DXB&mode=dom                 # Domestic flights at Dubai
 ?airport=LHR&type=departure           # All departures from Heathrow
 ?airport=SIN&mode=int&type=all        # All international flights at Singapore
+?airport=COK&show=1                   # Slideshow at Cochin: rotates Arr Int → Arr Dom → Dep Int → Dep Dom
+?airport=COK&show=1&type=arrival      # Slideshow ignored when type is set (type takes priority)
 ```
 
 Filters are also available in the Settings panel and persist in the URL when saved.
