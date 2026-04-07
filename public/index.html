@@ -335,8 +335,8 @@
 
         .col-header {
             display: grid;
-            padding: 10px 16px;
-            font-size: 0.7rem;
+            padding: 12px 20px;
+            font-size: 0.72rem;
             font-weight: 700;
             color: var(--text-muted);
             letter-spacing: 1.5px;
@@ -345,85 +345,92 @@
             border-bottom: 1px solid var(--border-subtle);
             flex-shrink: 0;
         }
-        .col-header.arr-cols { grid-template-columns: 70px 1fr 180px 100px 100px; }
-        .col-header.dep-cols { grid-template-columns: 70px 1fr 180px 100px 100px; }
-
-        /* Hide gate column when no data */
-        .hide-gate .col-gate, .hide-gate .term-gate { display: none; }
-        .hide-gate .col-header.arr-cols,
-        .hide-gate .col-header.dep-cols { grid-template-columns: 70px 1fr 180px 100px; }
-        .hide-gate .flight-row.arr-cols,
-        .hide-gate .flight-row.dep-cols { grid-template-columns: 70px 1fr 180px 100px; }
+        .col-header.arr-cols,
+        .col-header.dep-cols { grid-template-columns: 150px 1fr 110px 100px 100px 90px 90px; }
 
         .flight-row {
             display: grid;
-            padding: 9px 16px;
+            padding: 16px 20px;
             font-size: 0.88rem;
             border-bottom: 1px solid var(--border-subtle);
             align-items: center;
             transition: background var(--transition);
+            margin: 4px 8px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-stripe);
         }
-        .flight-row:nth-child(even) { background: var(--bg-stripe); }
-        .flight-row:hover { background: var(--bg-hover); }
-        .flight-row.arr-cols { grid-template-columns: 70px 1fr 180px 100px 100px; }
-        .flight-row.dep-cols { grid-template-columns: 70px 1fr 180px 100px 100px; }
+        .flight-row:nth-child(odd) { background: var(--bg-hover); }
+        .flight-row:hover { filter: brightness(1.05); }
+        .flight-row.arr-cols,
+        .flight-row.dep-cols { grid-template-columns: 150px 1fr 110px 100px 100px 90px 90px; }
 
-        .hide-gate .flight-row.arr-cols { grid-template-columns: 70px 1fr 180px 100px; }
-        .hide-gate .flight-row.dep-cols { grid-template-columns: 70px 1fr 180px 100px; }
-
-        .flight-row .time {
-            font-family: var(--font-mono);
-            color: var(--text-primary);
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+        /* Col 1: Airline — logo centered + flight code below */
+        .flight-row .airline-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
         }
-        .flight-row .city {
-            color: var(--text-primary);
+        .airline-logo {
+            width: 48px;
+            height: 32px;
+            object-fit: contain;
+            border-radius: 4px;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.06);
+            padding: 2px;
+        }
+        .flight-row .airline-name {
+            color: var(--text-muted);
+            font-size: 0.62rem;
             font-weight: 500;
-            font-size: 0.88rem;
+            letter-spacing: 0.3px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            padding-right: 8px;
-        }
-        .flight-row .flight-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 0;
-        }
-        .airline-logo {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-            border-radius: 3px;
-            flex-shrink: 0;
-            background: rgba(255,255,255,0.04);
-        }
-        .flight-row .flight-detail {
-            display: flex;
-            flex-direction: column;
-            min-width: 0;
+            max-width: 140px;
         }
         .flight-row .callsign {
             font-family: var(--font-mono);
             color: var(--text-primary);
             font-weight: 700;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             letter-spacing: 0.5px;
         }
-        .flight-row .airline-hint {
-            color: var(--text-muted);
-            font-size: 0.65rem;
-            font-weight: 400;
+
+        /* Col 2: City */
+        .flight-row .city {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            line-height: 1.3;
+            padding-right: 8px;
         }
-        .flight-row .term-gate {
+
+        /* Col 3: Date */
+        .flight-row .flight-date {
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Col 4 & 5: Scheduled / Actual time */
+        .flight-row .time {
             font-family: var(--font-mono);
+            color: var(--text-primary);
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        /* Col 6: Terminal */
+        .flight-row .term-gate {
+            font-family: var(--font-body);
             color: var(--text-secondary);
             font-weight: 600;
             font-size: 0.82rem;
@@ -433,24 +440,21 @@
             text-overflow: ellipsis;
         }
 
-        /* ── Status Pills ── */
+        /* ── Status ── */
         .status {
-            font-size: 0.65rem;
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 4px;
+            letter-spacing: 0.3px;
+            text-transform: capitalize;
             text-align: center;
-            white-space: nowrap;
         }
-        .status-landed   { background: var(--status-landed-bg); color: var(--status-landed-text); }
-        .status-en-route  { background: var(--status-enroute-bg); color: var(--status-enroute-text); }
-        .status-expected  { background: var(--status-sched-bg); color: var(--status-sched-text); }
-        .status-departed  { background: var(--status-departed-bg); color: var(--status-departed-text); }
-        .status-cancelled { background: var(--status-cancel-bg); color: var(--status-cancel-text); }
-        .status-unknown   { background: var(--status-unknown-bg); color: var(--status-unknown-text); }
-        .status-delayed   { background: var(--status-delayed-bg); color: var(--status-delayed-text); }
+        .status-landed   { color: var(--status-landed-text); }
+        .status-en-route  { color: var(--status-enroute-text); }
+        .status-expected  { color: var(--status-sched-text); }
+        .status-departed  { color: var(--status-departed-text); }
+        .status-cancelled { color: var(--status-cancel-text); }
+        .status-unknown   { color: var(--status-unknown-text); }
+        .status-delayed   { color: var(--status-delayed-text); }
 
         /* ── Filter Bar ── */
         .filter-bar {
@@ -653,13 +657,12 @@
         @media (max-width: 1024px) {
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 65px 1fr 150px 90px 90px;
+                grid-template-columns: 120px 1fr 95px 80px 80px 75px 75px;
             }
-            .hide-gate .col-header.arr-cols, .hide-gate .col-header.dep-cols,
-            .hide-gate .flight-row.arr-cols, .hide-gate .flight-row.dep-cols {
-                grid-template-columns: 65px 1fr 150px 90px;
-            }
-            .col-header, .flight-row { padding: 8px 12px; }
+            .col-header, .flight-row { padding: 10px 12px; }
+            .flight-row { margin: 3px 6px; }
+            .airline-logo { width: 40px; height: 28px; }
+            .flight-row .callsign { font-size: 0.78rem; }
             .topbar { padding: 6px 16px; }
             .clock { font-size: 0.82rem; }
             .airport-header { padding: 12px 16px 10px; }
@@ -682,21 +685,19 @@
             .airport-header .airport-full-name { font-size: 1.1rem; }
             .airport-header .airport-code-label { font-size: 0.65rem; }
 
+            /* 7 cols, tighter */
             .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 58px 1fr 130px 80px 78px;
+                grid-template-columns: 100px 1fr 85px 70px 70px 65px 65px;
             }
-            .hide-gate .col-header.arr-cols, .hide-gate .col-header.dep-cols,
-            .hide-gate .flight-row.arr-cols, .hide-gate .flight-row.dep-cols {
-                grid-template-columns: 58px 1fr 130px 80px;
-            }
-            .col-header { font-size: 0.6rem; padding: 6px 10px; }
-            .flight-row { font-size: 0.8rem; padding: 8px 10px; }
-            .flight-row .callsign { font-size: 0.78rem; }
-            .flight-row .time { font-size: 0.78rem; }
-            .flight-row .term-gate { font-size: 0.72rem; }
-            .airline-logo { width: 20px; height: 20px; }
-            .status { font-size: 0.58rem; padding: 3px 6px; }
+            .col-header { font-size: 0.55rem; padding: 6px 10px; }
+            .flight-row { font-size: 0.78rem; padding: 8px 10px; margin: 2px 4px; }
+            .flight-row .callsign { font-size: 0.72rem; }
+            .flight-row .time { font-size: 0.75rem; }
+            .flight-row .term-gate { font-size: 0.68rem; }
+            .flight-row .flight-date { font-size: 0.65rem; }
+            .airline-logo { width: 32px; height: 22px; }
+            .status { font-size: 0.55rem; }
             .section-header { font-size: 0.85rem; padding: 8px 14px; letter-spacing: 0.5px; }
             .section-header .section-date { font-size: 0.72rem; }
         }
@@ -712,22 +713,20 @@
             .airport-header .airport-full-name { font-size: 0.95rem; }
             .airport-header .airport-code-label { font-size: 0.6rem; letter-spacing: 1px; }
 
-            /* Compact 4-col grid: hide T/Gate on small screens */
-            .col-header.arr-cols, .col-header.dep-cols {
-                grid-template-columns: 50px 1fr 100px 68px;
-            }
+            /* 5-col: hide Date + Actual on small screens */
+            .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 50px 1fr 100px 68px;
+                grid-template-columns: 80px 1fr 65px 60px 60px;
             }
-            .col-gate, .term-gate { display: none; }
+            .flight-date, .col-header span:nth-child(3) { display: none; }
+            .flight-row .time:nth-of-type(2), .col-header span:nth-child(5) { display: none; }
 
-            .col-header { font-size: 0.52rem; padding: 5px 8px; letter-spacing: 1px; }
-            .flight-row { font-size: 0.72rem; padding: 6px 8px; }
-            .flight-row .callsign { font-size: 0.7rem; }
-            .flight-row .time { font-size: 0.7rem; }
-            .flight-row .airline-hint { font-size: 0.55rem; }
-            .airline-logo { width: 18px; height: 18px; }
-            .status { font-size: 0.5rem; padding: 2px 5px; letter-spacing: 0.5px; }
+            .col-header { font-size: 0.5rem; padding: 5px 8px; letter-spacing: 1px; }
+            .flight-row { font-size: 0.7rem; padding: 6px 6px; margin: 2px 3px; }
+            .flight-row .callsign { font-size: 0.65rem; }
+            .flight-row .time { font-size: 0.68rem; }
+            .airline-logo { width: 24px; height: 18px; }
+            .status { font-size: 0.5rem; }
 
             .rate-banner { font-size: 0.65rem; padding: 5px 10px; }
             .bottombar { font-size: 0.6rem; padding: 5px 10px; }
@@ -743,18 +742,16 @@
         /* ── Responsive: Very small phones ── */
         @media (max-width: 360px) {
             .airport-header .airport-full-name { font-size: 0.82rem; }
-            .col-header.arr-cols, .col-header.dep-cols {
-                grid-template-columns: 46px 1fr 90px 58px;
-            }
+            .col-header.arr-cols, .col-header.dep-cols,
             .flight-row.arr-cols, .flight-row.dep-cols {
-                grid-template-columns: 46px 1fr 90px 58px;
+                grid-template-columns: 65px 1fr 55px 50px 50px;
             }
-            .flight-row { font-size: 0.68rem; padding: 5px 6px; }
-            .flight-row .time { font-size: 0.65rem; }
-            .flight-row .callsign { font-size: 0.65rem; }
-            .airline-logo { width: 16px; height: 16px; }
-            .status { font-size: 0.48rem; padding: 2px 4px; }
-            .col-header { font-size: 0.48rem; padding: 4px 6px; }
+            .flight-row { font-size: 0.62rem; padding: 5px 5px; margin: 1px 2px; }
+            .flight-row .time { font-size: 0.6rem; }
+            .flight-row .callsign { font-size: 0.58rem; }
+            .airline-logo { width: 20px; height: 14px; }
+            .status { font-size: 0.45rem; }
+            .col-header { font-size: 0.45rem; padding: 4px 5px; }
             .section-header { font-size: 0.68rem; padding: 6px 8px; }
         }
     </style>
@@ -797,7 +794,7 @@
     <div class="board-half" id="depPanel">
         <div class="section-header departures"><span class="icon">&#9992;</span> <span class="section-title">Departures</span> <span class="section-date" id="depDate"></span></div>
         <div class="col-header dep-cols">
-            <span>Time</span><span>To</span><span>Flight</span><span>Status</span><span class="col-gate">T / Gate</span>
+            <span>Airline</span><span>To</span><span>Date</span><span>Sch</span><span>Actual</span><span>Terminal</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="depScroll">
@@ -811,7 +808,7 @@
     <div class="board-half" id="arrPanel">
         <div class="section-header arrivals"><span class="icon">&#9992;</span> <span class="section-title">Arrivals</span> <span class="section-date" id="arrDate"></span></div>
         <div class="col-header arr-cols">
-            <span>Time</span><span>From</span><span>Flight</span><span>Status</span><span class="col-gate">T / Gate</span>
+            <span>Airline</span><span>From</span><span>Date</span><span>Sch</span><span>Actual</span><span>Terminal</span><span>Status</span>
         </div>
         <div class="flight-list">
             <div class="flight-scroll" id="arrScroll">
@@ -1181,15 +1178,26 @@
         const upper = code.toUpperCase();
         return AIRPORTS_IATA[upper] || AIRPORTS_ICAO[upper] || upper;
     }
-    function fmtTime(timeStr) {
-        if (!timeStr) return '—';
-        // Ensure UTC parsing: AirLabs UTC times come as "2026-03-21 06:50"
+    function parseTimeStr(timeStr) {
+        if (!timeStr) return null;
         const normalized = timeStr.includes('T') ? timeStr : timeStr.replace(' ', 'T');
         const d = new Date(normalized.endsWith('Z') ? normalized : normalized + 'Z');
-        if (isNaN(d)) return '—';
+        return isNaN(d) ? null : d;
+    }
+    function fmtTime(timeStr) {
+        const d = parseTimeStr(timeStr);
+        if (!d) return '—';
         return d.toLocaleTimeString([], {
             hour: '2-digit', minute: '2-digit',
             hour12: config.timeFormat === '12',
+            timeZone: resolveTimezone()
+        });
+    }
+    function fmtDate(timeStr) {
+        const d = parseTimeStr(timeStr);
+        if (!d) return '—';
+        return d.toLocaleDateString([], {
+            day: '2-digit', month: 'short', year: 'numeric',
             timeZone: resolveTimezone()
         });
     }
@@ -1359,10 +1367,6 @@
     }
 
     function renderBoard() {
-        // Auto-hide gate column if no flights have terminal/gate data
-        const hasGate = [...flightsCache.arrivals, ...flightsCache.departures].some(f => f.termGate);
-        document.body.classList.toggle('hide-gate', !hasGate);
-
         // Apply mode filter at render time (not parse time) so slideshow can re-filter
         const filteredArr = filterByMode(flightsCache.arrivals);
         const filteredDep = filterByMode(flightsCache.departures);
@@ -1389,17 +1393,23 @@
             const stCls = statusClass(f.status);
             const stLabel = esc(statusLabel(f.status));
             const airlineRaw = f.airline || '';
-            const airline = esc(airlineRaw);
-            const scheduled = fmtTime(dir === 'arrival' ? f.arr_time : f.dep_time);
+            const airlineName = esc(f.airlineName || airlineRaw);
+            const schTimeStr = dir === 'arrival' ? f.arr_time : f.dep_time;
+            const actTimeStr = dir === 'arrival' ? (f.arr_estimated || f.arr_time) : (f.dep_estimated || f.dep_time);
+            const scheduled = fmtTime(schTimeStr);
+            const actual = fmtTime(actTimeStr);
+            const flightDate = fmtDate(schTimeStr);
             const termGate = esc(f.termGate || '—');
             const logoHtml = airlineRaw ? `<img src="${airlineLogoUrl(airlineRaw)}" alt="" class="airline-logo" onerror="this.style.display='none'">` : '';
 
             return `<div class="flight-row ${colClass}">
-                <span class="time">${scheduled}</span>
+                <span class="airline-col">${logoHtml}<span class="callsign">${esc(f.flight)}</span></span>
                 <span class="city">${esc(f.city)}</span>
-                <span class="flight-info">${logoHtml}<span class="flight-detail"><span class="callsign">${esc(f.flight)}</span>${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span></span>
-                <span class="status ${stCls}">${stLabel}</span>
+                <span class="flight-date">${flightDate}</span>
+                <span class="time">${scheduled}</span>
+                <span class="time">${actual}</span>
                 <span class="term-gate">${termGate}</span>
+                <span class="status ${stCls}">${stLabel}</span>
             </div>`;
         }).join('');
 
@@ -1490,6 +1500,7 @@
                 city: airportName(otherCode),
                 otherCode: otherCode,
                 airline: f.airline_iata || '',
+                airlineName: f.airline_name || '',
                 dep_time: f.dep_time_utc || f.dep_time,
                 dep_estimated: f.dep_estimated_utc || f.dep_estimated,
                 arr_time: f.arr_time_utc || f.arr_time,
