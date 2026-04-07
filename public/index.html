@@ -1391,17 +1391,15 @@
             const airlineRaw = f.airline || '';
             const airline = esc(airlineRaw);
             const scheduled = fmtTime(dir === 'arrival' ? f.arr_time : f.dep_time);
-            const estimated = fmtTime(dir === 'arrival' ? f.arr_estimated : f.dep_estimated);
             const termGate = esc(f.termGate || '—');
             const logoHtml = airlineRaw ? `<img src="${airlineLogoUrl(airlineRaw)}" alt="" class="airline-logo" onerror="this.style.display='none'">` : '';
 
             return `<div class="flight-row ${colClass}">
-                <span class="callsign">${esc(f.flight)}</span>
-                <span class="city">${logoHtml}<span class="city-info">${esc(f.city)}${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span></span>
                 <span class="time">${scheduled}</span>
-                <span class="time hide-xs">${estimated || scheduled}</span>
-                <span class="term-gate">${termGate}</span>
+                <span class="city">${esc(f.city)}</span>
+                <span class="flight-info">${logoHtml}<span class="flight-detail"><span class="callsign">${esc(f.flight)}</span>${airline ? `<span class="airline-hint">${airline}</span>` : ''}</span></span>
                 <span class="status ${stCls}">${stLabel}</span>
+                <span class="term-gate">${termGate}</span>
             </div>`;
         }).join('');
 
